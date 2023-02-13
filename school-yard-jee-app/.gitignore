@@ -1,11 +1,13 @@
-# Eclipse
-.settings/
-target/
-.metadata/
-.project
+
+# temp config files
 .classpath
-.DS_Store
+.project
 .tern-project
+.settings/
+/target/
+.metadata/
+
+
 
 # Compiled class file
 *.class
