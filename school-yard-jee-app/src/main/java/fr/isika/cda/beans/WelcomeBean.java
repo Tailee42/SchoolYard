@@ -1,4 +1,4 @@
-package fr.isika.cda.presentation.beans;
+package fr.isika.cda.beans;
 
 import javax.faces.bean.ManagedBean;
 

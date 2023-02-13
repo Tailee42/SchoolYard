@@ -1,13 +1,21 @@
 package fr.isika.cda.entities;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Profil {
+public class Profil implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3796628224528778418L;
+
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -18,9 +26,13 @@ public class Profil {
 	
 	private String picturePath;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Contact contact;
 
+	public Profil() {
+		this.contact = new Contact();
+	}
+	
 	public Long getId() {
 		return id;
 	}
