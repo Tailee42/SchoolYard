@@ -1,53 +1,52 @@
 package fr.isika.cda.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6634210269001001600L;
 
 	@Id
 	@GeneratedValue
 	private Long id;
 	
-	private String lastName;
-	private String firstName;
+	private String login;
+	private Date lastConnection;
 	
 	@Enumerated(EnumType.STRING)
 	private RoleType role;
+	
+	@OneToOne
+	private Security security;
+	
+	@OneToOne
+	private Profil profil;
 
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public String getLogin() {
+		return login;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public Date getLastConnection() {
+		return lastConnection;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setLastConnection(Date lastConnection) {
+		this.lastConnection = lastConnection;
 	}
 
 	public RoleType getRole() {
@@ -57,5 +56,7 @@ public class User implements Serializable {
 	public void setRole(RoleType role) {
 		this.role = role;
 	}
+
+
 
 }

@@ -1,0 +1,50 @@
+package fr.isika.cda.entities;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Address {
+
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	private Integer number;
+	private String street;
+	private String town;
+	private String zipcode;
+	
+	public Integer getNumber() {
+		return number;
+	}
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+	public String getStreet() {
+		return street;
+	}
+	public void setStreet(String street) {
+		this.street = street;
+	}
+	public String getTown() {
+		return town;
+	}
+	public void setTown(String town) {
+		this.town = town;
+	}
+	public String getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+	public Long getId() {
+		return id;
+	}
+	
+	
+	
+	
+}
