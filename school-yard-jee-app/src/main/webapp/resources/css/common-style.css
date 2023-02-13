@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;800&display=swap');
 
 :root {
-    --linkColor: #087e8b;
-    --backgroundColor : #f5f5f5;
-    --textColor : #3c3c3c;
-    --accentColor : #ff5a5f;
+    --linkColor: #F99120;
+    --backgroundColor : #e8e9eb;
+    --textColor : #414143;
+    --accentColor : #7df2ea;
 }
 
 body {
@@ -80,7 +80,7 @@ body > div {
 }
 
 .navbar-mobile .change-modal {
-    top: 0vh;
+    top: 0;
 }
 
 
@@ -113,7 +113,6 @@ i {
 
 a {
     cursor: pointer;
-    text-decoration: solid;
     transition: all 0.4s ease-in-out 0s;
     color: var(--textColor);
     font-weight: 600;
