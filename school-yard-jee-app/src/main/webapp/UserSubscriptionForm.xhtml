@@ -1,67 +1,67 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough" lang="en">
+<ui:composition template="commonLayout.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://xmlns.jcp.org/jsf/html"
+				xmlns:f="http://xmlns.jcp.org/jsf/core"
+				xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-<h:head>
-	<title>Formulaire d'inscription</title>
-</h:head>
+	<ui:define name="title">Formulaire d'inscription</ui:define>
 
+	<ui:define name="header">
 
-<h:body>
+		<h:link >Se connecter</h:link>
 
-	<h1>Formulaire d'inscription</h1>
-	<h:form id="createUserForm" >
-	
-		<h:panelGrid columns="1">
-	
-	
-		<h:outputLabel value="Identifiant : " for="loginInput" />
-		<h:inputText id="loginInput" value="#{createUserBean.user.login}" />
+	</ui:define>
 
-		<h:outputLabel value="Mot de passe : " for="passwordInput" />
-		<h:inputSecret id="passwordInput"
-			value="#{createUserBean.user.security.password}" />
+	<ui:define name="content">
+		<h1>Formulaire d'inscription</h1>
+		<h:form id="createUserForm" >
+
+			<h:panelGrid columns="1">
 
 
-		<h:outputLabel value="Nom : " for="lastNameInput" />
-		<h:inputText id="lastNameInput"  value="#{createUserBean.user.profil.lastName}"/>
+				<h:outputLabel value="Identifiant : " for="loginInput" />
+				<h:inputText id="loginInput" value="#{createUserBean.user.login}" />
 
-		<h:outputLabel value="Prénom : " for="firstNameInput" />
-		<h:inputText id="firstNameInput" value="#{createUserBean.user.profil.firstName}"/>
-
-		<h:outputLabel value="Email: " for="emailInput" />
-		<h:inputText id="emailInput" value="#{createUserBean.user.profil.contact.email}"/>
+				<h:outputLabel value="Mot de passe : " for="passwordInput" />
+				<h:inputSecret id="passwordInput"
+							   value="#{createUserBean.user.security.password}" />
 
 
-		<h:outputLabel value="Numéro : " for="numberInput" />
-		<h:inputText id="numberInput" value="#{createUserBean.user.profil.contact.address.number}"/>
+				<h:outputLabel value="Nom : " for="lastNameInput" />
+				<h:inputText id="lastNameInput"  value="#{createUserBean.user.profil.lastName}"/>
 
-		<h:outputLabel value="Rue : " for="streetInput" />
-		<h:inputText id="streetInput" value="#{createUserBean.user.profil.contact.address.street}"/>
+				<h:outputLabel value="Prénom : " for="firstNameInput" />
+				<h:inputText id="firstNameInput" value="#{createUserBean.user.profil.firstName}"/>
 
-		<h:outputLabel value="Code Postal : " for="zipcodeInput" />
-		<h:inputText id="zipcodeInput" value="#{createUserBean.user.profil.contact.address.zipcode}"/>
-
-		<h:outputLabel value="Ville : " for="townInput" />
-		<h:inputText id="townInput" value="#{createUserBean.user.profil.contact.address.town}"/>
+				<h:outputLabel value="Email: " for="emailInput" />
+				<h:inputText id="emailInput" value="#{createUserBean.user.profil.contact.email}"/>
 
 
-		<h:commandButton action="#{createUserBean.create()}" value="Valider" />
+				<h:outputLabel value="Numéro : " for="numberInput" />
+				<h:inputText id="numberInput" value="#{createUserBean.user.profil.contact.address.number}"/>
 
-</h:panelGrid>
+				<h:outputLabel value="Rue : " for="streetInput" />
+				<h:inputText id="streetInput" value="#{createUserBean.user.profil.contact.address.street}"/>
+
+				<h:outputLabel value="Code Postal : " for="zipcodeInput" />
+				<h:inputText id="zipcodeInput" value="#{createUserBean.user.profil.contact.address.zipcode}"/>
+
+				<h:outputLabel value="Ville : " for="townInput" />
+				<h:inputText id="townInput" value="#{createUserBean.user.profil.contact.address.town}"/>
 
 
-	</h:form>
+				<h:commandButton action="#{createUserBean.create()}" value="Valider" />
+
+			</h:panelGrid>
 
 
+		</h:form>
 
-</h:body>
+	</ui:define>
 
 
+</ui:composition>
 
-</html>
 
 
