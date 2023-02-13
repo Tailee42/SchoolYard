@@ -1,0 +1,16 @@
+# datasource
+ <datasource jndi-name="java:jboss/datasources/schoolyard_DS" pool-name="schoolyard_Pool" enabled="true" use-java-context="true" statistics-enabled="${wildfly.datasources.statistics-enabled:${wildfly.statistics-enabled:false}}">
+                    <connection-url>jdbc:mysql://localhost:3306/schoolyard_db?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;serverTimezone=Europe/Paris</connection-url>
+                    <driver>mysql</driver>
+                    <security>
+                        <user-name>root</user-name>
+<password></password>
+                    </security>
+                </datasource>
+
+
+
+# driver mysql
+<driver name="mysql" module="com.mysql">
+                        <driver-class>com.mysql.jdbc.Driver</driver-class>
+                    </driver>

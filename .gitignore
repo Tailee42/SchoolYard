@@ -6,6 +6,8 @@ target/
 .classpath
 .DS_Store
 .tern-project
+.idea/
+
 
 # Compiled class file
 *.class
