@@ -10,7 +10,6 @@ import fr.isika.cda.entities.school.School;
 public class SchoolRepository {
 
 	@PersistenceContext
-
 	private EntityManager entityManager;
 
 	public void save(School school) {

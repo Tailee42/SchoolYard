@@ -11,9 +11,9 @@
 
     <meta name="viewport" content="width=device-width" />
     <h:outputStylesheet name="common-style.css" library="css" />
-    <link href="../../resources/fontawesome/css/fontawesome.css" rel="stylesheet"/>
-    <link href="../../resources/fontawesome/css/brands.css" rel="stylesheet"/>
-    <link href="../../resources/fontawesome/css/solid.css" rel="stylesheet"/>
+    <link href="resources/fontawesome/css/fontawesome.css" rel="stylesheet"/>
+    <link href="resources/fontawesome/css/brands.css" rel="stylesheet"/>
+    <link href="resources/fontawesome/css/solid.css" rel="stylesheet"/>
 
     <ui:insert name="cssFiles" ></ui:insert>
 
@@ -25,15 +25,14 @@
 
         <div id="header">
             <div id="entreprise">
-                <h:link outcome="index"><img src="../../resources/images/Logo.png" width="140" height="120" alt="Logo" /></h:link>
+                <h:link outcome="index"><img src="resources/images/Logo.png" width="140" height="100" alt="Logo" /></h:link>
 
                 <h1>SchoolYard</h1>
             </div>
 
             <!-- Menu desktop -->
             <div id="navbar-desktop">
-                <ui:insert name="header" >
-                </ui:insert>
+                <ui:insert name="header" ></ui:insert>
             </div>
 
             <!-- Menu mobile -->
