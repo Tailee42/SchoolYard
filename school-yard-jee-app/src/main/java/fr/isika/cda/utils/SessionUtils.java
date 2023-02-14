@@ -9,7 +9,7 @@ import fr.isika.cda.entities.User;
  */
 public final class SessionUtils {
 
-//	private static final String CONNECTED_ACCOUNT_ID = "connectedAccountId";
+	private static final String CONNECTED_ACCOUNT_ID = "connectedAccountId";
 	private static final String CONNECTED_USER = "connectedUser";
 
 	/*
@@ -22,21 +22,21 @@ public final class SessionUtils {
 	 * specific methods
 	 */
 	public static boolean isUserConnected() {
-		return getConnectedUser() != null;
+		return getConnectedAccountId() != null;
 	}
 
 	/*
 	 * setters and getters
 	 */
-//	public static void setConnectedAccountId(Long connectedAccountId) {
-//		HttpSession session = getSession();
-//		session.setAttribute(CONNECTED_ACCOUNT_ID, connectedAccountId);
-//	}
-//
-//	public static Long getConnectedAccountId() {
-//		HttpSession session = getSession();
-//		return (Long) session.getAttribute(CONNECTED_ACCOUNT_ID);
-//	}
+	public static void setConnectedAccountId(Long connectedAccountId) {
+		HttpSession session = getSession();
+		session.setAttribute(CONNECTED_ACCOUNT_ID, connectedAccountId);
+	}
+
+	public static Long getConnectedAccountId() {
+		HttpSession session = getSession();
+		return (Long) session.getAttribute(CONNECTED_ACCOUNT_ID);
+	}
 
 	public static void setConnectedUser(User user) {
 		HttpSession session = getSession();

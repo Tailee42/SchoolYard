@@ -1,6 +1,8 @@
 package fr.isika.cda.entities;
 
 public enum RoleType {
-	SUPER_ADMIN,
-	USER,
+	ADMIN_AMAP,
+	ADMIN_SUPER,
+	CONSUMER,
+	FARMER
 }

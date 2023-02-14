@@ -7,7 +7,6 @@ target/
 .DS_Store
 .tern-project
 .idea/
-.bin
 
 
 # Compiled class file
