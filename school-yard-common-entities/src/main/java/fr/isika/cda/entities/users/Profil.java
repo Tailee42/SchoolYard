@@ -1,4 +1,4 @@
-package fr.isika.cda.entities;
+package fr.isika.cda.entities.users;
 
 import java.io.Serializable;
 
@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+
+import fr.isika.cda.entities.common.Contact;
 
 @Entity
 public class Profil implements Serializable {

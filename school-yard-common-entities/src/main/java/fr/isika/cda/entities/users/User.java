@@ -1,4 +1,4 @@
-package fr.isika.cda.entities;
+package fr.isika.cda.entities.users;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,6 +10,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+
+import fr.isika.cda.entities.common.RoleType;
+import fr.isika.cda.entities.common.Security;
 
 @Entity
 public class User implements Serializable {

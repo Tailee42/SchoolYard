@@ -1,4 +1,4 @@
-package fr.isika.cda.entities;
+package fr.isika.cda.entities.common;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

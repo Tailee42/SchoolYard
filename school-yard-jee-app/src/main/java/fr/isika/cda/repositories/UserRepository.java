@@ -4,7 +4,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import fr.isika.cda.entities.User;
+import fr.isika.cda.entities.users.User;
 
 @Stateless
 public class UserRepository {

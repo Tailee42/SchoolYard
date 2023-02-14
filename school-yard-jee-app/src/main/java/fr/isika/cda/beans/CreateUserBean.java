@@ -3,7 +3,7 @@ package fr.isika.cda.beans;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
-import fr.isika.cda.entities.User;
+import fr.isika.cda.entities.users.User;
 import fr.isika.cda.repositories.UserRepository;
 
 @ManagedBean
