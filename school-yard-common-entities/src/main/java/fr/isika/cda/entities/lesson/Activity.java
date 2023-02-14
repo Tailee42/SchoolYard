@@ -1,4 +1,7 @@
-package fr.isika.cda.entities;
+package fr.isika.cda.entities.lesson;
+
+import fr.isika.cda.entities.LevelEnum;
+import fr.isika.cda.entities.SubjectEnum;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,7 +14,7 @@ public class Activity {
 	
 	@Id
 	@GeneratedValue
-	private Long Id;
+	private Long id;
 	
 	@Enumerated(EnumType.STRING)
 	private SubjectEnum subject;
