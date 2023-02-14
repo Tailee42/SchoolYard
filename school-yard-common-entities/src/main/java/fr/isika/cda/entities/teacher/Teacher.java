@@ -1,10 +1,14 @@
-package fr.isika.cda.entities;
+package fr.isika.cda.entities.teacher;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 
+import fr.isika.cda.entities.LevelEnum;
+import fr.isika.cda.entities.SubjectEnum;
+import fr.isika.cda.entities.lesson.Activity;
+import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.school.Member;
 
 @Entity
@@ -33,8 +37,8 @@ public class Teacher {
 	private List<Unit> unit;
 
 	public Teacher() {
-		this.activity = new ArrayList<Activity>();
-		this.unit = new ArrayList<Unit>();
+		this.activity = new ArrayList<>();
+		this.unit = new ArrayList<>();
 	}
 
 	public void setMember(Member member) {

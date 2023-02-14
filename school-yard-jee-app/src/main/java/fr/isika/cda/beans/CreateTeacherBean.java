@@ -5,7 +5,7 @@ import javax.inject.Inject;
 
 import fr.isika.cda.entities.LevelEnum;
 import fr.isika.cda.entities.SubjectEnum;
-import fr.isika.cda.entities.Teacher;
+import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.repositories.TeacherRepository;
 
 @ManagedBean
