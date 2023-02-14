@@ -2,7 +2,8 @@ package fr.isika.cda.utils;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import fr.isika.cda.entities.User;
+
+import fr.isika.cda.entities.users.User;
 
 /**
  * Utility class that manages a session for users.
