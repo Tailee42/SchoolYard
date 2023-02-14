@@ -1,9 +1,11 @@
 package fr.isika.cda.entities;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,8 +25,10 @@ public class User implements Serializable {
 	@GeneratedValue
 	private Long id;
 
+	@Column(unique = true, length = 100)
 	private String login;
-	private Date lastConnection;
+
+	private LocalDateTime lastConnection;
 
 	@Enumerated(EnumType.STRING)
 	private RoleType role;
@@ -53,12 +57,12 @@ public class User implements Serializable {
 		this.login = login;
 	}
 
-	public Date getLastConnection() {
+	public LocalDateTime getLastConnection() {
 		return lastConnection;
 	}
 
-	public void setLastConnection(Date lastConnection) {
-		this.lastConnection = lastConnection;
+	public void setLastConnection(LocalDateTime localDateTime) {
+		this.lastConnection = localDateTime;
 	}
 
 	public RoleType getRole() {

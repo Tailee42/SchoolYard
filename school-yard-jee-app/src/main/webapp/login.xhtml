@@ -18,19 +18,8 @@
 			<h:outputLabel value="Mot de passe : " for="loginPassword" />
 			<h:inputSecret id="loginPassword"
 				value="#{loginBean.user.security.password}" />
-			<h:commandButton action="#{loginBean.validationLogin()}"
-				value="Connection" />
-			<h:commandButton action="#{loginBean.getUsersByLogin()}"
-				value="Afficher users" />
-			<h:dataTable value="#{loginBean.users}" var="user">
-				<h:column>
-					<h:outputText value="#{user.login}" />
-				</h:column>
-				<h:column>
-					<h:outputText value="#{user.security.password}" />
-				</h:column>
-
-			</h:dataTable>
+			<h:commandButton action="#{loginBean.login()}"
+				value="Login" />
 
 		</h:panelGrid>
 	</h:form>

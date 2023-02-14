@@ -1,26 +1,56 @@
 package fr.isika.cda.beans;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.User;
 import fr.isika.cda.repositories.UserRepository;
+import fr.isika.cda.utils.SessionUtils;
 
 @ManagedBean
+@SessionScoped
 public class LoginBean {
 
 	private User user = new User();
-	public List<User> users = new ArrayList();
 
-	public List<User> getUsers() {
-		return users;
+	@Inject
+	private UserRepository userRepository;
+
+	/*
+	 * API
+	 */
+
+	public String login() {
+		return validationLogin();
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public String logout() {
+		SessionUtils.resetSession();
+		return "index?faces-redirect=true";
+	}
+
+	/*
+	 * private methods
+	 */
+
+	private String validationLogin() {
+		Optional<User> userByLogin = userRepository.getUserByLogin(user.getLogin());
+		if (userByLogin.isPresent() && validatePasswords(userByLogin)) {
+			userByLogin.get().setLastConnection(LocalDateTime.now());
+			SessionUtils.setConnectedUser(userByLogin.get());
+			return "userDashboard?faces-redirect=true";
+		}
+		return "login";
+	}
+
+	private boolean validatePasswords(Optional<User> userByLogin) {
+		return userByLogin.get().getSecurity().getPassword().equals(user.getSecurity().getPassword());
 	}
 
 	public User getUser() {
@@ -30,27 +60,4 @@ public class LoginBean {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	@Inject
-	private UserRepository userRepository;
-
-	public String login() {
-		return "index?faces-redirect=true";
-	}
-
-	public void getUsersByLogin() {
-		this.users = userRepository.getUserByLogin(user.getLogin());
-	}
-
-	public String validationLogin() {
-		getUsersByLogin();
-		for (User listedUser : users) {
-			if (listedUser.getSecurity().getPassword().equals(user.getSecurity().getPassword())) {
-				return "userDashboard";
-			}
-		}
-		// user = new User();
-		return "login";
-	}
-
 }

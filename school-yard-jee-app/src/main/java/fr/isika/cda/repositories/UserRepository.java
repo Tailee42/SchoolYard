@@ -1,6 +1,6 @@
 package fr.isika.cda.repositories;
 
-import java.util.List;
+import java.util.Optional;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -21,10 +21,12 @@ public class UserRepository {
 	}
 
 	// get user by login
-	public List<User> getUserByLogin(String login) {
-		Query query = entityManager.createQuery("SELECT us FROM User us JOIN FETCH us.security WHERE us.login = :login", User.class);
-		query.setParameter("login", login);
-		return query.getResultList();
+	public Optional<User> getUserByLogin(String login) {
+		User user = entityManager
+				.createQuery("SELECT us FROM User us JOIN FETCH us.security WHERE us.login = :login_param", User.class)
+				.setParameter("login_param", login)
+				.getSingleResult();
+		return Optional.ofNullable(user);
 	}
 
 }
