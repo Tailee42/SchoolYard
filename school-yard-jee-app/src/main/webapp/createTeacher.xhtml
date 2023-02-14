@@ -1,0 +1,43 @@
+<ui:composition template="commonLayout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:define name="title">Inscription d'un enseignant</ui:define>
+
+	<ui:define name="header">
+
+		<h:link outcome="userSubscriptionForm">S'inscrire</h:link>
+		<h:link outcome="login">Se connecter</h:link>
+
+<ui:define name="content">
+		<h1>Formulaire d'inscription enseignant</h1>
+		<h:form id="createTeacherForm" >
+
+			<h:panelGrid columns="1">
+
+
+				<h:outputLabel value="Niveaux enseignés : " for="levelsList" />
+				<h:selectManyListbox value="#{createTeacherBean.}"></h:selectManyListbox>
+				<!-- levels -->
+				<!-- motivation? -->
+				<!-- cv/lettre de motiv? -->
+
+				
+
+
+				<h:commandButton action="#{createTeacherBean.create()}" value="Valider" />
+
+			</h:panelGrid>
+
+
+		</h:form>
+
+	</ui:define>
+
+
+</ui:composition>
+
+
