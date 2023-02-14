@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<title>Liste des users</title>
+</head>
+
+<body>
+	<h1>Liste des users</h1>	
+	
+	<nav>
+	<ul>
+		<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
+		<li><a th:href="@{/index}">Liste des écoles</a></li>
+		<li><a th:href="@{/index}">Gérer les fonctionnalités</a></li>
+	</ul>
+	</nav>
+	
+	<h2>Liste des utilisateurs</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Identifiant</th>
+				<th>Mot de passe</th>
+				<th>Role</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Email</th>
+				<th>Ville</th>
+			</tr>
+		</thead>
+		<tr th:each="user : ${users}">
+			<td><span th:text=${user.id}></span></td>
+			<td><span th:text=${user.login}></span></td>
+			<td><span th:text=${user.security.password}></span></td>
+			<td><span th:text=${user.role}></span></td>
+			<td><span th:text=${user.profil.lastName}></span></td>
+			<td><span th:text=${user.profil.firstName}></span></td>
+			<td><span th:text=${user.profil.contact.email}></span></td>
+			<td><span th:text=${user.profil.contact.address.town}></span></td>
+		</tr>
+	</table>
+
+</body>
+</html>

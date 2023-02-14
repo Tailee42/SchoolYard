@@ -7,6 +7,10 @@
 
 	<persistence-unit name="schoolyard_DS">
 		<class>fr.isika.cda.entities.User</class>
+		<class>fr.isika.cda.entities.Profil</class>
+		<class>fr.isika.cda.entities.Security</class>
+		<class>fr.isika.cda.entities.Address</class>
+		<class>fr.isika.cda.entities.Contact</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"
