@@ -6,8 +6,12 @@ import javax.persistence.Id;
 
 import fr.isika.cda.utils.EncodingUtil;
 
+import java.io.Serializable;
+
 @Entity
-public class Security {
+public class Security implements Serializable {
+
+	private static final long serialVersionUID = -825830736318335002L;
 
 	@Id
 	@GeneratedValue

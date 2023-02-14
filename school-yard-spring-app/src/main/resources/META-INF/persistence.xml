@@ -6,11 +6,11 @@
 	version="2.1">
 
 	<persistence-unit name="schoolyard_DS">
-		<class>fr.isika.cda.entities.User</class>
-		<class>fr.isika.cda.entities.Profil</class>
-		<class>fr.isika.cda.entities.Security</class>
-		<class>fr.isika.cda.entities.Address</class>
-		<class>fr.isika.cda.entities.Contact</class>
+		<class>fr.isika.cda.entities.users.User</class>
+		<class>fr.isika.cda.entities.users.Profil</class>
+		<class>fr.isika.cda.entities.common.Security</class>
+		<class>fr.isika.cda.entities.common.Address</class>
+		<class>fr.isika.cda.entities.common.Contact</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"

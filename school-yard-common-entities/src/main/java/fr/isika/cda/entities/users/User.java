@@ -1,8 +1,10 @@
 package fr.isika.cda.entities.users;
 
+import fr.isika.cda.entities.common.Address;
+import fr.isika.cda.entities.common.Security;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,9 +14,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-
-import fr.isika.cda.entities.common.RoleType;
-import fr.isika.cda.entities.common.Security;
 
 @Entity
 public class User implements Serializable {
@@ -34,7 +33,7 @@ public class User implements Serializable {
 	private LocalDateTime lastConnection;
 
 	@Enumerated(EnumType.STRING)
-	private RoleType role;
+	private Address.RoleType role;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Security security;
@@ -68,11 +67,11 @@ public class User implements Serializable {
 		this.lastConnection = localDateTime;
 	}
 
-	public RoleType getRole() {
+	public Address.RoleType getRole() {
 		return role;
 	}
 
-	public void setRole(RoleType role) {
+	public void setRole(Address.RoleType role) {
 		this.role = role;
 	}
 

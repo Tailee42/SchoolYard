@@ -3,9 +3,12 @@ package fr.isika.cda.entities.common;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class Address {
+public class Address implements Serializable {
+
+	private static final long serialVersionUID = 3250501824271112440L;
 
 	@Id
 	@GeneratedValue
@@ -43,8 +46,10 @@ public class Address {
 	public Long getId() {
 		return id;
 	}
-	
-	
-	
-	
+
+
+    public enum RoleType {
+        SUPER_ADMIN,
+        USER,
+    }
 }
