@@ -9,6 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+
+import fr.isika.cda.entities.common.Address;
+import fr.isika.cda.entities.common.Contact;
 
 @Entity
 public class School {
@@ -21,12 +25,17 @@ public class School {
 	private String logo;
 	private String presentation;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade =CascadeType.REMOVE )
 	private List<Member> members = new ArrayList<>();
 	
-//	Question pour Mohamed:
-//  private List<Member> members;
-//	members = new ArrayList<>();
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Contact contact;
+	
+	
+	public School() {
+		this.contact = new Contact();
+	}
 	
 	public String getSchoolName() {
 		return schoolName;
@@ -64,4 +73,17 @@ public class School {
 		this.members.add(member);
 	}
 
+	public Contact getContact() {
+		return contact;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
+	}
+
+	public void setMembers(List<Member> members) {
+		this.members = members;
+	}
+
+	
 }
