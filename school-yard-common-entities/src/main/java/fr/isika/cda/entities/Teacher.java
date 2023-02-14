@@ -1,5 +1,6 @@
 package fr.isika.cda.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -15,55 +16,71 @@ public class Teacher {
 	private Member member;
 
 	@Enumerated(EnumType.STRING)
-	private List<LevelEnum> levels;
+	private LevelEnum level;
+
+	@Enumerated(EnumType.STRING)
+	private SubjectEnum subject;
 
 	@Enumerated(EnumType.STRING)
 	private TeacherStatusEnum status;
 
 	@OneToMany
-	private Activity activity;
+	private List<Activity> activity;
 
 	@OneToMany
-	private Unit unit;
+	private List<Unit> unit;
 
-	public Member getMember() {
-		return member;
+	public Teacher() {
+		this.activity = new ArrayList<Activity>();
+		this.unit = new ArrayList<Unit>();
 	}
 
 	public void setMember(Member member) {
 		this.member = member;
 	}
 
-	public List<LevelEnum> getLevels() {
-		return levels;
+	public Member getMember() {
+		return member;
 	}
 
-	public void setLevels(List<LevelEnum> levels) {
-		this.levels = levels;
+	public LevelEnum getLevel() {
+		return level;
 	}
 
-	public TeacherStatusEnum getStatus() {
-		return status;
+	public void setLevel(LevelEnum level) {
+		this.level = level;
+	}
+
+	public void setSubject(SubjectEnum subject) {
+		this.subject = subject;
+	}
+
+	public SubjectEnum getSubject() {
+		return subject;
 	}
 
 	public void setStatus(TeacherStatusEnum status) {
 		this.status = status;
 	}
 
-	public Activity getActivity() {
-		return activity;
+	public TeacherStatusEnum getStatus() {
+		return status;
 	}
 
-	public void setActivity(Activity activity) {
+	public void setActivity(List<Activity> activity) {
 		this.activity = activity;
 	}
 
-	public Unit getUnit() {
-		return unit;
+	public List<Activity> getActivity() {
+		return activity;
 	}
 
-	public void setUnit(Unit unit) {
+	public void setUnit(List<Unit> unit) {
 		this.unit = unit;
+	}
+
+	public List<Unit> getUnit() {
+		return unit;
 	}
 
 	public Long getId() {

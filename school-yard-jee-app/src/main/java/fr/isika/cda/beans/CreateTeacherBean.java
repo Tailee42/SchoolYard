@@ -1,19 +1,17 @@
 package fr.isika.cda.beans;
 
-import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.LevelEnum;
+import fr.isika.cda.entities.SubjectEnum;
 import fr.isika.cda.entities.Teacher;
 import fr.isika.cda.repositories.TeacherRepository;
 
 @ManagedBean
 public class CreateTeacherBean {
 
-	private Teacher teacher;
-	private List<LevelEnum> levels;
+	private Teacher teacher = new Teacher();
 
 	@Inject
 	private TeacherRepository teacherRepository;
@@ -21,7 +19,15 @@ public class CreateTeacherBean {
 	public String create() {
 		teacherRepository.save(teacher);
 		teacher = new Teacher();
-		return "index?faces-redirect=true";
+		return "login?faces-redirect=true";
+	}
+
+	public LevelEnum[] levels() {
+		return LevelEnum.values();
+	}
+
+	public SubjectEnum[] subjects() {
+		return SubjectEnum.values();
 	}
 
 	public Teacher getTeacher() {
@@ -32,11 +38,4 @@ public class CreateTeacherBean {
 		this.teacher = teacher;
 	}
 
-	public List<LevelEnum> getLevels() {
-		return levels;
-	}
-
-	public void setLevels(List<LevelEnum> levels) {
-		this.levels = levels;
-	}
 }
