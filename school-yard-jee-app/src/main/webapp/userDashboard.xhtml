@@ -5,21 +5,21 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-	<ui:define name="title">Accueil</ui:define>
+	<ui:define name="title">Tableau de bord Utilisateur</ui:define>
 
 	<ui:define name="header">
 
-		<h:link outcome="userSubscriptionForm">S'inscrire</h:link>
-		<h:link outcome="login">Se connecter</h:link>
+		<h:form>
+			<h:commandLink action="#{loginBean.logout()}" rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+			<h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:link>
+		</h:form>
 
 	</ui:define>
 
 	<ui:define name="content">
-		<h2>Bienvenue</h2>
+		<h2>Bienvenue sur votre espace utilisateur</h2>
 
 	</ui:define>
 
 
 </ui:composition>
-
-

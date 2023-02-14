@@ -1,53 +1,68 @@
 package fr.isika.cda.entities;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User implements Serializable {
-	
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6634210269001001600L;
+	private static final long serialVersionUID = 4615310978061407318L;
 
 	@Id
 	@GeneratedValue
 	private Long id;
-	
-	private String lastName;
-	private String firstName;
-	
+
+	@Column(unique = true, length = 100)
+	private String login;
+
+	private LocalDateTime lastConnection;
+
 	@Enumerated(EnumType.STRING)
 	private RoleType role;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private Security security;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private Profil profil;
+
+	public User() {
+		this.security = new Security();
+		this.profil = new Profil();
+
+	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public String getLogin() {
+		return login;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public LocalDateTime getLastConnection() {
+		return lastConnection;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setLastConnection(LocalDateTime localDateTime) {
+		this.lastConnection = localDateTime;
 	}
 
 	public RoleType getRole() {
@@ -56,6 +71,22 @@ public class User implements Serializable {
 
 	public void setRole(RoleType role) {
 		this.role = role;
+	}
+
+	public Security getSecurity() {
+		return security;
+	}
+
+	public void setSecurity(Security security) {
+		this.security = security;
+	}
+
+	public Profil getProfil() {
+		return profil;
+	}
+
+	public void setProfil(Profil profil) {
+		this.profil = profil;
 	}
 
 }

@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;800&display=swap');
+
+:root {
+    --linkColor: #F99120;
+    --backgroundColor : #e8e9eb;
+    --textColor : #414143;
+    --accentColor : #7df2ea;
+}
+
+body {
+    background-color: var(--backgroundColor);
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding-top: 6em;
+    color: var(--textColor);
+}
+
+body > div {
+    padding: 10px;
+    min-height: 75vh;
+}
+
+#page {
+    padding-top: 50px;
+}
+
+/* Mise en page du header desktop*/
+#header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--accentColor);
+    min-height: 10vh;
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100% );
+}
+
+
+#header.change{
+    clip-path: inherit;
+}
+
+#entreprise {
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+}
+
+#navbar-desktop {
+    height: 6rem;
+    line-height: 6rem; /*centre verticalement */
+    text-align: center;
+}
+
+/* Style menu mobile */
+.navbar-mobile {
+    display: none;
+}
+
+.navbar-mobile i {
+    position: fixed;
+    z-index: 99999;
+    top: 0.8em;
+    right: 15px;
+    font-size: 3em;
+}
+
+.navbar-mobile .modal {
+    transition: top 0.9s;
+    background-color: var(--backgroundColor);
+    height: 100vh;
+    position: fixed;
+    top: -100vh;
+    left: 0;
+    width: 100%;
+    opacity: 0.95;
+    z-index: 99998;
+}
+
+.navbar-mobile .change-modal {
+    top: 0;
+}
+
+
+.navbar-mobile #navbar-mobile-list {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    /*align-items: center;*/
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.navbar-mobile #navbar-mobile-list a {
+    font-size: 2em;
+    font-weight: 800;
+    padding: 2rem;
+    border-bottom: none;
+}
+
+/* Style des liens */
+#navbar-desktop a {
+    padding: 10px;
+    margin: 5px;
+}
+
+i {
+    color: var(--textColor);
+}
+
+a {
+    cursor: pointer;
+    transition: all 0.4s ease-in-out 0s;
+    color: var(--textColor);
+    font-weight: 600;
+    background: linear-gradient(
+            to right,
+            var(--linkColor) 0%,
+            var(--linkColor) 5px,
+            transparent 5px
+    ) repeat-x;
+    background-size: 100%;
+    padding: 0 5px 0 10px;
+    text-decoration: none;
+}
+
+a:hover {
+    background: linear-gradient(
+            to right,
+            var(--linkColor) 0%,
+            var(--linkColor) 5px,
+            transparent
+    );
+}
+
+/* Style du nom utilisateur */
+.nomUtilisateur {
+    text-align: right;
+    margin-left: 30px;
+}
+
+.nomUtilisateur h2 {
+    text-align: right;
+}
+
+
+/* footer */
+#footer {
+    text-align: center;
+}
+
+/*Div cachées formulaires (id, mdp)*/
+.hidden {
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1000px) {
+    #navbar-desktop {
+        display: none;
+    }
+
+    .navbar-mobile {
+        display: block;
+    }
+
+    /* Page d'accueil */
+    .titre img {
+        height: 15rem;
+    }
+}
+
+/* Vue GererUtilisateur du gestionnaire */
+.titre-gererUtilisateur {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Vue Creer compte utilisateur */
+.titre-creerprofil {
+    text-align: center;
+    margin-top: 50px;
+}
+
+section {
+    clip-path: polygon(0 12%, 100% 0, 100% 88%, 0 100%);
+}
