@@ -14,6 +14,7 @@ public class CreateUserBean {
 	@Inject
 	private UserRepository userRepository;
 
+	
 	public String create() {
 		userRepository.save(user);
 		user = new User();
@@ -27,5 +28,7 @@ public class CreateUserBean {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	
 	
 }
