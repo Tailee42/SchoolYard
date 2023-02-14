@@ -3,6 +3,7 @@
 target/
 .metadata/
 .project
+.sonarlint
 .classpath
 .DS_Store
 .tern-project

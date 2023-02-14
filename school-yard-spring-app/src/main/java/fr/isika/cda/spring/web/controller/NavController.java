@@ -11,4 +11,9 @@ public class NavController {
 		return "index";
 	}
 	
+	@GetMapping("/superAdminDashboard")
+	public String dashboard() {
+		return "superAdminDashboard";
+	}
+	
 }
