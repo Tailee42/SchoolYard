@@ -48,8 +48,5 @@ public class Address implements Serializable {
 	}
 
 
-    public enum RoleType {
-        SUPER_ADMIN,
-        USER,
-    }
+
 }
