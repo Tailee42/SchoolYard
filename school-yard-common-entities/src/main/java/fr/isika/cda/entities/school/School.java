@@ -27,7 +27,7 @@ public class School  implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private StatusSchool statusSchool;
 
-	@ManyToMany(cascade = CascadeType.REMOVE)
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Member> members = new ArrayList<>();
 
 	@OneToOne(cascade = CascadeType.ALL)

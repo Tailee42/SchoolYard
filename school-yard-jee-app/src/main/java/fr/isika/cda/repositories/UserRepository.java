@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import fr.isika.cda.entities.school.Member;
 import fr.isika.cda.entities.users.User;
 
 @Stateless
@@ -32,6 +33,12 @@ public class UserRepository {
 	public void updateLastConnection(User userConnected, LocalDateTime date) {
 		userConnected.setLastConnection(date);
 		entityManager.merge(userConnected);
+	}
+
+	public Member getMemberyUserId(Long id) {
+		return entityManager
+				.createQuery("SELECT m FROM Member m JOIN FETCH m.user WHERE m.user.id = :id_user_param", Member.class)
+				.setParameter("id_user_param", id).getSingleResult();
 	}
 
 }

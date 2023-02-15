@@ -10,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import fr.isika.cda.entities.SchoolTypeEnum;
 import fr.isika.cda.entities.school.School;
 
-
 @Stateless
 public class SchoolRepository {
 
@@ -50,5 +49,8 @@ public class SchoolRepository {
 	}
 
 
+	public void update(School school) {
+		entityManager.merge(school);
+	}
 
 }
