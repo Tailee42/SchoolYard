@@ -1,9 +1,5 @@
 package fr.isika.cda.entities.users;
 
-import fr.isika.cda.entities.common.Address;
-import fr.isika.cda.entities.common.RoleType;
-import fr.isika.cda.entities.common.Security;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -15,6 +11,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+
+import fr.isika.cda.entities.common.RoleType;
+import fr.isika.cda.entities.common.Security;
 
 @Entity
 public class User implements Serializable {
