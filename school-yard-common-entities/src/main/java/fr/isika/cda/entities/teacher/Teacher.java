@@ -78,9 +78,4 @@ public class Teacher extends Member {
 		return unit;
 	}
 
-	// override ou appel à la méthode de la classe Member?
-	public Long getId() {
-		return id;
-	}
-
 }
