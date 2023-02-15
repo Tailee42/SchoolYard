@@ -1,6 +1,6 @@
 package fr.isika.cda.beans;
 
-import fr.isika.cda.entities.StatusSchool;
+import fr.isika.cda.entities.SchoolType;
 import fr.isika.cda.entities.common.Address;
 import fr.isika.cda.entities.common.Contact;
 import fr.isika.cda.entities.common.RoleType;
@@ -49,7 +49,7 @@ public class DataSetBean {
 
         User user2 = new User("emma",
                 LocalDateTime.of(2022,
-                        Month.DECEMBER, 05, 12, 20, 00),
+                        Month.DECEMBER, 5, 12, 20, 0),
                 RoleType.USER,
                 new Security("aze"),
                 new Profil("Roux",
@@ -67,7 +67,7 @@ public class DataSetBean {
                 new Contact("collegeDesBois@gmail.com",
                         "0405050505",
                         new Address(789, "rue du college", "Toulouse", "31000")),
-                StatusSchool.COLLEGE);
+                SchoolType.COLLEGE);
         schoolRepository.save(school1);
 
         Admin admin1 = new Admin();
@@ -83,7 +83,7 @@ public class DataSetBean {
                 new Contact("écoledelaplage@gmail.com",
                         "0236363636",
                         new Address(56, "rue de la plage", "Biarritz", "64200")),
-                StatusSchool.ELEMENTAIRE);
+                SchoolType.ELEMENTAIRE);
         schoolRepository.save(school2);
 
         Admin admin2 = new Admin();

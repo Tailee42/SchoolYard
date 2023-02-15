@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import fr.isika.cda.entities.StatusSchool;
+import fr.isika.cda.entities.SchoolType;
 import fr.isika.cda.entities.common.Contact;
 
 @Entity
@@ -20,7 +20,10 @@ public class School {
 	private String logo;
 	private String synthesis;
 	@Enumerated(EnumType.STRING)
+	private SchoolType schoolType;
+	@Enumerated(EnumType.STRING)
 	private StatusSchool statusSchool;
+
 
 	@ManyToMany(cascade =CascadeType.REMOVE )
 	private List<Member> members = new ArrayList<>();
@@ -34,13 +37,19 @@ public class School {
 		this.contact = new Contact();
 	}
 
-	public School(String schoolName, String logo, String presentation, List<Member> members, Contact contact, StatusSchool statusSchool) {
+	public School(String schoolName,
+				  String logo,
+				  String presentation,
+				  List<Member> members,
+				  Contact contact,
+				  SchoolType schoolType) {
 		this.schoolName = schoolName;
 		this.logo = logo;
 		this.synthesis = presentation;
 		this.members = members;
 		this.contact = contact;
-		this.statusSchool = statusSchool;
+		this.schoolType = schoolType;
+		this.statusSchool = StatusSchool.TOPUBLISH;
 	}
 
 	public String getSchoolName() {
@@ -89,6 +98,14 @@ public class School {
 
 	public void setMembers(List<Member> members) {
 		this.members = members;
+	}
+
+	public SchoolType getSchoolType() {
+		return schoolType;
+	}
+
+	public void setSchoolType(SchoolType schoolType) {
+		this.schoolType = schoolType;
 	}
 
 	public StatusSchool getStatusSchool() {
