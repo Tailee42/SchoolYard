@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,16 +48,16 @@ public class FeatureController {
 	public String updateFeature(@RequestParam Long id, Model model) {
 		Feature feature = featureService.findById(id);
 		model.addAttribute("feature", feature);
-		model.addAttribute("featureId", feature.getId());
-		model.addAttribute("featureTitle", feature.getFeatureTitle());
-		model.addAttribute("featureDescription", feature.getFeatureDescription());
 		return "updateFeatureForm";
 	}
 	
 	@PostMapping("/updateFeature")
-	public ModelAndView updateFeature(@PathVariable("id") Long id, @RequestParam String title, @RequestParam String description) {		
+	public ModelAndView updateFeature(@ModelAttribute("feature") Feature updatedFeature, @RequestParam Long id) {	
+		System.out.println("feature = "+updatedFeature.getId()+" "+updatedFeature.getFeatureDescription()+" "+updatedFeature.getFeatureTitle());
 		Feature feature = featureService.findById(id);
-		featureService.updateFeature(feature, title, description);
+		feature.setFeatureTitle(updatedFeature.getFeatureTitle());
+		feature.setFeatureDescription(updatedFeature.getFeatureDescription());
+		featureService.updateFeature(feature);
 		return new ModelAndView("redirect:/featuresList");
 	}
 
