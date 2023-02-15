@@ -5,12 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.isika.cda.entities.Feature;
@@ -28,7 +25,7 @@ public class FeatureController {
 		model.addAttribute("features", features);
 		return "featuresList";
 	}
-	
+
 	@GetMapping("/featureForm")
 	public String createFeature() {
 		return "featureForm";
@@ -63,5 +60,6 @@ public class FeatureController {
 		featureService.updateFeature(feature, title, description);
 		return new ModelAndView("redirect:/featuresList");
 	}
+
 
 }
