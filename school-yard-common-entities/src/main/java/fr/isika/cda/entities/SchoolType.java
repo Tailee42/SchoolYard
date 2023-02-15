@@ -1,5 +1,5 @@
 package fr.isika.cda.entities;
 
-public enum StatusSchool {
+public enum SchoolType {
 	ELEMENTAIRE, COLLEGE, LYCEE
 }

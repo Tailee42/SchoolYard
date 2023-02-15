@@ -1,4 +1,4 @@
-<ui:composition template="commonLayout.xhtml"
+<ui:composition template="WEB-INF/templates/commonLayout.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -40,12 +40,19 @@
 			</f:facet>
 				<h:outputText value="#{n.schoolName}" />
 			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+			Niveau
+			</f:facet>
+				<h:outputText value="#{n.schoolType}" />
+			</h:column>
 
 			<h:column>
 				<f:facet name="header">
 				Présentation
 			</f:facet>
-				<h:outputText value="#{n.presentation}" />
+				<h:outputText value="#{n.synthesis}" />
 			</h:column>
 
 			<h:column>

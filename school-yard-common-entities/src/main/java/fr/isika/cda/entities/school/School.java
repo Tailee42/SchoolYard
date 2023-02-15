@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import fr.isika.cda.entities.StatusSchool;
+import fr.isika.cda.entities.SchoolType;
 import fr.isika.cda.entities.common.Contact;
 
 @Entity
@@ -20,27 +20,26 @@ public class School {
 	private String logo;
 	private String synthesis;
 	@Enumerated(EnumType.STRING)
-	private StatusSchool statusSchool;
+	private SchoolType schoolType;
 
-	@ManyToMany(cascade =CascadeType.REMOVE )
+	@ManyToMany(cascade = CascadeType.REMOVE)
 	private List<Member> members = new ArrayList<>();
-	
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private Contact contact;
-	
-	
+
 	public School() {
 		this.contact = new Contact();
 	}
 
-	public School(String schoolName, String logo, String presentation, List<Member> members, Contact contact, StatusSchool statusSchool) {
+	public School(String schoolName, String logo, String presentation, List<Member> members, Contact contact,
+			SchoolType schoolType) {
 		this.schoolName = schoolName;
 		this.logo = logo;
 		this.synthesis = presentation;
 		this.members = members;
 		this.contact = contact;
-		this.statusSchool = statusSchool;
+		this.schoolType = schoolType;
 	}
 
 	public String getSchoolName() {
@@ -70,11 +69,11 @@ public class School {
 	public Long getId() {
 		return id;
 	}
-	
+
 	public List<Member> getMembers() {
 		return Collections.unmodifiableList(members);
 	}
-	
+
 	public void addMember(Member member) {
 		this.members.add(member);
 	}
@@ -91,11 +90,11 @@ public class School {
 		this.members = members;
 	}
 
-	public StatusSchool getStatusSchool() {
-		return statusSchool;
+	public void setSchoolType(SchoolType schoolType) {
+		this.schoolType = schoolType;
 	}
 
-	public void setStatusSchool(StatusSchool statusSchool) {
-		this.statusSchool = statusSchool;
+	public SchoolType getSchoolType() {
+		return schoolType;
 	}
 }
