@@ -1,13 +1,22 @@
 package fr.isika.cda.spring.web.controller;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import fr.isika.cda.entities.Feature;
 import fr.isika.cda.spring.business.service.FeatureService;
@@ -31,9 +40,18 @@ public class FeatureController {
 	}
 	
 	@PostMapping("/createFeature")
-	public String createFeature(@RequestParam String title, @RequestParam String description) {
+	public ModelAndView createFeature(@RequestParam String title, @RequestParam String description) {
 		featureService.createFeature(title, description);
-		return "featuresList";
+		return new ModelAndView("redirect:/featuresList");
+	}
+	
+	@GetMapping("/deleteFeature")
+	@ResponseBody
+	public ModelAndView deleteFeature(@RequestParam String id) {
+		Long id2 = Long.parseLong(id);
+		Feature feature = featureService.findById(id2);
+		featureService.deleteFeature(feature);
+		return new ModelAndView("redirect:/featuresList");
 	}
 
 }

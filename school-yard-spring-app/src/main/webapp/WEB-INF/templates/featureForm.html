@@ -11,18 +11,18 @@
 	<ul>
 		<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
 		<li><a th:href="@{/usersList}">Liste des users</a></li>
-		<li><a th:href="@{/index}">Liste des écoles</a></li>
+		<li><a th:href="@{/index}">Liste des Ã©coles</a></li>
 		<li><a th:href="@{/featuresList}">Liste des features</a></li>
 	</ul>
 	</nav>
 	
-	<h2>Créer une option</h2>
+	<h2>CrÃ©er une option</h2>
 	<form th:action="@{/createFeature}" method="post">
 		<label>Titre de l'option</label>
 		<input name="title" th:value="${featureTitle}"/>
-		<label>Détail de l'option</label>
+		<label>DÃ©tail de l'option</label>
 		<input name="description" th:value="${featureDescription}"/>
-		<button type="submit">Créer</button>
+		<button type="submit">CrÃ©er</button>
 	</form>
 
 </body>
