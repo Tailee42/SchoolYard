@@ -18,7 +18,17 @@ public class Address implements Serializable {
 	private String street;
 	private String town;
 	private String zipcode;
-	
+
+	public Address() {
+	}
+
+	public Address(Integer number, String street, String town, String zipcode) {
+		this.number = number;
+		this.street = street;
+		this.town = town;
+		this.zipcode = zipcode;
+	}
+
 	public Integer getNumber() {
 		return number;
 	}

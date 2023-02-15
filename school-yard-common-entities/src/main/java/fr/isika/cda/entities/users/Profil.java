@@ -31,6 +31,13 @@ public class Profil implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Contact contact;
 
+	public Profil(String lastName, String firstName, String picturePath, Contact contact) {
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.picturePath = picturePath;
+		this.contact = contact;
+	}
+
 	public Profil() {
 		this.contact = new Contact();
 	}

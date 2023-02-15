@@ -24,6 +24,12 @@ public class Contact implements Serializable{
 		this.address = new Address();
 	}
 
+	public Contact(String email, String phone, Address address) {
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+	}
+
 	public String getEmail() {
 		return email;
 	}

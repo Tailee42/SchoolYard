@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
+import fr.isika.cda.entities.common.RoleType;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.repositories.UserRepository;
 
@@ -16,8 +17,10 @@ public class CreateUserBean {
 	@Inject
 	private UserRepository userRepository;
 
+	
 	public String create() {
 		user.setLastConnection(LocalDateTime.now());
+		user.setRole(RoleType.USER);
 		userRepository.save(user);
 		user = new User();
 		return "index?faces-redirect=true";
@@ -26,9 +29,11 @@ public class CreateUserBean {
 	public User getUser() {
 		return user;
 	}
-
+	
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+	
+	
+	
 }

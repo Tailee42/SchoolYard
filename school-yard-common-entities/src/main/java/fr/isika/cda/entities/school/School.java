@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
-import fr.isika.cda.entities.common.Address;
 import fr.isika.cda.entities.common.Contact;
 
 @Entity
@@ -36,7 +35,15 @@ public class School {
 	public School() {
 		this.contact = new Contact();
 	}
-	
+
+	public School(String schoolName, String logo, String presentation, List<Member> members, Contact contact) {
+		this.schoolName = schoolName;
+		this.logo = logo;
+		this.presentation = presentation;
+		this.members = members;
+		this.contact = contact;
+	}
+
 	public String getSchoolName() {
 		return schoolName;
 	}
