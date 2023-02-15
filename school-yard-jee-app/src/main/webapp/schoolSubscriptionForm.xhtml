@@ -24,6 +24,14 @@
 				<h:inputText id="schoolNameInput"
 							 value="#{createSchoolBean.school.schoolName}" />
 
+				<h:outputLabel value="Type d'établissement : " for="selectLevel" />
+				<h:selectOneMenu id="selectLevel"
+								 value="#{createSchoolBean.school.statusSchool}">
+					<f:selectItem itemLabel="--Selectionner un niveau--"
+								  noSelectionOption="true" />
+					<f:selectItems value="#{createSchoolBean.levels()}" var="level"
+								   itemLabel="#{level}" itemValue="#{level}" />
+				</h:selectOneMenu>
 
 				<h:outputLabel value="Email: " for="emailInput" />
 				<h:inputText id="emailInput"
@@ -52,10 +60,10 @@
 				<h:outputLabel value="Logo : " for="logoInput" />
 				<h:inputFile id="logoInput" value="#{createSchoolBean.logoFile}" />
 
-				<h:outputLabel value="Présentation : " for="presentationInput" />
 
-				<h:inputTextarea id="presentationInput"
-								 value="#{createSchoolBean.school.presentation}" />
+				<h:outputLabel value="Ecrivez un court slogan pour décrire votre école :" for="synthesisInput" />
+				<h:inputTextarea id="synthesisInput"
+								 value="#{createSchoolBean.school.synthesis}" />
 
 				<h:commandButton action="#{createSchoolBean.create()}"
 								 value="Valider" />

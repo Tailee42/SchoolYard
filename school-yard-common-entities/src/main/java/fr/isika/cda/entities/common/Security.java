@@ -22,7 +22,7 @@ public class Security implements Serializable {
 	}
 
 	public Security(String password) {
-		this.password = password;
+		this.password = EncodingUtil.encode(password);
 	}
 
 	public Long getId() {
