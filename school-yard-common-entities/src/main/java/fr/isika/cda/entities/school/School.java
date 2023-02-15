@@ -22,6 +22,9 @@ public class School {
 	@Enumerated(EnumType.STRING)
 	private SchoolType schoolType;
 
+	@Enumerated(EnumType.STRING)
+	private StatusSchool statusSchool;
+
 	@ManyToMany(cascade = CascadeType.REMOVE)
 	private List<Member> members = new ArrayList<>();
 
@@ -32,14 +35,19 @@ public class School {
 		this.contact = new Contact();
 	}
 
-	public School(String schoolName, String logo, String presentation, List<Member> members, Contact contact,
-			SchoolType schoolType) {
+	public School(String schoolName,
+				  String logo,
+				  String presentation,
+				  List<Member> members,
+				  Contact contact,
+				  SchoolType schoolType) {
 		this.schoolName = schoolName;
 		this.logo = logo;
 		this.synthesis = presentation;
 		this.members = members;
 		this.contact = contact;
 		this.schoolType = schoolType;
+		this.statusSchool = StatusSchool.TOPUBLISH;
 	}
 
 	public String getSchoolName() {
@@ -90,11 +98,18 @@ public class School {
 		this.members = members;
 	}
 
+	public SchoolType getSchoolType() {
+		return schoolType;
+	}
+
 	public void setSchoolType(SchoolType schoolType) {
 		this.schoolType = schoolType;
 	}
 
-	public SchoolType getSchoolType() {
-		return schoolType;
+	public StatusSchool getStatusSchool() {
+		return statusSchool;
+
+	public void setStatusSchool(StatusSchool statusSchool) {
+		this.statusSchool = statusSchool;
 	}
 }
