@@ -3,7 +3,7 @@ package fr.isika.cda.beans;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
-import fr.isika.cda.entities.StatusSchool;
+import fr.isika.cda.entities.SchoolType;
 import fr.isika.cda.entities.SubjectEnum;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.repositories.TeacherRepository;
@@ -22,8 +22,8 @@ public class CreateTeacherBean {
 		return "userDashboard?faces-redirect=true";
 	}
 
-	public StatusSchool[] levels() {
-		return StatusSchool.values();
+	public SchoolType[] levels() {
+		return SchoolType.values();
 	}
 
 	public SubjectEnum[] subjects() {
