@@ -11,7 +11,7 @@
 	<ul>
 		<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
 		<li><a th:href="@{/usersList}">Liste des users</a></li>
-		<li><a th:href="@{/index}">Liste des écoles</a></li>
+		<li><a th:href="@{/index}">Liste des Ã©coles</a></li>
 	</ul>
 	</nav>
 	
@@ -22,15 +22,19 @@
 				<th>Id</th>
 				<th>Titre</th>
 				<th>Description</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tr th:each="feature : ${features}">
 			<td><span th:text=${feature.id}></span></td>
 			<td><span th:text=${feature.featureTitle}></span></td>
 			<td><span th:text=${feature.featureDescription}></span></td>
+			<td>
+				<a th:href="@{deleteFeature/(id=${feature.id})}">Supprimer</a>
+			</td>
 		</tr>
 	</table>
 
-	<a th:href="@{/featureForm}">Créer une option</a>
+	<a th:href="@{/featureForm}">CrÃ©er une option</a>
 </body>
 </html>

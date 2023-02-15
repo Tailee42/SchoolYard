@@ -1,6 +1,7 @@
 package fr.isika.cda.spring.business.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,13 @@ public class FeatureService {
 		return (List<Feature>) featureRepository.findAll(); 
 	}
 	
-	
+	public Feature findById(Long id) {
+		Optional<Feature> feature = featureRepository.findById(id);
+		if (feature.isPresent()) {
+			return feature.get();
+		} else {
+			return null;
+		}
+	}
 
 }
