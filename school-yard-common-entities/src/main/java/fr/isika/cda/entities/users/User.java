@@ -1,6 +1,5 @@
 package fr.isika.cda.entities.users;
 
-import fr.isika.cda.entities.common.Address;
 import fr.isika.cda.entities.common.RoleType;
 import fr.isika.cda.entities.common.Security;
 
@@ -46,6 +45,14 @@ public class User implements Serializable {
 		this.security = new Security();
 		this.profil = new Profil();
 
+	}
+
+	public User(String login, LocalDateTime lastConnection, RoleType role, Security security, Profil profil) {
+		this.login = login;
+		this.lastConnection = lastConnection;
+		this.role = role;
+		this.security = security;
+		this.profil = profil;
 	}
 
 	public Long getId() {
