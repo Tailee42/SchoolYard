@@ -22,8 +22,11 @@ public class FeatureService {
 		featureRepository.save(feature);
 	}
 	
-	public void updateFeature(Feature feature) {
-		featureRepository.save(feature);
+	public void updateFeature(Feature feature, String title, String description) {
+		Feature updatedfeature = featureRepository.findById(feature.getId()).get();
+		updatedfeature.setFeatureTitle(title);
+		updatedfeature.setFeatureDescription(description);
+		featureRepository.save(updatedfeature);
 	}
 	
 	public void deleteFeature(Feature feature) {

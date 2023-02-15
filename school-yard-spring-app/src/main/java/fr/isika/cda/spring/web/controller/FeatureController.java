@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,10 +41,8 @@ public class FeatureController {
 	}
 	
 	@GetMapping("/deleteFeature")
-	@ResponseBody
-	public ModelAndView deleteFeature(@RequestParam String id) {
-		Long id2 = Long.parseLong(id);
-		Feature feature = featureService.findById(id2);
+	public ModelAndView deleteFeature(@RequestParam Long id) {
+		Feature feature = featureService.findById(id);
 		featureService.deleteFeature(feature);
 		return new ModelAndView("redirect:/featuresList");
 	}
@@ -51,10 +51,17 @@ public class FeatureController {
 	public String updateFeature(@RequestParam Long id, Model model) {
 		Feature feature = featureService.findById(id);
 		model.addAttribute("feature", feature);
+		model.addAttribute("featureId", feature.getId());
 		model.addAttribute("featureTitle", feature.getFeatureTitle());
 		model.addAttribute("featureDescription", feature.getFeatureDescription());
 		return "updateFeatureForm";
 	}
 	
+	@PostMapping("/updateFeature")
+	public ModelAndView updateFeature(@PathVariable("id") Long id, @RequestParam String title, @RequestParam String description) {		
+		Feature feature = featureService.findById(id);
+		featureService.updateFeature(feature, title, description);
+		return new ModelAndView("redirect:/featuresList");
+	}
 
 }
