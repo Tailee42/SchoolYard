@@ -40,7 +40,7 @@ public class LoginBean {
 	private String validationLogin() {
 		Optional<User> userByLogin = userRepository.getUserByLogin(user.getLogin());
 		if (userByLogin.isPresent() && validatePasswords(userByLogin)) {
-			userByLogin.get().setLastConnection(LocalDateTime.now());
+			userRepository.updateLastConnection(userByLogin.get(), LocalDateTime.now());
 			SessionUtils.setConnectedUser(userByLogin.get());
 			return "userDashboard?faces-redirect=true";
 		}

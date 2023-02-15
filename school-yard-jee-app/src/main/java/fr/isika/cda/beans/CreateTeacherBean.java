@@ -19,7 +19,7 @@ public class CreateTeacherBean {
 	public String create() {
 		teacherRepository.save(teacher);
 		teacher = new Teacher();
-		return "teacherDashboard?faces-redirect=true";
+		return "userDashboard?faces-redirect=true";
 	}
 
 	public LevelEnum[] levels() {
