@@ -1,6 +1,5 @@
 package fr.isika.cda.spring.web.controller;
 
-
 import java.util.List;
 
 import fr.isika.cda.entities.users.User;
@@ -8,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import fr.isika.cda.spring.business.service.UserService;
 
-import fr.isika.cda.spring.business.UserService;
 
 @Controller
 public class UserController {
