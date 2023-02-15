@@ -4,13 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
+import fr.isika.cda.entities.StatusSchool;
 import fr.isika.cda.entities.common.Contact;
 
 @Entity
@@ -22,7 +18,9 @@ public class School {
 
 	private String schoolName;
 	private String logo;
-	private String presentation;
+	private String synthesis;
+	@Enumerated(EnumType.STRING)
+	private StatusSchool statusSchool;
 
 	@ManyToMany(cascade =CascadeType.REMOVE )
 	private List<Member> members = new ArrayList<>();
@@ -36,12 +34,13 @@ public class School {
 		this.contact = new Contact();
 	}
 
-	public School(String schoolName, String logo, String presentation, List<Member> members, Contact contact) {
+	public School(String schoolName, String logo, String presentation, List<Member> members, Contact contact, StatusSchool statusSchool) {
 		this.schoolName = schoolName;
 		this.logo = logo;
-		this.presentation = presentation;
+		this.synthesis = presentation;
 		this.members = members;
 		this.contact = contact;
+		this.statusSchool = statusSchool;
 	}
 
 	public String getSchoolName() {
@@ -60,12 +59,12 @@ public class School {
 		this.logo = logo;
 	}
 
-	public String getPresentation() {
-		return presentation;
+	public String getSynthesis() {
+		return synthesis;
 	}
 
-	public void setPresentation(String presentation) {
-		this.presentation = presentation;
+	public void setSynthesis(String synthesis) {
+		this.synthesis = synthesis;
 	}
 
 	public Long getId() {
@@ -92,5 +91,11 @@ public class School {
 		this.members = members;
 	}
 
-	
+	public StatusSchool getStatusSchool() {
+		return statusSchool;
+	}
+
+	public void setStatusSchool(StatusSchool statusSchool) {
+		this.statusSchool = statusSchool;
+	}
 }

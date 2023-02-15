@@ -4,6 +4,7 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
 
+import fr.isika.cda.entities.StatusSchool;
 import fr.isika.cda.entities.school.Admin;
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.users.User;
@@ -51,6 +52,10 @@ public class CreateSchoolBean {
 
 
 		return "index?faces-redirect=true";
+	}
+
+	public StatusSchool[] levels() {
+		return StatusSchool.values();
 	}
 
 	public School getSchool() {

@@ -14,12 +14,8 @@ import fr.isika.cda.entities.school.Member;
 @PrimaryKeyJoinColumn(name = "id")
 public class Teacher extends Member {
 
-	@Id
-	@GeneratedValue
-	private Long id;
-
 	@Enumerated(EnumType.STRING)
-	private LevelEnum level;
+	private StatusSchool level;
 
 	@Enumerated(EnumType.STRING)
 	private SubjectEnum subject;
@@ -38,11 +34,11 @@ public class Teacher extends Member {
 		this.unit = new ArrayList<>();
 	}
 
-	public LevelEnum getLevel() {
+	public StatusSchool getLevel() {
 		return level;
 	}
 
-	public void setLevel(LevelEnum level) {
+	public void setLevel(StatusSchool level) {
 		this.level = level;
 	}
 
