@@ -21,18 +21,16 @@ public class School {
 	private String synthesis;
 	@Enumerated(EnumType.STRING)
 	private SchoolType schoolType;
+
 	@Enumerated(EnumType.STRING)
 	private StatusSchool statusSchool;
 
-
-	@ManyToMany(cascade =CascadeType.REMOVE )
+	@ManyToMany(cascade = CascadeType.REMOVE)
 	private List<Member> members = new ArrayList<>();
-	
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private Contact contact;
-	
-	
+
 	public School() {
 		this.contact = new Contact();
 	}
@@ -79,11 +77,11 @@ public class School {
 	public Long getId() {
 		return id;
 	}
-	
+
 	public List<Member> getMembers() {
 		return Collections.unmodifiableList(members);
 	}
-	
+
 	public void addMember(Member member) {
 		this.members.add(member);
 	}
@@ -110,7 +108,6 @@ public class School {
 
 	public StatusSchool getStatusSchool() {
 		return statusSchool;
-	}
 
 	public void setStatusSchool(StatusSchool statusSchool) {
 		this.statusSchool = statusSchool;
