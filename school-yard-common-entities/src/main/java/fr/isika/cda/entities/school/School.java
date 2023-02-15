@@ -108,8 +108,10 @@ public class School {
 
 	public StatusSchool getStatusSchool() {
 		return statusSchool;
+	}
 
 	public void setStatusSchool(StatusSchool statusSchool) {
 		this.statusSchool = statusSchool;
 	}
+
 }

@@ -31,7 +31,6 @@ public class CreateSchoolBean {
 	public String create() {
 		FileUtils.initResourcesDir();
 
-
 		String uuid = UUID.randomUUID().toString();
 		String filename = uuid + ".png";
 		String logoRelativePath = "/school-yard-resources/images/" + filename;
@@ -39,19 +38,23 @@ public class CreateSchoolBean {
 		// TODO : ecrire le fichier sur le disque
 
 		school.setLogo(logoRelativePath);
-
 		schoolRepository.save(school);
 
-		Admin admin = new Admin();
-		User user = SessionUtils.getConnectedUser();
-		admin.setSchool(school);
-		admin.setUser(user);
+		Admin admin = createAdmin();
 		memberRepository.save(admin);
 
 		school = new School();
 
 
 		return "index?faces-redirect=true";
+	}
+
+	private Admin createAdmin() {
+		Admin admin = new Admin();
+		User user = SessionUtils.getConnectedUser();
+		admin.setSchool(school);
+		admin.setUser(user);
+		return admin;
 	}
 
 	public SchoolType[] levels() {
