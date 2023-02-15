@@ -1,0 +1,55 @@
+<ui:composition template="commonLayout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<ui:define name="title">Formulaire de paramétrage du site d'une école</ui:define>
+
+	<ui:define name="header">
+
+		<h:link outcome="index">Accueil</h:link>
+		<h:link outcome="userDashboard">Tableau de bord</h:link>
+
+	</ui:define>
+
+	<ui:define name="content">
+		<h1>Paramètres du site de mon école</h1>
+		<h:form id="createThemeForm" enctype="multipart/form-data">
+
+			<h:panelGrid columns="1">
+
+				<h:outputLabel value="Couleur principale :" for="primaryColorInput" />
+				<h:inputText id="primaryColorInput"
+					value="#{schoolPageBean.schoolPage.theme.primaryColor}" />
+
+				<h:outputLabel
+					value="Sélection de la couleur des liens et des boutons : "
+					for="selectAccentColor" />
+				<h:inputText id="selectAccentColor"
+					value="#{schoolPageBean.schoolPage.theme.accentColor}" />
+
+				<h:outputLabel value="Sélection de la couleur du fond : "
+					for="selectBackgroundColor" />
+				<h:inputText id="selectBackgroundColor"
+					value="#{schoolPageBean.schoolPage.theme.backgroundColor}" />
+
+				<h:outputLabel value="Sélection de la police d'écriture : "
+					for="selectFont" />
+				<h:inputText id="selectFont"
+					value="#{schoolPageBean.schoolPage.theme.font}" />
+
+				<h:commandButton action="#{schoolPageBean.createSchoolPage()}"
+					value="Valider" />
+
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+

@@ -25,7 +25,7 @@ public class School {
 	private String logo;
 	private String presentation;
 
-	@ManyToMany(cascade =CascadeType.REMOVE )
+	@ManyToMany(cascade = CascadeType.REMOVE )
 	private List<Member> members = new ArrayList<>();
 	
 	

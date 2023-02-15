@@ -8,19 +8,14 @@ import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.school.SchoolPage;
 
 @Stateless
-public class SchoolRepository {
+public class SchoolPageRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void save(School school) {
-
-		entityManager.persist(school);
-	}
-
-	public void saveSchoolPage(SchoolPage schoolPage) {
+	public void save(SchoolPage schoolPage) {
 
 		entityManager.persist(schoolPage);
 	}
-	
+
 }
