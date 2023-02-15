@@ -11,14 +11,12 @@ import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.school.Member;
 
 @Entity
-public class Teacher {
+@PrimaryKeyJoinColumn(name = "id")
+public class Teacher extends Member {
 
 	@Id
 	@GeneratedValue
 	private Long id;
-
-	@OneToOne
-	private Member member;
 
 	@Enumerated(EnumType.STRING)
 	private LevelEnum level;
@@ -38,14 +36,6 @@ public class Teacher {
 	public Teacher() {
 		this.activity = new ArrayList<>();
 		this.unit = new ArrayList<>();
-	}
-
-	public void setMember(Member member) {
-		this.member = member;
-	}
-
-	public Member getMember() {
-		return member;
 	}
 
 	public LevelEnum getLevel() {
@@ -88,6 +78,7 @@ public class Teacher {
 		return unit;
 	}
 
+	// override ou appel à la méthode de la classe Member?
 	public Long getId() {
 		return id;
 	}
