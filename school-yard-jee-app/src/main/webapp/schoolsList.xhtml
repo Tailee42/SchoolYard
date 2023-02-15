@@ -5,73 +5,62 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-	<ui:define name="title">Recherche par nom d'école</ui:define>
+	<ui:define name="title">Recherche d'une école</ui:define>
 
 	<ui:define name="header">
 
-		<h:link>Rechercher par nom d'école</h:link>
+		<h:link>Rechercher une école</h:link>
 
 	</ui:define>
 
 	<ui:define name="content">
-		<h1>Recherche par nom d'école</h1>
+		<h1>Liste de toutes les écoles</h1>
 		<hr />
 
-		<h:form id="searchSchoolForm">
-			<h:outputLabel value="Nom école : " for="schoolInput" />
-			<h:inputText id="schoolInput"
-				value="#{schoolsListBean.school.schoolName }" />
-			<h:commandButton action="#{schoolsListBean.getByName()}"
-				value="Rechercher" />
-		</h:form>
-
-		<h:dataTable border="1" value="#{schoolsListBean.getByName()}" var="n">
+		<h:dataTable border="1" value="#{schoolsListBean.allSchools()}"
+			var="s">
 
 			<h:column>
 				<f:facet name="header">
 				Logo 
 			</f:facet>
-				<h:outputText value="#{n.logo}" />
+				<h:outputText value="#{s.logo}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">
 				Nom Ecole
 			</f:facet>
-				<h:outputText value="#{n.schoolName}" />
+				<h:outputText value="#{s.schoolName}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">
 				Présentation
 			</f:facet>
-				<h:outputText value="#{n.presentation}" />
+				<h:outputText value="#{s.presentation}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">
 				Email
 			</f:facet>
-				<h:outputText value="#{n.contact.email}" />
+				<h:outputText value="#{s.contact.email}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">
 				Téléphone
 			</f:facet>
-				<h:outputText value="#{n.contact.phone}" />
+				<h:outputText value="#{s.contact.phone}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">
 				Ville
 			</f:facet>
-				<h:outputText value="#{n.contact.address.town}" />
+				<h:outputText value="#{s.contact.address.town}" />
 			</h:column>
-
-
-
-
 
 		</h:dataTable>
 
