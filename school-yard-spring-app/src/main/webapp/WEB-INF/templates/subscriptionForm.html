@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+<title>Ajouter abonnement</title>
+</head>
+
+<body>
+	<h1>Liste des abonnements</h1>
+
+	<nav>
+		<ul>
+			<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
+			<li><a th:href="@{/usersList}">Liste des users</a></li>
+			<li><a th:href="@{/index}">Liste des écoles</a></li>
+			<li><a th:href="@{/featuresList}">Liste des features</a></li>
+			<li><a th:href="@{/subscriptionsList}">Liste des abonnements</a></li>
+		</ul>
+	</nav>
+
+	<h2>Créer un abonnement</h2>
+	<form th:action="@{/createSubscription}" method="post">
+			<label>Nom de l'abonnement</label> 
+			<input name="name" th:value="${name}" /> 
+			<label>Prix</label> 
+			<input name="price" th:value="${price}" /> 
+			<label>Durée</label> 
+			<input name="duration" th:value="${duration}" /> 
+			<label>Options à ajouter</label> 
+		<select id="dropFeature" name="id">
+			<option value="0">selectionner une fonctionnalité</option>
+			<option th:each="featureToDisplay : ${features}" th:value="${featureToDisplay.id}" th:text="${featureToDisplay.featureTitle}"></option>
+		</select>
+
+
+		<button type="submit">Créer</button>
+	</form>
+
+</body>
+</html>
