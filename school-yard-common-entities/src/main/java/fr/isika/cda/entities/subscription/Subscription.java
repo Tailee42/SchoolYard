@@ -68,14 +68,5 @@ public class Subscription {
 		return name;
 	}
 
-//	//in the updateSubscription form, this method is used for checkboxes
-//	public boolean hasFeature(Subscription subscription, Feature feature) {
-//		for(Feature featureToCheck : subscription.getFeatures()) {
-//			if(featureToCheck.getId().equals(feature.getId())) {
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
 	
 }
