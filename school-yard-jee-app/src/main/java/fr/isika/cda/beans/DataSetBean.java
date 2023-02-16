@@ -60,6 +60,32 @@ public class DataSetBean {
                                 new Address(952, "avenue de Paris", "Orléans", "45000"))));
         userRepository.save(user2);
 
+        User user3 = new User("louis",
+                LocalDateTime.of(2022,
+                        Month.NOVEMBER, 17, 13, 25, 0),
+                RoleTypeEnum.USER,
+                new Security("456"),
+                new Profil("Marchand",
+                        "Louis",
+                        "",
+                        new Contact("louis@gmail.com",
+                                "0696696969",
+                                new Address(3, "rue de la gare", "Vierzon", "18100"))));
+        userRepository.save(user3);
+
+        User user4 = new User("fleur",
+                LocalDateTime.of(2022,
+                        Month.OCTOBER, 25, 6, 6, 6),
+                RoleTypeEnum.USER,
+                new Security("qsd"),
+                new Profil("Albrand",
+                        "Fleur",
+                        "",
+                        new Contact("fleur@gmail.com",
+                                "0641141414",
+                                new Address(41, "rue des escaliers", "Orléans", "45000"))));
+        userRepository.save(user4);
+
         School school1 = new School("Collège des bois",
                 "",
                 "Collège bienviellant et inclusif",
