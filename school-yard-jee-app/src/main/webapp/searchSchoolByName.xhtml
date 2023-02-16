@@ -9,88 +9,65 @@
 		<h:outputStylesheet name="tableau.css" library="css" />
 	</ui:define>
 
-	<ui:define name="title">Recherche par nom d'école</ui:define>
+	<ui:define name="title">Rechercher école par nom</ui:define>
+
 
 	<ui:define name="header">
-
-		<h:link>Rechercher par nom d'école</h:link>
-
+		<h:link outcome="schoolsList">Liste des écoles</h:link>
+		<h:link outcome="searchSchoolByType">Rechercher école par type</h:link>
 	</ui:define>
 
 	<ui:define name="content">
-		<h1>Recherche par nom d'école</h1>
-		<hr />
-
-		<section>
-			<h:form id="searchSchoolForm">
-				<h:outputLabel value="Nom école : " for="schoolInput" />
-				<h:inputText id="schoolInput"
-							 value="#{schoolsListBean.school.schoolName }" />
-				<h:commandButton action="#{schoolsListBean.getByName()}"
-								 value="Rechercher" />
-			</h:form>
-		</section>
-
-
+		<h1>Rechercher école par nom</h1>
+		<br />
+		<h:form id="searchSchoolByNameForm">
+			<h:outputLabel value="Nom école : " for="schoolInput" />
+			<h:inputText id="schoolInput"
+				value="#{schoolsListBean.school.schoolName }" />
+			<h:commandButton action="#{schoolsListBean.getByName()}"
+				value="Rechercher" />
+		</h:form>
+		<br />
 
 		<h:dataTable border="1" value="#{schoolsListBean.getByName()}" var="n">
 
 			<h:column>
-				<f:facet name="header">
-				Logo 
-			</f:facet>
+				<f:facet name="header"> Logo </f:facet>
 				<h:outputText value="#{n.logo}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">
-				Nom Ecole
-			</f:facet>
+				<f:facet name="header"> Nom Ecole </f:facet>
 				<h:outputText value="#{n.schoolName}" />
 			</h:column>
-			
+
 			<h:column>
-				<f:facet name="header">
-			Niveau
-			</f:facet>
+				<f:facet name="header"> Niveau </f:facet>
 				<h:outputText value="#{n.schoolType}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">
-				Présentation
-			</f:facet>
+				<f:facet name="header"> Présentation </f:facet>
 				<h:outputText value="#{n.synthesis}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">
-				Email
-			</f:facet>
+				<f:facet name="header"> Email </f:facet>
 				<h:outputText value="#{n.contact.email}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">
-				Téléphone
-			</f:facet>
+				<f:facet name="header"> Téléphone </f:facet>
 				<h:outputText value="#{n.contact.phone}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">
-				Ville
-			</f:facet>
+				<f:facet name="header"> Ville </f:facet>
 				<h:outputText value="#{n.contact.address.town}" />
 			</h:column>
-
-
-
-
 
 		</h:dataTable>
 
 	</ui:define>
-
 
 </ui:composition>

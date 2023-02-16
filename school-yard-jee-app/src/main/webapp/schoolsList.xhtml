@@ -9,65 +9,52 @@
 		<h:outputStylesheet name="tableau.css" library="css" />
 	</ui:define>
 
-	<ui:define name="title">Liste de toutes les écoles</ui:define>
+	<ui:define name="title">Liste des écoles</ui:define>
 
 	<ui:define name="header">
-
+		<h:link outcome="searchSchoolByName">Rechercher école par nom</h:link>
+		<h:link outcome="searchSchoolByType">Rechercher école par type</h:link>
 	</ui:define>
 
 	<ui:define name="content">
-		<h1>Liste de toutes les écoles</h1>
-		<hr />
+		<h1>Liste des écoles</h1>
+		<br />
 
 		<h:dataTable border="1" value="#{schoolsListBean.allSchools()}"
 			var="s">
 
 			<h:column>
-				<f:facet name="header">
-				Logo 
-			</f:facet>
+				<f:facet name="header"> Logo </f:facet>
 				<h:outputText value="#{s.logo}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">
-				Nom Ecole
-			</f:facet>
+				<f:facet name="header"> Nom Ecole </f:facet>
 				<h:outputText value="#{s.schoolName}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">
-			Niveau
-			</f:facet>
+				<f:facet name="header"> Niveau </f:facet>
 				<h:outputText value="#{s.schoolType}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">
-				Présentation
-			</f:facet>
+				<f:facet name="header"> Présentation </f:facet>
 				<h:outputText value="#{s.synthesis}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">
-				Email
-			</f:facet>
+				<f:facet name="header"> Email </f:facet>
 				<h:outputText value="#{s.contact.email}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">
-				Téléphone
-			</f:facet>
+				<f:facet name="header"> Téléphone </f:facet>
 				<h:outputText value="#{s.contact.phone}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">
-				Ville
-			</f:facet>
+				<f:facet name="header"> Ville </f:facet>
 				<h:outputText value="#{s.contact.address.town}" />
 			</h:column>
 
@@ -81,8 +68,6 @@
 			</h:column>
 
 		</h:dataTable>
-
-		<h:link outcome="searchASchool"> Rechercher une école par nom</h:link>
 
 	</ui:define>
 

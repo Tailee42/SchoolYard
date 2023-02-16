@@ -1,17 +1,19 @@
 package fr.isika.cda.entities.school;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.*;
 
-import fr.isika.cda.entities.SchoolType;
+import fr.isika.cda.entities.SchoolTypeEnum;
 import fr.isika.cda.entities.common.Contact;
 
 @Entity
-public class School {
+public class School  implements Serializable {
 
+	private static final long serialVersionUID = ;
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -20,7 +22,7 @@ public class School {
 	private String logo;
 	private String synthesis;
 	@Enumerated(EnumType.STRING)
-	private SchoolType schoolType;
+	private SchoolTypeEnum schoolTypeEnum;
 
 	@Enumerated(EnumType.STRING)
 	private StatusSchool statusSchool;
@@ -40,14 +42,14 @@ public class School {
 				  String presentation,
 				  List<Member> members,
 				  Contact contact,
-				  SchoolType schoolType) {
+				  SchoolTypeEnum schoolTypeEnum) {
 		this.schoolName = schoolName;
 		this.logo = logo;
 		this.synthesis = presentation;
 		this.members = members;
 		this.contact = contact;
-		this.schoolType = schoolType;
 		this.statusSchool = StatusSchool.TOPUBLISH;
+		this.schoolTypeEnum = schoolTypeEnum;
 	}
 
 	public String getSchoolName() {
@@ -98,12 +100,12 @@ public class School {
 		this.members = members;
 	}
 
-	public SchoolType getSchoolType() {
-		return schoolType;
+	public void setSchoolType(SchoolTypeEnum schoolTypeEnum) {
+		this.schoolTypeEnum = schoolTypeEnum;
 	}
 
-	public void setSchoolType(SchoolType schoolType) {
-		this.schoolType = schoolType;
+	public SchoolTypeEnum getSchoolType() {
+		return schoolTypeEnum;
 	}
 
 	public StatusSchool getStatusSchool() {

@@ -1,6 +1,6 @@
 package fr.isika.cda.entities.users;
 
-import fr.isika.cda.entities.common.RoleType;
+import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.Security;
 
 import java.io.Serializable;
@@ -33,7 +33,7 @@ public class User implements Serializable {
 	private LocalDateTime lastConnection;
 
 	@Enumerated(EnumType.STRING)
-	private RoleType role;
+	private RoleTypeEnum role;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Security security;
@@ -47,7 +47,7 @@ public class User implements Serializable {
 
 	}
 
-	public User(String login, LocalDateTime lastConnection, RoleType role, Security security, Profil profil) {
+	public User(String login, LocalDateTime lastConnection, RoleTypeEnum role, Security security, Profil profil) {
 		this.login = login;
 		this.lastConnection = lastConnection;
 		this.role = role;
@@ -75,11 +75,11 @@ public class User implements Serializable {
 		this.lastConnection = localDateTime;
 	}
 
-	public RoleType getRole() {
+	public RoleTypeEnum getRole() {
 		return role;
 	}
 
-	public void setRole(RoleType role) {
+	public void setRole(RoleTypeEnum role) {
 		this.role = role;
 	}
 

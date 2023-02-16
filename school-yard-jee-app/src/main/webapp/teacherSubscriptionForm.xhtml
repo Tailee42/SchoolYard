@@ -19,7 +19,6 @@
 
 			<h:panelGrid columns="1">
 
-
 				<h:outputLabel value="Niveau enseigné : " for="selectLevel" />
 				<h:selectOneMenu id="selectLevel"
 					value="#{createTeacherBean.teacher.level}">
@@ -37,7 +36,7 @@
 					<f:selectItems value="#{createTeacherBean.subjects()}"
 						var="subject" itemLabel="#{subject}" itemValue="#{subject}" />
 				</h:selectOneMenu>
-				
+
 				<h:commandButton action="#{createTeacherBean.create()}"
 					value="Valider" />
 

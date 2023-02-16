@@ -4,7 +4,7 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
 
-import fr.isika.cda.entities.SchoolType;
+import fr.isika.cda.entities.SchoolTypeEnum;
 import fr.isika.cda.entities.school.Admin;
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.users.User;
@@ -30,6 +30,7 @@ public class CreateSchoolBean {
 
 	public String create() {
 		FileUtils.initResourcesDir();
+
 
 		String uuid = UUID.randomUUID().toString();
 		String filename = uuid + ".png";
@@ -57,8 +58,8 @@ public class CreateSchoolBean {
 		return admin;
 	}
 
-	public SchoolType[] levels() {
-		return SchoolType.values();
+	public SchoolTypeEnum[] levels() {
+		return SchoolTypeEnum.values();
 	}
 
 	public School getSchool() {

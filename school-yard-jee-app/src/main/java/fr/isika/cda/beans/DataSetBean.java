@@ -1,9 +1,9 @@
 package fr.isika.cda.beans;
 
-import fr.isika.cda.entities.SchoolType;
+import fr.isika.cda.entities.SchoolTypeEnum;
 import fr.isika.cda.entities.common.Address;
 import fr.isika.cda.entities.common.Contact;
-import fr.isika.cda.entities.common.RoleType;
+import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.Security;
 import fr.isika.cda.entities.school.Admin;
 import fr.isika.cda.entities.school.School;
@@ -37,7 +37,7 @@ public class DataSetBean {
         User user1 = new User("albert",
                 LocalDateTime.of(2023,
                         Month.JANUARY, 20, 19, 30, 40),
-                RoleType.USER,
+                RoleTypeEnum.USER,
                 new Security("123"),
                 new Profil("Dupond",
                         "Albert",
@@ -49,8 +49,8 @@ public class DataSetBean {
 
         User user2 = new User("emma",
                 LocalDateTime.of(2022,
-                        Month.DECEMBER, 5, 12, 20, 0),
-                RoleType.USER,
+                        Month.DECEMBER, 05, 12, 20, 00),
+                RoleTypeEnum.USER,
                 new Security("aze"),
                 new Profil("Roux",
                         "Emma",
@@ -60,6 +60,32 @@ public class DataSetBean {
                                 new Address(952, "avenue de Paris", "Orléans", "45000"))));
         userRepository.save(user2);
 
+        User user3 = new User("louis",
+                LocalDateTime.of(2022,
+                        Month.NOVEMBER, 17, 13, 25, 0),
+                RoleTypeEnum.USER,
+                new Security("456"),
+                new Profil("Marchand",
+                        "Louis",
+                        "",
+                        new Contact("louis@gmail.com",
+                                "0696696969",
+                                new Address(3, "rue de la gare", "Vierzon", "18100"))));
+        userRepository.save(user3);
+
+        User user4 = new User("fleur",
+                LocalDateTime.of(2022,
+                        Month.OCTOBER, 25, 6, 6, 6),
+                RoleTypeEnum.USER,
+                new Security("qsd"),
+                new Profil("Albrand",
+                        "Fleur",
+                        "",
+                        new Contact("fleur@gmail.com",
+                                "0641141414",
+                                new Address(41, "rue des escaliers", "Orléans", "45000"))));
+        userRepository.save(user4);
+
         School school1 = new School("Collège des bois",
                 "",
                 "Collège bienviellant et inclusif",
@@ -67,7 +93,7 @@ public class DataSetBean {
                 new Contact("collegeDesBois@gmail.com",
                         "0405050505",
                         new Address(789, "rue du college", "Toulouse", "31000")),
-                SchoolType.COLLEGE);
+                SchoolTypeEnum.COLLEGE);
         schoolRepository.save(school1);
 
         createAdmin(user1, school1);
@@ -80,7 +106,7 @@ public class DataSetBean {
                 new Contact("écoledelaplage@gmail.com",
                         "0236363636",
                         new Address(56, "rue de la plage", "Biarritz", "64200")),
-                SchoolType.ELEMENTAIRE);
+                SchoolTypeEnum.ELEMENTAIRE);
         schoolRepository.save(school2);
 
         createAdmin(user2, school2);
