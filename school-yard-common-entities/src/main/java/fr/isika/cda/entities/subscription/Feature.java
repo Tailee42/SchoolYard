@@ -1,4 +1,4 @@
-package fr.isika.cda.entities;
+package fr.isika.cda.entities.subscription;
 
 import java.util.Objects;
 

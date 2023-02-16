@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import fr.isika.cda.entities.Feature;
+import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.spring.business.service.FeatureService;
 
 @Controller

@@ -5,6 +5,10 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="tableau.css" library="css" />
+	</ui:define>
+
 	<ui:define name="title">Recherche par nom d'école</ui:define>
 
 	<ui:define name="header">
@@ -17,13 +21,17 @@
 		<h1>Recherche par nom d'école</h1>
 		<hr />
 
-		<h:form id="searchSchoolForm">
-			<h:outputLabel value="Nom école : " for="schoolInput" />
-			<h:inputText id="schoolInput"
-				value="#{schoolsListBean.school.schoolName }" />
-			<h:commandButton action="#{schoolsListBean.getByName()}"
-				value="Rechercher" />
-		</h:form>
+		<section>
+			<h:form id="searchSchoolForm">
+				<h:outputLabel value="Nom école : " for="schoolInput" />
+				<h:inputText id="schoolInput"
+							 value="#{schoolsListBean.school.schoolName }" />
+				<h:commandButton action="#{schoolsListBean.getByName()}"
+								 value="Rechercher" />
+			</h:form>
+		</section>
+
+
 
 		<h:dataTable border="1" value="#{schoolsListBean.getByName()}" var="n">
 

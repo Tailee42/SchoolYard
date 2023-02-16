@@ -70,10 +70,7 @@ public class DataSetBean {
                 SchoolType.COLLEGE);
         schoolRepository.save(school1);
 
-        Admin admin1 = new Admin();
-        admin1.setSchool(school1);
-        admin1.setUser(user1);
-        memberRepository.save(admin1);
+        createAdmin(user1, school1);
 
 
         School school2 = new School("école de la plage",
@@ -86,9 +83,13 @@ public class DataSetBean {
                 SchoolType.ELEMENTAIRE);
         schoolRepository.save(school2);
 
-        Admin admin2 = new Admin();
-        admin2.setSchool(school2);
-        admin2.setUser(user2);
-        memberRepository.save(admin2);
+        createAdmin(user2, school2);
+    }
+
+    private void createAdmin(User user1, School school1) {
+        Admin admin1 = new Admin();
+        admin1.setSchool(school1);
+        admin1.setUser(user1);
+        memberRepository.save(admin1);
     }
 }

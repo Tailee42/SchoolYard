@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.isika.cda.entities.Feature;
+import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.spring.business.repository.FeatureRepository;
 
 @Service

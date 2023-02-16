@@ -22,7 +22,7 @@ public class CreateTeacherBean {
 		return "userDashboard?faces-redirect=true";
 	}
 
-	public SchoolType[] levels() {
+	public SchoolType[] schoolTypes() {
 		return SchoolType.values();
 	}
 
