@@ -101,10 +101,12 @@ public class DataSetBean {
 				"Pour permettre à vos adhérants de régler leurs achats sur la plateforme");
 		featureRepository.save(feature3);
 
-		Subscription subscription1 = new Subscription(375.00, 6, "Premium", feature3);
+		Subscription subscription1 = new Subscription(375.00, 6, "Premium");
+		subscription1.getFeatures().add(feature3);
 		subscriptionRepository.save(subscription1);
 
-		Subscription subscription2 = new Subscription(170.00, 3, "Basic", feature2);
+		Subscription subscription2 = new Subscription(170.00, 3, "Basic");
+		subscription2.getFeatures().add(feature1);
 		subscriptionRepository.save(subscription2);
 
 	}

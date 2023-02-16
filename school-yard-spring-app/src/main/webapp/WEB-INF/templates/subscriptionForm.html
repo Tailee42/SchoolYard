@@ -26,10 +26,10 @@
 			<label>Durée</label> 
 			<input name="duration" th:value="${duration}" /> 
 			<label>Options à ajouter</label> 
-		<select id="dropFeature" name="id">
-			<option value="0">selectionner une fonctionnalité</option>
-			<option th:each="featureToDisplay : ${features}" th:value="${featureToDisplay.id}" th:text="${featureToDisplay.featureTitle}"></option>
-		</select>
+			<div th:each="featureToDisplay : ${features}">
+			<input type="checkbox" name="id" th:value="${featureToDisplay.id}"/>
+			<label th:text="${featureToDisplay.featureTitle}"/>
+			</div>
 
 
 		<button type="submit">Créer</button>

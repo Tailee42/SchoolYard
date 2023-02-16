@@ -1,6 +1,7 @@
 package fr.isika.cda.spring.web.controller;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -43,11 +44,27 @@ public class SubscriptionController {
 
 	@PostMapping("/createSubscription")
 	public ModelAndView createSubscription(@RequestParam String name, @RequestParam Double price,
-			@RequestParam int duration, @RequestParam Long id) {
-		System.out.println(id);
-		Feature featureToAdd = featureService.findById(id);
-		subscriptionService.createSubscription(name, price, duration, featureToAdd);
+			@RequestParam int duration, @RequestParam List<Long> id) {
+		List<Feature> featuresSelected = new ArrayList<>();
+		for(Long idSelected : id) {
+			Feature featureToAdd = featureService.findById(idSelected);
+			featuresSelected.add(featureToAdd);
+		}
+		subscriptionService.createSubscription(name, price, duration, featuresSelected);
 		return new ModelAndView("redirect:/subscriptionsList");
 	}
 
+	@GetMapping("/deleteSubscription")
+	public ModelAndView deleteSubscription(@RequestParam Long id) {
+		Subscription subscriptionToDelete = subscriptionService.findById(id);
+		subscriptionService.deleteSubscription(subscriptionToDelete);
+		return new ModelAndView("redirect:/subscriptionsList");
+	}
+
+	@GetMapping("/updateSubscription")
+	public String updateSubscription(Model model, @RequestParam Long id) {
+		Subscription subscription = subscriptionService.findById(id);
+		model.addAttribute(subscription);
+		return "updateSubscription";
+	}
 }

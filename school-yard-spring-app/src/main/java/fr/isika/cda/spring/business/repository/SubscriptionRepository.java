@@ -8,4 +8,6 @@ import fr.isika.cda.entities.subscription.Subscription;
 @Repository
 public interface SubscriptionRepository extends CrudRepository<Subscription, Long> {
 
+	
+	
 }

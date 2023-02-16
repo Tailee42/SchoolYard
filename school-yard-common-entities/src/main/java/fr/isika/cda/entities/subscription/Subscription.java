@@ -1,12 +1,10 @@
 package fr.isika.cda.entities.subscription;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -21,18 +19,17 @@ public class Subscription {
 	private int duration;
 	private String name;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Feature> features = new ArrayList<>();
 
 	public Subscription() {
 	}
 
-	public Subscription(Double price, int duration, String name, Feature feature) {
+	public Subscription(Double price, int duration, String name) {
 		super();
 		this.price = price;
 		this.duration = duration;
 		this.name = name;
-		this.features.add(feature);
 	}
 
 	public Double getPrice() {
