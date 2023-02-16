@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+<title>Liste des abonnements</title>
+</head>
+
+<body>
+	<h1>Liste des abonnements</h1>	
+	
+	<nav>
+	<ul>
+		<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
+		<li><a th:href="@{/usersList}">Liste des users</a></li>
+		<li><a th:href="@{/index}">Liste des écoles</a></li>
+		<li><a th:href="@{/featuresList}">Liste des fonctionnalités</a></li>
+	</ul>
+	</nav>
+	
+	<h2>Liste des abonnements</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Prix</th>
+				<th>Durée</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tr th:each="subscription : ${subscriptions}">
+			<td><span th:text=${subscription.id}></span></td>
+			<td><span th:text=${subscription.name}></span></td>
+			<td><span th:text=${subscription.price}></span></td>
+			<td><span th:text=${subscription.duration}></span></td>
+			<td>
+				<a th:href="@{deleteSubscription/(id=${subscription.id})}">Supprimer</a>
+				<a th:href="@{updateSubscription/(id=${subscription.id})}">Modifier</a>
+			</td>
+		</tr>
+	</table>
+
+	<a th:href="@{/subscriptionForm}">Créer un abonnement</a>
+</body>
+</html>

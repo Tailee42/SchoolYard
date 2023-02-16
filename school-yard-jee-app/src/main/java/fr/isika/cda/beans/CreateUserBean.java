@@ -1,8 +1,11 @@
 package fr.isika.cda.beans;
 
+import java.time.LocalDateTime;
+
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
+import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.repositories.UserRepository;
 
@@ -16,6 +19,8 @@ public class CreateUserBean {
 
 	
 	public String create() {
+		user.setLastConnection(LocalDateTime.now());
+		user.setRole(RoleTypeEnum.USER);
 		userRepository.save(user);
 		user = new User();
 		return "index?faces-redirect=true";

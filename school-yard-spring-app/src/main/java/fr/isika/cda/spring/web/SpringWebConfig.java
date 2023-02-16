@@ -68,6 +68,7 @@ public class SpringWebConfig implements WebMvcConfigurer, ApplicationContextAwar
 		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode(TemplateMode.HTML);
 		templateResolver.setCacheable(true);
+		templateResolver.setCharacterEncoding("UTF-8");
 		return templateResolver;
 	}
 
@@ -83,6 +84,7 @@ public class SpringWebConfig implements WebMvcConfigurer, ApplicationContextAwar
 	public ThymeleafViewResolver viewResolver() {
 		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
 		viewResolver.setTemplateEngine(templateEngine());
+		viewResolver.setCharacterEncoding("UTF-8");
 		return viewResolver;
 	}
 

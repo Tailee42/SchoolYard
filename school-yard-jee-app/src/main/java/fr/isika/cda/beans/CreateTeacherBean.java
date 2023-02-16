@@ -3,7 +3,7 @@ package fr.isika.cda.beans;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
-import fr.isika.cda.entities.LevelEnum;
+import fr.isika.cda.entities.SchoolTypeEnum;
 import fr.isika.cda.entities.SubjectEnum;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.repositories.TeacherRepository;
@@ -19,11 +19,11 @@ public class CreateTeacherBean {
 	public String create() {
 		teacherRepository.save(teacher);
 		teacher = new Teacher();
-		return "teacherDashboard?faces-redirect=true";
+		return "userDashboard?faces-redirect=true";
 	}
 
-	public LevelEnum[] levels() {
-		return LevelEnum.values();
+	public SchoolTypeEnum[] schoolTypes() {
+		return SchoolTypeEnum.values();
 	}
 
 	public SubjectEnum[] subjects() {

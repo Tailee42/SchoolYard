@@ -1,21 +1,20 @@
 package fr.isika.cda.entities.school;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
-import fr.isika.cda.entities.common.Address;
+import fr.isika.cda.entities.SchoolTypeEnum;
 import fr.isika.cda.entities.common.Contact;
 
 @Entity
-public class School {
+
+public class School implements Serializable   {
+
+	private static final long serialVersionUID = 6759793081150651074L;
 
 	@Id
 	@GeneratedValue
@@ -23,20 +22,44 @@ public class School {
 
 	private String schoolName;
 	private String logo;
-	private String presentation;
+	private String synthesis;
+	@Enumerated(EnumType.STRING)
+	private SchoolTypeEnum schoolTypeEnum;
 
-	@ManyToMany(cascade =CascadeType.REMOVE )
+	@ManyToMany(cascade = CascadeType.REMOVE )
+	@Enumerated(EnumType.STRING)
+	private StatusSchool statusSchool;
+
+	@ManyToMany(cascade = CascadeType.REMOVE)
 	private List<Member> members = new ArrayList<>();
-	
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private Contact contact;
-	
-	
+
+	@OneToOne
+	private Membership membership;
+
 	public School() {
 		this.contact = new Contact();
 	}
-	
+
+
+	public School(String schoolName,
+				  String logo,
+				  String presentation,
+				  List<Member> members,
+				  Contact contact,
+				  SchoolTypeEnum schoolTypeEnum) {
+
+		this.schoolName = schoolName;
+		this.logo = logo;
+		this.synthesis = presentation;
+		this.members = members;
+		this.contact = contact;
+		this.statusSchool = StatusSchool.TOPUBLISH;
+		this.schoolTypeEnum = schoolTypeEnum;
+	}
+
 	public String getSchoolName() {
 		return schoolName;
 	}
@@ -53,22 +76,22 @@ public class School {
 		this.logo = logo;
 	}
 
-	public String getPresentation() {
-		return presentation;
+	public String getSynthesis() {
+		return synthesis;
 	}
 
-	public void setPresentation(String presentation) {
-		this.presentation = presentation;
+	public void setSynthesis(String synthesis) {
+		this.synthesis = synthesis;
 	}
 
 	public Long getId() {
 		return id;
 	}
-	
+
 	public List<Member> getMembers() {
 		return Collections.unmodifiableList(members);
 	}
-	
+
 	public void addMember(Member member) {
 		this.members.add(member);
 	}
@@ -85,5 +108,28 @@ public class School {
 		this.members = members;
 	}
 
-	
+	public void setSchoolType(SchoolTypeEnum schoolTypeEnum) {
+		this.schoolTypeEnum = schoolTypeEnum;
+	}
+
+	public SchoolTypeEnum getSchoolType() {
+		return schoolTypeEnum;
+	}
+
+	public StatusSchool getStatusSchool() {
+		return statusSchool;
+	}
+
+	public void setStatusSchool(StatusSchool statusSchool) {
+		this.statusSchool = statusSchool;
+	}
+
+	public void setMembership(Membership membership) {
+		this.membership = membership;
+	}
+
+	public Membership getMembership() {
+		return membership;
+	}
+
 }

@@ -3,9 +3,12 @@ package fr.isika.cda.entities.common;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class Address {
+public class Address implements Serializable {
+
+	private static final long serialVersionUID = 3250501824271112440L;
 
 	@Id
 	@GeneratedValue
@@ -15,7 +18,17 @@ public class Address {
 	private String street;
 	private String town;
 	private String zipcode;
-	
+
+	public Address() {
+	}
+
+	public Address(Integer number, String street, String town, String zipcode) {
+		this.number = number;
+		this.street = street;
+		this.town = town;
+		this.zipcode = zipcode;
+	}
+
 	public Integer getNumber() {
 		return number;
 	}
@@ -43,8 +56,7 @@ public class Address {
 	public Long getId() {
 		return id;
 	}
-	
-	
-	
-	
+
+
+
 }

@@ -5,24 +5,19 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import fr.isika.cda.entities.LevelEnum;
-import fr.isika.cda.entities.SubjectEnum;
+
+import fr.isika.cda.entities.*;
 import fr.isika.cda.entities.lesson.Activity;
 import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.school.Member;
 
 @Entity
-public class Teacher {
 
-	@Id
-	@GeneratedValue
-	private Long id;
-
-	@OneToOne
-	private Member member;
+@PrimaryKeyJoinColumn(name = "id")
+public class Teacher extends Member {
 
 	@Enumerated(EnumType.STRING)
-	private LevelEnum level;
+	private SchoolTypeEnum schoolType;
 
 	@Enumerated(EnumType.STRING)
 	private SubjectEnum subject;
@@ -41,20 +36,13 @@ public class Teacher {
 		this.unit = new ArrayList<>();
 	}
 
-	public void setMember(Member member) {
-		this.member = member;
+
+	public SchoolTypeEnum getSchoolType() {
+		return schoolType;
 	}
 
-	public Member getMember() {
-		return member;
-	}
-
-	public LevelEnum getLevel() {
-		return level;
-	}
-
-	public void setLevel(LevelEnum level) {
-		this.level = level;
+	public void setSchoolType(SchoolTypeEnum schoolType) {
+		this.schoolType = schoolType;
 	}
 
 	public void setSubject(SubjectEnum subject) {

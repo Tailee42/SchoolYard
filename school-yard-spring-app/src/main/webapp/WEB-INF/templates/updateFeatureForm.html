@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+<title>Modifier feature </title>
+</head>
+
+<body>
+	<h1>Liste des features</h1>	
+	
+	<nav>
+	<ul>
+		<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
+		<li><a th:href="@{/usersList}">Liste des users</a></li>
+		<li><a th:href="@{/index}">Liste des écoles</a></li>
+		<li><a th:href="@{/featuresList}">Liste des features</a></li>
+	</ul>
+	</nav>
+	
+	<h2>Modifier une option</h2>
+	<form th:action="@{/updateFeature}" method="post" th:object="${feature}">
+		<input type="hidden" name="id" th:value="${feature.id}"/>
+		<label>Titre de l'option</label>
+		<input name="featureTitle" th:value="${feature.featureTitle}"/>
+		<br/>
+		<label>Détail de l'option</label>
+		<input name="featureDescription" th:value="${feature.featureDescription}"/>
+		<br/>
+		<button type="submit">Modifier</button>
+	</form>
+
+</body>
+</html>
