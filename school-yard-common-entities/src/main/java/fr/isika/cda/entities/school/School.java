@@ -11,9 +11,11 @@ import fr.isika.cda.entities.SchoolTypeEnum;
 import fr.isika.cda.entities.common.Contact;
 
 @Entity
-public class School  implements Serializable {
 
-	private static final long serialVersionUID = -5433370329875227160L;
+public class School implements Serializable   {
+
+	private static final long serialVersionUID = 6759793081150651074L;
+
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -24,10 +26,11 @@ public class School  implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private SchoolTypeEnum schoolTypeEnum;
 
+	@ManyToMany(cascade = CascadeType.REMOVE )
 	@Enumerated(EnumType.STRING)
 	private StatusSchool statusSchool;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.REMOVE)
 	private List<Member> members = new ArrayList<>();
 
 	@OneToOne(cascade = CascadeType.ALL)

@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 
 import fr.isika.cda.entities.SchoolTypeEnum;
 import fr.isika.cda.entities.school.School;
+import fr.isika.cda.entities.school.SchoolPage;
 
 @Stateless
 public class SchoolRepository {
