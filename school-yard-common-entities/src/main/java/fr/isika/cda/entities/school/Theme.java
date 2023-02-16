@@ -1,12 +1,17 @@
 package fr.isika.cda.entities.school;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
 @Entity
-public class Theme {
+public class Theme implements Serializable {
+
+	
+	private static final long serialVersionUID = 3619206993070814589L;
 	
 	@Id
 	@GeneratedValue

@@ -1,11 +1,15 @@
 package fr.isika.cda.entities.school;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class ValueSchool {
+public class ValueSchool implements Serializable {
+	
+	private static final long serialVersionUID = -2330423842854572421L; 
 	
 	@Id
 	@GeneratedValue

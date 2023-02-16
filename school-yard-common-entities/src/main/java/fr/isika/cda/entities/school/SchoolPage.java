@@ -1,6 +1,9 @@
 package fr.isika.cda.entities.school;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,26 +11,25 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
-public class SchoolPage {
-	
+public class SchoolPage implements Serializable {
+
+		private static final long serialVersionUID = 6017573037713086223L; 
+
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String description;
 	
-	@OneToOne
-	private School school;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	private ValueSchool valueSchool;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private ValueSchool valueSchool;
-	
-	@ManyToOne(cascade = CascadeType.REMOVE )
+	@OneToOne(cascade = CascadeType.ALL )
 	private Theme theme;
 	
 	public SchoolPage() {
-		this.school = new School();
+		
 		this.theme = new Theme();
-		this.valueSchool = new ValueSchool();	
+//		this.valueSchool = new ValueSchool();	
 	}
 
 	public String getDescription() {
@@ -38,21 +40,14 @@ public class SchoolPage {
 		this.description = description;
 	}
 
-	public School getSchool() {
-		return school;
-	}
 
-	public void setSchool(School school) {
-		this.school = school;
-	}
-
-	public ValueSchool getValueSchool() {
-		return valueSchool;
-	}
-
-	public void setValueSchool(ValueSchool valueSchool) {
-		this.valueSchool = valueSchool;
-	}
+//	public ValueSchool getValueSchool() {
+//		return valueSchool;
+//	}
+//
+//	public void setValueSchool(ValueSchool valueSchool) {
+//		this.valueSchool = valueSchool;
+//	}
 
 	public Theme getTheme() {
 		return theme;

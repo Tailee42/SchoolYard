@@ -18,9 +18,4 @@ public class SchoolRepository {
 		entityManager.persist(school);
 	}
 
-	public void saveSchoolPage(SchoolPage schoolPage) {
-
-		entityManager.persist(schoolPage);
-	}
-	
 }

@@ -1,5 +1,6 @@
 package fr.isika.cda.entities.school;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +16,9 @@ import fr.isika.cda.entities.common.Address;
 import fr.isika.cda.entities.common.Contact;
 
 @Entity
-public class School {
+public class School implements Serializable   {
+
+	private static final long serialVersionUID = 6759793081150651074L;
 
 	@Id
 	@GeneratedValue
