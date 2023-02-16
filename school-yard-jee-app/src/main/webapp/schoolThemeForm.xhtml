@@ -28,19 +28,26 @@
 				<p:colorPicker id="primaryColor" mode="inline"
 					value="#{schoolPageBean.schoolPage.theme.primaryColor}" />
 
-
 				<h:outputLabel
 					value="Sélectionner la couleur des liens et des boutons"
 					for="accentColor" />
 				<p:colorPicker id="accentColor" mode="inline"
 					value="#{schoolPageBean.schoolPage.theme.accentColor}" />
 
-
 				<h:outputLabel value="Sélectionner la couleur du fond "
 					for="backgroundColor" />
 				<p:colorPicker id="backgroundColor" mode="inline"
 					value="#{schoolPageBean.schoolPage.theme.backgroundColor}" />
-
+					
+					<h:outputLabel value="Sélectionner la police d'écriture"
+					for="selectFont" />
+					<h:selectOneMenu id="selectFont"
+					value="#{schoolPageBean.schoolPage.theme.font}">
+					<f:selectItem itemLabel="--Selectionner une police d'écriture--"
+						noSelectionOption="true" />
+					<f:selectItems value="#{schoolPageBean.fontEnum()}" var="font"
+						itemLabel="#{font}" itemValue="#{font}" />
+				</h:selectOneMenu>
 
 				<h:commandButton action="#{schoolPageBean.createSchoolPage()}"
 					value="Valider" />

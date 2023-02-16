@@ -3,9 +3,9 @@ package fr.isika.cda.beans;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
+import fr.isika.cda.entities.FontEnum;
 import fr.isika.cda.entities.school.SchoolPage;
 import fr.isika.cda.repositories.SchoolPageRepository;
-import fr.isika.cda.repositories.SchoolRepository;
 
 @ManagedBean
 public class SchoolPageBean {
@@ -32,8 +32,10 @@ private SchoolPageRepository schoolPageRepository;
 	public void setSchoolPage(SchoolPage schoolPage) {
 		this.schoolPage = schoolPage;
 	}
-	
-	
+		
+	public FontEnum[] fontEnum() {
+		return FontEnum.values();
+	}
 	
 	}
 	
