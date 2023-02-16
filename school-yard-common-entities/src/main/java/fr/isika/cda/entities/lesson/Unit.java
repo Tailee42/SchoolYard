@@ -1,5 +1,6 @@
 package fr.isika.cda.entities.lesson;
 
+
 import fr.isika.cda.entities.SchoolTypeEnum;
 import fr.isika.cda.entities.SubjectEnum;
 
@@ -23,5 +24,6 @@ public class Unit {
 
 	@Enumerated(EnumType.STRING)
 	private SchoolTypeEnum level;
+
 
 }

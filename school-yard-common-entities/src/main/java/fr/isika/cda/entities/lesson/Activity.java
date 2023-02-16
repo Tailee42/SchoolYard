@@ -22,4 +22,6 @@ public class Activity {
 	@Enumerated(EnumType.STRING)
 	private SchoolTypeEnum level;
 
+
+
 }

@@ -14,6 +14,7 @@
 		<class>fr.isika.cda.entities.subscription.Feature</class>
 		<class>fr.isika.cda.entities.subscription.Subscription</class>
 
+
 		<properties>
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:mysql://localhost:3306/schoolyard_db?useUnicode=true&amp;serverTimezone=Europe/Paris" />

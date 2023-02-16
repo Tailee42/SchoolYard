@@ -5,12 +5,14 @@ import java.util.List;
 
 import javax.persistence.*;
 
+
 import fr.isika.cda.entities.*;
 import fr.isika.cda.entities.lesson.Activity;
 import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.school.Member;
 
 @Entity
+
 @PrimaryKeyJoinColumn(name = "id")
 public class Teacher extends Member {
 
@@ -33,6 +35,7 @@ public class Teacher extends Member {
 		this.activity = new ArrayList<>();
 		this.unit = new ArrayList<>();
 	}
+
 
 	public SchoolTypeEnum getSchoolType() {
 		return schoolType;
@@ -72,6 +75,10 @@ public class Teacher extends Member {
 
 	public List<Unit> getUnit() {
 		return unit;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 }
