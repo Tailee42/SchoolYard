@@ -1,7 +1,5 @@
 package fr.isika.cda.spring.business.service;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,4 +38,9 @@ public class SubscriptionService {
 	public void deleteSubscription(Subscription subscriptionToDelete) {
 		subscriptionRepository.delete(subscriptionToDelete);
 	}
+	
+	public void updateSubscription(Subscription subscription) {
+		subscriptionRepository.save(subscription);
+	}
+	
 }

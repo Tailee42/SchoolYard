@@ -11,28 +11,28 @@
 		<ul>
 			<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
 			<li><a th:href="@{/usersList}">Liste des users</a></li>
-			<li><a th:href="@{/index}">Liste des écoles</a></li>
+			<li><a th:href="@{/index}">Liste des Ã©coles</a></li>
 			<li><a th:href="@{/featuresList}">Liste des features</a></li>
 			<li><a th:href="@{/subscriptionsList}">Liste des abonnements</a></li>
 		</ul>
 	</nav>
 
-	<h2>Créer un abonnement</h2>
+	<h2>CrÃ©er un abonnement</h2>
 	<form th:action="@{/createSubscription}" method="post">
 			<label>Nom de l'abonnement</label> 
 			<input name="name" th:value="${name}" /> 
 			<label>Prix</label> 
 			<input name="price" th:value="${price}" /> 
-			<label>Durée</label> 
+			<label>DurÃ©e</label> 
 			<input name="duration" th:value="${duration}" /> 
-			<label>Options à ajouter</label> 
+			<label>Options Ã  ajouter</label> 
 			<div th:each="featureToDisplay : ${features}">
 			<input type="checkbox" name="id" th:value="${featureToDisplay.id}"/>
 			<label th:text="${featureToDisplay.featureTitle}"/>
 			</div>
 
 
-		<button type="submit">Créer</button>
+		<button type="submit">CrÃ©er</button>
 	</form>
 
 </body>

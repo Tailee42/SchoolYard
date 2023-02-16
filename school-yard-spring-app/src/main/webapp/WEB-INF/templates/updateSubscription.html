@@ -11,7 +11,7 @@
 	<ul>
 		<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
 		<li><a th:href="@{/usersList}">Liste des users</a></li>
-		<li><a th:href="@{/index}">Liste des écoles</a></li>
+		<li><a th:href="@{/index}">Liste des ï¿½coles</a></li>
 		<li><a th:href="@{/featuresList}">Liste des features</a></li>
 	</ul>
 	</nav>
@@ -25,12 +25,13 @@
 		<label>Prix </label>
 		<input name="subscriptionPrice" th:value="${subscription.price}"/>
 		<br/>
-		<label>Durée </label>
+		<label>DurÃ©e </label>
 		<input name="subscriptionDuration" th:value="${subscription.duration}"/>
 		<br/>
-		<label>Fonctionnalité </label>
-		<div th:each="feature : ${subscription.features}">
-		<input name="subscriptionFeature" th:value="${feature.featureTitle}"/>
+		<label>FonctionnalitÃ©s </label>
+		<div th:each="feature : ${features}">
+			<input type="checkbox" name="featureId" th:value="${feature.id}" th:checked="${subscription.features.contains(feature)}"/>
+			<span th:text="${feature.featureTitle}"></span>
 		</div>
 		<br/> 
 		<button type="submit">Modifier</button>

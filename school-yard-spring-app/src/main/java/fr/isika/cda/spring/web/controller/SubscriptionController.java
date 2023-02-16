@@ -1,8 +1,6 @@
 package fr.isika.cda.spring.web.controller;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +62,30 @@ public class SubscriptionController {
 	@GetMapping("/updateSubscription")
 	public String updateSubscription(Model model, @RequestParam Long id) {
 		Subscription subscription = subscriptionService.findById(id);
-		model.addAttribute(subscription);
+		List<Feature> features = featureService.findAll();
+		model.addAttribute("subscription", subscription);
+		model.addAttribute("features", features);
 		return "updateSubscription";
 	}
+	
+	@PostMapping("/updateSubscription")
+	public ModelAndView updateSubscription(@RequestParam Long id, @RequestParam String subscriptionName, @RequestParam double subscriptionPrice, @RequestParam int subscriptionDuration, @RequestParam List<Long> featureId) {	
+
+		List<Feature> featuresSelected = new ArrayList<>();
+		for(Long idSelected : featureId) {
+			Feature featureToAdd = featureService.findById(idSelected);
+			featuresSelected.add(featureToAdd);
+		}
+		
+		Subscription subscriptionUpdated = subscriptionService.findById(id);
+		subscriptionUpdated.setName(subscriptionName);
+		subscriptionUpdated.setPrice(subscriptionPrice);
+		subscriptionUpdated.setDuration(subscriptionDuration);
+		subscriptionUpdated.setFeatures(featuresSelected);
+		
+		subscriptionService.updateSubscription(subscriptionUpdated);
+		
+		return new ModelAndView("redirect:/subscriptionsList");
+	}
+	
 }
