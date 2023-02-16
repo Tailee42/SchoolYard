@@ -1,6 +1,6 @@
 package fr.isika.cda.entities.common;
 
-public enum RoleType {
+public enum RoleTypeEnum {
     SUPER_ADMIN,
     USER,
 }

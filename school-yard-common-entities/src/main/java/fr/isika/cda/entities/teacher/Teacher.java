@@ -15,7 +15,7 @@ import fr.isika.cda.entities.school.Member;
 public class Teacher extends Member {
 
 	@Enumerated(EnumType.STRING)
-	private SchoolType level;
+	private SchoolTypeEnum level;
 
 	@Enumerated(EnumType.STRING)
 	private SubjectEnum subject;
@@ -34,11 +34,11 @@ public class Teacher extends Member {
 		this.unit = new ArrayList<>();
 	}
 
-	public SchoolType getLevel() {
+	public SchoolTypeEnum getLevel() {
 		return level;
 	}
 
-	public void setLevel(SchoolType level) {
+	public void setLevel(SchoolTypeEnum level) {
 		this.level = level;
 	}
 

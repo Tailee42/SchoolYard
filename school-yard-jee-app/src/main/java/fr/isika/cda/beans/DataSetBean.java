@@ -1,9 +1,9 @@
 package fr.isika.cda.beans;
 
-import fr.isika.cda.entities.SchoolType;
+import fr.isika.cda.entities.SchoolTypeEnum;
 import fr.isika.cda.entities.common.Address;
 import fr.isika.cda.entities.common.Contact;
-import fr.isika.cda.entities.common.RoleType;
+import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.Security;
 import fr.isika.cda.entities.school.Admin;
 import fr.isika.cda.entities.school.School;
@@ -37,7 +37,7 @@ public class DataSetBean {
         User user1 = new User("albert",
                 LocalDateTime.of(2023,
                         Month.JANUARY, 20, 19, 30, 40),
-                RoleType.USER,
+                RoleTypeEnum.USER,
                 new Security("123"),
                 new Profil("Dupond",
                         "Albert",
@@ -50,7 +50,7 @@ public class DataSetBean {
         User user2 = new User("emma",
                 LocalDateTime.of(2022,
                         Month.DECEMBER, 05, 12, 20, 00),
-                RoleType.USER,
+                RoleTypeEnum.USER,
                 new Security("aze"),
                 new Profil("Roux",
                         "Emma",
@@ -67,7 +67,7 @@ public class DataSetBean {
                 new Contact("collegeDesBois@gmail.com",
                         "0405050505",
                         new Address(789, "rue du college", "Toulouse", "31000")),
-                SchoolType.COLLEGE);
+                SchoolTypeEnum.COLLEGE);
         schoolRepository.save(school1);
 
         Admin admin1 = new Admin();
@@ -83,7 +83,7 @@ public class DataSetBean {
                 new Contact("écoledelaplage@gmail.com",
                         "0236363636",
                         new Address(56, "rue de la plage", "Biarritz", "64200")),
-                SchoolType.ELEMENTAIRE);
+                SchoolTypeEnum.ELEMENTAIRE);
         schoolRepository.save(school2);
 
         Admin admin2 = new Admin();

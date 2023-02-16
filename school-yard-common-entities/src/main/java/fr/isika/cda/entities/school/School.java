@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import fr.isika.cda.entities.SchoolType;
+import fr.isika.cda.entities.SchoolTypeEnum;
 import fr.isika.cda.entities.common.Contact;
 
 @Entity
@@ -20,7 +20,7 @@ public class School {
 	private String logo;
 	private String synthesis;
 	@Enumerated(EnumType.STRING)
-	private SchoolType schoolType;
+	private SchoolTypeEnum schoolTypeEnum;
 
 	@ManyToMany(cascade = CascadeType.REMOVE)
 	private List<Member> members = new ArrayList<>();
@@ -33,13 +33,13 @@ public class School {
 	}
 
 	public School(String schoolName, String logo, String presentation, List<Member> members, Contact contact,
-			SchoolType schoolType) {
+			SchoolTypeEnum schoolTypeEnum) {
 		this.schoolName = schoolName;
 		this.logo = logo;
 		this.synthesis = presentation;
 		this.members = members;
 		this.contact = contact;
-		this.schoolType = schoolType;
+		this.schoolTypeEnum = schoolTypeEnum;
 	}
 
 	public String getSchoolName() {
@@ -90,11 +90,11 @@ public class School {
 		this.members = members;
 	}
 
-	public void setSchoolType(SchoolType schoolType) {
-		this.schoolType = schoolType;
+	public void setSchoolType(SchoolTypeEnum schoolTypeEnum) {
+		this.schoolTypeEnum = schoolTypeEnum;
 	}
 
-	public SchoolType getSchoolType() {
-		return schoolType;
+	public SchoolTypeEnum getSchoolType() {
+		return schoolTypeEnum;
 	}
 }
