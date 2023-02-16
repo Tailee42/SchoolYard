@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 public class SynchronousLesson extends Activity {
     private String title;
     private LocalDateTime duration;
-    private LocalDateTime clasDate;
-    private int maxSutdentNumber;
+    private LocalDateTime classDate;
+    private int maxStudentNumber;
     private Float price;
 
     public String getTitle() {
@@ -30,20 +30,20 @@ public class SynchronousLesson extends Activity {
         this.duration = duration;
     }
 
-    public LocalDateTime getClasDate() {
-        return clasDate;
+    public LocalDateTime getClassDate() {
+        return classDate;
     }
 
-    public void setClasDate(LocalDateTime clasDate) {
-        this.clasDate = clasDate;
+    public void setClassDate(LocalDateTime classDate) {
+        this.classDate = classDate;
     }
 
-    public int getMaxSutdentNumber() {
-        return maxSutdentNumber;
+    public int getMaxStudentNumber() {
+        return maxStudentNumber;
     }
 
-    public void setMaxSutdentNumber(int maxSutdentNumber) {
-        this.maxSutdentNumber = maxSutdentNumber;
+    public void setMaxStudentNumber(int maxStudentNumber) {
+        this.maxStudentNumber = maxStudentNumber;
     }
 
     public Float getPrice() {

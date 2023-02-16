@@ -13,13 +13,13 @@ public abstract class Activity implements Serializable {
 	private static final long serialVersionUID = -9156916020990785127L;
 	@Id
 	@GeneratedValue
-	private Long id;
+	protected Long id;
 	
 	@Enumerated(EnumType.STRING)
-	private SubjectEnum subject;
+	protected SubjectEnum subject;
 	
 	@Enumerated(EnumType.STRING)
-	private SchoolTypeEnum level;
+	protected SchoolTypeEnum level;
 
 	public Long getId() {
 		return id;
