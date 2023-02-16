@@ -13,7 +13,7 @@ import fr.isika.cda.entities.common.Contact;
 @Entity
 public class School  implements Serializable {
 
-	private static final long serialVersionUID = ;
+	private static final long serialVersionUID = -5433370329875227160L;
 	@Id
 	@GeneratedValue
 	private Long id;

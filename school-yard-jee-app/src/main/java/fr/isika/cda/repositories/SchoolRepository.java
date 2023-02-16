@@ -1,6 +1,7 @@
 package fr.isika.cda.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
