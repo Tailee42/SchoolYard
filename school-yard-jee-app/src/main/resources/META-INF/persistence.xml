@@ -10,7 +10,7 @@
       <jta-data-source>java:jboss/datasources/schoolyard_DS</jta-data-source>
       <jar-file>/lib/school-yard-common-entities-0.0.1-SNAPSHOT.jar</jar-file>
       <properties>
-         <property name="hibernate.hbm2ddl.auto" value="update" />
+         <property name="hibernate.hbm2ddl.auto" value="create-drop" />
          <property name="hibernate.show_sql" value="true" />
       </properties>
    </persistence-unit>

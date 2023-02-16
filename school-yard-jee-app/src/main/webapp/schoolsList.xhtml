@@ -43,8 +43,6 @@
 				<h:outputText value="#{s.schoolType}" />
 			</h:column>
 
-
-
 			<h:column>
 				<f:facet name="header">
 				Présentation
@@ -73,7 +71,18 @@
 				<h:outputText value="#{s.contact.address.town}" />
 			</h:column>
 
+			<h:column>
+				<f:facet name="header">
+					Action
+				</f:facet>
+				<h:button value="S'inscrire en tant quélève" outcome="studentSubscriptionForm" >
+					<f:param name="school" value="#{s.id}"/>
+				</h:button>
+			</h:column>
+
 		</h:dataTable>
+
+		<h:link outcome="searchASchool"> Rechercher une école par nom</h:link>
 
 	</ui:define>
 

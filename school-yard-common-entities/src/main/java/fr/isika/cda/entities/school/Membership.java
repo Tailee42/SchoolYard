@@ -1,8 +1,9 @@
-package fr.isika.cda.entities;
+package fr.isika.cda.entities.school;
+
+import fr.isika.cda.entities.subscription.Subscription;
 
 import java.time.LocalDateTime;
 
-//import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

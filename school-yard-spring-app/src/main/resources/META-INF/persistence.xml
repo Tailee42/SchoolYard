@@ -11,7 +11,7 @@
 		<class>fr.isika.cda.entities.common.Security</class>
 		<class>fr.isika.cda.entities.common.Address</class>
 		<class>fr.isika.cda.entities.common.Contact</class>
-		<class>fr.isika.cda.entities.Feature</class>
+		<class>fr.isika.cda.entities.subscription.Feature</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"
