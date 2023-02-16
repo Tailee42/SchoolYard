@@ -15,6 +15,15 @@ public class Student extends Member {
     @Enumerated(EnumType.STRING)
     private AcademicLevel level;
 
+    public Student(AcademicLevel level) {
+        super();
+        this.level = level;
+    }
+
+    public Student() {
+        super();
+    }
+
     public AcademicLevel getLevel() {
         return level;
     }
