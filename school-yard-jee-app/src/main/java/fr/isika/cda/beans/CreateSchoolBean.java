@@ -4,6 +4,7 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
 
+import fr.isika.cda.entities.SchoolTypeEnum;
 import fr.isika.cda.entities.school.Admin;
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.users.User;
@@ -38,19 +39,27 @@ public class CreateSchoolBean {
 		// TODO : ecrire le fichier sur le disque
 
 		school.setLogo(logoRelativePath);
-
 		schoolRepository.save(school);
 
-		Admin admin = new Admin();
-		User user = SessionUtils.getConnectedUser();
-		admin.setSchool(school);
-		admin.setUser(user);
+		Admin admin = createAdmin();
 		memberRepository.save(admin);
 
 		school = new School();
 
 
 		return "index?faces-redirect=true";
+	}
+
+	private Admin createAdmin() {
+		Admin admin = new Admin();
+		User user = SessionUtils.getConnectedUser();
+		admin.setSchool(school);
+		admin.setUser(user);
+		return admin;
+	}
+
+	public SchoolTypeEnum[] levels() {
+		return SchoolTypeEnum.values();
 	}
 
 	public School getSchool() {

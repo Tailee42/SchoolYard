@@ -12,7 +12,6 @@ public class MemberRepository {
     private EntityManager entityManager;
 
     public void save(Admin admin) {
-
         entityManager.persist(admin);
     }
 }

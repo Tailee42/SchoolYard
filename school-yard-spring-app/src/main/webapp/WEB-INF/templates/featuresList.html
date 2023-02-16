@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+<title>Liste des features</title>
+</head>
+
+<body>
+	<h1>Liste des features</h1>	
+	
+	<nav>
+	<ul>
+		<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
+		<li><a th:href="@{/usersList}">Liste des users</a></li>
+		<li><a th:href="@{/index}">Liste des écoles</a></li>
+	</ul>
+	</nav>
+	
+	<h2>Liste des features</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Titre</th>
+				<th>Description</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tr th:each="feature : ${features}">
+			<td><span th:text=${feature.id}></span></td>
+			<td><span th:text=${feature.featureTitle}></span></td>
+			<td><span th:text=${feature.featureDescription}></span></td>
+			<td>
+				<a th:href="@{deleteFeature/(id=${feature.id})}">Supprimer</a>
+				<a th:href="@{updateFeatureForm/(id=${feature.id})}">Modifier</a>
+			</td>
+		</tr>
+	</table>
+
+	<a th:href="@{/featureForm}">Créer une option</a>
+</body>
+</html>
