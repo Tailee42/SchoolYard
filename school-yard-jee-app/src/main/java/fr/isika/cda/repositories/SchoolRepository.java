@@ -37,7 +37,7 @@ public class SchoolRepository {
 
 	public List<School> getByName(String name) {
 		return entityManager
-				.createQuery("SELECT s FROM School s WHERE s.schoolName = :name_param", School.class)
+				.createQuery("SELECT s FROM School s WHERE s.schoolName LIKE '%' || :name_param || '%' ", School.class)
 				.setParameter("name_param", name)
 				.getResultList();
 	}
