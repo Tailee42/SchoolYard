@@ -20,7 +20,7 @@ public class FeatureController {
 	private FeatureService featureService;
 	
 	@GetMapping("/featuresList")
-	public String listUsers(Model model) {
+	public String listFeatures(Model model) {
 		List<Feature> features = featureService.findAll();
 		model.addAttribute("features", features);
 		return "featuresList";
@@ -53,7 +53,6 @@ public class FeatureController {
 	
 	@PostMapping("/updateFeature")
 	public ModelAndView updateFeature(@ModelAttribute("feature") Feature updatedFeature, @RequestParam Long id) {	
-		System.out.println("feature = "+updatedFeature.getId()+" "+updatedFeature.getFeatureDescription()+" "+updatedFeature.getFeatureTitle());
 		Feature feature = featureService.findById(id);
 		feature.setFeatureTitle(updatedFeature.getFeatureTitle());
 		feature.setFeatureDescription(updatedFeature.getFeatureDescription());

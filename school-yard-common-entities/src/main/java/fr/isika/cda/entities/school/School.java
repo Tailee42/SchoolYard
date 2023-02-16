@@ -33,9 +33,13 @@ public class School  implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Contact contact;
 
+	@OneToOne
+	private Membership membership;
+
 	public School() {
 		this.contact = new Contact();
 	}
+
 
 	public School(String schoolName,
 				  String logo,
@@ -43,6 +47,7 @@ public class School  implements Serializable {
 				  List<Member> members,
 				  Contact contact,
 				  SchoolTypeEnum schoolTypeEnum) {
+
 		this.schoolName = schoolName;
 		this.logo = logo;
 		this.synthesis = presentation;
@@ -114,6 +119,14 @@ public class School  implements Serializable {
 
 	public void setStatusSchool(StatusSchool statusSchool) {
 		this.statusSchool = statusSchool;
+	}
+
+	public void setMembership(Membership membership) {
+		this.membership = membership;
+	}
+
+	public Membership getMembership() {
+		return membership;
 	}
 
 }
