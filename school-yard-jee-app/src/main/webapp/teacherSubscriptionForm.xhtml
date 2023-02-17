@@ -21,7 +21,7 @@
 
 				<h:outputLabel value="Niveau enseigné : " for="selectLevel" />
 				<h:selectOneMenu id="selectLevel"
-					value="#{createTeacherBean.teacher.level}">
+					value="#{createTeacherBean.teacher.schoolType}">
 					<f:selectItem itemLabel="--Selectionner un établissement--"
 						noSelectionOption="true" />
 					<f:selectItems value="#{createTeacherBean.schoolTypes()}" var="levels"

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @PrimaryKeyJoinColumn(name = "id")
 public class SynchronousLesson extends Activity {
     private String title;
-    private LocalDateTime duration;
+    private String duration;
     private LocalDateTime classDate;
     private int maxStudentNumber;
     private Float price;
@@ -22,11 +22,11 @@ public class SynchronousLesson extends Activity {
         this.title = title;
     }
 
-    public LocalDateTime getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(LocalDateTime duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
