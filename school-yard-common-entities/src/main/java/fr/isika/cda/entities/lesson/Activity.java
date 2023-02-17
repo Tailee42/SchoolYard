@@ -2,6 +2,7 @@ package fr.isika.cda.entities.lesson;
 
 import fr.isika.cda.entities.AcademicLevel;
 import fr.isika.cda.entities.SubjectEnum;
+import fr.isika.cda.entities.teacher.Teacher;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,6 +22,9 @@ public abstract class Activity implements Serializable {
 	@Enumerated(EnumType.STRING)
 	protected AcademicLevel level;
 
+	@ManyToOne
+	private Teacher teacher;
+
 	public Long getId() {
 		return id;
 	}
@@ -39,5 +43,13 @@ public abstract class Activity implements Serializable {
 
 	public void setLevel(AcademicLevel level) {
 		this.level = level;
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
 	}
 }
