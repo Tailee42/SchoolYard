@@ -68,6 +68,26 @@
 			<h:column>
 				<f:facet name="header"> Ville </f:facet>
 				<h:outputText value="#{t.contact.address.town}" />
+			</h:column>			
+			
+			<h:column>
+				<f:facet name="header">
+					Action Elève
+				</f:facet>
+				<h:button value="S'inscrire en tant quélève"
+					outcome="studentSubscriptionForm">
+					<f:param name="school" value="#{t.id}" />
+				</h:button>
+			</h:column>
+
+
+			<h:column>
+				<f:facet name="header">
+					Action Enseignant
+				</f:facet>
+				<h:button value="Postuler" outcome="teacherSubscriptionForm">
+					<f:param name="school" value="#{t.id}" />
+				</h:button>
 			</h:column>
 
 		</h:dataTable>
