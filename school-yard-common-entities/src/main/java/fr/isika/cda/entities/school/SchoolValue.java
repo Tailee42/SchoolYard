@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class ValueSchool implements Serializable {
+public class SchoolValue implements Serializable {
 	
 	private static final long serialVersionUID = -2330423842854572421L; 
 	
@@ -42,5 +42,8 @@ public class ValueSchool implements Serializable {
 		this.picture = picture;
 	}
 
+	public Long getId() {
+		return id;
+	}
 	
 }
