@@ -35,7 +35,7 @@ public class School implements Serializable   {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Contact contact;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne
 	private Membership membership;
 
 	public School() {

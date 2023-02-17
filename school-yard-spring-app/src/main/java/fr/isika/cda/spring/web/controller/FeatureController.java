@@ -16,6 +16,7 @@ import fr.isika.cda.spring.business.service.FeatureService;
 @Controller
 public class FeatureController {
 	
+	private static final String REDIRECT_FEATURES_LIST = "redirect:/featuresList";
 	@Autowired
 	private FeatureService featureService;
 	
@@ -23,32 +24,32 @@ public class FeatureController {
 	public String featureslist(Model model) {
 		List<Feature> features = featureService.findAll();
 		model.addAttribute("features", features);
-		return "featuresList";
+		return "feature/featuresList";
 	}
 
 	@GetMapping("/featureForm")
 	public String createFeature() {
-		return "featureForm";
+		return "feature/featureForm";
 	}
 	
 	@PostMapping("/createFeature")
 	public ModelAndView createFeature(@RequestParam String title, @RequestParam String description) {
 		featureService.createFeature(title, description);
-		return new ModelAndView("redirect:/featuresList");
+		return new ModelAndView(REDIRECT_FEATURES_LIST);
 	}
 	
 	@GetMapping("/deleteFeature")
 	public ModelAndView deleteFeature(@RequestParam Long id) {
 		Feature feature = featureService.findById(id);
 		featureService.deleteFeature(feature);
-		return new ModelAndView("redirect:/featuresList");
+		return new ModelAndView(REDIRECT_FEATURES_LIST);
 	}
 	
 	@GetMapping("/updateFeatureForm")
 	public String updateFeature(@RequestParam Long id, Model model) {
 		Feature feature = featureService.findById(id);
 		model.addAttribute("feature", feature);
-		return "updateFeatureForm";
+		return "feature/updateFeatureForm";
 	}
 	
 	@PostMapping("/updateFeature")
@@ -57,7 +58,7 @@ public class FeatureController {
 		feature.setFeatureTitle(updatedFeature.getFeatureTitle());
 		feature.setFeatureDescription(updatedFeature.getFeatureDescription());
 		featureService.updateFeature(feature);
-		return new ModelAndView("redirect:/featuresList");
+		return new ModelAndView(REDIRECT_FEATURES_LIST);
 	}
 
 
