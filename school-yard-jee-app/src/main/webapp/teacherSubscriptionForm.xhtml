@@ -4,7 +4,13 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
-
+	
+	<ui:define name="metaData">
+		<f:metadata>
+			<f:viewParam name="school" value="#{createTeacherBean.schoolId}" />
+		</f:metadata>
+	</ui:define>
+	
 	<ui:define name="title">Inscription d'un enseignant</ui:define>
 
 	<ui:define name="header">
@@ -21,11 +27,11 @@
 
 				<h:outputLabel value="Niveau enseigné : " for="selectLevel" />
 				<h:selectOneMenu id="selectLevel"
-					value="#{createTeacherBean.teacher.level}">
+					value="#{createTeacherBean.teacher.schoolType}">
 					<f:selectItem itemLabel="--Selectionner un établissement--"
 						noSelectionOption="true" />
-					<f:selectItems value="#{createTeacherBean.schoolTypes()}" var="levels"
-								   itemLabel="#{levels}" itemValue="#{levels}" />
+					<f:selectItems value="#{createTeacherBean.schoolTypes()}"
+						var="levels" itemLabel="#{levels}" itemValue="#{levels}" />
 				</h:selectOneMenu>
 
 				<h:outputLabel value="Matière enseignée : " for="selectSubject" />
