@@ -8,10 +8,17 @@ import javax.persistence.PersistenceContext;
 
 @Stateless
 public class MemberRepository {
+	
     @PersistenceContext
     private EntityManager entityManager;
 
     public void save(Admin admin) {
         entityManager.persist(admin);
     }
+    
+    public List<Member> listOfMembersForOneUser() {
+    	
+    	
+    }
+    
 }

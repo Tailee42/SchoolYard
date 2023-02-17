@@ -1,16 +1,16 @@
 <ui:composition template="WEB-INF/templates/commonLayout.xhtml"
-				xmlns="http://www.w3.org/1999/xhtml"
-				xmlns:ui="http://java.sun.com/jsf/facelets"
-				xmlns:h="http://xmlns.jcp.org/jsf/html"
-				xmlns:f="http://xmlns.jcp.org/jsf/core"
-				xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:define name="title">SchoolYard :: Connection</ui:define>
 
 	<ui:define name="header">
 
 		<h:link outcome="index">Accueil</h:link>
-
+		
 	</ui:define>
 
 	<ui:define name="content">
@@ -22,9 +22,8 @@
 				<h:inputText id="loginId" value="#{loginBean.user.login}" />
 				<h:outputLabel value="Mot de passe : " for="loginPassword" />
 				<h:inputSecret id="loginPassword"
-							   value="#{loginBean.user.security.password}" />
-				<h:commandButton action="#{loginBean.login()}"
-								 value="Login" />
+					value="#{loginBean.user.security.password}" />
+				<h:commandButton action="#{loginBean.login()}" value="Login" />
 
 			</h:panelGrid>
 		</h:form>

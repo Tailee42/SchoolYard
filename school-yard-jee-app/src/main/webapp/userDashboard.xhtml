@@ -5,13 +5,22 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-	<ui:define name="title">Tableau de bord Utilisateur</ui:define>
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="tableau.css" library="css" />
+	</ui:define>
+
+
+	<ui:define name="title">Tableau de bord utilisateur</ui:define>
 
 	<ui:define name="header">
 		<h:link outcome="schoolsList">Liste des écoles</h:link>
+		<h:link outcome="searchSchoolByName">Rechercher école par nom</h:link>
+		<h:link outcome="searchSchoolByType">Rechercher école par type</h:link>
+		<h:link outcome="schoolSubscriptionForm">Créer une école</h:link>
 
 		<h:form>
-			<h:commandLink action="#{loginBean.logout()}" rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+			<h:commandLink action="#{loginBean.logout()}"
+				rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
 			<h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:link>
 		</h:form>
 
@@ -19,9 +28,37 @@
 
 	<ui:define name="content">
 		<h2>Bienvenue sur votre espace utilisateur</h2>
-		<hr/>
+		<hr />
+		<br />
 
-		<h:link outcome="schoolSubscriptionForm">Créer une école</h:link>
+		<h3>Tableau de bord</h3>
+
+
+
+		<!-- <h:dataTable border="1" value="#{membersListBean.allMembers()}"
+			var="s">>
+
+			<h:column>
+				<f:facet name="header"> Nom école </f:facet>
+				<h:outputText value="#{n.logo}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header"> Email </f:facet>
+				<h:outputText value="#{n.contact.email}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header"> Téléphone </f:facet>
+				<h:outputText value="#{n.contact.phone}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header"> Ville </f:facet>
+				<h:outputText value="#{n.contact.address.town}" />
+			</h:column>
+
+		</h:dataTable> -->
 
 	</ui:define>
 
