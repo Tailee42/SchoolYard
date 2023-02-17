@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import fr.isika.cda.entities.AcademicLevel;
 import fr.isika.cda.entities.SchoolTypeEnum;
+import fr.isika.cda.entities.SubjectEnum;
 import fr.isika.cda.entities.common.Address;
 import fr.isika.cda.entities.common.Contact;
 import fr.isika.cda.entities.common.RoleTypeEnum;
@@ -20,14 +21,10 @@ import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.entities.subscription.Subscription;
+import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.entities.users.Profil;
 import fr.isika.cda.entities.users.User;
-import fr.isika.cda.repositories.FeatureRepository;
-import fr.isika.cda.repositories.MemberRepository;
-import fr.isika.cda.repositories.SchoolRepository;
-import fr.isika.cda.repositories.StudentRepository;
-import fr.isika.cda.repositories.SubscriptionRepository;
-import fr.isika.cda.repositories.UserRepository;
+import fr.isika.cda.repositories.*;
 
 @Startup
 @Singleton
@@ -45,6 +42,8 @@ public class DataSetBean {
 	private FeatureRepository featureRepository;
 	@Inject
 	private SubscriptionRepository subscriptionRepository;
+	@Inject
+	private TeacherRepository teacherRepository;
 
 	@PostConstruct
 	private void initBDD() {
@@ -109,6 +108,26 @@ public class DataSetBean {
 		subscription2.getFeatures().add(feature1);
 		subscriptionRepository.save(subscription2);
 
+		// Teacher
+		User user5 = new User("jules", LocalDateTime.of(2022, Month.OCTOBER, 19, 13, 25, 0), RoleTypeEnum.USER,
+				new Security("789"), new Profil("Tessier", "Jules", "", new Contact("jules@gmail.com", "0652525252",
+				new Address(26, "rue de la boulangerie", "Briançon", "05100"))));
+		userRepository.save(user5);
+		createTeacher(school1, user5, SchoolTypeEnum.COLLEGE, SubjectEnum.HISTOIRE);
+
+		User user6 = new User("pauline", LocalDateTime.of(2022, Month.OCTOBER, 25, 6, 6, 6), RoleTypeEnum.USER,
+				new Security("wxc"), new Profil("Gaudel", "Pauline", "", new Contact("pauline@gmail.com", "0662626262",
+				new Address(74, "rue du téléphérique", "Bordeaux", "33000"))));
+		userRepository.save(user6);
+		createTeacher(school2, user6, SchoolTypeEnum.ELEMENTAIRE, SubjectEnum.MATHS);
+
+	}
+
+	private void createTeacher(School school1, User user3, SchoolTypeEnum schoolTypeEnum, SubjectEnum subjectEnum) {
+		Teacher teacher = new Teacher(schoolTypeEnum, subjectEnum);
+		teacher.setUser(user3);
+		teacher.setSchool(school1);
+		teacherRepository.save(teacher);
 	}
 
 	private void createStudent(School school1, User user3, AcademicLevel level) {

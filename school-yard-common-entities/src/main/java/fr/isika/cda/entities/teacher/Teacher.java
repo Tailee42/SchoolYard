@@ -20,6 +20,12 @@ public class Teacher extends Member {
 	@Enumerated(EnumType.STRING)
 	private TeacherStatusEnum status;
 
+	public Teacher(SchoolTypeEnum schoolType, SubjectEnum subject) {
+		this.schoolType = schoolType;
+		this.subject = subject;
+		this.status = TeacherStatusEnum.InProgress;
+	}
+
 	public Teacher() {
 	}
 
