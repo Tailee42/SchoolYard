@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+<title>Liste des écoles</title>
+</head>
+
+<body>
+	
+	<nav>
+	<ul>
+		<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
+		<li><a th:href="@{/usersList}">Users</a></li>
+		<li><a th:href="@{/subscriptionsList}">Abonnements</a></li>
+		<li><a th:href="@{/featuresList}">Fonctionnalités</a></li>
+	</ul>
+	</nav>
+	
+	<h2>Liste des écoles</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Date d'adhésion</th>
+				<th>Type d'abonnement</th>
+				<th>Date de fin d'adhésion</th>
+				<th>Statut</th>
+			</tr>
+		</thead>
+		<tr th:each="school : ${schools}">
+			<td><span th:text=${school.id}></span></td>
+			<td><span th:text=${school.schoolName}></span></td>
+			<td><span th:text=${school.synthesis}></span></td>
+			<td><span th:text=${school.schoolTypeEnum}></span></td>
+			<td><span th:text=${school.membership.startingDate}></span></td>
+			<td><span th:text=${school.membership.endingDate}></span></td>
+			<td><span th:text=${school.membership.subscription.name}></span></td>
+			<td><span th:text=${school.statusSchool}></span></td>
+		<td>
+				
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>

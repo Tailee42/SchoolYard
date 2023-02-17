@@ -13,6 +13,9 @@
 		<class>fr.isika.cda.entities.common.Contact</class>
 		<class>fr.isika.cda.entities.subscription.Feature</class>
 		<class>fr.isika.cda.entities.subscription.Subscription</class>
+		<class>fr.isika.cda.entities.school.School</class>
+		<class>fr.isika.cda.entities.school.Membership</class>
+		<class>fr.isika.cda.entities.school.Member</class>
 
 
 		<properties>

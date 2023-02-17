@@ -20,7 +20,7 @@ public class FeatureController {
 	private FeatureService featureService;
 	
 	@GetMapping("/featuresList")
-	public String listFeatures(Model model) {
+	public String featureslist(Model model) {
 		List<Feature> features = featureService.findAll();
 		model.addAttribute("features", features);
 		return "featuresList";

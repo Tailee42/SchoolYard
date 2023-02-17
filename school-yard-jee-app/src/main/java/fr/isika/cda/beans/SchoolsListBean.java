@@ -30,8 +30,8 @@ public class SchoolsListBean {
 	}
 
 	public List<School> getByType() {
-		if (school.getSchoolType() != null) {
-			schools = schoolRepository.getByType(school.getSchoolType());
+		if (school.getSchoolTypeEnum() != null) {
+			schools = schoolRepository.getByType(school.getSchoolTypeEnum());
 		}
 		return schools;
 	}

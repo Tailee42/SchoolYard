@@ -35,7 +35,7 @@ public class School implements Serializable   {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Contact contact;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	private Membership membership;
 
 	public School() {
@@ -111,7 +111,7 @@ public class School implements Serializable   {
 		this.schoolTypeEnum = schoolTypeEnum;
 	}
 
-	public SchoolTypeEnum getSchoolType() {
+	public SchoolTypeEnum getSchoolTypeEnum() {
 		return schoolTypeEnum;
 	}
 
