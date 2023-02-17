@@ -34,21 +34,22 @@
                                  value="#{createSynchronousLessonBean.synchronousLesson.subject}">
                     <f:selectItem itemLabel="--Selectionner une matière--"
                                   noSelectionOption="true" />
-                    <f:selectItems value="#{createTeacherBean.subjects()}"
+                    <f:selectItems value="#{createSynchronousLessonBean.subjects()}"
                                    var="subject" itemLabel="#{subject}" itemValue="#{subject}" />
                 </h:selectOneMenu>
 
                 <h:outputLabel value="Titre du cours : " for="coursInput" />
                 <h:inputText id="coursInput" value="#{createSynchronousLessonBean.synchronousLesson.title}" />
 
-                <h:outputLabel value="Durée du cours : " for="durationInput" />
-                <h:inputText id="durationInput" value="#{createSynchronousLessonBean.synchronousLesson.duration}" styleClass="form-control datepicker"/>
+                <h:outputLabel value="Durée du cours : " for="durationInput"/>
+                <h:inputText id="durationInput" value="#{createSynchronousLessonBean.synchronousLesson.duration}" />
 
                 <p:outputLabel value="Date du cours : " for="dateInput"/>
                 <p:datePicker id="dateInput" value="#{createSynchronousLessonBean.synchronousLesson.classDate}" showTime="true"/>
 
                 <h:outputLabel value="Nombre maximum pour le cours : " for="numberInput" />
                 <h:inputText id="numberInput" value="#{createSynchronousLessonBean.synchronousLesson.classDate}" />
+
 
                 <h:outputLabel value="Prix du cours : " for="priceInput" />
                 <h:inputText id="priceInput" value="#{createSynchronousLessonBean.synchronousLesson.classDate}" />
