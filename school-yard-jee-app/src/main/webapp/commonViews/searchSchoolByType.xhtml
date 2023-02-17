@@ -68,14 +68,15 @@
 			<h:column>
 				<f:facet name="header"> Ville </f:facet>
 				<h:outputText value="#{t.contact.address.town}" />
-			</h:column>
+			</h:column>			
 			
 			<h:column>
 				<f:facet name="header">
 					Action Elève
 				</f:facet>
-				<h:button value="S'inscrire en tant quélève" outcome="userViews/studentSubscriptionForm" >
-					<f:param name="school" value="#{s.id}"/>
+				<h:button value="S'inscrire en tant quélève"
+					outcome="/userViews/studentSubscriptionForm">
+					<f:param name="school" value="#{t.id}" />
 				</h:button>
 			</h:column>
 
@@ -84,10 +85,11 @@
 				<f:facet name="header">
 					Action Enseignant
 				</f:facet>
-				<h:button value="Postuler" outcome="userViews/teacherSubscriptionForm">
-					<f:param name="school" value="#{s.id}" />
+				<h:button value="Postuler" outcome="/userViews/teacherSubscriptionForm">
+					<f:param name="school" value="#{t.id}" />
 				</h:button>
 			</h:column>
+
 		</h:dataTable>
 
 	</ui:define>

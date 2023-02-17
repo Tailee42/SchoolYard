@@ -62,22 +62,23 @@
 				<f:facet name="header">
 					Action Elève
 				</f:facet>
-				<h:button value="S'inscrire en tant quélève" outcome="userViews/studentSubscriptionForm" >
-					<f:param name="school" value="#{s.id}"/>
+				<h:button value="S'inscrire en tant quélève"
+					outcome="/userViews/studentSubscriptionForm">
+					<f:param name="school" value="#{s.id}" />
 				</h:button>
 			</h:column>
 
 
 			<h:column>
-			<f:facet name="header">
+				<f:facet name="header">
 					Action Enseignant
 				</f:facet>
-			<h:form>
-				<h:commandButton action="#{candidacyBean.apply(s.id)}" value="Postuler" />
-			</h:form>
+				<h:button value="Postuler" outcome="/userViews/teacherSubscriptionForm">
+					<f:param name="school" value="#{s.id}" />
+				</h:button>
 			</h:column>
-		
-	
+
+
 
 		</h:dataTable>
 
