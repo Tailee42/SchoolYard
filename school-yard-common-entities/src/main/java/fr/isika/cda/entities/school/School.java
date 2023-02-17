@@ -26,7 +26,6 @@ public class School implements Serializable   {
 	@Enumerated(EnumType.STRING)
 	private SchoolTypeEnum schoolTypeEnum;
 
-	@ManyToMany(cascade = CascadeType.REMOVE )
 	@Enumerated(EnumType.STRING)
 	private StatusSchool statusSchool;
 
