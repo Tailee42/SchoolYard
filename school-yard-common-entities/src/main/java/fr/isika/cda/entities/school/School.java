@@ -111,7 +111,7 @@ public class School implements Serializable   {
 		this.schoolTypeEnum = schoolTypeEnum;
 	}
 
-	public SchoolTypeEnum getSchoolType() {
+	public SchoolTypeEnum getSchoolTypeEnum() {
 		return schoolTypeEnum;
 	}
 
