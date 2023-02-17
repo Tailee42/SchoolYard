@@ -1,14 +1,9 @@
 package fr.isika.cda.entities.teacher;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.*;
 
 
 import fr.isika.cda.entities.*;
-import fr.isika.cda.entities.lesson.Activity;
-import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.school.Member;
 
 @Entity
@@ -25,15 +20,7 @@ public class Teacher extends Member {
 	@Enumerated(EnumType.STRING)
 	private TeacherStatusEnum status;
 
-	@OneToMany
-	private List<Activity> activity;
-
-	@OneToMany
-	private List<Unit> unit;
-
 	public Teacher() {
-		this.activity = new ArrayList<>();
-		this.unit = new ArrayList<>();
 	}
 
 
@@ -61,21 +48,6 @@ public class Teacher extends Member {
 		return status;
 	}
 
-	public void setActivity(List<Activity> activity) {
-		this.activity = activity;
-	}
-
-	public List<Activity> getActivity() {
-		return activity;
-	}
-
-	public void setUnit(List<Unit> unit) {
-		this.unit = unit;
-	}
-
-	public List<Unit> getUnit() {
-		return unit;
-	}
 
 	public Long getId() {
 		return id;
