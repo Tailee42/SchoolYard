@@ -47,7 +47,18 @@
 					<f:selectItems value="#{schoolPageBean.fontEnum()}" var="font"
 						itemLabel="#{font}" itemValue="#{font}" />
 				</h:selectOneMenu>
-
+				
+				<h:outputLabel value="Slogan de votre école" for="titleValueInput" />
+				<h:inputTextarea id="titleValueInput"
+							 value="#{schoolPageBean.schoolPage.schoolValue.titleValue}" />
+							 
+				<h:outputLabel value="Présentation de votre école" for="descriptionValueInput" />
+				<h:inputTextarea id="descriptionValueInput"
+							 value="#{schoolPageBean.schoolPage.schoolValue.descriptionValue}" />
+				
+				<h:outputLabel value="Logo : " for="pictureInput" />
+				<h:inputFile id="pictureInput" value="#{schoolPageBean.schoolPage.schoolValue.picture}" />			 
+				
 				<h:commandButton action="#{schoolPageBean.createSchoolPage()}"
 					value="Valider" />
 

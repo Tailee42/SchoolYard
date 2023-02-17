@@ -18,8 +18,8 @@ public class SchoolPage implements Serializable {
 	private Long id;
 	private String description;
 	
-//	@OneToOne(cascade = CascadeType.ALL)
-//	private ValueSchool valueSchool;
+	@OneToOne(cascade = CascadeType.ALL)
+	private SchoolValue schoolValue;
 	
 	@OneToOne(cascade = CascadeType.ALL )
 	private Theme theme;
@@ -27,7 +27,7 @@ public class SchoolPage implements Serializable {
 	public SchoolPage() {
 		
 		this.theme = new Theme();
-//		this.valueSchool = new ValueSchool();	
+		this.schoolValue = new SchoolValue();	
 	}
 
 	public String getDescription() {
@@ -39,13 +39,12 @@ public class SchoolPage implements Serializable {
 	}
 
 
-//	public ValueSchool getValueSchool() {
-//		return valueSchool;
-//	}
-//
-//	public void setValueSchool(ValueSchool valueSchool) {
-//		this.valueSchool = valueSchool;
-//	}
+	public SchoolValue getSchoolValue() {
+		return schoolValue;
+}
+
+	public void setSchoolValue(SchoolValue schoolValue) {
+	this.schoolValue = schoolValue;	}
 
 	public Theme getTheme() {
 		return theme;

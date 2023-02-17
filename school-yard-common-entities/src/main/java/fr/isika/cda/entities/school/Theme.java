@@ -60,4 +60,9 @@ public class Theme implements Serializable {
 		this.font = font;
 	}
 
+
+	public Long getId() {
+		return id;
+	}
+
 }
