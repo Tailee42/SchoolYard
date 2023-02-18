@@ -22,7 +22,7 @@
 		<h:form id="searchSchoolByTypeForm">
 			<h:outputLabel value="Type d'école : " for="selectSchoolType" />
 			<h:selectOneMenu id="selectSchoolType"
-				value="#{schoolsListBean.school.schoolType}" >
+				value="#{schoolsListBean.school.schoolTypeEnum}" >
 			<f:selectItem itemLabel="-- Sélectionner un type d'école -- "
 				noSelectionOption="true" />
 			<f:selectItems value="#{schoolsListBean.types()}" var="type"
@@ -47,7 +47,7 @@
 
 			<h:column>
 				<f:facet name="header"> Niveau </f:facet>
-				<h:outputText value="#{t.schoolType}" />
+				<h:outputText value="#{t.schoolTypeEnum}" />
 			</h:column>
 
 			<h:column>

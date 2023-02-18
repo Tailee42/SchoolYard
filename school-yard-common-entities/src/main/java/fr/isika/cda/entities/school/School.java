@@ -107,7 +107,7 @@ public class School implements Serializable   {
 		this.members = members;
 	}
 
-	public void setSchoolType(SchoolTypeEnum schoolTypeEnum) {
+	public void setSchoolTypeEnum(SchoolTypeEnum schoolTypeEnum) {
 		this.schoolTypeEnum = schoolTypeEnum;
 	}
 
