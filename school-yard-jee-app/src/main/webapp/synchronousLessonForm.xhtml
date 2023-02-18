@@ -1,0 +1,150 @@
+<ui:composition template="WEB-INF/templates/commonLayout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Création d'un cours</ui:define>
+
+    <ui:define name="header">
+
+        <h:link outcome="userSubscriptionForm">S'inscrire</h:link>
+        <h:link outcome="login">Se connecter</h:link>
+    </ui:define>
+
+    <ui:define name="content">
+        <h1>Création d'un cours</h1>
+
+        <input type="button" id="physicalbtn" value="Pour un cours en présentiel"/>
+
+        <div id="physicalForm" class="hidden">
+            <h:form >
+
+                <h:panelGrid columns="1">
+
+                    <h:outputLabel value="Niveau enseigné : " for="selectLevelp"/>
+                    <h:selectOneMenu id="selectLevelp"
+                                     value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.level}">
+                        <f:selectItem itemLabel="--Selectionner un niveau--"
+                                      noSelectionOption="true"/>
+                        <f:selectItems value="#{createSynchronousLessonBean.levels()}" var="levels"
+                                       itemLabel="#{levels}" itemValue="#{levels}"/>
+                    </h:selectOneMenu>
+
+                    <h:outputLabel value="Matière enseignée : " for="selectSubjectp"/>
+                    <h:selectOneMenu id="selectSubjectp"
+                                     value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.subject}">
+                        <f:selectItem itemLabel="--Selectionner une matière--"
+                                      noSelectionOption="true"/>
+                        <f:selectItems value="#{createSynchronousLessonBean.subjects()}"
+                                       var="subject" itemLabel="#{subject}" itemValue="#{subject}"/>
+                    </h:selectOneMenu>
+
+                    <h:outputLabel value="Titre du cours : " for="coursInputp"/>
+                    <h:inputText id="coursInputp" value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.title}"/>
+
+                    <h:outputLabel value="Durée du cours : " for="durationInputp"/>
+                    <h:inputText id="durationInputp" value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.duration}"/>
+
+                    <p:outputLabel value="Date du cours : " for="dateInputp"/>
+                    <p:datePicker id="dateInputp" value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.classDate}"
+                                  showTime="true"/>
+
+                    <h:outputLabel value="Nombre maximum d'élèves pour le cours : " for="numberStudentInputp"/>
+                    <h:inputText id="numberStudentInputp"
+                                 value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.maxStudentNumber}"/>
+
+
+                    <h:outputLabel value="Prix du cours : " for="priceInputp"/>
+                    <h:inputText id="priceInputp" value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.price}"/>
+
+                    <h:outputLabel value="Numéro : " for="numberInputp"/>
+                    <h:inputText id="numberInputp"
+                                 value="#{createSynchronousLessonBean.physicalOption.address.number}"/>
+
+                    <h:outputLabel value="Rue : " for="streetInputp"/>
+                    <h:inputText id="streetInputp"
+                                 value="#{createSynchronousLessonBean.physicalOption.address.street}"/>
+
+                    <h:outputLabel value="Code Postal : " for="zipcodeInputp"/>
+                    <h:inputText id="zipcodeInputp"
+                                 value="#{createSynchronousLessonBean.physicalOption.address.zipcode}"/>
+
+                    <h:outputLabel value="Ville : " for="townInputp"/>
+                    <h:inputText id="townInputp"
+                                 value="#{createSynchronousLessonBean.physicalOption.address.town}"/>
+
+
+                    <h:commandButton action="#{createSynchronousLessonBean.createPhysical()}"
+                                     value="Valider le cours en présentiel"/>
+
+                </h:panelGrid>
+
+            </h:form>
+
+        </div>
+
+
+        <div id="virtualForm">
+            <h:form>
+
+                <h:panelGrid columns="1">
+
+                    <h:outputLabel value="Niveau enseigné : " for="selectLevel"/>
+                    <h:selectOneMenu id="selectLevel"
+                                     value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.level}">
+                        <f:selectItem itemLabel="--Selectionner un niveau--"
+                                      noSelectionOption="true"/>
+                        <f:selectItems value="#{createSynchronousLessonBean.levels()}" var="levels"
+                                       itemLabel="#{levels}" itemValue="#{levels}"/>
+                    </h:selectOneMenu>
+
+                    <h:outputLabel value="Matière enseignée : " for="selectSubject"/>
+                    <h:selectOneMenu id="selectSubject"
+                                     value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.subject}">
+                        <f:selectItem itemLabel="--Selectionner une matière--"
+                                      noSelectionOption="true"/>
+                        <f:selectItems value="#{createSynchronousLessonBean.subjects()}"
+                                       var="subject" itemLabel="#{subject}" itemValue="#{subject}"/>
+                    </h:selectOneMenu>
+
+                    <h:outputLabel value="Titre du cours : " for="coursInput"/>
+                    <h:inputText id="coursInput" value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.title}"/>
+
+                    <h:outputLabel value="Durée du cours : " for="durationInput"/>
+                    <h:inputText id="durationInput" value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.duration}"/>
+
+                    <p:outputLabel value="Date du cours : " for="dateInput"/>
+                    <p:datePicker id="dateInput" value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.classDate}"
+                                  showTime="true"/>
+
+                    <h:outputLabel value="Nombre maximum d'élèves pour le cours : " for="numberStudentInput"/>
+                    <h:inputText id="numberStudentInput"
+                                 value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.maxStudentNumber}"/>
+
+
+                    <h:outputLabel value="Prix du cours : " for="priceInput"/>
+                    <h:inputText id="priceInput" value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.price}"/>
+
+
+                    <h:outputLabel value="Nom du site de visio : " for="nameInput"/>
+                    <h:inputText id="nameInput"
+                                 value="#{createSynchronousLessonBean.virtualOption.plateforme}"/>
+
+                    <h:outputLabel value="Lien de la visio : " for="lienInput"/>
+                    <h:inputText id="lienInput" value="#{createSynchronousLessonBean.virtualOption.url}"/>
+
+                    <h:commandButton action="#{createSynchronousLessonBean.createVirtual()}"
+                                     value="Valider le cours en distanciel"/>
+
+                </h:panelGrid>
+            </h:form>
+        </div>
+
+    </ui:define>
+
+    <ui:define name="script">
+        <h:outputScript name="PhysicalVirtual.js" library="js"/>
+    </ui:define>
+</ui:composition>

@@ -3,6 +3,8 @@ package fr.isika.cda.utils;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import fr.isika.cda.entities.school.Member;
+import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.users.User;
 
 /**
@@ -12,6 +14,8 @@ public final class SessionUtils {
 
 //	private static final String CONNECTED_ACCOUNT_ID = "connectedAccountId";
 	private static final String CONNECTED_USER = "connectedUser";
+	private static final String CURRENT_SCHOOL = "currentSchool";
+	private static final String CONNECTED_MEMBER = "connectedMember";
 
 	/*
 	 * Prevent from instantiating this utility class
@@ -24,6 +28,12 @@ public final class SessionUtils {
 	 */
 	public static boolean isUserConnected() {
 		return getConnectedUser() != null;
+	}
+	public static boolean isSchoolCurrent() {
+		return getCurrentSchool() != null;
+	}
+	public static boolean isMemberConnected() {
+		return getConnectedMember() != null;
 	}
 
 	/*
@@ -49,6 +59,26 @@ public final class SessionUtils {
 		return (User) session.getAttribute(CONNECTED_USER);
 	}
 
+	public static void setCurrentSchool(School school) {
+		HttpSession session = getSession();
+		session.setAttribute(CURRENT_SCHOOL, school);
+	}
+
+	public static void setConnectedMember(Member member) {
+		HttpSession session = getSession();
+		session.setAttribute(CONNECTED_MEMBER, member);
+	}
+
+	public static Member getConnectedMember() {
+		HttpSession session = getSession();
+		return (Member) session.getAttribute(CONNECTED_MEMBER);
+	}
+
+	public static School getCurrentSchool() {
+		HttpSession session = getSession();
+		return (School) session.getAttribute(CURRENT_SCHOOL);
+	}
+
 	private static HttpSession getSession() {
 		return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 	}
@@ -57,5 +87,7 @@ public final class SessionUtils {
 		HttpSession session = getSession();
 		session.invalidate();
 	}
+
+
 
 }

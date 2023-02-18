@@ -23,6 +23,12 @@
 
 		<h:link outcome="schoolSubscriptionForm">Créer une école</h:link>
 
+		<hr/>
+
+<!--		Il faudra modifier le bean quand on aura le tableau des "membres" pour un user -->
+		<h:form>
+			<h:commandButton action="#{navigationToSchoolBean.toIndexSchool()}" value="Vers l'école 1 " />
+		</h:form>
 	</ui:define>
 
 

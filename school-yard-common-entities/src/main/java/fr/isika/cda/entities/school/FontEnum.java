@@ -1,4 +1,4 @@
-package fr.isika.cda.entities;
+package fr.isika.cda.entities.school;
 
 public enum FontEnum {
 	

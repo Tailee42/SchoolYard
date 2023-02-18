@@ -1,27 +1,55 @@
 package fr.isika.cda.entities.lesson;
 
-import fr.isika.cda.entities.SchoolTypeEnum;
-import fr.isika.cda.entities.SubjectEnum;
+import fr.isika.cda.entities.common.AcademicLevel;
+import fr.isika.cda.entities.common.SubjectEnum;
+import fr.isika.cda.entities.teacher.Teacher;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Activity {
-	
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Activity implements Serializable {
+
+	private static final long serialVersionUID = -9156916020990785127L;
 	@Id
 	@GeneratedValue
-	private Long id;
+	protected Long id;
 	
 	@Enumerated(EnumType.STRING)
-	private SubjectEnum subject;
+	protected SubjectEnum subject;
 	
 	@Enumerated(EnumType.STRING)
-	private SchoolTypeEnum level;
+	protected AcademicLevel level;
 
+	@ManyToOne
+	private Teacher teacher;
 
+	public Long getId() {
+		return id;
+	}
 
+	public SubjectEnum getSubject() {
+		return subject;
+	}
+
+	public void setSubject(SubjectEnum subject) {
+		this.subject = subject;
+	}
+
+	public AcademicLevel getLevel() {
+		return level;
+	}
+
+	public void setLevel(AcademicLevel level) {
+		this.level = level;
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
 }
