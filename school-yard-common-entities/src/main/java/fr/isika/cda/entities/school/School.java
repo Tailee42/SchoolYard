@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import fr.isika.cda.entities.SchoolTypeEnum;
+import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.common.Contact;
 
 @Entity

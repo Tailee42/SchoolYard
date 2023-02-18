@@ -1,11 +1,11 @@
 package fr.isika.cda.beans;
 
-import fr.isika.cda.entities.AcademicLevel;
-import fr.isika.cda.entities.SubjectEnum;
-import fr.isika.cda.entities.lesson.SynchronousLesson;
+import fr.isika.cda.entities.common.AcademicLevel;
+import fr.isika.cda.entities.common.SubjectEnum;
+import fr.isika.cda.entities.lesson.PhysicalOption;
+import fr.isika.cda.entities.lesson.VirtualOption;
 import fr.isika.cda.entities.teacher.Teacher;
-import fr.isika.cda.repositories.MemberRepository;
-import fr.isika.cda.repositories.SynchronousLessonRepository;
+import fr.isika.cda.repositories.*;
 import fr.isika.cda.utils.SessionUtils;
 
 import javax.faces.bean.ManagedBean;
@@ -17,15 +17,24 @@ public class CreateSynchronousLessonBean {
      @Inject
      private SynchronousLessonRepository synchronousLessonRepository;
      @Inject
-     private MemberRepository memberRepository;
+     private PhysicalRepository physicalRepository;
+     private PhysicalOption physicalOption = new PhysicalOption();
+     private VirtualOption virtualOption = new VirtualOption();
+     @Inject
+     private VirtualRepository virtualRepository;
 
-     private SynchronousLesson synchronousLesson = new SynchronousLesson();
 
-
-     public String create() {
+     public String createPhysical() {
           Teacher teacher = (Teacher) SessionUtils.getConnectedMember();
-          synchronousLesson.setTeacher(teacher);
-          synchronousLessonRepository.save(synchronousLesson);
+          physicalOption.getSynchronousLesson().setTeacher(teacher);
+          physicalRepository.save(physicalOption);
+          return "userDashboard?faces-redirect=true";
+     }
+
+     public String createVirtual() {
+          Teacher teacher = (Teacher) SessionUtils.getConnectedMember();
+          virtualOption.getSynchronousLesson().setTeacher(teacher);
+          virtualRepository.save(virtualOption);
           return "userDashboard?faces-redirect=true";
      }
 
@@ -37,11 +46,19 @@ public class CreateSynchronousLessonBean {
           return AcademicLevel.values();
      }
 
-     public SynchronousLesson getSynchronousLesson() {
-          return synchronousLesson;
+     public PhysicalOption getPhysicalOption() {
+          return physicalOption;
      }
 
-     public void setSynchronousLesson(SynchronousLesson synchronousLesson) {
-          this.synchronousLesson = synchronousLesson;
+     public void setPhysicalOption(PhysicalOption physicalOption) {
+          this.physicalOption = physicalOption;
+     }
+
+     public VirtualOption getVirtualOption() {
+          return virtualOption;
+     }
+
+     public void setVirtualOption(VirtualOption virtualOption) {
+          this.virtualOption = virtualOption;
      }
 }

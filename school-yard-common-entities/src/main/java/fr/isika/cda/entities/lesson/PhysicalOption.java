@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class Physical implements AccesDetailsInterface, Serializable {
+public class PhysicalOption implements AccesDetailsInterface, Serializable {
 
     private static final long serialVersionUID = 9128350787919081032L;
 
@@ -16,6 +16,14 @@ public class Physical implements AccesDetailsInterface, Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private SynchronousLesson synchronousLesson;
+
+    public PhysicalOption() {
+        this.address = new Address();
+        this.synchronousLesson = new SynchronousLesson();
+    }
 
     public Long getId() {
         return id;
@@ -27,5 +35,13 @@ public class Physical implements AccesDetailsInterface, Serializable {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public SynchronousLesson getSynchronousLesson() {
+        return synchronousLesson;
+    }
+
+    public void setSynchronousLesson(SynchronousLesson synchronousLesson) {
+        this.synchronousLesson = synchronousLesson;
     }
 }

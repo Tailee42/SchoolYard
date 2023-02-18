@@ -3,11 +3,11 @@ package fr.isika.cda.entities.teacher;
 import javax.persistence.*;
 
 
-import fr.isika.cda.entities.*;
+import fr.isika.cda.entities.common.SchoolTypeEnum;
+import fr.isika.cda.entities.common.SubjectEnum;
 import fr.isika.cda.entities.school.Member;
 
 @Entity
-
 @PrimaryKeyJoinColumn(name = "id")
 public class Teacher extends Member {
 
@@ -52,11 +52,6 @@ public class Teacher extends Member {
 
 	public TeacherStatusEnum getStatus() {
 		return status;
-	}
-
-
-	public Long getId() {
-		return id;
 	}
 
 }

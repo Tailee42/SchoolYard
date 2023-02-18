@@ -5,8 +5,8 @@ import java.util.Optional;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
-import fr.isika.cda.entities.SchoolTypeEnum;
-import fr.isika.cda.entities.SubjectEnum;
+import fr.isika.cda.entities.common.SchoolTypeEnum;
+import fr.isika.cda.entities.common.SubjectEnum;
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.entities.teacher.TeacherStatusEnum;

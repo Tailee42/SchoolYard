@@ -4,7 +4,7 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
 
-import fr.isika.cda.entities.SchoolTypeEnum;
+import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.school.Admin;
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.users.User;

@@ -9,9 +9,9 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
 
-import fr.isika.cda.entities.AcademicLevel;
-import fr.isika.cda.entities.SchoolTypeEnum;
-import fr.isika.cda.entities.SubjectEnum;
+import fr.isika.cda.entities.common.AcademicLevel;
+import fr.isika.cda.entities.common.SchoolTypeEnum;
+import fr.isika.cda.entities.common.SubjectEnum;
 import fr.isika.cda.entities.common.Address;
 import fr.isika.cda.entities.common.Contact;
 import fr.isika.cda.entities.common.RoleTypeEnum;

@@ -1,7 +1,7 @@
 package fr.isika.cda.entities.lesson;
 
-import fr.isika.cda.entities.AcademicLevel;
-import fr.isika.cda.entities.SubjectEnum;
+import fr.isika.cda.entities.common.AcademicLevel;
+import fr.isika.cda.entities.common.SubjectEnum;
 import fr.isika.cda.entities.teacher.Teacher;
 
 import javax.persistence.*;

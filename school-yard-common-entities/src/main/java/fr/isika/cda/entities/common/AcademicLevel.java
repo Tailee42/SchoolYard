@@ -1,4 +1,4 @@
-package fr.isika.cda.entities;
+package fr.isika.cda.entities.common;
 
 public enum AcademicLevel {
     CP, CE1, CE2, CM1, CM2, SIXIEME, CINQUIEME, QUATRIEME, TROISIEME, SECONDE,

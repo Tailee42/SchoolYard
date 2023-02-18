@@ -3,6 +3,7 @@ package fr.isika.cda.entities.lesson;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,7 +13,14 @@ public class SynchronousLesson extends Activity {
     private String duration;
     private LocalDateTime classDate;
     private int maxStudentNumber;
-    private Float price;
+    private BigDecimal price;
+
+
+
+
+    public SynchronousLesson() {
+        this.maxStudentNumber = 1;
+    }
 
     public String getTitle() {
         return title;
@@ -46,11 +54,12 @@ public class SynchronousLesson extends Activity {
         this.maxStudentNumber = maxStudentNumber;
     }
 
-    public Float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
 }
