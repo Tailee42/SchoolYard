@@ -8,62 +8,66 @@
 	<ui:define name="cssFiles">
 		<h:outputStylesheet name="tableau.css" library="css" />
 	</ui:define>
-
-	<ui:define name="title">Rechercher école par nom</ui:define>
-
+	
+	<ui:define name="title">Recherche école par type</ui:define>
 
 	<ui:define name="header">
 		<h:link outcome="schoolsList">Liste des écoles</h:link>
-		<h:link outcome="searchSchoolByType">Rechercher école par type</h:link>
+		<h:link outcome="searchSchoolByName">Rechercher école par nom</h:link>
 	</ui:define>
 
 	<ui:define name="content">
-		<h1>Rechercher école par nom</h1>
+		<h1>Recherche école par type</h1>
 		<br />
-		<h:form id="searchSchoolByNameForm">
-			<h:outputLabel value="Nom école : " for="schoolInput" />
-			<h:inputText id="schoolInput"
-				value="#{schoolsListBean.school.schoolName }" />
-			<h:commandButton action="#{schoolsListBean.getByName()}"
+		<h:form id="searchSchoolByTypeForm">
+			<h:outputLabel value="Type d'école : " for="selectSchoolType" />
+			<h:selectOneMenu id="selectSchoolType"
+				value="#{schoolsListBean.school.schoolTypeEnum}" >
+			<f:selectItem itemLabel="-- Sélectionner un type d'école -- "
+				noSelectionOption="true" />
+			<f:selectItems value="#{schoolsListBean.types()}" var="type"
+				itemLabel="#{type}" itemValue="#{type}" />
+			</h:selectOneMenu>
+			<h:commandButton action="#{schoolsListBean.getByType()}"
 				value="Rechercher" />
 		</h:form>
 		<br />
 
-		<h:dataTable border="1" value="#{schoolsListBean.getByName()}" var="n">
+		<h:dataTable border="1" value="#{schoolsListBean.getByType()}" var="t">
 
 			<h:column>
 				<f:facet name="header"> Logo </f:facet>
-				<h:outputText value="#{n.logo}" />
+				<h:outputText value="#{t.logo}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header"> Nom Ecole </f:facet>
-				<h:outputText value="#{n.schoolName}" />
+				<h:outputText value="#{t.schoolName}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header"> Niveau </f:facet>
-				<h:outputText value="#{n.schoolTypeEnum}" />
+				<h:outputText value="#{t.schoolTypeEnum}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header"> Présentation </f:facet>
-				<h:outputText value="#{n.synthesis}" />
+				<h:outputText value="#{t.synthesis}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header"> Email </f:facet>
-				<h:outputText value="#{n.contact.email}" />
+				<h:outputText value="#{t.contact.email}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header"> Téléphone </f:facet>
-				<h:outputText value="#{n.contact.phone}" />
+				<h:outputText value="#{t.contact.phone}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header"> Ville </f:facet>
-				<h:outputText value="#{n.contact.address.town}" />
+				<h:outputText value="#{t.contact.address.town}" />
 			</h:column>
 
 			<h:column>
@@ -71,8 +75,8 @@
 					Action Elève
 				</f:facet>
 				<h:button value="S'inscrire en tant quélève"
-					outcome="/userViews/studentSubscriptionForm">
-					<f:param name="school" value="#{n.id}" />
+					outcome="studentSubscriptionForm">
+					<f:param name="school" value="#{t.id}" />
 				</h:button>
 			</h:column>
 
@@ -81,10 +85,11 @@
 				<f:facet name="header">
 					Action Enseignant
 				</f:facet>
-				<h:button value="Postuler" outcome="/userViews/teacherSubscriptionForm">
-					<f:param name="school" value="#{n.id}" />
+				<h:button value="Postuler" outcome="teacherSubscriptionForm">
+					<f:param name="school" value="#{t.id}" />
 				</h:button>
 			</h:column>
+
 		</h:dataTable>
 
 	</ui:define>
