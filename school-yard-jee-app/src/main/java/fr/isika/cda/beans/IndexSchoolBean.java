@@ -15,12 +15,80 @@ public class IndexSchoolBean {
     }
 
     public String styles() {
-        return new StringBuffer()
+        String colorString = new StringBuffer()
                 .append(":root {")
                 .append("--accentColor : #").append(theme.getAccentColor()).append(";")
                 .append("--backgroundColor : #").append(theme.getBackgroundColor()).append(";")
                 .append("--primaryColor : #").append(theme.getPrimaryColor()).append(";")
                 .append("}")
                 .toString();
+
+        String policeString = getpoliceString();
+
+
+        return (colorString + policeString);
+    }
+
+    private String getpoliceString() {
+        switch (theme.getFont()) {
+            case "PlayfairDisplay" :
+               return new StringBuilder()
+                        .append("@font-face {\n")
+                        .append("            font-family: 'Playfair';\n")
+                        .append("            src: url(‘/fonts/PlayfairDisplay-VariableFont_wght.ttf’) format(‘truetype’)\n")
+                        .append("        }")
+                        .append("body {\n")
+                        .append("\tfont-family: 'Playfair', sans-serif;\n")
+                        .append("}")
+                        .toString();
+
+            case "Quicksand" :
+                return new StringBuilder()
+                        .append("@font-face {\n")
+                        .append("            font-family: 'Quicksand';\n")
+                        .append("            src: url(‘/fonts/Quicksand-VariableFont_wght.ttf’) format(‘truetype’)\n")
+                        .append("        }")
+                        .append("body {\n")
+                        .append("\tfont-family: 'Quicksand', sans-serif;\n")
+                        .append("}")
+                        .toString();
+
+            case "Roboto" :
+                return new StringBuilder()
+                        .append("@font-face {\n")
+                        .append("            font-family: 'Roboto';\n")
+                        .append("            src: url(‘/fonts/Roboto-Black.ttf’) format(‘truetype’)\n")
+                        .append("        }")
+                        .append("body {\n")
+                        .append("\tfont-family: 'Roboto', sans-serif;\n")
+                        .append("}")
+                        .toString();
+
+            case "Ubuntu" :
+                return new StringBuilder()
+                        .append("@font-face {\n")
+                        .append("            font-family: 'Ubuntu';\n")
+                        .append("            src: url(‘/fonts/Ubuntu-Light.ttf’) format(‘truetype’)\n")
+                        .append("        }")
+                        .append("body {\n")
+                        .append("\tfont-family: 'Ubuntu', sans-serif;\n")
+                        .append("}")
+                        .toString();
+
+            case "Zeyada" :
+                return new StringBuilder()
+                        .append("@font-face {\n")
+                        .append("            font-family: 'Zeyada';\n")
+                        .append("            src: url(‘/fonts/Zeyada-Regular.ttf’) format(‘truetype’)\n")
+                        .append("        }")
+                        .append("body {\n")
+                        .append("\tfont-family: 'Zeyada', sans-serif;\n")
+                        .append("}")
+                        .toString();
+
+            default :
+                return "";
+        }
+
     }
 }

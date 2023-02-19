@@ -25,7 +25,7 @@ public class Theme implements Serializable {
 		this.primaryColor = "9899AE";
 		this.accentColor = "EB9486";
 		this.backgroundColor = "F9f8F8";
-		this.font = "PlayfairDisplay";
+		this.font = "Quicksand";
 	}
 
 	public String getPrimaryColor() {
