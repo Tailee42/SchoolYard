@@ -24,6 +24,12 @@ public class VirtualOption implements AccesDetailsInterface, Serializable {
         this.synchronousLesson = new SynchronousLesson();
     }
 
+    public VirtualOption(String url, String plateforme, SynchronousLesson synchronousLesson) {
+        this.url = url;
+        this.plateforme = plateforme;
+        this.synchronousLesson = synchronousLesson;
+    }
+
     //Getters and Setters
     public Long getId() {
         return id;

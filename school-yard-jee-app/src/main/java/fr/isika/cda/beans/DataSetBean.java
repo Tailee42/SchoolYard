@@ -1,5 +1,6 @@
 package fr.isika.cda.beans;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
@@ -16,6 +17,9 @@ import fr.isika.cda.entities.common.Address;
 import fr.isika.cda.entities.common.Contact;
 import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.Security;
+import fr.isika.cda.entities.lesson.PhysicalOption;
+import fr.isika.cda.entities.lesson.SynchronousLesson;
+import fr.isika.cda.entities.lesson.VirtualOption;
 import fr.isika.cda.entities.school.Admin;
 import fr.isika.cda.entities.school.Membership;
 import fr.isika.cda.entities.school.School;
@@ -54,6 +58,10 @@ public class DataSetBean {
 	private TeacherRepository teacherRepository;
 	@Inject
 	private MembershipRepository membershipRepository;
+	@Inject
+	private VirtualRepository virtualRepository;
+	@Inject
+	private PhysicalRepository physicalRepository;
 
 
 	@PostConstruct
@@ -79,22 +87,22 @@ public class DataSetBean {
 		subscription2.getFeatures().add(feature1);
 		subscriptionRepository.save(subscription2);
 
-		Membership membership1 = new Membership(LocalDateTime.of(2024, Month.JANUARY, 5, 10, 30, 13), LocalDateTime.of(2023, Month.JANUARY, 5, 10, 30, 13), subscription1);
+		Membership membership1 = new Membership(LocalDateTime.of(2024, Month.JANUARY, 5, 10, 30), LocalDateTime.of(2023, Month.JANUARY, 5, 10, 30), subscription1);
 		membershipRepository.save(membership1);
 
-		Membership membership2 = new Membership(LocalDateTime.of(2023, Month.MARCH, 9, 17, 20, 03), LocalDateTime.of(2022, Month.MARCH, 9, 17, 20, 03), subscription2);
+		Membership membership2 = new Membership(LocalDateTime.of(2023, Month.MARCH, 9, 17, 20), LocalDateTime.of(2022, Month.MARCH, 9, 17, 20), subscription2);
 		membershipRepository.save(membership2);
 
-		Membership membership3 = new Membership(LocalDateTime.of(2023, Month.NOVEMBER, 12, 12, 30, 13), LocalDateTime.of(2022, Month.NOVEMBER, 12, 12, 30, 13), subscription1);
+		Membership membership3 = new Membership(LocalDateTime.of(2023, Month.NOVEMBER, 12, 12, 30), LocalDateTime.of(2022, Month.NOVEMBER, 12, 12, 30), subscription1);
 		membershipRepository.save(membership3);
 
 		// Create user to set as schools admin
-		User user1 = new User("albert", LocalDateTime.of(2023, Month.JANUARY, 20, 19, 30, 40), RoleTypeEnum.USER,
+		User user1 = new User("albert", LocalDateTime.of(2023, Month.JANUARY, 20, 19, 30), RoleTypeEnum.USER,
 				new Security("123"), new Profil("Dupond", "Albert", "", new Contact("albert@gmail.com", "0606060606",
 						new Address(12, "rue du phare", "Brest", "29000"))));
 		userRepository.save(user1);
 
-		User user2 = new User("emma", LocalDateTime.of(2022, Month.DECEMBER, 5, 12, 20, 0), RoleTypeEnum.USER,
+		User user2 = new User("emma", LocalDateTime.of(2022, Month.DECEMBER, 5, 12, 20), RoleTypeEnum.USER,
 				new Security("aze"), new Profil("Roux", "Emma", "", new Contact("emma@gmail.com", "0678787878",
 						new Address(952, "avenue de Paris", "Orléans", "45000"))));
 		userRepository.save(user2);
@@ -125,38 +133,58 @@ public class DataSetBean {
 		schoolRepository.save(school3);
 
 		// Create User for student
-		User user3 = new User("louis", LocalDateTime.of(2022, Month.NOVEMBER, 17, 13, 25, 0), RoleTypeEnum.USER,
+		User user3 = new User("louis", LocalDateTime.of(2022, Month.NOVEMBER, 17, 13, 25), RoleTypeEnum.USER,
 				new Security("456"), new Profil("Marchand", "Louis", "", new Contact("louis@gmail.com", "0696696969",
 						new Address(3, "rue de la gare", "Vierzon", "18100"))));
 		userRepository.save(user3);
 		createStudent(school1, user3, AcademicLevel.QUATRIEME);
 
-		User user4 = new User("fleur", LocalDateTime.of(2022, Month.OCTOBER, 25, 6, 6, 6), RoleTypeEnum.USER,
+		User user4 = new User("fleur", LocalDateTime.of(2022, Month.OCTOBER, 25, 6, 6), RoleTypeEnum.USER,
 				new Security("qsd"), new Profil("Albrand", "Fleur", "", new Contact("fleur@gmail.com", "0641141414",
 						new Address(41, "rue des escaliers", "Orléans", "45000"))));
 		userRepository.save(user4);
 		createStudent(school2, user4, AcademicLevel.CM1);
 
 		// Teacher
-		User user5 = new User("jules", LocalDateTime.of(2022, Month.OCTOBER, 19, 13, 25, 0), RoleTypeEnum.USER,
+		User user5 = new User("jules", LocalDateTime.of(2022, Month.OCTOBER, 19, 13, 25), RoleTypeEnum.USER,
 				new Security("789"), new Profil("Tessier", "Jules", "", new Contact("jules@gmail.com", "0652525252",
 				new Address(26, "rue de la boulangerie", "Briançon", "05100"))));
 		userRepository.save(user5);
-		createTeacher(school1, user5, SchoolTypeEnum.COLLEGE, SubjectEnum.HISTOIRE);
+		Teacher  teacher1 = createTeacher(school1, user5, SchoolTypeEnum.COLLEGE, SubjectEnum.HISTOIRE);
 
-		User user6 = new User("pauline", LocalDateTime.of(2022, Month.OCTOBER, 25, 6, 6, 6), RoleTypeEnum.USER,
+		User user6 = new User("pauline", LocalDateTime.of(2022, Month.OCTOBER, 25, 6, 6), RoleTypeEnum.USER,
 				new Security("wxc"), new Profil("Gaudel", "Pauline", "", new Contact("pauline@gmail.com", "0662626262",
 				new Address(74, "rue du téléphérique", "Bordeaux", "33000"))));
 		userRepository.save(user6);
-		createTeacher(school2, user6, SchoolTypeEnum.ELEMENTAIRE, SubjectEnum.MATHS);
+		Teacher teacher2 = createTeacher(school2, user6, SchoolTypeEnum.ELEMENTAIRE, SubjectEnum.MATHS);
+
+		//Create some synchronous lessons
+		VirtualOption virtual1 = new VirtualOption("Zoom",
+				"www.zoom.fr",
+				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.CINQUIEME, teacher1, "Seigneurs et paysans au Moyen Âge", "1 heure", LocalDateTime.of(2023, Month.MARCH, 12, 14, 30), 5, new BigDecimal("25")));
+		virtualRepository.save(virtual1);
+
+		PhysicalOption physical1 = new PhysicalOption(new Address(13,"rue de la fontaine", "Lyon", "69009"),
+				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.TROISIEME, teacher1, "La guerre froide", "1 heure et quart", LocalDateTime.of(2023, Month.APRIL, 1, 10, 15), 8, new BigDecimal("27")));
+		physicalRepository.save(physical1);
+
+		VirtualOption virtual2= new VirtualOption("Zoom",
+				"www.zoom.fr",
+				new SynchronousLesson(SubjectEnum.MATHS, AcademicLevel.CM1, teacher2, "Les nombres décimaux", "1 heure et demi", LocalDateTime.of(2023, Month.MARCH, 24, 10, 30), 3, new BigDecimal("30")));
+		virtualRepository.save(virtual2);
+
+		PhysicalOption physical2 = new PhysicalOption(new Address(75,"place de la mairie", "Dijon", "21000"),
+				new SynchronousLesson(SubjectEnum.MATHS, AcademicLevel.CM2, teacher2, "Les longueurs", "45 minutes", LocalDateTime.of(2023, Month.APRIL, 12, 9, 45), 3, new BigDecimal("27")));
+		physicalRepository.save(physical2);
 
 	}
 
-	private void createTeacher(School school1, User user3, SchoolTypeEnum schoolTypeEnum, SubjectEnum subjectEnum) {
+	private Teacher createTeacher(School school1, User user3, SchoolTypeEnum schoolTypeEnum, SubjectEnum subjectEnum) {
 		Teacher teacher = new Teacher(schoolTypeEnum, subjectEnum);
 		teacher.setUser(user3);
 		teacher.setSchool(school1);
 		teacherRepository.save(teacher);
+		return teacher;
 	}
 
 	private void createStudent(School school1, User user3, AcademicLevel level) {

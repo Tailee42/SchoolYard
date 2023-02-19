@@ -15,4 +15,6 @@ public class AsynchronousLesson extends Activity{
     public void setTitle(String title) {
         this.title = title;
     }
+
+
 }

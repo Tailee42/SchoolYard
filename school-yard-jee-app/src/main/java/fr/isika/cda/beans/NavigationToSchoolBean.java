@@ -1,6 +1,5 @@
 package fr.isika.cda.beans;
 
-import fr.isika.cda.entities.school.Member;
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.repositories.SchoolRepository;
@@ -12,16 +11,16 @@ import javax.inject.Inject;
 import java.util.Optional;
 
 @ManagedBean
-public class navigationToSchoolBean {
+public class NavigationToSchoolBean {
     @Inject
     private SchoolRepository schoolRepository;
     @Inject
     private TeacherRepository teacherRepository;
 
-    //Quand le tableau du dashboard sera en place, prendre en compte l'id de l'école
+    //TODO Quand le tableau du dashboard sera en place, prendre en compte l'id de l'école
     public String toIndexSchool() {
-        Optional<School> school = schoolRepository.getSchoolById(11L);
-        Optional<Teacher> teacher = teacherRepository.getTeacherById(41L);
+        Optional<School> school = schoolRepository.getSchoolById(19L);
+        Optional<Teacher> teacher = teacherRepository.getTeacherById(47L);
         if (school.isPresent() && teacher.isPresent()) {
             SessionUtils.setCurrentSchool(school.get());
             SessionUtils.setConnectedMember(teacher.get());

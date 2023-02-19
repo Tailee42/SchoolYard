@@ -1,5 +1,9 @@
 package fr.isika.cda.entities.lesson;
 
+import fr.isika.cda.entities.common.AcademicLevel;
+import fr.isika.cda.entities.common.SubjectEnum;
+import fr.isika.cda.entities.teacher.Teacher;
+
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -16,7 +20,21 @@ public class SynchronousLesson extends Activity {
     private BigDecimal price;
 
 
-
+    public SynchronousLesson(SubjectEnum subject,
+                             AcademicLevel level,
+                             Teacher teacher,
+                             String title,
+                             String duration,
+                             LocalDateTime classDate,
+                             int maxStudentNumber,
+                             BigDecimal price) {
+        super(subject, level, teacher);
+        this.title = title;
+        this.duration = duration;
+        this.classDate = classDate;
+        this.maxStudentNumber = maxStudentNumber;
+        this.price = price;
+    }
 
     public SynchronousLesson() {
         this.maxStudentNumber = 1;
