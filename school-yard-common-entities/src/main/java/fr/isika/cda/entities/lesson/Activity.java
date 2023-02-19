@@ -23,7 +23,16 @@ public abstract class Activity implements Serializable {
 	protected AcademicLevel level;
 
 	@ManyToOne
-	private Teacher teacher;
+	protected Teacher teacher;
+
+	protected Activity(SubjectEnum subject, AcademicLevel level, Teacher teacher) {
+		this.subject = subject;
+		this.level = level;
+		this.teacher = teacher;
+	}
+
+	protected Activity() {
+	}
 
 	public Long getId() {
 		return id;

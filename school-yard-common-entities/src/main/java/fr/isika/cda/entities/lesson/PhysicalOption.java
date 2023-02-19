@@ -20,6 +20,11 @@ public class PhysicalOption implements AccesDetailsInterface, Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private SynchronousLesson synchronousLesson;
 
+    public PhysicalOption(Address address, SynchronousLesson synchronousLesson) {
+        this.address = address;
+        this.synchronousLesson = synchronousLesson;
+    }
+
     public PhysicalOption() {
         this.address = new Address();
         this.synchronousLesson = new SynchronousLesson();
