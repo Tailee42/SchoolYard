@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;800&display=swap');
 
 :root {
-    --linkColor: #F99120;
+    --accentColor: #F99120;
     --backgroundColor : #e8e9eb;
     --textColor : #414143;
-    --accentColor : #7df2ea;
+    --primaryColor : #7df2ea;
 }
 
 body {
@@ -37,7 +37,7 @@ body > div {
     left: 0;
     display: flex;
     justify-content: space-between;
-    background-color: var(--accentColor);
+    background-color: var(--primaryColor);
     min-height: 10vh;
     clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100% );
 }
@@ -123,8 +123,8 @@ a {
     font-weight: 600;
     background: linear-gradient(
             to right,
-            var(--linkColor) 0%,
-            var(--linkColor) 5px,
+            var(--accentColor) 0%,
+            var(--accentColor) 5px,
             transparent 5px
     ) repeat-x;
     background-size: 100%;
@@ -135,8 +135,8 @@ a {
 a:hover {
     background: linear-gradient(
             to right,
-            var(--linkColor) 0%,
-            var(--linkColor) 5px,
+            var(--accentColor) 0%,
+            var(--accentColor) 5px,
             transparent
     );
 }
