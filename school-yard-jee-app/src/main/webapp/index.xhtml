@@ -12,7 +12,7 @@
 		<h:link outcome="commonViews/schoolsList">Liste des écoles</h:link>
 		<h:link outcome="commonViews/userSubscriptionForm">S'inscrire</h:link>
 		<h:commandLink action="#{loginBean.logout()}" rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
-		<h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:link>
+		<h:link outcome="userViews/login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:link>
 
 	</ui:define>
 
