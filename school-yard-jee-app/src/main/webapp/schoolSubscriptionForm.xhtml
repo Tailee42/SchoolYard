@@ -67,7 +67,9 @@
 								 value="#{createSchoolBean.school.synthesis}" />
 
 				<h:commandButton action="#{createSchoolBean.create()}"
-								 value="Valider" />
+								 value="Valider" >
+								 <f:param name="school" value="#{n.id}" />
+				</h:commandButton>
 
 			</h:panelGrid>
 

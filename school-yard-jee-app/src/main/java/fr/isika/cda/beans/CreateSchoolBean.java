@@ -6,13 +6,21 @@ import javax.servlet.http.Part;
 
 import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.school.Admin;
+import fr.isika.cda.entities.school.Membership;
 import fr.isika.cda.entities.school.School;
+import fr.isika.cda.entities.subscription.Feature;
+import fr.isika.cda.entities.subscription.Subscription;
 import fr.isika.cda.entities.users.User;
+import fr.isika.cda.repositories.FeatureRepository;
 import fr.isika.cda.repositories.MemberRepository;
+import fr.isika.cda.repositories.MembershipRepository;
 import fr.isika.cda.repositories.SchoolRepository;
+import fr.isika.cda.repositories.SubscriptionRepository;
 import fr.isika.cda.utils.FileUtils;
 import fr.isika.cda.utils.SessionUtils;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @ManagedBean
@@ -22,15 +30,22 @@ public class CreateSchoolBean {
 
 	private Part logoFile;
 
+	private Membership membership = new Membership();
+
 	@Inject
 	private SchoolRepository schoolRepository;
 
 	@Inject
 	private MemberRepository memberRepository;
 
+	@Inject
+	private SubscriptionRepository subscriptionRepository;
+
+	@Inject
+	private FeatureRepository featureRepository;
+
 	public String create() {
 		FileUtils.initResourcesDir();
-
 
 		String uuid = UUID.randomUUID().toString();
 		String filename = uuid + ".png";
@@ -46,6 +61,18 @@ public class CreateSchoolBean {
 
 		school = new School();
 
+		return "schoolMembershipForm?faces-redirect=true";
+	}
+
+	public String setMembership(Subscription subscription) {
+		membership.setSubscription(subscription);
+		LocalDateTime start = LocalDateTime.now();
+		LocalDateTime end = start.plusMonths(12);
+		membership.setStartingDate(start);
+		membership.setEndingDate(end);
+
+		school.setMembership(membership);
+		schoolRepository.update(school);
 
 		return "index?faces-redirect=true";
 	}
@@ -56,6 +83,14 @@ public class CreateSchoolBean {
 		admin.setSchool(school);
 		admin.setUser(user);
 		return admin;
+	}
+
+	public List<Feature> featuresBySubscription(Long subscriptionId) {
+		return featureRepository.getFeatureBySubscriptionId(subscriptionId);
+	}
+
+	public List<Subscription> subscriptions() {
+		return subscriptionRepository.getAll();
 	}
 
 	public SchoolTypeEnum[] levels() {
@@ -77,4 +112,9 @@ public class CreateSchoolBean {
 	public void setLogoFile(Part logoFile) {
 		this.logoFile = logoFile;
 	}
+
+	public Membership getMembership() {
+		return membership;
+	}
+
 }

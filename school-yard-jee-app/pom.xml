@@ -28,6 +28,10 @@
 		</plugins>
 	</build>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
 	<dependencies>
 
 		<dependency>
@@ -54,7 +58,7 @@
 			<artifactId>font-awesome</artifactId>
 			<version>5.7.1</version>
 		</dependency>
-				
+
 	</dependencies>
 
 </project>
