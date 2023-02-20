@@ -22,9 +22,8 @@
 				<h:inputText id="loginId" value="#{loginBean.user.login}" />
 				<h:outputLabel value="Mot de passe : " for="loginPassword" />
 				<h:inputSecret id="loginPassword"
-							   value="#{loginBean.user.security.password}" />
-				<h:commandButton action="#{loginBean.login()}"
-								 value="Login" />
+					value="#{loginBean.user.security.password}" />
+				<h:commandButton action="#{loginBean.login()}" value="Login" />
 
 			</h:panelGrid>
 		</h:form>
