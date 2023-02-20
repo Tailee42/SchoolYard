@@ -6,11 +6,10 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:define name="cssFiles">
-		<h:outputStylesheet name="tableau.css" library="css" />
+		<h:outputStylesheet name="cards.css" library="css" />
 	</ui:define>
 
 	<ui:define name="title">Rechercher école par nom</ui:define>
-
 
 	<ui:define name="header">
 		<h:link outcome="schoolsList">Liste des écoles</h:link>
@@ -20,74 +19,46 @@
 	<ui:define name="content">
 		<h1>Rechercher école par nom</h1>
 		<br />
-		<h:form id="searchSchoolByNameForm">
-			<h:outputLabel value="Nom école : " for="schoolInput" />
-			<h:inputText id="schoolInput"
-				value="#{schoolsListBean.school.schoolName }" />
-			<h:commandButton action="#{schoolsListBean.getByName()}"
-				value="Rechercher" />
-		</h:form>
+		<h4>
+			<h:form id="searchSchoolByNameForm">
+				<h:outputLabel value="Nom école : " for="schoolInput" />
+				<h:inputText id="schoolInput"
+					value="#{schoolsListBean.school.schoolName }" />
+				<h:commandButton action="#{schoolsListBean.getByName()}"
+					value="Rechercher" />
+			</h:form>
+		</h4>
 		<br />
 
-
-		<h:dataTable border="1" value="#{schoolsListBean.getByName()}" var="n">
-
-			<h:column>
-				<f:facet name="header"> Logo </f:facet>
-				<h:outputText value="#{n.logo}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header"> Nom école </f:facet>
-				<h:outputText value="#{n.schoolName}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header"> Niveau </f:facet>
-				<h:outputText value="#{n.schoolTypeEnum}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header"> Présentation </f:facet>
-				<h:outputText value="#{n.synthesis}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header"> Email </f:facet>
-				<h:outputText value="#{n.contact.email}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header"> Téléphone </f:facet>
-				<h:outputText value="#{n.contact.phone}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header"> Ville </f:facet>
-				<h:outputText value="#{n.contact.address.town}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">
-					Action Elève
-				</f:facet>
-				<h:button value="S'inscrire en tant quélève"
-					outcome="studentSubscriptionForm">
-					<f:param name="school" value="#{n.id}" />
-				</h:button>
-			</h:column>
-
-
-			<h:column>
-				<f:facet name="header">
-					Action Enseignant
-				</f:facet>
-				<h:button value="Postuler" outcome="teacherSubscriptionForm">
-					<f:param name="school" value="#{n.id}" />
-				</h:button>
-			</h:column>
-		</h:dataTable>
-
+		<div class="container">
+			<ui:repeat value="#{schoolsListBean.getByName()}" var="n">
+				<div class="box">
+					<h2>
+						<h:outputText value="#{n.schoolName}" />
+					</h2>
+					<hr />
+					<h:graphicImage value="#{n.logo}" alt="Logo" width="100" />
+					<br />
+					<p>
+						<h:outputText value="#{n.synthesis}" />
+					</p>
+					<h:outputText value="#{n.contact.email}" />
+					<br />
+					<h:outputText value="#{n.contact.phone}" />
+					<br />
+					<h:outputText value="#{n.contact.address.town}" />
+					<br /> <br />
+					<h:button value="S'inscrire en tant qu'élève"
+						outcome="studentSubscriptionForm">
+						<f:param name="school" value="#{n.id}" />
+					</h:button>
+					<br /> <br />
+					<h:button value="Postuler" outcome="teacherSubscriptionForm">
+						<f:param name="school" value="#{n.id}" />
+					</h:button>
+				</div>
+			</ui:repeat>
+		</div>
 	</ui:define>
 
 </ui:composition>
