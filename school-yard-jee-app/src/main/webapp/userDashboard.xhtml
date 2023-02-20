@@ -6,7 +6,7 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:define name="cssFiles">
-		<h:outputStylesheet name="tableau.css" library="css" />
+		<h:outputStylesheet name="cards.css" library="css" />
 	</ui:define>
 
 
@@ -27,40 +27,38 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h2>Bienvenue #{welcomeBean.getUserConnectedName()} sur votre espace utilisateur</h2>
-
-
-		<hr />
+		<h2>Bienvenue #{welcomeBean.getUserConnectedName()} sur votre
+			espace utilisateur</h2>
 		<br />
 
-		<h3>Tableau de bord</h3>
+		<div class="container">
 
+			<ui:repeat value="#{membersListBean.allMembersForOneUser()}" var="m">
+				<div class="box red">
 
-		<h:dataTable border="1"
-			value="#{membersListBean.allMembersForOneUser()}" var="m">
+					<h2>
+						<h:outputText value="#{m.school.schoolName}" />
+					</h2>
+					<hr />
+					#{membersListBean.getMemberRole(m)}
+					<p>
+						<h:outputText value="Dans cet établissement, vous êtes : " />
+					</p>
+					<h3>
+						<h:outputText value="#{membersListBean.memberRole}" />
+					</h3>
 
-			<h:column>
-				<f:facet name="header"> Nom école </f:facet>
-				<h:outputText value="#{m.school.schoolName}" />
-			</h:column>
+					<h:form>
+						<h:commandButton action="#{membersListBean.goToIndexSchool(m)}"
+							value="Espace école " />
+						<br />
+					</h:form>
 
-						
-			<h:column>
-				<f:facet name="header"> Accès espace école </f:facet>
-				<h:form>
-					<h:commandButton action="#{membersListBean.goToIndexSchool(m)}"
-						value="Espace école " />
-				</h:form>
-			</h:column>
+				</div>
+			</ui:repeat>
 
-		</h:dataTable>
+		</div>
 
-		<hr/>
-
-<!--		Il faudra modifier le bean quand on aura le tableau des "membres" pour un user -->
-		<h:form>
-			<h:commandButton action="#{navigationToSchoolBean.toIndexSchool()}" value="Vers l'école 1 " />
-		</h:form>
 	</ui:define>
 
 
