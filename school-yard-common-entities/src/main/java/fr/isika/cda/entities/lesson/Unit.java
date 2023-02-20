@@ -4,10 +4,17 @@ import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.common.SubjectEnum;
 import fr.isika.cda.entities.teacher.Teacher;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
-public class Unit {
+public class Unit implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1715197209875615625L;
 
 	@Id
 	@GeneratedValue
