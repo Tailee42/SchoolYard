@@ -16,11 +16,11 @@
 		<h:link outcome="searchSchoolByName">Rechercher école par nom</h:link>
 		<h:link outcome="searchSchoolByType">Rechercher école par type</h:link>
 		<h:link outcome="schoolSubscriptionForm">Créer une école</h:link>
-		<h:form>
+		
 			<h:commandLink action="#{loginBean.logout()}"
 				rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
-			<h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:link>
-		</h:form>
+			<h:commandLink outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:commandLink>
+		
 	</ui:define>
 
 	<ui:define name="content">

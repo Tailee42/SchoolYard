@@ -11,7 +11,7 @@
 
 		<h:link outcome="schoolsList">Liste des écoles</h:link>
 		<h:link outcome="userSubscriptionForm">S'inscrire</h:link>
-		<h:commandLink action="#{loginBean.logout()}" rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+		<h:link action="#{loginBean.logout()}" rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:link>
 		<h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:link>
 	</ui:define>
 
