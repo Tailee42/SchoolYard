@@ -7,6 +7,7 @@
 				
 	<ui:define name="cssFiles">
 		<h:outputStylesheet name="forms.css" library="css"/>
+		<h:outputStylesheet name="buttons.css" library="css"/>
     </ui:define>	
 
 	<ui:define name="title">Formulaire d'inscription</ui:define>
@@ -63,7 +64,7 @@
 			</div>	
 		</div>
 		
-		<h:commandButton action="#{createUserBean.create()}" value="Valider"/>
+		<h:commandButton action="#{createUserBean.create()}" value="Valider" class="custom-button"/>
 		
 		</h:form>
 	

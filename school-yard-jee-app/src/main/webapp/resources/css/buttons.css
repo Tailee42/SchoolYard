@@ -1,0 +1,21 @@
+.custom-button {
+	width: 130px;
+  	height: 40px;
+  	background: #414143;
+  	background: linear-gradient(0deg, rgba(65,65,67,1) 0%, rgba(129,129,130,1) 100%);
+  	border: none;
+  	color: #E8E9EB;
+  	border-radius: 5px;
+  	cursor: pointer;
+  	box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+   	outline: none;
+   	font-weight: 100;
+   	font-size: 15px;   	
+}
+
+.custom-button:hover {
+	background: rgb(0,3,255);
+	background: linear-gradient(0deg, rgba(16,162,152,1) 0%, rgba(126,174,171,1) 100%);
+}
