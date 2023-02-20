@@ -56,6 +56,7 @@ public class DataSetBean {
 	@Inject
 	private PhysicalRepository physicalRepository;
 
+
 	@PostConstruct
 	private void initBDD() {
 		// creating features to fill subscriptions
@@ -64,11 +65,11 @@ public class DataSetBean {
 		featureRepository.save(feature1);
 
 		Feature feature2 = new Feature("Cours offline",
-				"Pour permettre à vos professeurs de proposer des cours en presentiel");
+				"Pour permettre à vos professeurs de proposer des cours en présentiel");
 		featureRepository.save(feature2);
 
 		Feature feature3 = new Feature("Outil de paiement",
-				"Pour permettre à vos adhérants de régler leurs achats sur la plateforme");
+				"Pour permettre à vos adhérents de régler leurs achats sur la plateforme");
 		featureRepository.save(feature3);
 
 		Subscription subscription1 = new Subscription(375.00, 12, "Premium");
@@ -194,23 +195,21 @@ public class DataSetBean {
 		userRepository.save(user22);
 		Teacher teacher2 = createTeacher(school2, user22, SchoolTypeEnum.ELEMENTAIRE, SubjectEnum.MATHS);
 
-		
-		// Create some synchronous lessons
-		VirtualOption virtual1 = new VirtualOption("Zoom", "www.zoom.fr",
-				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.CINQUIEME, teacher1,
-						"Seigneurs et paysans au Moyen Âge", "1 heure", LocalDateTime.of(2023, Month.MARCH, 12, 14, 30),
-						5, new BigDecimal("25")));
-		virtualRepository.save(virtual1);
+        //Create some synchronous lessons
+        VirtualOption virtual1 = new VirtualOption("www.zoom.fr",
+				"Zoom",
+                new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.CINQUIEME, teacher1, "Seigneurs et paysans au Moyen Âge", "1 heure", LocalDateTime.of(2023, Month.MARCH, 12, 14, 30), 5, new BigDecimal("25")));
+        virtualRepository.save(virtual1);
 
 		PhysicalOption physical1 = new PhysicalOption(new Address(13, "rue de la fontaine", "Lyon", "69009"),
 				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.TROISIEME, teacher1, "La guerre froide",
 						"1 heure et quart", LocalDateTime.of(2023, Month.APRIL, 1, 10, 15), 8, new BigDecimal("27")));
 		physicalRepository.save(physical1);
 
-		VirtualOption virtual2 = new VirtualOption("Zoom", "www.zoom.fr",
-				new SynchronousLesson(SubjectEnum.MATHS, AcademicLevel.CM1, teacher2, "Les nombres décimaux",
-						"1 heure et demi", LocalDateTime.of(2023, Month.MARCH, 24, 10, 30), 3, new BigDecimal("30")));
-		virtualRepository.save(virtual2);
+        VirtualOption virtual2= new VirtualOption("www.zoom.fr",
+				"Zoom",
+                new SynchronousLesson(SubjectEnum.MATHS, AcademicLevel.CM1, teacher2, "Les nombres décimaux", "1 heure et demi", LocalDateTime.of(2023, Month.MARCH, 24, 10, 30), 3, new BigDecimal("30")));
+        virtualRepository.save(virtual2);
 
 		PhysicalOption physical2 = new PhysicalOption(new Address(75, "place de la mairie", "Dijon", "21000"),
 				new SynchronousLesson(SubjectEnum.MATHS, AcademicLevel.CM2, teacher2, "Les longueurs", "45 minutes",
@@ -241,3 +240,4 @@ public class DataSetBean {
 	}
 
 }
+

@@ -10,7 +10,6 @@ import fr.isika.cda.entities.school.Admin;
 import fr.isika.cda.entities.school.Member;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.teacher.Teacher;
-import fr.isika.cda.entities.users.User;
 import fr.isika.cda.repositories.MemberRepository;
 import fr.isika.cda.utils.SessionUtils;
 
@@ -31,7 +30,7 @@ public class MembersListBean {
 	public String goToIndexSchool(Member member) {
 		SessionUtils.setConnectedMember(member);
 		SessionUtils.setCurrentSchool(member.getSchool());
-		return "indexSchool";
+		return "indexSchool?faces-redirect=true";
 	}
 
 	public void getMemberRole(Member member) {
