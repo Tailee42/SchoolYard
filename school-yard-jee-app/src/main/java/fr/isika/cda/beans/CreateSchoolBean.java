@@ -49,15 +49,8 @@ public class CreateSchoolBean {
 	private FeatureRepository featureRepository;
 
 	public String create() {
-		FileUtils.initResourcesDir();
-
-		String uuid = UUID.randomUUID().toString();
-		String filename = uuid + ".png";
-		String logoRelativePath = "/school-yard-resources/images/" + filename;
-
 		// TODO : ecrire le fichier sur le disque
-
-		school.setLogo(logoRelativePath);
+		school.setLogo(createImagePath());
 		school.setStatusSchool(StatusSchool.TOPUBLISH);
 		schoolRepository.save(school);
 		Admin admin = createAdmin();
@@ -65,21 +58,32 @@ public class CreateSchoolBean {
 
 		return "schoolMembershipForm";
 	}
+	
+	private String createImagePath() {
+		FileUtils.initResourcesDir();
+
+		String uuid = UUID.randomUUID().toString();
+		String filename = uuid + ".png";
+		return "/school-yard-resources/images/" + filename;
+	}
 
 	public String setMembership(Subscription subscription) {
 		membership.setSubscription(subscription);
-		LocalDateTime start = LocalDateTime.now();
-		LocalDateTime end = start.plusMonths(12);
-		membership.setStartingDate(start);
-		membership.setEndingDate(end);
-
-		this.school.setMembership(membership);
+		initMembershipDuration(subscription.getDuration());
+		school.setMembership(membership);
 		schoolRepository.update(school);
 
 		resetAll();
 
 		return "userDashboard?faces-redirect=true";
 	}
+	
+	private void initMembershipDuration(Long subscriptionDuration) {
+		LocalDateTime startingDate = LocalDateTime.now();
+		membership.setStartingDate(startingDate);
+		membership.setEndingDate(startingDate.plusMonths(subscriptionDuration));
+	}
+	
 
 	private void resetAll() {
 		school = new School();

@@ -29,7 +29,7 @@ public class CreateTeacherBean {
 	private TeacherRepository teacherRepository;
 
 	public String create() {
-		Optional<School> school = schoolRepository.getSchoolById(schoolId);
+		Optional<School> school = Optional.ofNullable(schoolRepository.getSchoolById(schoolId));
 		if (school.isPresent()) {
 			User user = SessionUtils.getConnectedUser();
 			teacher.setUser(user);
