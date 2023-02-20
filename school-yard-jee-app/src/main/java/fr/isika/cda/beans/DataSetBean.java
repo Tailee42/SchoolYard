@@ -65,11 +65,11 @@ public class DataSetBean {
 		featureRepository.save(feature1);
 
 		Feature feature2 = new Feature("Cours offline",
-				"Pour permettre à vos professeurs de proposer des cours en presentiel");
+				"Pour permettre à vos professeurs de proposer des cours en présentiel");
 		featureRepository.save(feature2);
 
 		Feature feature3 = new Feature("Outil de paiement",
-				"Pour permettre à vos adhérants de régler leurs achats sur la plateforme");
+				"Pour permettre à vos adhérents de régler leurs achats sur la plateforme");
 		featureRepository.save(feature3);
 
 		Subscription subscription1 = new Subscription(375.00, 12, "Premium");

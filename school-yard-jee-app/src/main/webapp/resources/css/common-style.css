@@ -29,6 +29,10 @@ body > div {
     padding-right: 10px;
 }
 
+.inline {
+    display: inline;
+}
+
 /* Mise en page du header desktop*/
 #header {
     width: 100%;

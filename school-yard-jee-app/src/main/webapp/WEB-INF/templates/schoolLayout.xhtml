@@ -3,23 +3,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       lang="fr">
 
 <h:head>
 
-    <meta name="viewport" content="width=device-width" />
-    <ui:insert name="metaData" ></ui:insert>
-    <h:outputStylesheet name="common-style.css" library="css" />
-    <h:outputStylesheet name="css/fontawesome.css" library="fontawesome" />
-    <h:outputStylesheet name="css/brands.css" library="fontawesome" />
-    <h:outputStylesheet name="css/solid.css" library="fontawesome" />
+    <meta name="viewport" content="width=device-width"/>
+    <ui:insert name="metaData"></ui:insert>
+    <h:outputStylesheet name="common-style.css" library="css"/>
+    <h:outputStylesheet name="css/fontawesome.css" library="fontawesome"/>
+    <h:outputStylesheet name="css/brands.css" library="fontawesome"/>
+    <h:outputStylesheet name="css/solid.css" library="fontawesome"/>
 
     #{indexSchoolBean.getSchoolsInformations()}
 
-    <ui:insert name="cssFiles" ></ui:insert>
+    <ui:insert name="cssFiles"></ui:insert>
 
     <title><ui:insert name="title">#{indexSchoolBean.school.schoolName}</ui:insert></title>
 
@@ -29,20 +26,33 @@
 
     <div id="header">
         <div id="entreprise">
-            <h:link outcome="/index">
-                <h:graphicImage library="images" name="Logo.png" width="140" height="100" alt="Logo" />
-            </h:link>
+
+            <h:graphicImage library="images" name="Logo.png" width="140" height="100" alt="Logo"/>
+
 
             <h1>#{indexSchoolBean.school.schoolName}</h1>
         </div>
 
         <!-- Menu desktop -->
         <div id="navbar-desktop">
-            <ui:fragment rendered ="#{indexSchoolBean.isTeacher()}">
+            <ui:fragment rendered="#{indexSchoolBean.isTeacher() and indexSchoolBean.isSynchronousLesson()}">
                 <h:link outcome="synchronousLessonForm" value="Créer un cours"/>
-
-
             </ui:fragment>
+
+            <ui:fragment rendered="#{indexSchoolBean.isTeacher() and indexSchoolBean.isAsynchronousLesson()}">
+                <h:link outcome="createUnitForm">Créer du contenu pédagogique</h:link>
+            </ui:fragment>
+
+            <!--            TODO rajouter les liens pour accéder au cours particulier et a contenu-->
+
+            <h:form class="inline">
+                <h:commandLink action="#{indexSchoolBean.logoutSchool()}">Tableau de board</h:commandLink>
+            </h:form>
+
+            <h:form class="inline">
+                <h:commandLink action="#{loginBean.logout()}"
+                               rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+            </h:form>
         </div>
 
         <!-- Menu mobile -->
@@ -60,13 +70,13 @@
     <div id="page">
 
         <div id="content">
-            <ui:insert name="content" ></ui:insert>
+            <ui:insert name="content"></ui:insert>
         </div>
 
     </div>
 
     <div id="footer">
-        <hr />
+        <hr/>
         <p>Copyright © 2023. Par SchoolYard, 1ère plateforme de tutorat en principauté de Groland
             <a href="#">Mentions légales</a>
             <a href="#">Politique de Confidentialité</a>
@@ -74,7 +84,7 @@
     </div>
 
     <h:outputScript name="BurgerMenu.js" library="js"></h:outputScript>
-    <ui:insert name="script" ></ui:insert>
+    <ui:insert name="script"></ui:insert>
 
 </h:body>
 
