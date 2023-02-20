@@ -15,4 +15,6 @@ public class WelcomeBean {
 		return "Welcome to SchoolYard !";
 	}
 	
+	
+	
 }
