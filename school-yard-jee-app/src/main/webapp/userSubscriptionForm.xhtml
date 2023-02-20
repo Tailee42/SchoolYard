@@ -19,7 +19,6 @@
 
 			<h:panelGrid columns="1">
 
-
 				<h:outputLabel value="Identifiant : " for="loginInput" />
 				<h:inputText id="loginInput" value="#{createUserBean.user.login}" />
 
@@ -47,7 +46,6 @@
 
 				<h:outputLabel value="Ville : " for="townInput" />
 				<h:inputText id="townInput" value="#{createUserBean.user.profil.contact.address.town}"/>
-
 
 				<h:commandButton action="#{createUserBean.create()}" value="Valider" />
 

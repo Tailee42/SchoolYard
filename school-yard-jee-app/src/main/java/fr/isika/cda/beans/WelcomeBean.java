@@ -18,4 +18,5 @@ public class WelcomeBean {
 	public String getUserConnectedName() {
 		return SessionUtils.getConnectedUser().getProfil().getFirstName();
 	}
+
 }
