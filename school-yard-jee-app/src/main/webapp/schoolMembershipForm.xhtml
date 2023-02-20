@@ -29,17 +29,19 @@
 				<h:column>
 
 					<f:facet name="header"> fonctionnalités </f:facet>
-					<h:outputText value="#{s.features}" />
+					<ui:repeat var="f" value="#{s.features}">
+					<h:outputText value="#{f.featureTitle}" />
+					</ui:repeat>
 				</h:column>
 
 				<h:column>
 					<f:facet name="header"> Durée </f:facet>
-					<h:outputText value="#{s.duration}" />
+					<h:outputText value="#{s.duration} mois" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header"> Prix </f:facet>
-					<h:outputText value="#{s.price}" />
+					<h:outputText value="#{s.price}€" />
 				</h:column>
 
 				<h:column>

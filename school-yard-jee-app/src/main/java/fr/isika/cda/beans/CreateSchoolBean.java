@@ -78,7 +78,7 @@ public class CreateSchoolBean {
 
 		resetAll();
 
-		return "index?faces-redirect=true";
+		return "userDashboard?faces-redirect=true";
 	}
 
 	private void resetAll() {
