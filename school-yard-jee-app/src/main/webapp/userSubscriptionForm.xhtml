@@ -27,11 +27,10 @@
 	<ui:define name="content">
 		<h1>Formulaire d'inscription</h1>
 
-		<div class="form-container">
 			<h:form id="createUserForm">
 				<div class="form-container">
-					<div class="grid">
-						<h:panelGrid columns="1" class="grid">
+				<div class="gridDiv">
+					<h:panelGrid columns="1" class="grid">
 
 							<h:outputLabel value="Identifiant : " for="loginInput" />
 							<h:inputText id="loginInput" value="#{createUserBean.user.login}"
@@ -89,7 +88,7 @@
 						</h:panelGrid>
 					</div>
 
-					<div class="grid">
+					<div class="gridDiv">
 						<h:panelGrid columns="1" class="grid">
 							<h3>Adresse</h3>
 
@@ -134,8 +133,6 @@
 					</div>
 				</div>
 			</h:form>
-
-		</div>
 	</ui:define>
 
 </ui:composition>

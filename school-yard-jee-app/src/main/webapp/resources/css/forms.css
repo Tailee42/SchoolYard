@@ -15,8 +15,12 @@ form {
 	width:100%
 }
 
+.gridDiv {
+	width: 100%;
+}
+
 .grid {
-	width: 70%;
+	width: 80%;
 }
 
 .formInput, .formNumInput {
@@ -54,7 +58,7 @@ label {
 		align-items: flex-start;
 	}
 	
-	.grid {
+	.gridDiv, .grid {
 		width: 80%;
 	}
 }
