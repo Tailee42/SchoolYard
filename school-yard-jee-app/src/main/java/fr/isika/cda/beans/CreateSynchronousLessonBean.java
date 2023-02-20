@@ -28,14 +28,14 @@ public class CreateSynchronousLessonBean {
           Teacher teacher = (Teacher) SessionUtils.getConnectedMember();
           physicalOption.getSynchronousLesson().setTeacher(teacher);
           physicalRepository.save(physicalOption);
-          return "userDashboard?faces-redirect=true";
+          return "indexSchool?faces-redirect=true";
      }
 
      public String createVirtual() {
           Teacher teacher = (Teacher) SessionUtils.getConnectedMember();
           virtualOption.getSynchronousLesson().setTeacher(teacher);
           virtualRepository.save(virtualOption);
-          return "userDashboard?faces-redirect=true";
+          return "indexSchool?faces-redirect=true";
      }
 
      public SubjectEnum[] subjects() {

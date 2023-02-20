@@ -250,8 +250,8 @@ public class DataSetBean {
         Teacher teacher2 = createTeacher(school2, user22, SchoolTypeEnum.ELEMENTAIRE, SubjectEnum.MATHS);
 
         //Create some synchronous lessons
-        VirtualOption virtual1 = new VirtualOption("Zoom",
-                "www.zoom.fr",
+        VirtualOption virtual1 = new VirtualOption("www.zoom.fr",
+				"Zoom",
                 new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.CINQUIEME, teacher1, "Seigneurs et paysans au Moyen Âge", "1 heure", LocalDateTime.of(2023, Month.MARCH, 12, 14, 30), 5, new BigDecimal("25")));
         virtualRepository.save(virtual1);
 
@@ -259,8 +259,8 @@ public class DataSetBean {
                 new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.TROISIEME, teacher1, "La guerre froide", "1 heure et quart", LocalDateTime.of(2023, Month.APRIL, 1, 10, 15), 8, new BigDecimal("27")));
         physicalRepository.save(physical1);
 
-        VirtualOption virtual2= new VirtualOption("Zoom",
-                "www.zoom.fr",
+        VirtualOption virtual2= new VirtualOption("www.zoom.fr",
+				"Zoom",
                 new SynchronousLesson(SubjectEnum.MATHS, AcademicLevel.CM1, teacher2, "Les nombres décimaux", "1 heure et demi", LocalDateTime.of(2023, Month.MARCH, 24, 10, 30), 3, new BigDecimal("30")));
         virtualRepository.save(virtual2);
 

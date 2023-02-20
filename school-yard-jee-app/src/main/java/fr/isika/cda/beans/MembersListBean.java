@@ -1,13 +1,11 @@
 package fr.isika.cda.beans;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.school.Member;
-import fr.isika.cda.entities.users.User;
 import fr.isika.cda.repositories.MemberRepository;
 import fr.isika.cda.utils.SessionUtils;
 
@@ -27,7 +25,8 @@ public class MembersListBean {
 	public String goToIndexSchool(Member member) {
 		SessionUtils.setConnectedMember(member);
 		SessionUtils.setCurrentSchool(member.getSchool());
-		return "indexSchool";
+//		SessionUtils.setCurrentSchoolId(member.getSchool().getId());
+		return "indexSchool?faces-redirect=true";
 	}
 	
 	public List<Member> getMembers() {

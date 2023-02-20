@@ -2,9 +2,12 @@ package fr.isika.cda.beans;
 
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.school.Theme;
+import fr.isika.cda.entities.teacher.Teacher;
+import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.utils.SessionUtils;
 
 import javax.faces.bean.ManagedBean;
+import javax.inject.Inject;
 
 @ManagedBean
 public class IndexSchoolBean {
@@ -12,15 +15,17 @@ public class IndexSchoolBean {
     private Theme theme = new Theme();
 
     private School school = new School();
+    @Inject
+    private SchoolRepository schoolRepository;
 
     public void getSchoolsInformations() {
-        school = SessionUtils.getCurrentSchool();
+       school = SessionUtils.getCurrentSchool();
     }
 
-    public String toFormSynchronousLesson() {
-
-        return "synchronousLessonForm?faces-redirect=true";
+    public Boolean isTeacher() {
+        return (SessionUtils.getConnectedMember() instanceof Teacher);
     }
+
 
     public String styles() {
         String colorString = new StringBuffer()
@@ -106,4 +111,6 @@ public class IndexSchoolBean {
     public void setSchool(School school) {
         this.school = school;
     }
+
+
 }

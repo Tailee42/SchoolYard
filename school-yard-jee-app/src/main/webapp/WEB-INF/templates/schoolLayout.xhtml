@@ -30,15 +30,19 @@
     <div id="header">
         <div id="entreprise">
             <h:link outcome="/index">
-                <h:graphicImage library="images" name="#{indexSchoolBean.school.logo}" width="140" height="100" alt="Logo" />
+                <h:graphicImage library="images" name="Logo.png" width="140" height="100" alt="Logo" />
             </h:link>
 
-            <h1>SchoolYard</h1>
+            <h1>#{indexSchoolBean.school.schoolName}</h1>
         </div>
 
         <!-- Menu desktop -->
         <div id="navbar-desktop">
-            <ui:insert name="header" ></ui:insert>
+            <ui:fragment rendered ="#{indexSchoolBean.isTeacher()}">
+                <h:link outcome="synchronousLessonForm" value="Créer un cours"/>
+
+
+            </ui:fragment>
         </div>
 
         <!-- Menu mobile -->
