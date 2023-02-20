@@ -29,21 +29,7 @@ import fr.isika.cda.entities.subscription.Subscription;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.entities.users.Profil;
 import fr.isika.cda.entities.users.User;
-import fr.isika.cda.repositories.FeatureRepository;
-import fr.isika.cda.repositories.MemberRepository;
-import fr.isika.cda.repositories.MembershipRepository;
-import fr.isika.cda.repositories.SchoolRepository;
-import fr.isika.cda.repositories.StudentRepository;
-import fr.isika.cda.repositories.SubscriptionRepository;
-import fr.isika.cda.repositories.UserRepository;
-
-import javax.annotation.PostConstruct;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import javax.inject.Inject;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.util.ArrayList;
+import fr.isika.cda.repositories.*;
 
 
 @Startup
@@ -112,7 +98,7 @@ public class DataSetBean {
 
         User user2 = new User("emma",
                 LocalDateTime.of(2022,
-                        Month.DECEMBER, 05, 12, 20, 00),
+                        Month.DECEMBER, 5, 12, 20, 0),
                 RoleTypeEnum.USER,
                 new Security("aze"),
                 new Profil("ROUX",
@@ -138,7 +124,7 @@ public class DataSetBean {
 
         User user4 = new User("florence",
                 LocalDateTime.of(2022,
-                        Month.SEPTEMBER, 01, 11, 11, 11),
+                        Month.SEPTEMBER, 1, 11, 11, 11),
                 RoleTypeEnum.USER,
                 new Security("lrc"),
                 new Profil("PIAZELLI",
@@ -297,12 +283,13 @@ public class DataSetBean {
 		memberRepository.save(admin);
 	}
 
+	private Teacher createTeacher(School school, User user, SchoolTypeEnum schoolTypeEnum, SubjectEnum subjectEnum) {
+		Teacher teacher = new Teacher(schoolTypeEnum, subjectEnum);
+		teacher.setUser(user);
+		teacher.setSchool(school);
+		teacherRepository.save(teacher);
+		return teacher;
+	}
+
 }
 
-    private Teacher createTeacher(School school, User user, SchoolTypeEnum schoolTypeEnum, SubjectEnum subjectEnum) {
-        Teacher teacher = new Teacher(schoolTypeEnum, subjectEnum);
-        teacher.setUser(user);
-        teacher.setSchool(school);
-        teacherRepository.save(teacher);
-        return teacher;
-    }
