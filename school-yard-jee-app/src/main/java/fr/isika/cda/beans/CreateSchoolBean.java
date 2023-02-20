@@ -1,6 +1,8 @@
 package fr.isika.cda.beans;
 
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
 
@@ -8,6 +10,7 @@ import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.school.Admin;
 import fr.isika.cda.entities.school.Membership;
 import fr.isika.cda.entities.school.School;
+import fr.isika.cda.entities.school.StatusSchool;
 import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.entities.subscription.Subscription;
 import fr.isika.cda.entities.users.User;
@@ -24,6 +27,7 @@ import java.util.List;
 import java.util.UUID;
 
 @ManagedBean
+@SessionScoped
 public class CreateSchoolBean {
 
 	private School school = new School();
@@ -54,14 +58,12 @@ public class CreateSchoolBean {
 		// TODO : ecrire le fichier sur le disque
 
 		school.setLogo(logoRelativePath);
+		school.setStatusSchool(StatusSchool.TOPUBLISH);
 		schoolRepository.save(school);
-
 		Admin admin = createAdmin();
 		memberRepository.save(admin);
 
-		school = new School();
-
-		return "schoolMembershipForm?faces-redirect=true";
+		return "schoolMembershipForm";
 	}
 
 	public String setMembership(Subscription subscription) {
@@ -71,10 +73,17 @@ public class CreateSchoolBean {
 		membership.setStartingDate(start);
 		membership.setEndingDate(end);
 
-		school.setMembership(membership);
+		this.school.setMembership(membership);
 		schoolRepository.update(school);
 
+		resetAll();
+
 		return "index?faces-redirect=true";
+	}
+
+	private void resetAll() {
+		school = new School();
+		membership = new Membership();
 	}
 
 	private Admin createAdmin() {
