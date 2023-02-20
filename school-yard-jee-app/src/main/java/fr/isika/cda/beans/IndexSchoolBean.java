@@ -1,6 +1,8 @@
 package fr.isika.cda.beans;
 
+import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.school.Theme;
+import fr.isika.cda.utils.SessionUtils;
 
 import javax.faces.bean.ManagedBean;
 
@@ -8,8 +10,14 @@ import javax.faces.bean.ManagedBean;
 public class IndexSchoolBean {
 
     private Theme theme = new Theme();
+    private School school = new School();
+    
+    
+    public void dataInitialization() {
+    	school = SessionUtils.getCurrentSchool();
+    }
 
-    public String toFormSynchronousLesson() {
+	public String toFormSynchronousLesson() {
 
         return "synchronousLessonForm?faces-redirect=true";
     }
@@ -88,7 +96,16 @@ public class IndexSchoolBean {
 
             default :
                 return "";
-        }
-
+        }       
+        
     }
+    
+    public School getSchool() {
+		return school;
+	}
+
+	public void setSchool(School school) {
+		this.school = school;
+	}
+    
 }
