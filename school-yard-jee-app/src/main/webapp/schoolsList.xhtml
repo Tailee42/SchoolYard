@@ -25,7 +25,7 @@
             <ui:repeat value="#{schoolsListBean.allSchools()}" var="s" varStatus="status">
 <!--			TODO	Rajouter ici le style pour la couleur de lécole avec le managedbean -->
 <!--				TODO Rajouter le lien vers la page d'accueil du site (surtoute la card ?-->
-                <div class="box cyan">
+                <div class="box">
                     <h2><h:outputText value="#{s.schoolName}"/></h2>
                     <h3><h:outputText value="#{s.schoolTypeEnum}"/></h3>
                     <p><h:outputText value="#{s.synthesis}"/></p>
