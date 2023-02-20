@@ -36,17 +36,16 @@
 		<h3>Tableau de bord</h3>
 
 	
-		<h:dataTable border="1" >
-			<!-- value="#{membersListBean.allMembersForOneUser()}" var="m" />
- -->
+		<h:dataTable border="1" value="#{membersListBean.allMembersForOneUser()}" var="m" >
+ 
 		<h:column>
 			<f:facet name="header"> Nom école </f:facet>
-			<h:outputText value="#{m.schoolName}" />
-		</h:column>
+			<h:outputText value="#{m.school.schoolName}" />
+		</h:column>   
 
 
 
-		</h:dataTable>
+		</h:dataTable>  
 
 	</ui:define>
 

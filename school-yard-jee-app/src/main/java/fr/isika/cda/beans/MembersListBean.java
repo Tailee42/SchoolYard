@@ -17,21 +17,19 @@ public class MembersListBean {
 	@Inject
 	private MemberRepository memberRepository;
 
-	private List<Member> members = new ArrayList<Member>();
-
-//	private Member member = new member();
-//	private List<Members> member = new ArrayList<Member>();
+	private List<Member> members;
 
 	public List<Member> allMembersForOneUser() {
-		members = memberRepository.getAllMembersForOneUser();
+		members = memberRepository.getAllMembersForOneUser(SessionUtils.getConnectedUser().getId());
 		return members;
 	}
 	
-	public void displayUserconnected() {
-    	User userConnected = SessionUtils.getConnectedUser();
-    	
-    	System.out.println("L'Id de l'utilisateur connecté est : " + userConnected.getId() );
-    }
+	public List<Member> getMembers() {
+		return members;
+	}
 	
-
+	public void setMembers(List<Member> members) {
+		this.members = members;
+	}
+	
 }

@@ -14,22 +14,18 @@ import javax.persistence.PersistenceContext;
 
 @Stateless
 public class MemberRepository {
-    @PersistenceContext
-    private EntityManager entityManager;
+	@PersistenceContext
+	private EntityManager entityManager;
 
-    public void save(Admin admin) {
-        entityManager.persist(admin);
-    }
+	public void save(Admin admin) {
+		entityManager.persist(admin);
+	}
 
-    public List<Member> getAllMembersForOneUser() {
-    	
-    	List<Member> Members = entityManager
-		.createQuery("SELECT m FROM Member m WHERE m.userid = :userConnected.getId() ", Member.class)
-		.getResultList();
-		return Members;
-    	
-    }
-    
-        
-    
+	public List<Member> getAllMembersForOneUser(Long userId) {
+
+		return entityManager
+				.createQuery("SELECT m FROM Member m WHERE m.user.id = :userId ", Member.class)
+				.setParameter("userId", userId).getResultList();
+	}
+
 }
