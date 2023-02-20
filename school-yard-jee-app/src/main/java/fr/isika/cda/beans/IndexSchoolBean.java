@@ -20,7 +20,6 @@ public class IndexSchoolBean {
                 .append("--accentColor : #").append(theme.getAccentColor()).append(";")
                 .append("--backgroundColor : #").append(theme.getBackgroundColor()).append(";")
                 .append("--primaryColor : #").append(theme.getPrimaryColor()).append(";")
-                .append("--textColor : #101319;")
                 .append("}")
                 .toString();
 
