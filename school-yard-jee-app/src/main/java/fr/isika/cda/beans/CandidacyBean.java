@@ -35,4 +35,10 @@ public class CandidacyBean {
 		}
 	}
 	
+	public void displayUserconnected() {
+    	User userConnected = SessionUtils.getConnectedUser();
+    	
+    	System.out.println("L'Id de l'utilisateur connecté est : " + userConnected.getId() );
+    }
+	
 }

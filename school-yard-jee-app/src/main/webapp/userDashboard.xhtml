@@ -28,37 +28,25 @@
 
 	<ui:define name="content">
 		<h2>Bienvenue sur votre espace utilisateur</h2>
+
+
 		<hr />
 		<br />
 
 		<h3>Tableau de bord</h3>
 
+	
+		<h:dataTable border="1" >
+			<!-- value="#{membersListBean.allMembersForOneUser()}" var="m" />
+ -->
+		<h:column>
+			<f:facet name="header"> Nom école </f:facet>
+			<h:outputText value="#{m.schoolName}" />
+		</h:column>
 
 
-		<!-- <h:dataTable border="1" value="#{membersListBean.allMembers()}"
-			var="s">>
 
-			<h:column>
-				<f:facet name="header"> Nom école </f:facet>
-				<h:outputText value="#{n.logo}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header"> Email </f:facet>
-				<h:outputText value="#{n.contact.email}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header"> Téléphone </f:facet>
-				<h:outputText value="#{n.contact.phone}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header"> Ville </f:facet>
-				<h:outputText value="#{n.contact.address.town}" />
-			</h:column>
-
-		</h:dataTable> -->
+		</h:dataTable>
 
 	</ui:define>
 
