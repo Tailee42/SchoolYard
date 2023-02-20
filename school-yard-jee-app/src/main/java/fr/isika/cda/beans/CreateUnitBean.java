@@ -19,8 +19,6 @@ public class CreateUnitBean {
 	private UnitRepository unitRepository;
 	
 	public String create() {
-		System.out.println(SessionUtils.isUserConnected());
-		System.out.println(SessionUtils.isMemberConnected());
 			Teacher connectedTeacher = (Teacher)SessionUtils.getConnectedMember();
 			unit.setTeacher(connectedTeacher);
 			unit.setVisibility(false);
