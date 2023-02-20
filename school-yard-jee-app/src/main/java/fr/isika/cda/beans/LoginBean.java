@@ -48,7 +48,11 @@ public class LoginBean {
 	}
 
 	private boolean validatePasswords(Optional<User> userByLogin) {
-		return userByLogin.get().getSecurity().getPassword().equals(user.getSecurity().getPassword());
+		if (userByLogin.isPresent()) {
+			return userByLogin.get().getSecurity().getPassword().equals(user.getSecurity().getPassword());
+		} else {
+			return false;
+		}
 	}
 
 	public User getUser() {

@@ -40,7 +40,7 @@ public class DataSetBean {
     @PostConstruct
     private void initBDD() {
         // Create User for admin of school (from user1 to user9)
-        User user1 = new User("Albert",
+        User user1 = new User("albert",
                 LocalDateTime.of(2023,
                         Month.JANUARY, 20, 19, 30, 40),
                 RoleTypeEnum.USER,
@@ -53,7 +53,7 @@ public class DataSetBean {
                                 new Address(12, "Rue du phare", "BREST", "29000"))));
         userRepository.save(user1);
 
-        User user2 = new User("Emma",
+        User user2 = new User("emma",
                 LocalDateTime.of(2022,
                         Month.DECEMBER, 05, 12, 20, 00),
                 RoleTypeEnum.USER,
@@ -66,7 +66,7 @@ public class DataSetBean {
                                 new Address(952, "Avenue de Paris", "ORLEANS", "45000"))));
         userRepository.save(user2);
 
-        User user3 = new User("Bertrand",
+        User user3 = new User("bertrand",
                 LocalDateTime.of(2022,
                         Month.NOVEMBER, 10, 21, 10, 30),
                 RoleTypeEnum.USER,
@@ -79,7 +79,7 @@ public class DataSetBean {
                                 new Address(52, "Avenue de Lyon", "GRENOBLE", "38000"))));
         userRepository.save(user3);
         
-        User user4 = new User("Florence",
+        User user4 = new User("florence",
                 LocalDateTime.of(2022,
                         Month.SEPTEMBER, 01, 11, 11, 11),
                 RoleTypeEnum.USER,
@@ -141,7 +141,7 @@ public class DataSetBean {
         createAdmin(user4, school4);
         
         // Create User for student (from user11 to user19)
-        User user11 = new User("Louis",
+        User user11 = new User("louis",
                 LocalDateTime.of(2022,
                         Month.NOVEMBER, 17, 13, 25, 0),
                 RoleTypeEnum.USER,
@@ -157,7 +157,7 @@ public class DataSetBean {
         userRepository.save(user11);
         createStudent(school3, user11, AcademicLevel.TROISIEME);
 
-        User user12 = new User("Fleur",
+        User user12 = new User("fleur",
                 LocalDateTime.of(2022,
                         Month.OCTOBER, 25, 6, 6, 6),
                 RoleTypeEnum.USER,
@@ -171,7 +171,7 @@ public class DataSetBean {
         userRepository.save(user12);
         createStudent(school2, user12, AcademicLevel.CM1);
         
-        User user13 = new User("Hervé",
+        User user13 = new User("herve",
                 LocalDateTime.of(2022,
                         Month.SEPTEMBER, 5, 9, 9, 9),
                 RoleTypeEnum.USER,
@@ -187,7 +187,7 @@ public class DataSetBean {
         userRepository.save(user13);
         createStudent(school1, user13, AcademicLevel.CINQUIEME);
 
-        User user14 = new User("Emilie",
+        User user14 = new User("emilie",
                 LocalDateTime.of(2022,
                         Month.JANUARY, 15, 4, 4, 4),
                 RoleTypeEnum.USER,

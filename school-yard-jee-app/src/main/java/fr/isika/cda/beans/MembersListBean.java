@@ -24,6 +24,12 @@ public class MembersListBean {
 		return members;
 	}
 	
+	public String goToIndexSchool(Member member) {
+		SessionUtils.setConnectedMember(member);
+		SessionUtils.setCurrentSchool(member.getSchool());
+		return "indexSchool";
+	}
+	
 	public List<Member> getMembers() {
 		return members;
 	}
@@ -31,5 +37,6 @@ public class MembersListBean {
 	public void setMembers(List<Member> members) {
 		this.members = members;
 	}
+	
 	
 }

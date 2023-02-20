@@ -27,7 +27,7 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h2>Bienvenue sur votre espace utilisateur</h2>
+		<h2>Bienvenue #{welcomeBean.getUserConnectedName()} sur votre espace utilisateur</h2>
 
 
 		<hr />
@@ -35,17 +35,25 @@
 
 		<h3>Tableau de bord</h3>
 
-	
-		<h:dataTable border="1" value="#{membersListBean.allMembersForOneUser()}" var="m" >
- 
-		<h:column>
-			<f:facet name="header"> Nom école </f:facet>
-			<h:outputText value="#{m.school.schoolName}" />
-		</h:column>   
 
+		<h:dataTable border="1"
+			value="#{membersListBean.allMembersForOneUser()}" var="m">
 
+			<h:column>
+				<f:facet name="header"> Nom école </f:facet>
+				<h:outputText value="#{m.school.schoolName}" />
+			</h:column>
 
-		</h:dataTable>  
+						
+			<h:column>
+				<f:facet name="header"> Accès espace école </f:facet>
+				<h:form>
+					<h:commandButton action="#{membersListBean.goToIndexSchool(m)}"
+						value="Espace école " />
+				</h:form>
+			</h:column>
+
+		</h:dataTable>
 
 	</ui:define>
 
