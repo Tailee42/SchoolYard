@@ -17,11 +17,11 @@ public final class SessionUtils {
 	private static final String CURRENT_SCHOOL = "currentSchool";
 	private static final String CONNECTED_MEMBER = "connectedMember";
 
-	/*
-	 * Prevent from instantiating this utility class
-	 */
-	private SessionUtils() {
-	}
+   /*
+    * Prevent from instantiating this utility class
+    */
+   private SessionUtils() {
+   }
 
 	/*
 	 * specific methods
@@ -36,28 +36,28 @@ public final class SessionUtils {
 		return getConnectedMember() != null;
 	}
 
-	/*
-	 * setters and getters
-	 */
-//	public static void setConnectedAccountId(Long connectedAccountId) {
-//		HttpSession session = getSession();
-//		session.setAttribute(CONNECTED_ACCOUNT_ID, connectedAccountId);
-//	}
+   /*
+    * setters and getters
+    */
+// public static void setConnectedAccountId(Long connectedAccountId) {
+//    HttpSession session = getSession();
+//    session.setAttribute(CONNECTED_ACCOUNT_ID, connectedAccountId);
+// }
 //
-//	public static Long getConnectedAccountId() {
-//		HttpSession session = getSession();
-//		return (Long) session.getAttribute(CONNECTED_ACCOUNT_ID);
-//	}
+// public static Long getConnectedAccountId() {
+//    HttpSession session = getSession();
+//    return (Long) session.getAttribute(CONNECTED_ACCOUNT_ID);
+// }
 
-	public static void setConnectedUser(User user) {
-		HttpSession session = getSession();
-		session.setAttribute(CONNECTED_USER, user);
-	}
+   public static void setConnectedUser(User user) {
+      HttpSession session = getSession();
+      session.setAttribute(CONNECTED_USER, user);
+   }
 
-	public static User getConnectedUser() {
-		HttpSession session = getSession();
-		return (User) session.getAttribute(CONNECTED_USER);
-	}
+   public static User getConnectedUser() {
+      HttpSession session = getSession();
+      return (User) session.getAttribute(CONNECTED_USER);
+   }
 
 	public static void setCurrentSchool(School school) {
 		HttpSession session = getSession();
