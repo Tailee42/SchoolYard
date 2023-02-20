@@ -1,5 +1,7 @@
 package fr.isika.cda.beans;
 
+import java.util.Optional;
+
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
@@ -7,22 +9,31 @@ import fr.isika.cda.entities.common.AcademicLevel;
 import fr.isika.cda.entities.common.SubjectEnum;
 import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.teacher.Teacher;
+import fr.isika.cda.repositories.TeacherRepository;
 import fr.isika.cda.repositories.UnitRepository;
-import fr.isika.cda.utils.SessionUtils;
 
 @ManagedBean
 public class CreateUnitBean {
 	
 	private Unit unit = new Unit() ;
+	private Long id;
 	
 	@Inject
 	private UnitRepository unitRepository;
 	
+	@Inject
+	private TeacherRepository teacherRepository;
+	
 	public String create() {
-		Teacher teacher = (Teacher) SessionUtils.getConnectedMember();
-		unit.setTeacher(teacher);
-        unitRepository.save(unit);
-        return "index?faces-redirect=true";
+		Optional<Teacher> teacher = teacherRepository.getTeacherById(id);
+		if (teacher.isPresent()) {
+			Teacher connectedTeacher = teacher.get();
+			unit.setTeacher(connectedTeacher);
+			unit.setVisibility(false);
+	        unitRepository.save(unit);
+	        return "userDashboard?faces-redirect=true";
+		}
+		return "index?faces-redirect=true";
 	}
 	
 	public SubjectEnum[] subjects() {
@@ -40,6 +51,5 @@ public class CreateUnitBean {
 	public void setUnit(Unit unit) {
 		this.unit = unit;
 	}
-
 
 }

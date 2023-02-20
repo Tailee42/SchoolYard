@@ -1,5 +1,6 @@
 package fr.isika.cda.entities.lesson;
 
+import fr.isika.cda.entities.common.AcademicLevel;
 import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.common.SubjectEnum;
 import fr.isika.cda.entities.teacher.Teacher;
@@ -30,7 +31,7 @@ public class Unit implements Serializable{
 	private SubjectEnum subject;
 
 	@Enumerated(EnumType.STRING)
-	private SchoolTypeEnum level;
+	private AcademicLevel level;
 
 	@ManyToOne
 	private Teacher teacher;
@@ -71,11 +72,11 @@ public class Unit implements Serializable{
 		this.subject = subject;
 	}
 
-	public SchoolTypeEnum getLevel() {
+	public AcademicLevel getLevel() {
 		return level;
 	}
 
-	public void setLevel(SchoolTypeEnum level) {
+	public void setLevel(AcademicLevel level) {
 		this.level = level;
 	}
 

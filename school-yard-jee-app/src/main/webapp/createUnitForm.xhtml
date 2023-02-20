@@ -7,6 +7,10 @@
 
 	<ui:define name="title">Création de contenu</ui:define>
 
+	<f:metadata>
+			<f:viewParam name="teacher" value="#{createUnitBean.unit.teacher.id}" />
+		</f:metadata>
+	
 	<ui:define name="header">
 
 		<h:link outcome="login" >Se connecter</h:link>
@@ -19,29 +23,22 @@
 
 			<h:panelGrid columns="1">
 
-
 				<h:outputLabel value="Titre du cours : " for="unitTitle"/>
 				<h:inputText id="unitTitle" value="#{createUnitBean.unit.title}"/>
-				
+
 				<h:outputLabel value="Contenu du cours : " for="unitContent"/>
-				<h:inputText id="unitContent" value="#{createUnitBean.unit.content}" size="100"/>
+				<h:inputTextarea id="unitContent" value="#{createUnitBean.unit.content}"/>
 				
 				<h:outputLabel value="Matière : " for="selectSubject" />
-				<h:selectOneMenu id="selectSubject"
-					value="#{createUnitBean.unit.subject}">
-					<f:selectItem itemLabel="--Selectionner une matière--"
-						noSelectionOption="true" />
-					<f:selectItems value="#{createUnitBean.subjects()}"
-						var="subject" itemLabel="#{subject}" itemValue="#{subject}" />
+				<h:selectOneMenu id="selectSubject" value="#{createUnitBean.unit.subject}">
+					<f:selectItem itemLabel="--Selectionner une matière--" noSelectionOption="true" />
+					<f:selectItems value="#{createUnitBean.subjects()}" var="subject" itemLabel="#{subject}" itemValue="#{subject}" />
 				</h:selectOneMenu>
 				
 				<h:outputLabel value="Niveau enseigné : " for="selectLevel" />
-				<h:selectOneMenu id="selectLevel"
-					value="#{createUnitBean.unit.level}">
-					<f:selectItem itemLabel="--Selectionner un niveau--"
-						noSelectionOption="true" />
-					<f:selectItems value="#{createUnitBean.levels()}"
-						var="level" itemLabel="#{level}" itemValue="#{level}" />
+				<h:selectOneMenu id="selectLevel" value="#{createUnitBean.unit.level}">
+					<f:selectItem itemLabel="--Selectionner un niveau--" noSelectionOption="true" />
+					<f:selectItems value="#{createUnitBean.levels()}" var="level" itemLabel="#{level}" itemValue="#{level}" />
 				</h:selectOneMenu>
 
 				<h:commandButton action="#{createUnitBean.create()}" value="Valider" />
