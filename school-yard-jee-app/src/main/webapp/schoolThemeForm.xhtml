@@ -1,21 +1,13 @@
-<ui:composition template="commonLayout.xhtml"
+<ui:composition template="/WEB-INF/templates/schoolLayout.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:i="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">
 
 
 	<ui:define name="title">Formulaire de paramétrage du site d'une école</ui:define>
-
-	<ui:define name="header">
-
-		<h:link outcome="index">Accueil</h:link>
-		<h:link outcome="userDashboard">Tableau de bord</h:link>
-
-	</ui:define>
 
 	<ui:define name="content">
 		<h1>Paramètres du site de mon école</h1>
@@ -43,12 +35,13 @@
 					for="selectFont" />
 					<h:selectOneMenu id="selectFont"
 					value="#{schoolPageBean.schoolPage.theme.font}">
+
 					<f:selectItem itemLabel="--Selectionner une police d'écriture--"
 						noSelectionOption="true" />
 					<f:selectItems value="#{schoolPageBean.fontEnum()}" var="font"
 						itemLabel="#{font}" itemValue="#{font}" />
 				</h:selectOneMenu>
-
+				
 				<h:commandButton action="#{schoolPageBean.createSchoolPage()}"
 					value="Valider" />
 

@@ -17,7 +17,6 @@ public class UserRepository {
 	private EntityManager entityManager;
 
 	public void save(User user) {
-
 		entityManager.persist(user);
 	}
 
@@ -35,7 +34,7 @@ public class UserRepository {
 		entityManager.merge(userConnected);
 	}
 
-	public Member getMemberyUserId(Long id) {
+	public Member getMemberByUserId(Long id) {
 		return entityManager
 				.createQuery("SELECT m FROM Member m JOIN FETCH m.user WHERE m.user.id = :id_user_param", Member.class)
 				.setParameter("id_user_param", id).getSingleResult();

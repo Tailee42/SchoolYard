@@ -10,9 +10,13 @@ public class WelcomeBean {
 	public boolean isUserConnected() {
 		return SessionUtils.isUserConnected();
 	}
-	
+
 	public String welcome() {
 		return "Welcome to SchoolYard !";
 	}
-	
+
+	public String getUserConnectedName() {
+		return SessionUtils.getConnectedUser().getProfil().getFirstName();
+	}
+
 }

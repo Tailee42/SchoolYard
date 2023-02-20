@@ -6,7 +6,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
-import fr.isika.cda.entities.SchoolTypeEnum;
+import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.repositories.SchoolRepository;
 
@@ -17,7 +17,7 @@ public class SchoolsListBean {
 	private SchoolRepository schoolRepository;
 
 	private School school = new School();
-	private List<School> schools = new ArrayList<School>();
+	private List<School> schools = new ArrayList<>();
 
 	public List<School> allSchools() {
 		schools = schoolRepository.getAll();
@@ -30,8 +30,8 @@ public class SchoolsListBean {
 	}
 
 	public List<School> getByType() {
-		if (school.getSchoolType() != null) {
-			schools = schoolRepository.getByType(school.getSchoolType());
+		if (school.getSchoolTypeEnum() != null) {
+			schools = schoolRepository.getByType(school.getSchoolTypeEnum());
 		}
 		return schools;
 	}

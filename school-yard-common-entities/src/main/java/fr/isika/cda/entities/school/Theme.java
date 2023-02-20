@@ -20,7 +20,14 @@ public class Theme implements Serializable {
 	private String accentColor;
 	private String backgroundColor;
 	private String font;
-	
+
+	public Theme() {
+		this.primaryColor = "9899AE";
+		this.accentColor = "EB9486";
+		this.backgroundColor = "F9f8F8";
+		this.font = "Quicksand";
+	}
+
 	public String getPrimaryColor() {
 		return primaryColor;
 	}
@@ -58,6 +65,11 @@ public class Theme implements Serializable {
 
 	public void setFont(String font) {
 		this.font = font;
+	}
+
+
+	public Long getId() {
+		return id;
 	}
 
 }

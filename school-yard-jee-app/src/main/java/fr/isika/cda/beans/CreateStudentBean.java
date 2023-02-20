@@ -1,6 +1,6 @@
 package fr.isika.cda.beans;
 
-import fr.isika.cda.entities.AcademicLevel;
+import fr.isika.cda.entities.common.AcademicLevel;
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.users.User;

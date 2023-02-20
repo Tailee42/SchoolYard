@@ -17,12 +17,11 @@ public class CreateUserBean {
 	@Inject
 	private UserRepository userRepository;
 
-	
 	public String create() {
 		user.setLastConnection(LocalDateTime.now());
 		user.setRole(RoleTypeEnum.USER);
 		userRepository.save(user);
-		user = new User();
+		System.out.println("l'identifiant de mon user est "+user.getLogin());
 		return "index?faces-redirect=true";
 	}
 

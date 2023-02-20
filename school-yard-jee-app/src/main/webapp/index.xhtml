@@ -10,11 +10,12 @@
 	<ui:define name="header">
 
 		<h:link outcome="schoolsList">Liste des écoles</h:link>
-		<h:link outcome="searchSchoolByName">Rechercher école par nom</h:link>
-		<h:link outcome="searchSchoolByType">Rechercher école par type</h:link>
 		<h:link outcome="userSubscriptionForm">S'inscrire</h:link>
-		<h:link outcome="login">Se connecter</h:link>
-		<h:link outcome="teacherSubscriptionForm">Nouveau professeur</h:link>
+		<h:link outcome="userDashboard" rendered="#{welcomeBean.userConnected}">Tableau de bord</h:link>
+		<h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:link>
+		<h:form class="inline">
+			<h:commandLink action="#{loginBean.logout()}" rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+		</h:form>
 
 	</ui:define>
 

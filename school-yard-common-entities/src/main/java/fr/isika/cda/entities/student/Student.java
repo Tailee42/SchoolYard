@@ -1,6 +1,6 @@
 package fr.isika.cda.entities.student;
 
-import fr.isika.cda.entities.AcademicLevel;
+import fr.isika.cda.entities.common.AcademicLevel;
 import fr.isika.cda.entities.school.Member;
 
 import javax.persistence.Entity;

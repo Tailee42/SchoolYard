@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import fr.isika.cda.entities.SchoolTypeEnum;
+import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.common.Contact;
 
 @Entity
@@ -106,11 +106,11 @@ public class School implements Serializable   {
 		this.members = members;
 	}
 
-	public void setSchoolType(SchoolTypeEnum schoolTypeEnum) {
+	public void setSchoolTypeEnum(SchoolTypeEnum schoolTypeEnum) {
 		this.schoolTypeEnum = schoolTypeEnum;
 	}
 
-	public SchoolTypeEnum getSchoolType() {
+	public SchoolTypeEnum getSchoolTypeEnum() {
 		return schoolTypeEnum;
 	}
 

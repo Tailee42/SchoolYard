@@ -1,4 +1,4 @@
-<ui:composition template="WEB-INF/templates/commonLayout.xhtml"
+<ui:composition template="/WEB-INF/templates/commonLayout.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -6,68 +6,64 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:define name="cssFiles">
-		<h:outputStylesheet name="tableau.css" library="css" />
+		<h:outputStylesheet name="cards.css" library="css" />
 	</ui:define>
 
 	<ui:define name="title">Rechercher école par nom</ui:define>
 
-
 	<ui:define name="header">
 		<h:link outcome="schoolsList">Liste des écoles</h:link>
 		<h:link outcome="searchSchoolByType">Rechercher école par type</h:link>
+		<h:link outcome="userDashboard" rendered="#{welcomeBean.userConnected}">Tableau de bord</h:link>
+		<h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:link>
+		<h:form class="inline">
+			<h:commandLink action="#{loginBean.logout()}" rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+		</h:form>
 	</ui:define>
 
 	<ui:define name="content">
 		<h1>Rechercher école par nom</h1>
 		<br />
-		<h:form id="searchSchoolByNameForm">
-			<h:outputLabel value="Nom école : " for="schoolInput" />
-			<h:inputText id="schoolInput"
-				value="#{schoolsListBean.school.schoolName }" />
-			<h:commandButton action="#{schoolsListBean.getByName()}"
-				value="Rechercher" />
-		</h:form>
+		<h4>
+			<h:form id="searchSchoolByNameForm">
+				<h:outputLabel value="Nom école : " for="schoolInput" />
+				<h:inputText id="schoolInput"
+					value="#{schoolsListBean.school.schoolName }" />
+				<h:commandButton action="#{schoolsListBean.getByName()}"
+					value="Rechercher" />
+			</h:form>
+		</h4>
 		<br />
 
-		<h:dataTable border="1" value="#{schoolsListBean.getByName()}" var="n">
-
-			<h:column>
-				<f:facet name="header"> Logo </f:facet>
-				<h:outputText value="#{n.logo}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header"> Nom Ecole </f:facet>
-				<h:outputText value="#{n.schoolName}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header"> Niveau </f:facet>
-				<h:outputText value="#{n.schoolType}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header"> Présentation </f:facet>
-				<h:outputText value="#{n.synthesis}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header"> Email </f:facet>
-				<h:outputText value="#{n.contact.email}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header"> Téléphone </f:facet>
-				<h:outputText value="#{n.contact.phone}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header"> Ville </f:facet>
-				<h:outputText value="#{n.contact.address.town}" />
-			</h:column>
-
-		</h:dataTable>
-
+		<div class="container">
+			<ui:repeat value="#{schoolsListBean.getByName()}" var="n">
+				<div class="box">
+					<h2>
+						<h:outputText value="#{n.schoolName}" />
+					</h2>
+					<hr />
+					<h:graphicImage value="#{n.logo}" alt="Logo" width="100" />
+					<br />
+					<p>
+						<h:outputText value="#{n.synthesis}" />
+					</p>
+					<h:outputText value="#{n.contact.email}" />
+					<br />
+					<h:outputText value="#{n.contact.phone}" />
+					<br />
+					<h:outputText value="#{n.contact.address.town}" />
+					<br /> <br />
+					<h:button value="S'inscrire en tant qu'élève"
+						outcome="studentSubscriptionForm">
+						<f:param name="school" value="#{n.id}" />
+					</h:button>
+					<br /> <br />
+					<h:button value="Postuler" outcome="teacherSubscriptionForm">
+						<f:param name="school" value="#{n.id}" />
+					</h:button>
+				</div>
+			</ui:repeat>
+		</div>
 	</ui:define>
 
 </ui:composition>
