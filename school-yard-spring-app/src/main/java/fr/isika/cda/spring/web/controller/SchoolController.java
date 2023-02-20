@@ -29,6 +29,8 @@ public class SchoolController {
 	private FeatureService featureService;
 	@Autowired
 	private SubscriptionService subscriptionService;
+	@Autowired
+	private SubscriptionController subscriptionController;
 	
 	@GetMapping("/schoolsList")
 	public String schoolList(Model model) {
@@ -42,10 +44,7 @@ public class SchoolController {
 		Optional<School> optional = schoolService.findById(id);
 		if(optional.isPresent()) {
 			School school = optional.get();
-			Subscription subscription = subscriptionService.findById(school.getMembership().getSubscription().getId());
-			List<Feature> features = featureService.findAll();
-			model.addAttribute("subscription", subscription);
-			model.addAttribute("features", features);
+			subscriptionController.setModelAttributesForSubscription(model,school.getMembership().getSubscription().getId());
 			model.addAttribute("school", school);
 		}
 		return "school/schoolForm";
@@ -60,6 +59,35 @@ public class SchoolController {
 			schoolService.updateSchool(school);
 		}
 		return new ModelAndView("redirect:/schoolsList");
+	}
+	
+	@GetMapping("/schoolForm/schoolSubscriptionForm")
+	public String modifySchoolSubscription(@RequestParam Long id, Model model) {	
+		Optional<School> optional = schoolService.findById(id);
+		if(optional.isPresent()) {
+			School school = optional.get();
+			model.addAttribute(school);
+			subscriptionController.setModelAttributesForSubscription(model, school.getMembership().getSubscription().getId());
+		}
+	
+		return "school/schoolSubscriptionForm";
+	}
+	
+	
+	@PostMapping("/modifySchoolSubscription")
+	public ModelAndView modifySchoolSubscription(@RequestParam Long id, @RequestParam String name, @RequestParam double price, @RequestParam int duration, @RequestParam List<Long> featuresId) {		
+		List<Feature> newFeatures = subscriptionController.getFeaturesListFromIds(featuresId);
+		Subscription subscription = subscriptionService.createSubscription(name, price, duration, newFeatures);	
+		Optional<School> optional = schoolService.findById(id);
+		if(optional.isPresent()) {
+			School school = optional.get();
+			System.out.println("je suis la sub n° "+subscription.getId());
+			System.out.println("je suis l'école n°"+school.getId());
+			school.getMembership().setSubscription(subscription);	
+			schoolService.updateSchool(school);
+			System.out.println("je suis l'ecole n° "+school.getId()+" et j'ai un membership qui l'abonnement n° "+school.getMembership().getSubscription().getId()+" la modification de l'abo concerne le n° "+subscription.getId());
+		}
+		return new ModelAndView("redirect:/schoolForm/?id="+id);
 	}
 	
 	

@@ -20,20 +20,17 @@ public class SubscriptionService {
 		return (List<Subscription>) subscriptionRepository.findAll();
 	}
 
-	public void createSubscription(String name, Double price, int duration, List<Feature> featureSelected) {
+	public Subscription createSubscription(String name, Double price, int duration, List<Feature> featureSelected) {
 		Subscription subscription = new Subscription(price, duration, name);
 		subscription.getFeatures().addAll(featureSelected);
 		subscriptionRepository.save(subscription);
+		return subscription;
 	}
 
-	public Subscription findById(Long id) {
-		Optional<Subscription> subscription = subscriptionRepository.findById(id);
-		if (subscription.isPresent()) {
-			return subscription.get();
-		} else {
-			return null;
-		}
+	public Optional<Subscription> findById(Long id) {
+		return subscriptionRepository.findById(id);
 	}
+	
 
 	public void deleteSubscription(Subscription subscriptionToDelete) {
 		subscriptionRepository.delete(subscriptionToDelete);

@@ -54,6 +54,7 @@
 			<input type="hidden" name="featureId" th:value="${feature.id}"/>
 			<span th:text="${feature.featureTitle}"></span>
 		</div>
+		<a th:href="@{schoolSubscriptionForm/(id=${school.id})}">Modifier l'abonnement de l'école</a>
 		<br/>
 		<label>Statut de l'école : </label>
 		<select name="statut">
@@ -62,5 +63,6 @@
 		<button type="submit">Modifier le statut de l'école</button>
 		<br/>
 	</form>
+	
 </body>
 </html>

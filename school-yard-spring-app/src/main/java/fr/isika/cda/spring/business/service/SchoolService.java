@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.isika.cda.entities.school.School;
+import fr.isika.cda.spring.business.repository.MembershipRepository;
 import fr.isika.cda.spring.business.repository.SchoolRepository;
 
 @Service
@@ -14,6 +15,8 @@ public class SchoolService {
 	
 	@Autowired
 	private SchoolRepository schoolRepository;
+	@Autowired
+	private MembershipRepository membershipRepository;
 	
 	public List<School> findAll(){
 		return (List<School>) schoolRepository.findAll();
@@ -25,7 +28,10 @@ public class SchoolService {
 	
 	public void updateSchool(School school) {
 		schoolRepository.save(school);
+		membershipRepository.save(school.getMembership());
 	}
+	
+
 
 
 }
