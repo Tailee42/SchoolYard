@@ -91,6 +91,14 @@ public class DataSetBean {
 		Membership membership3 = new Membership(LocalDateTime.of(2023, Month.NOVEMBER, 12, 12, 30),
 				LocalDateTime.of(2022, Month.NOVEMBER, 12, 12, 30), subscription1);
 		membershipRepository.save(membership3);
+		
+		Membership membership4 = new Membership(LocalDateTime.of(2023, Month.AUGUST, 10, 11, 30),
+				LocalDateTime.of(2024, Month.AUGUST, 10, 11, 30), subscription2);
+		membershipRepository.save(membership4);
+		
+		Membership membership5 = new Membership(LocalDateTime.of(2023, Month.JUNE, 8, 16, 20),
+				LocalDateTime.of(2022, Month.JUNE, 8, 16, 20), subscription1);
+		membershipRepository.save(membership5);
 
 		// Create user to set as schools Admin (from user1 to user9 for future)
 		User user1 = new User("albert", LocalDateTime.of(2023, Month.JANUARY, 20, 19, 30), RoleTypeEnum.USER,
@@ -113,6 +121,8 @@ public class DataSetBean {
 						"07 48 48 48 48", new Address(52, "Place d'Italie", "NICE", "06000"))));
 		userRepository.save(user4);
 
+		//Schools need a membership !
+		
 		School school1 = new School("Collège des bois", "", "Collège bienveillant et inclusif", new ArrayList<>(),
 				new Contact("collegeDesBois@gmail.com", "05 05 05 05 05",
 						new Address(789, "Rue du college", "TOULOUSE", "31000")),
@@ -140,6 +150,7 @@ public class DataSetBean {
 				new ArrayList<>(), new Contact("collegeDeLaMontagne@gmail.com", "04 06 06 06 06",
 						new Address(45, "Rue du sommet", "ALBERTVILLE", "73200")),
 				SchoolTypeEnum.COLLEGE);
+		school4.setMembership(membership5);
 		schoolRepository.save(school4);
 		createAdmin(user3, school4);
 
@@ -147,6 +158,7 @@ public class DataSetBean {
 				new ArrayList<>(), new Contact("ecoleDuPort@gmail.com", "04 03 03 03 03",
 						new Address(17, "Rue de l'embarcadère", "NICE", "06100")),
 				SchoolTypeEnum.ELEMENTAIRE);
+		school5.setMembership(membership4);
 		schoolRepository.save(school5);
 		createAdmin(user4, school5);
 

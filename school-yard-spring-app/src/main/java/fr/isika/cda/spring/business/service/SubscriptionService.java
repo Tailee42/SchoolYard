@@ -20,7 +20,7 @@ public class SubscriptionService {
 		return (List<Subscription>) subscriptionRepository.findAll();
 	}
 
-	public Subscription createSubscription(String name, Double price, int duration, List<Feature> featureSelected) {
+	public Subscription createSubscription(String name, Double price, Long duration, List<Feature> featureSelected) {
 		Subscription subscription = new Subscription(price, duration, name);
 		subscription.getFeatures().addAll(featureSelected);
 		subscriptionRepository.save(subscription);
