@@ -30,7 +30,7 @@ public class IndexSchoolBean {
 
     public boolean isSynchronousLesson() {
         boolean validation = false;
-        if (school != null) {
+        if (school.getMembership() != null) {
             List<Feature> features = school.getMembership().getSubscription().getFeatures();
             for (Feature feature : features) {
                 if ("Cours online".equals(feature.getFeatureTitle())) {
