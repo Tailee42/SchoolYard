@@ -100,8 +100,11 @@ public class SubscriptionController {
 	public List<Feature> getFeaturesListFromIds(List<Long> id) {
 		List<Feature> featuresSelected = new ArrayList<>();
 		for(Long idSelected : id) {
-			Feature featureToAdd = featureService.findById(idSelected);
-			featuresSelected.add(featureToAdd);
+			Optional<Feature> optional = featureService.findById(idSelected);
+			if (optional.isPresent()) {
+				Feature featureToAdd = optional.get();
+				featuresSelected.add(featureToAdd);
+			}
 		}
 		return featuresSelected;
 	}

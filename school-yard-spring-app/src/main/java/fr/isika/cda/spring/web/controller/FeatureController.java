@@ -1,6 +1,8 @@
 package fr.isika.cda.spring.web.controller;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,24 +42,33 @@ public class FeatureController {
 	
 	@GetMapping("/deleteFeature")
 	public ModelAndView deleteFeature(@RequestParam Long id) {
-		Feature feature = featureService.findById(id);
-		featureService.deleteFeature(feature);
+		Optional<Feature> optional = featureService.findById(id);
+		if (optional.isPresent()) {
+			Feature featureToDelete = optional.get();
+			featureService.deleteFeature(featureToDelete);
+		}
 		return new ModelAndView(REDIRECT_FEATURES_LIST);
 	}
 	
 	@GetMapping("/updateFeatureForm")
 	public String updateFeature(@RequestParam Long id, Model model) {
-		Feature feature = featureService.findById(id);
-		model.addAttribute("feature", feature);
+		Optional<Feature> optional = featureService.findById(id);
+		if (optional.isPresent()) {
+			Feature featureToUpdate = optional.get();
+			model.addAttribute("feature", featureToUpdate);
+		}	
 		return "feature/updateFeatureForm";
 	}
 	
 	@PostMapping("/updateFeature")
 	public ModelAndView updateFeature(@ModelAttribute("feature") Feature updatedFeature, @RequestParam Long id) {	
-		Feature feature = featureService.findById(id);
-		feature.setFeatureTitle(updatedFeature.getFeatureTitle());
-		feature.setFeatureDescription(updatedFeature.getFeatureDescription());
-		featureService.updateFeature(feature);
+		Optional<Feature> optional = featureService.findById(id);
+		if (optional.isPresent()) {
+			Feature featureToUpdate = optional.get();
+			featureToUpdate.setFeatureTitle(updatedFeature.getFeatureTitle());
+			featureToUpdate.setFeatureDescription(updatedFeature.getFeatureDescription());
+			featureService.updateFeature(featureToUpdate);
+		}	
 		return new ModelAndView(REDIRECT_FEATURES_LIST);
 	}
 

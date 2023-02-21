@@ -34,13 +34,8 @@ public class FeatureService {
 		return (List<Feature>) featureRepository.findAll(); 
 	}
 	
-	public Feature findById(Long id) {
-		Optional<Feature> feature = featureRepository.findById(id);
-		if (feature.isPresent()) {
-			return feature.get();
-		} else {
-			return null;
-		}
+	public Optional<Feature> findById(Long id) {
+		return featureRepository.findById(id);
 	}
 
 }
