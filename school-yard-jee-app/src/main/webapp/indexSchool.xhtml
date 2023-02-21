@@ -7,6 +7,7 @@
 
 	<ui:define name="cssFiles">
 		<h:outputStylesheet name="schoolWelcomePage.css" library="css" />
+		<h:outputStylesheet name="buttons.css" library="css" />
         <style type="text/css">
             #{indexSchoolBean.styles()}
         </style>
@@ -43,14 +44,14 @@
 
 
 			<div class="divsection3">
-				<div class="button1">
+				<div class="button">
 					<h:commandButton action="#{createStudentBean.create()}"
-						value="Inscription élève" />
+						value="Inscription élève"  class="custom-button" />
 				</div>
 
-				<div class="button2">
+				<div class="button">
 					<h:commandButton action="#{createTeacherBean.create()}"
-						value="Inscription professeur" />
+						value="Inscription professeur"  class="custom-button" />
 				</div>
 
 			</div>
