@@ -18,6 +18,10 @@
 
     <ui:insert name="cssFiles"></ui:insert>
 
+    <style type="text/css">
+        #{indexSchoolBean.styles()}
+    </style>
+
     <title><ui:insert name="title">#{indexSchoolBean.school.schoolName}</ui:insert></title>
 
 </h:head>
@@ -46,7 +50,7 @@
             <!--            TODO rajouter les liens pour accéder aux cours particuliers et aux contenus -->
 
             <h:form class="inline">
-                <h:commandLink action="#{indexSchoolBean.logoutSchool()}">Tableau de board</h:commandLink>
+                <h:commandLink action="#{indexSchoolBean.logoutSchool()}">Tableau de bord</h:commandLink>
             </h:form>
 
             <h:form class="inline">

@@ -76,12 +76,20 @@ public class DataSetBean {
 		featureRepository.save(feature3);
 
 		Subscription subscription1 = new Subscription(375.00, 12L, "Premium");
+		subscription1.getFeatures().add(feature1);
+		subscription1.getFeatures().add(feature2);
 		subscription1.getFeatures().add(feature3);
 		subscriptionRepository.save(subscription1);
+
 
 		Subscription subscription2 = new Subscription(170.00, 12L, "Basic");
 		subscription2.getFeatures().add(feature1);
 		subscriptionRepository.save(subscription2);
+
+		Subscription subscription3 = new Subscription(300.00, 12L, "Normal");
+		subscription1.getFeatures().add(feature1);
+		subscription1.getFeatures().add(feature2);
+		subscriptionRepository.save(subscription3);
 
 		Membership membership1 = new Membership(LocalDateTime.of(2024, Month.JANUARY, 5, 10, 30),
 				LocalDateTime.of(2023, Month.JANUARY, 5, 10, 30), subscription1);
@@ -92,11 +100,11 @@ public class DataSetBean {
 		membershipRepository.save(membership2);
 
 		Membership membership3 = new Membership(LocalDateTime.of(2023, Month.NOVEMBER, 12, 12, 30),
-				LocalDateTime.of(2022, Month.NOVEMBER, 12, 12, 30), subscription1);
+				LocalDateTime.of(2022, Month.NOVEMBER, 12, 12, 30), subscription3);
 		membershipRepository.save(membership3);
 		
 		Membership membership4 = new Membership(LocalDateTime.of(2023, Month.AUGUST, 10, 11, 30),
-				LocalDateTime.of(2024, Month.AUGUST, 10, 11, 30), subscription2);
+				LocalDateTime.of(2024, Month.AUGUST, 10, 11, 30), subscription3);
 		membershipRepository.save(membership4);
 		
 		Membership membership5 = new Membership(LocalDateTime.of(2023, Month.JUNE, 8, 16, 20),

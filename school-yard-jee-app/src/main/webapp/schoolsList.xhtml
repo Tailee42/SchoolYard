@@ -14,7 +14,12 @@
     <ui:define name="header">
         <h:link outcome="searchSchoolByName">Rechercher école par nom</h:link>
         <h:link outcome="searchSchoolByType">Rechercher école par type</h:link>
-    </ui:define>
+		<h:link outcome="userDashboard" rendered="#{welcomeBean.userConnected}">Tableau de bord</h:link>
+		<h:commandLink action="#{loginBean.logout()}"
+					   rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+		<h:commandLink outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:commandLink>
+
+	</ui:define>
 
 	<ui:define name="content">
 		<h1>Liste des écoles</h1>
@@ -30,7 +35,7 @@
 					</h2>
 					<hr />
 <!--					Ne fonctionne pas à reprendre-->
-					<img src="school-yard-resources/images/logo.png"/>
+					<img src="school-yard-resources/images/logo.png" />
 					<h:graphicImage value="#{schoolsListBean.getPathPicture(s)}" alt="Logo" width="100" />
 					<br />
 					<p>
