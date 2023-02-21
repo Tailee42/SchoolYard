@@ -15,6 +15,7 @@ public final class SessionUtils {
 //	private static final String CONNECTED_ACCOUNT_ID = "connectedAccountId";
 	private static final String CONNECTED_USER = "connectedUser";
 	private static final String CURRENT_SCHOOL = "currentSchool";
+//	private static final String CURRENT_SCHOOL_ID = "currentSchool";
 	private static final String CONNECTED_MEMBER = "connectedMember";
 
    /*

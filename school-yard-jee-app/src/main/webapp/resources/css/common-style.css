@@ -22,11 +22,15 @@ body > div {
 
 #page {
     padding-top: 50px;
-    max-width: 1200px;
+    max-width: 1300px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.inline {
+    display: inline;
 }
 
 /* Mise en page du header desktop*/

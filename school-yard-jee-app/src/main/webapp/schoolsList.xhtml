@@ -5,16 +5,16 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-	<ui:define name="cssFiles">
-		<h:outputStylesheet name="cards.css" library="css" />
-	</ui:define>
+    <ui:define name="cssFiles">
+		<h:outputStylesheet name="cards.css" library="css"/>
+    </ui:define>
 
-	<ui:define name="title">Liste des écoles</ui:define>
+    <ui:define name="title">Liste des écoles</ui:define>
 
-	<ui:define name="header">
-		<h:link outcome="searchSchoolByName">Rechercher école par nom</h:link>
-		<h:link outcome="searchSchoolByType">Rechercher école par type</h:link>
-	</ui:define>
+    <ui:define name="header">
+        <h:link outcome="searchSchoolByName">Rechercher école par nom</h:link>
+        <h:link outcome="searchSchoolByType">Rechercher école par type</h:link>
+    </ui:define>
 
 	<ui:define name="content">
 		<h1>Liste des écoles</h1>
@@ -24,7 +24,7 @@
 				varStatus="status">
 				<!--			TODO Rajouter ici le style pour la couleur de l'école avec le managedbean -->
 				<!--			TODO Rajouter le lien vers la page d'accueil du site (surtout la card ?)  -->
-				<div class="box">
+				<div class="box" style="">
 					<h2>
 						<h:outputText value="#{s.schoolName}" />
 					</h2>
@@ -39,5 +39,6 @@
 			</ui:repeat>
 		</div>
 	</ui:define>
+
 
 </ui:composition>

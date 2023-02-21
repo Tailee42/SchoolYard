@@ -1,4 +1,4 @@
-<ui:composition template="/WEB-INF/templates/commonLayout.xhtml"
+<ui:composition template="/WEB-INF/templates/schoolLayout.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -11,13 +11,12 @@
 		</f:metadata>
 	</ui:define>
 	
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="common-style.css" library="css"/>
+		<h:outputStylesheet name="buttons.css" library="css"/>
+    </ui:define>	
+	
 	<ui:define name="title">Inscription d'un enseignant</ui:define>
-
-	<ui:define name="header">
-
-		<h:link outcome="userSubscriptionForm">S'inscrire</h:link>
-		<h:link outcome="login">Se connecter</h:link>
-	</ui:define>
 
 	<ui:define name="content">
 		<h1>Formulaire d'inscription enseignant</h1>
@@ -44,7 +43,7 @@
 				</h:selectOneMenu>
 
 				<h:commandButton action="#{createTeacherBean.create()}"
-					value="Valider" />
+					value="Valider" class="custom-button"/>
 
 			</h:panelGrid>
 

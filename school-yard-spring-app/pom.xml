@@ -4,13 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.isika.cda.spring</groupId>
 	<artifactId>school-yard-spring-app</artifactId>
-	<version>0.1.1-SNAPSHOT</version>
+	<version>0.2.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<properties>
 		<spring.version>5.1.5.RELEASE</spring.version>
 		<hibernate.version>5.4.1.Final</hibernate.version>
 		<jackson.version>2.12.5</jackson.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<build>
@@ -39,7 +40,7 @@
 		<dependency>
 			<groupId>fr.isika.cda.entities</groupId>
 			<artifactId>school-yard-common-entities</artifactId>
-			<version>0.1.1-SNAPSHOT</version>
+			<version>0.2.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -72,7 +73,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.31</version>
+			<version>8.0.27</version>
 			<scope>runtime</scope>
 		</dependency>
 

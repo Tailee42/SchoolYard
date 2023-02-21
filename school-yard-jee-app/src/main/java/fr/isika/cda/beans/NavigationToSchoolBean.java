@@ -19,7 +19,7 @@ public class NavigationToSchoolBean {
 
     //TODO Quand le tableau du dashboard sera en place, prendre en compte l'id de l'école
     public String toIndexSchool() {
-        Optional<School> school = schoolRepository.getSchoolById(19L);
+        Optional<School> school = Optional.ofNullable(schoolRepository.getSchoolById(19L));
         Optional<Teacher> teacher = teacherRepository.getTeacherById(47L);
         if (school.isPresent() && teacher.isPresent()) {
             SessionUtils.setCurrentSchool(school.get());

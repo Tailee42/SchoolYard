@@ -1,4 +1,4 @@
-<ui:composition template="WEB-INF/templates/commonLayout.xhtml"
+<ui:composition template="WEB-INF/templates/schoolLayout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -6,17 +6,17 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="title">Création d'un cours</ui:define>
-
-    <ui:define name="header">
-
-        <h:link outcome="userSubscriptionForm">S'inscrire</h:link>
-        <h:link outcome="login">Se connecter</h:link>
+    
+    <ui:define name="cssFiles">
+		<h:outputStylesheet name="common-style.css" library="css"/>
+		<h:outputStylesheet name="buttons.css" library="css"/>
     </ui:define>
+
 
     <ui:define name="content">
         <h1>Création d'un cours</h1>
 
-        <input type="button" id="physicalbtn" value="Pour un cours en présentiel"/>
+        <input type="button" id="physicalbtn" value="Créer cours en présentiel" class="custom-long-button"/>
 
         <div id="physicalForm" class="hidden">
             <h:form >
@@ -77,7 +77,7 @@
 
 
                     <h:commandButton action="#{createSynchronousLessonBean.createPhysical()}"
-                                     value="Valider le cours en présentiel"/>
+                                     value="Valider le cours présentiel" class="custom-long-button"/>
 
                 </h:panelGrid>
 
@@ -136,7 +136,7 @@
                     <h:inputText id="lienInput" value="#{createSynchronousLessonBean.virtualOption.url}"/>
 
                     <h:commandButton action="#{createSynchronousLessonBean.createVirtual()}"
-                                     value="Valider le cours en distanciel"/>
+                                     value="Valider le cours distanciel" class="custom-long-button"/>
 
                 </h:panelGrid>
             </h:form>

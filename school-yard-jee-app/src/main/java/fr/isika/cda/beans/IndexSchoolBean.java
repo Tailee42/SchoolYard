@@ -1,17 +1,63 @@
 package fr.isika.cda.beans;
 
+import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.school.Theme;
+import fr.isika.cda.entities.subscription.Feature;
+import fr.isika.cda.entities.teacher.Teacher;
+import fr.isika.cda.repositories.SchoolRepository;
+import fr.isika.cda.utils.SessionUtils;
 
 import javax.faces.bean.ManagedBean;
+import javax.inject.Inject;
+import java.util.List;
 
 @ManagedBean
 public class IndexSchoolBean {
 
     private Theme theme = new Theme();
 
-    public String toFormSynchronousLesson() {
+    private School school = new School();
+    @Inject
+    private SchoolRepository schoolRepository;
 
-        return "synchronousLessonForm?faces-redirect=true";
+    public void getSchoolsInformations() {
+        school = SessionUtils.getCurrentSchool();
+    }
+
+    public Boolean isTeacher() {
+        return (SessionUtils.getConnectedMember() instanceof Teacher);
+    }
+
+    public Boolean isSynchronousLesson() {
+        Boolean validation = false;
+        if (school != null) {
+            List<Feature> features = school.getMembership().getSubscription().getFeatures();
+            for (Feature feature : features) {
+                if ("Cours online".equals(feature.getFeatureTitle())) {
+                    validation = true;
+                    break;
+                }
+            }
+        }
+        return validation;
+    }
+
+    public Boolean isAsynchronousLesson() {
+        Boolean validation = false;
+        if (school != null) {
+            for (Feature feature : school.getMembership().getSubscription().getFeatures()) {
+                if ("Cours offline".equals(feature.getFeatureTitle())) {
+                    validation = true;
+                }
+            }
+        }
+        return validation;
+    }
+
+    public String logoutSchool() {
+        SessionUtils.setCurrentSchool(null);
+        SessionUtils.setConnectedMember(null);
+        return "userDashboard?faces-redirect=true";
     }
 
     public String styles() {
@@ -31,8 +77,8 @@ public class IndexSchoolBean {
 
     private String getpoliceString() {
         switch (theme.getFont()) {
-            case "PlayfairDisplay" :
-               return new StringBuilder()
+            case "PlayfairDisplay":
+                return new StringBuilder()
                         .append("@font-face {\n")
                         .append("            font-family: 'Playfair';\n")
                         .append("            src: url(‘/fonts/PlayfairDisplay-VariableFont_wght.ttf’) format(‘truetype’)\n")
@@ -42,7 +88,7 @@ public class IndexSchoolBean {
                         .append("}")
                         .toString();
 
-            case "Quicksand" :
+            case "Quicksand":
                 return new StringBuilder()
                         .append("@font-face {\n")
                         .append("            font-family: 'Quicksand';\n")
@@ -53,7 +99,7 @@ public class IndexSchoolBean {
                         .append("}")
                         .toString();
 
-            case "Roboto" :
+            case "Roboto":
                 return new StringBuilder()
                         .append("@font-face {\n")
                         .append("            font-family: 'Roboto';\n")
@@ -64,7 +110,7 @@ public class IndexSchoolBean {
                         .append("}")
                         .toString();
 
-            case "Ubuntu" :
+            case "Ubuntu":
                 return new StringBuilder()
                         .append("@font-face {\n")
                         .append("            font-family: 'Ubuntu';\n")
@@ -75,7 +121,7 @@ public class IndexSchoolBean {
                         .append("}")
                         .toString();
 
-            case "Zeyada" :
+            case "Zeyada":
                 return new StringBuilder()
                         .append("@font-face {\n")
                         .append("            font-family: 'Zeyada';\n")
@@ -86,9 +132,18 @@ public class IndexSchoolBean {
                         .append("}")
                         .toString();
 
-            default :
+            default:
                 return "";
         }
-
     }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
+
 }

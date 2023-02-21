@@ -4,17 +4,23 @@
 				xmlns:h="http://xmlns.jcp.org/jsf/html"
 				xmlns:f="http://xmlns.jcp.org/jsf/core"
 				xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+				
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="common-style.css" library="css"/>
+		<h:outputStylesheet name="buttons.css" library="css"/>
+    </ui:define>	
 
-	<ui:define name="title">SchoolYard :: Connection</ui:define>
+	<ui:define name="title">Connexion</ui:define>
 
 	<ui:define name="header">
 
 		<h:link outcome="index">Accueil</h:link>
+		<h:link outcome="userSubscriptionForm">S'inscrire</h:link>
 
 	</ui:define>
 
 	<ui:define name="content">
-		<h1>Formulaire de connection</h1>
+		<h1>Connexion</h1>
 
 		<h:form id="loginForm">
 			<h:panelGrid columns="1">
@@ -23,7 +29,7 @@
 				<h:outputLabel value="Mot de passe : " for="loginPassword" />
 				<h:inputSecret id="loginPassword"
 					value="#{loginBean.user.security.password}" />
-				<h:commandButton action="#{loginBean.login()}" value="Login" />
+				<h:commandButton action="#{loginBean.login()}" value="Login" class="custom-button"/>
 
 			</h:panelGrid>
 		</h:form>

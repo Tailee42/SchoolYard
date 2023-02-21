@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.isika.cda.jee</groupId>
 	<artifactId>school-yard-jee-app</artifactId>
-	<version>0.1.1-SNAPSHOT</version>
+	<version>0.2.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<build>
@@ -28,6 +28,10 @@
 		</plugins>
 	</build>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
 	<dependencies>
 
 		<dependency>
@@ -40,7 +44,7 @@
 		<dependency>
 			<groupId>fr.isika.cda.entities</groupId>
 			<artifactId>school-yard-common-entities</artifactId>
-			<version>0.1.1-SNAPSHOT</version>
+			<version>0.2.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -54,7 +58,7 @@
 			<artifactId>font-awesome</artifactId>
 			<version>5.7.1</version>
 		</dependency>
-				
+
 	</dependencies>
 
 </project>
