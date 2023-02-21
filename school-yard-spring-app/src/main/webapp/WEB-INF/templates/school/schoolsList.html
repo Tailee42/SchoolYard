@@ -36,10 +36,11 @@
 			<td><span th:text=${school.schoolName}></span></td>
 			<td><span th:text=${school.synthesis}></span></td>
 			<td><span th:text=${school.schoolTypeEnum}></span></td>
-
+			<td><span th:text=${school.membership.startingDate}></span></td>
+			<td><span th:text=${school.membership.endingDate}></span></td>
+			<td><span th:text=${school.membership.subscription.name}></span></td>
 			<td><span th:text=${school.statusSchool.displayValue}></span></td>
 			<td><a th:href="@{schoolForm/(id=${school.id})}">Voir</a></td>
-			
 		<td>
 				
 			</td>

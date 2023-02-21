@@ -75,7 +75,7 @@ public class SchoolController {
 	
 	
 	@PostMapping("/modifySchoolSubscription")
-	public ModelAndView modifySchoolSubscription(@RequestParam Long id, @RequestParam String name, @RequestParam double price, @RequestParam int duration, @RequestParam List<Long> featuresId) {		
+	public ModelAndView modifySchoolSubscription(@RequestParam Long id, @RequestParam String name, @RequestParam double price, @RequestParam Long duration, @RequestParam List<Long> featuresId) {		
 		List<Feature> newFeatures = subscriptionController.getFeaturesListFromIds(featuresId);
 		Subscription subscription = subscriptionService.createSubscription(name, price, duration, newFeatures);	
 		Optional<School> optional = schoolService.findById(id);
