@@ -27,10 +27,15 @@ public class MembersListBean {
 		return members;
 	}
 
+	//Modify to send admin to it's dashboard
 	public String goToIndexSchool(Member member) {
 		SessionUtils.setConnectedMember(member);
 		SessionUtils.setCurrentSchool(member.getSchool());
-		return "indexSchool?faces-redirect=true";
+		if(member instanceof Admin) {
+			return "adminDashboard?faces-redirect-true";
+		}else {
+			return "indexSchool?faces-redirect=true";	
+		}
 	}
 
 	public void getMemberRole(Member member) {
