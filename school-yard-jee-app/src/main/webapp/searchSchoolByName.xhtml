@@ -7,6 +7,7 @@
 
 	<ui:define name="cssFiles">
 		<h:outputStylesheet name="cards.css" library="css" />
+		<h:outputStylesheet name="buttons.css" library="css"/>
 	</ui:define>
 
 	<ui:define name="title">Rechercher école par nom</ui:define>
@@ -30,7 +31,7 @@
 				<h:inputText id="schoolInput"
 					value="#{schoolsListBean.school.schoolName }" />
 				<h:commandButton action="#{schoolsListBean.getByName()}"
-					value="Rechercher" />
+					value="Rechercher" class="custom-little-button"/>
 			</h:form>
 		</h4>
 		<br />
@@ -54,16 +55,17 @@
 					<h:outputText value="#{n.contact.address.town}" />
 					<br /> <br />
 					<h:button value="S'inscrire en tant qu'élève"
-						outcome="studentSubscriptionForm">
+						outcome="studentSubscriptionForm" class="custom-little-button">
 						<f:param name="school" value="#{n.id}" />
 					</h:button>
 					<br /> <br />
-					<h:button value="Postuler" outcome="teacherSubscriptionForm">
+					<h:button value="Postuler" outcome="teacherSubscriptionForm" class="custom-little-button">
 						<f:param name="school" value="#{n.id}" />
 					</h:button>
 				</div>
 			</ui:repeat>
 		</div>
+
 	</ui:define>
 
 </ui:composition>

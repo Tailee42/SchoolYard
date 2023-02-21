@@ -6,6 +6,10 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui">
 
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="common-style.css" library="css"/>
+		<h:outputStylesheet name="buttons.css" library="css"/>
+    </ui:define>
 
 	<ui:define name="title">Formulaire de paramétrage du site d'une école</ui:define>
 
@@ -43,7 +47,7 @@
 				</h:selectOneMenu>
 				
 				<h:commandButton action="#{schoolPageBean.createSchoolPage()}"
-					value="Valider" />
+					value="Valider" class="custom-button"/>
 
 			</h:panelGrid>
 

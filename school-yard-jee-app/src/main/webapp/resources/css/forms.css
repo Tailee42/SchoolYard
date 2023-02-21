@@ -1,7 +1,6 @@
 :root {
 	--paddingLeft: 0px 0px 0px 15px;
-	--orange: #F99120;
-	--borderInput: 1px solid var(--orange);
+	--borderInput: 1px solid var(--accentColor);
 }
 
 .form-container {
@@ -12,7 +11,7 @@
 
 #createUserForm {
 	padding: var(--paddingLeft);
-	border-left: 5px var(--orange) solid;
+	border-left: 5px var(--accentColor) solid;
 	width:100%
 }
 
@@ -37,8 +36,8 @@
 
 .formInput:focus, .formNumInput:focus {
 	outline: none;
-	background: var(--orange);
-	color: white;
+	background: var(--accentColor);
+	color:var(--textColor);
 }
 
 label {
