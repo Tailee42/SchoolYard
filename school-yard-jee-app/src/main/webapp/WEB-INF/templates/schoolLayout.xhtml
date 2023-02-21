@@ -14,11 +14,11 @@
     <h:outputStylesheet name="css/brands.css" library="fontawesome"/>
     <h:outputStylesheet name="css/solid.css" library="fontawesome"/>
 
-
+    #{indexSchoolBean.getSchoolsInformations()}
 
     <ui:insert name="cssFiles"></ui:insert>
 
-    <title><ui:insert name="title"></ui:insert></title>
+    <title><ui:insert name="title">#{indexSchoolBean.school.schoolName}</ui:insert></title>
 
 </h:head>
 
@@ -29,15 +29,30 @@
 
             <h:graphicImage library="images" name="Logo.png" width="140" height="100" alt="Logo"/>
 
-            <h1><ui:insert name="schoolName"></ui:insert> </h1>
+
+            <h1>#{indexSchoolBean.school.schoolName}</h1>
         </div>
 
         <!-- Menu desktop -->
         <div id="navbar-desktop">
-            <ui:insert name="header">
+            <ui:fragment rendered="#{indexSchoolBean.isTeacher() and indexSchoolBean.isSynchronousLesson()}">
+                <h:link outcome="synchronousLessonForm" value="Créer un cours"/>
+            </ui:fragment>
 
-            </ui:insert>
+            <ui:fragment rendered="#{indexSchoolBean.isTeacher() and indexSchoolBean.isAsynchronousLesson()}">
+                <h:link outcome="createUnitForm">Créer du contenu pédagogique</h:link>
+            </ui:fragment>
 
+            <!--            TODO rajouter les liens pour accéder aux cours particuliers et aux contenus -->
+
+            <h:form class="inline">
+                <h:commandLink action="#{indexSchoolBean.logoutSchool()}">Tableau de board</h:commandLink>
+            </h:form>
+
+            <h:form class="inline">
+                <h:commandLink action="#{loginBean.logout()}"
+                               rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+            </h:form>
         </div>
 
         <!-- Menu mobile -->
@@ -50,7 +65,6 @@
             </div>
         </div>
     </div>
-
 
     <div id="page">
 

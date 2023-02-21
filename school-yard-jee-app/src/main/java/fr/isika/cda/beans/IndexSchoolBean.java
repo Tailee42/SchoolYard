@@ -8,10 +8,12 @@ import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.utils.SessionUtils;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.util.List;
 
 @ManagedBean
+@SessionScoped
 public class IndexSchoolBean {
 
     private Theme theme = new Theme();
