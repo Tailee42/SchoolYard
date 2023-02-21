@@ -5,7 +5,40 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
+    <ui:define name="cssFiles">
+        #{indexSchoolBean.getSchoolsInformations()}
+        <style type="text/css">
+            #{indexSchoolBean.styles()}
+        </style>
+    </ui:define>
+
+    <ui:define name="schoolName">#{indexSchoolBean.school.schoolName}</ui:define>
+
+    <ui:define name="header">
+
+        <ui:fragment rendered="#{indexSchoolBean.isTeacher() and indexSchoolBean.isSynchronousLesson()}">
+            <h:link outcome="synchronousLessonForm" value="Créer un cours"/>
+        </ui:fragment>
+
+        <ui:fragment rendered="#{indexSchoolBean.isTeacher() and indexSchoolBean.isAsynchronousLesson()}">
+            <h:link outcome="createUnitForm">Créer du contenu pédagogique</h:link>
+        </ui:fragment>
+
+        <!--            TODO rajouter les liens pour accéder au cours particulier et a contenu-->
+
+        <h:form class="inline">
+            <h:commandLink action="#{indexSchoolBean.logoutSchool()}">Tableau de bord</h:commandLink>
+        </h:form>
+
+        <h:form class="inline">
+            <h:commandLink action="#{loginBean.logout()}"
+                           rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+        </h:form>
+
+    </ui:define>
+
     <ui:define name="title">Création d'un cours</ui:define>
+
 
 
     <ui:define name="content">

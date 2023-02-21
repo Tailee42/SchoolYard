@@ -24,12 +24,12 @@ public class IndexSchoolBean {
         school = SessionUtils.getCurrentSchool();
     }
 
-    public Boolean isTeacher() {
+    public boolean isTeacher() {
         return (SessionUtils.getConnectedMember() instanceof Teacher);
     }
 
-    public Boolean isSynchronousLesson() {
-        Boolean validation = false;
+    public boolean isSynchronousLesson() {
+        boolean validation = false;
         if (school != null) {
             List<Feature> features = school.getMembership().getSubscription().getFeatures();
             for (Feature feature : features) {
@@ -42,12 +42,13 @@ public class IndexSchoolBean {
         return validation;
     }
 
-    public Boolean isAsynchronousLesson() {
-        Boolean validation = false;
+    public boolean isAsynchronousLesson() {
+        boolean validation = false;
         if (school != null) {
             for (Feature feature : school.getMembership().getSubscription().getFeatures()) {
                 if ("Cours offline".equals(feature.getFeatureTitle())) {
                     validation = true;
+                    break;
                 }
             }
         }
