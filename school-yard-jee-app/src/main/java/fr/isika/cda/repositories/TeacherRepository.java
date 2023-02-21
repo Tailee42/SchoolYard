@@ -32,9 +32,12 @@ public class TeacherRepository {
 	}
 
 	public List<Teacher> thisSchoolTeachers(Long schoolId) {
-		return entityManager.createQuery(
+		return entityManager
+				.createQuery(
 				"SELECT t FROM Teacher t WHERE t.school.id = :schoolId_param AND t.status = :teacherstatus_param",
-				Teacher.class).setParameter("schoolId_param", schoolId)
-				.setParameter("teacherstatus_param", TeacherStatusEnum.InProgress).getResultList();
+				Teacher.class)
+				.setParameter("schoolId_param", schoolId)
+				.setParameter("teacherstatus_param", TeacherStatusEnum.InProgress)
+				.getResultList();
 	}
 }
