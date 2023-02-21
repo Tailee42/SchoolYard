@@ -1,54 +1,103 @@
 <ui:composition template="/WEB-INF/templates/commonLayout.xhtml"
-				xmlns="http://www.w3.org/1999/xhtml"
-				xmlns:ui="http://java.sun.com/jsf/facelets"
-				xmlns:h="http://xmlns.jcp.org/jsf/html"
-				xmlns:f="http://xmlns.jcp.org/jsf/core"
-				xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:define name="title">Formulaire d'inscription</ui:define>
 
 	<ui:define name="header">
 
-		<h:link outcome="login" >Se connecter</h:link>
+		<h:link outcome="login">Se connecter</h:link>
 
 	</ui:define>
 
 	<ui:define name="content">
 		<h1>Formulaire d'inscription</h1>
-		<h:form id="createUserForm" >
+		<h:form id="createUserForm">
 
 			<h:panelGrid columns="1">
 
 				<h:outputLabel value="Identifiant : " for="loginInput" />
-				<h:inputText id="loginInput" value="#{createUserBean.user.login}" />
+				<h:inputText id="loginInput" value="#{createUserBean.user.login}"
+					required="true" requiredMessage="Veuillez saisir un identifiant !"
+					validatorMessage="L'identifiant doit contenir 5 à 15 caractères !">
+					<f:validateRegex pattern="(.{5,15})" for="loginInput" />
+				</h:inputText>
+				<h:message for="loginInput" styleClass="errorMessage" />
 
 				<h:outputLabel value="Mot de passe : " for="passwordInput" />
 				<h:inputSecret id="passwordInput"
-							   value="#{createUserBean.user.security.password}" />
+					value="#{createUserBean.user.security.password}" required="true"
+					requiredMessage="Veuillez saisir un mot de passe !"
+					validatorMessage="Le mot de passe doit contenir 5 à 15 caractères avec 
+					au moins une minuscule, une majuscule, un chiffre et un caractère spécial !">
+					<f:validateRegex
+						pattern="((?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*([^a-z][^A-Z]\D)).{5,15})"
+						for="passwordInput" />
+				</h:inputSecret>
+				<h:message styleclasse="errorMessage" for="passwordInput" />
 
 				<h:outputLabel value="Nom : " for="lastNameInput" />
-				<h:inputText id="lastNameInput"  value="#{createUserBean.user.profil.lastName}"/>
+				<h:inputText id="lastNameInput"
+					value="#{createUserBean.user.profil.lastName}" required="true"
+					requiredMessage="Veuillez saisir un nom !"
+					validatorMessage="Le nom ne doit contenir que des lettres avec au minimum 2 caractères !">
+					<f:validateRegex pattern="([a-z] [A-Z]['-].{2})"
+						for="lastNameInput" />
+				</h:inputText>
+				<h:message styleclasse="errorMessage" for="lastNameInput" />
 
 				<h:outputLabel value="Prénom : " for="firstNameInput" />
-				<h:inputText id="firstNameInput" value="#{createUserBean.user.profil.firstName}"/>
+				<h:inputText id="firstNameInput"
+					value="#{createUserBean.user.profil.firstName}" required="true"
+					requiredMessage="Veuillez saisir un prénom !"
+					validatorMessage="Le prénom ne doit contenir que des lettres avec au minimum 2 caractères !">
+					<f:validateRegex pattern="(.{2})" for="firstNameInput" />
+				</h:inputText>
+				<h:message styleclasse="errorMessage" for="firstNameInput" />
 
 				<h:outputLabel value="Email: " for="emailInput" />
-				<h:inputText id="emailInput" value="#{createUserBean.user.profil.contact.email}"/>
+				<h:inputText id="emailInput"
+					value="#{createUserBean.user.profil.contact.email}" required="true"
+					requiredMessage="Veuillez saisir un email !"
+					validatorMessage="Veuillez entrer un email valide !">
+					<f:validateRegex pattern="()" for="emailInput" />
+				</h:inputText>
+				<h:message styleclasse="errorMessage" for="emailInput" />
 
 				<h:outputLabel value="Numéro : " for="numberInput" />
-				<h:inputText id="numberInput" value="#{createUserBean.user.profil.contact.address.number}"/>
+				<h:inputText id="numberInput"
+					value="#{createUserBean.user.profil.contact.address.number}" />
 
-				<h:outputLabel value="Rue : " for="streetInput" />
-				<h:inputText id="streetInput" value="#{createUserBean.user.profil.contact.address.street}"/>
+				<h:outputLabel value="Voie ou Lieu-dit : " for="streetInput" />
+				<h:inputText id="streetInput"
+					value="#{createUserBean.user.profil.contact.address.street}"
+					required="true"
+					requiredMessage="Veuillez saisir une voie ou un lieu-dit !">
+				</h:inputText>
+				<h:message styleclasse="errorMessage" for="streetInput" />
+
 
 				<h:outputLabel value="Code Postal : " for="zipcodeInput" />
-				<h:inputText id="zipcodeInput" value="#{createUserBean.user.profil.contact.address.zipcode}"/>
+				<h:inputText id="zipcodeInput"
+					value="#{createUserBean.user.profil.contact.address.zipcode}"
+					required="true" requiredMessage="Veuillez saisir un code postal !"
+					validatorMessage="Le code postal doit contenir 5 chiffres !">
+					<f:validateRegex pattern="((?=.*\d).{5})" for="zipcodeInput" />
+				</h:inputText>
+				<h:message styleclasse="errorMessage" for="zipcodeInput" />
 
 				<h:outputLabel value="Ville : " for="townInput" />
-				<h:inputText id="townInput" value="#{createUserBean.user.profil.contact.address.town}"/>
-
+				<h:inputText id="townInput"
+					value="#{createUserBean.user.profil.contact.address.town}"
+					required="true" requiredMessage="Veuillez saisir une ville !">
+				</h:inputText>
+				<h:message styleclasse="errorMessage" for="townInput" />
+				<br />
+				
 				<h:commandButton action="#{createUserBean.create()}" value="Valider" />
-
 			</h:panelGrid>
 
 
