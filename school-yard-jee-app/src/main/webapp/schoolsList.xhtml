@@ -29,7 +29,9 @@
 						<h:outputText value="#{s.schoolName}" />
 					</h2>
 					<hr />
-					<h:graphicImage value="#{s.logo}" alt="Logo" width="100" />
+<!--					Ne fonctionne pas à reprendre-->
+					<img src="school-yard-resources/images/logo.png"/>
+					<h:graphicImage value="#{schoolsListBean.getPathPicture(s)}" alt="Logo" width="100" />
 					<br />
 					<p>
 						<h:outputText value="#{s.synthesis}" />

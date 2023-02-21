@@ -22,8 +22,10 @@ import fr.isika.cda.repositories.FeatureRepository;
 import fr.isika.cda.repositories.MemberRepository;
 import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.repositories.SubscriptionRepository;
+import fr.isika.cda.utils.FileUpload;
 import fr.isika.cda.utils.FileUtils;
 import fr.isika.cda.utils.SessionUtils;
+import org.primefaces.event.FileUploadEvent;
 
 @ManagedBean
 @SessionScoped
@@ -31,7 +33,7 @@ public class CreateSchoolBean {
 
 	private School school = new School();
 
-	private Part logoFile;
+	private String logoFileName;
 
 	private Membership membership = new Membership();
 
@@ -49,20 +51,12 @@ public class CreateSchoolBean {
 
 	public String create() {
 		// TODO : ecrire le fichier sur le disque
-		school.setLogo(createImagePath());
+		school.setLogo(logoFileName);
 		school.setStatusSchool(StatusSchool.TOPUBLISH);
 		schoolRepository.save(school);
 		memberRepository.save(createAdmin());
 
 		return "schoolMembershipForm";
-	}
-	
-	private String createImagePath() {
-		FileUtils.initResourcesDir();
-
-		String uuid = UUID.randomUUID().toString();
-		String filename = uuid + ".png";
-		return "/school-yard-resources/images/" + filename;
 	}
 
 	public String setMembership(Subscription subscription) {
@@ -75,18 +69,27 @@ public class CreateSchoolBean {
 
 		return "userDashboard?faces-redirect=true";
 	}
-	
+
 	private void initMembershipDuration(Long subscriptionDuration) {
 		LocalDateTime startingDate = LocalDateTime.now();
 		membership.setStartingDate(startingDate);
 		membership.setEndingDate(startingDate.plusMonths(subscriptionDuration));
 	}
-	
+
 
 	private void resetAll() {
 		school = new School();
 		membership = new Membership();
 	}
+
+	public void uploadFile(FileUploadEvent event) {
+		String absoluteFilePath = FileUtils.getResourceImageFilePath(event.getFile().getFileName());
+
+		// Mémorise le nom du fichier => à reconstituer lors de la lecture
+		logoFileName =  event.getFile().getFileName();
+		FileUpload.doUpLoad(event.getFile(), absoluteFilePath);
+	}
+
 
 	private Admin createAdmin() {
 		Admin admin = new Admin();
@@ -116,12 +119,12 @@ public class CreateSchoolBean {
 		this.school = school;
 	}
 
-	public Part getLogoFile() {
-		return logoFile;
+	public String getLogoFile() {
+		return logoFileName;
 	}
 
-	public void setLogoFile(Part logoFile) {
-		this.logoFile = logoFile;
+	public void setLogoFile(String logoFile) {
+		this.logoFileName = logoFile;
 	}
 
 	public Membership getMembership() {

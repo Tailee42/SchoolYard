@@ -9,13 +9,16 @@ import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.utils.SessionUtils;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.util.List;
 
 @ManagedBean
+@SessionScoped
 public class IndexSchoolBean {
 
     private Theme theme = new Theme();
+
     private School school = new School();
     @Inject
     private SchoolRepository schoolRepository;
@@ -24,13 +27,12 @@ public class IndexSchoolBean {
         school = SessionUtils.getCurrentSchool();
     }
 
-    public Boolean isTeacher() {
+    public boolean isTeacher() {
         return (SessionUtils.getConnectedMember() instanceof Teacher);
     }
 
-    public Boolean isSynchronousLesson() {
-        Boolean validation = false;
-        if (school != null) {
+    public boolean isSynchronousLesson() {
+        boolean validation = false;
             List<Feature> features = school.getMembership().getSubscription().getFeatures();
             for (Feature feature : features) {
                 if ("Cours online".equals(feature.getFeatureTitle())) {
@@ -38,18 +40,17 @@ public class IndexSchoolBean {
                     break;
                 }
             }
-        }
         return validation;
     }
-    public Boolean isAsynchronousLesson() {
-        Boolean validation = false;
-        if (school != null) {
+
+    public boolean isAsynchronousLesson() {
+        boolean validation = false;
             for (Feature feature : school.getMembership().getSubscription().getFeatures()) {
                 if ("Cours offline".equals(feature.getFeatureTitle())) {
                     validation = true;
+                    break;
                 }
             }
-        }
         return validation;
     }
 
