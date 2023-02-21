@@ -5,7 +5,9 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-    <ui:define name="cssFiles">
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="schoolWelcomePage.css" library="css" />
+    #{indexSchoolBean.dataInitialization()}
         <style type="text/css">
             #{indexSchoolBean.styles()}
         </style>
@@ -23,9 +25,50 @@
     </ui:define>
 
     <ui:define name="content">
-        <h2>Accueil de l'école</h2>
 
-    </ui:define>
+		<div class="container">
+
+			<div class="divsection1">
+				<div>
+						<h:graphicImage action="#{indexSchoolBean.school.logo}" value="logo" />
+				</div>
+
+				<h1>#{indexSchoolBean.school.schoolName}</h1>
+				<h2>Slogan</h2>
+				<p>#{indexSchoolBean.school.synthesis}</p>
+			</div>
+
+			<div class="divsection2">
+
+
+			<div>
+			<h:graphicImage
+					action="#{indexSchoolBean.school.schoolPage.schoolValue.picture}"
+					value="picture" />
+			</div>
+
+				<div>
+					<h2>Présentation de l'école</h2>
+					<p>#{indexSchoolBean.school.schoolPage.description}</p>
+				</div>
+			</div>
+
+
+			<div class="divsection3">
+				<div class="button1">
+					<h:commandButton action="#{createStudentBean.create()}"
+						value="Inscription élève" />
+				</div>
+
+				<div class="button2">
+					<h:commandButton action="#{createTeacherBean.create()}"
+						value="Inscription professeur" />
+				</div>
+
+			</div>
+
+		</div>
+	</ui:define>
 
 
 </ui:composition>

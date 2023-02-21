@@ -23,6 +23,9 @@ import fr.isika.cda.entities.lesson.VirtualOption;
 import fr.isika.cda.entities.school.Admin;
 import fr.isika.cda.entities.school.Membership;
 import fr.isika.cda.entities.school.School;
+import fr.isika.cda.entities.school.SchoolPage;
+import fr.isika.cda.entities.school.SchoolValue;
+import fr.isika.cda.entities.school.Theme;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.entities.subscription.Subscription;
@@ -127,6 +130,8 @@ public class DataSetBean {
 				new Contact("collegeDesBois@gmail.com", "05 05 05 05 05",
 						new Address(789, "Rue du college", "TOULOUSE", "31000")),
 				SchoolTypeEnum.COLLEGE);
+		SchoolPage schoolPage1 = new SchoolPage("Collège des bois", new SchoolValue("Collège bienveillant et inclusif", "Favoriser la confiance en soi, l’autonomie, tout en permettant à l’enfant d’évoluer à son propre rythme et en toute liberté.", ""), new Theme() );		
+		school1.setSchoolPage(schoolPage1);
 		schoolRepository.save(school1);
 		school1.setMembership(membership2);
 		createAdmin(user1, school1);
@@ -135,6 +140,8 @@ public class DataSetBean {
 				new Contact("ecoledelaplage@gmail.com", "05 36 36 36 36",
 						new Address(56, "Rue de la plage", "BIARRITZ", "64200")),
 				SchoolTypeEnum.ELEMENTAIRE);
+		SchoolPage schoolPage2 = new SchoolPage("Ecole de la plage", new SchoolValue("Ecole en plein air", "Favoriser l'apprentissage et l'esprit d'équipe par le jeu en plein air.", ""), new Theme() );		
+		school2.setSchoolPage(schoolPage2);
 		schoolRepository.save(school2);
 		school2.setMembership(membership3);
 		createAdmin(user2, school2);
@@ -143,6 +150,8 @@ public class DataSetBean {
 				"Lycée Beaux Bâtons", "", "Lycée privé", new ArrayList<>(), new Contact("lyceebeauxbatons@gmail.com",
 						"04 86 11 23 36", new Address(11, "Avenue des lutins", "Paimpont", "35380")),
 				SchoolTypeEnum.LYCEE);
+		SchoolPage schoolPage3 = new SchoolPage("Lycée BeauxBâtons", new SchoolValue("Lycée privé", "Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.", ""), new Theme() );		
+		school3.setSchoolPage(schoolPage3);
 		school3.setMembership(membership1);
 		schoolRepository.save(school3);
 

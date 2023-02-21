@@ -2,6 +2,7 @@ package fr.isika.cda.beans;
 
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.school.Theme;
+import fr.isika.cda.utils.SessionUtils;
 import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.repositories.SchoolRepository;
@@ -15,7 +16,6 @@ import java.util.List;
 public class IndexSchoolBean {
 
     private Theme theme = new Theme();
-
     private School school = new School();
     @Inject
     private SchoolRepository schoolRepository;
@@ -41,7 +41,6 @@ public class IndexSchoolBean {
         }
         return validation;
     }
-
     public Boolean isAsynchronousLesson() {
         Boolean validation = false;
         if (school != null) {
