@@ -194,7 +194,6 @@ public class DataSetBean {
 		userRepository.save(user22);
 		Teacher teacher2 = createTeacher(school2, user22, SchoolTypeEnum.ELEMENTAIRE, SubjectEnum.MATHS);
 
-		
 		// Create some synchronous lessons
 		VirtualOption virtual1 = new VirtualOption("Zoom", "www.zoom.fr",
 				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.CINQUIEME, teacher1,
