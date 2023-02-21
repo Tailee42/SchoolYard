@@ -1,12 +1,10 @@
 package fr.isika.cda.beans;
 
 import fr.isika.cda.entities.school.School;
-import fr.isika.cda.entities.school.Theme;
 import fr.isika.cda.utils.SessionUtils;
 import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.repositories.SchoolRepository;
-import fr.isika.cda.utils.SessionUtils;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -16,8 +14,6 @@ import java.util.List;
 @ManagedBean
 @SessionScoped
 public class IndexSchoolBean {
-
-    private Theme theme = new Theme();
 
     private School school = new School();
     @Inject
@@ -29,6 +25,10 @@ public class IndexSchoolBean {
 
     public boolean isTeacher() {
         return (SessionUtils.getConnectedMember() instanceof Teacher);
+    }
+
+    public boolean isUserConnected() {
+        return SessionUtils.isUserConnected();
     }
 
     public boolean isSynchronousLesson() {
@@ -63,9 +63,9 @@ public class IndexSchoolBean {
     public String styles() {
         String colorString = new StringBuffer()
                 .append(":root {")
-                .append("--accentColor : #").append(theme.getAccentColor()).append(";")
-                .append("--backgroundColor : #").append(theme.getBackgroundColor()).append(";")
-                .append("--primaryColor : #").append(theme.getPrimaryColor()).append(";")
+                .append("--accentColor : #").append(school.getSchoolPage().getTheme().getAccentColor()).append(";")
+                .append("--backgroundColor : #").append(school.getSchoolPage().getTheme().getBackgroundColor()).append(";")
+                .append("--primaryColor : #").append(school.getSchoolPage().getTheme().getPrimaryColor()).append(";")
                 .append("}")
                 .toString();
 
@@ -76,7 +76,7 @@ public class IndexSchoolBean {
     }
 
     private String getpoliceString() {
-        switch (theme.getFont()) {
+        switch (school.getSchoolPage().getTheme().getFont()) {
             case "PlayfairDisplay":
                 return new StringBuilder()
                         .append("@font-face {\n")

@@ -4,6 +4,7 @@ import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.utils.FileUtils;
+import fr.isika.cda.utils.SessionUtils;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -44,6 +45,11 @@ public class SchoolsListBean {
         return realPath + FileUtils.getResourceImageFilePath(school.getLogo());
     }
 
+    public String navigationIndexSchool(School school) {
+        SessionUtils.setCurrentSchool(school);
+        return "indexSchool?faces-redirect=true";
+    }
+
     public SchoolTypeEnum[] types() {
         return SchoolTypeEnum.values();
     }
@@ -63,5 +69,6 @@ public class SchoolsListBean {
     public void setSchools(List<School> schools) {
         this.schools = schools;
     }
+
 
 }

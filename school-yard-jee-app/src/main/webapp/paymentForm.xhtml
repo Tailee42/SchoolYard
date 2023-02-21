@@ -1,36 +1,37 @@
 <ui:composition template="WEB-INF/templates/commonLayout.xhtml"
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="title">Accueil</ui:define>
+    <ui:define name="title">Accueil</ui:define>
 
-	<ui:define name="header">
+    <ui:define name="header">
 
-	</ui:define>
+    </ui:define>
 
-	<ui:define name="content">
-		<h2>Paiement</h2>
-		
-		<p:panelGrid id="pnlCreditCard" columns="4">
-        <f:facet name="header">
-            <pe:creditCard id="creditCard" labelMonthYear="MM/YY" placeholderExpiry="**/**" placeholderName="Optimus Prime"/>
-        </f:facet>
-        <p:inputText id="number" placeholder="Card number" inputmode="numeric"/>
-        <p:inputText id="name" placeholder="Full name"/>
-        <p:outputPanel id="expiration">
-            <p:datePicker id="month" widgetVar="monthPicker" view="month" pattern="MM/yy" yearNavigator="true" yearRange="2000:2050"
-                          placeholder="MM/YY"
-                          onchange="$('#expiry').val(PF('monthPicker').input.val()); $('#expiry')[0].dispatchEvent(new Event('change'));"/>
-            <!-- Hide Expiration field so we can use PF MonthPicker -->
-            <p:inputText id="expiry" placeholder="MM/YY" inputmode="numeric" style="display:none"/>
-        </p:outputPanel>
-        <p:inputText id="cvc" placeholder="CVC" inputmode="numeric"/>
-    </p:panelGrid>
+    <ui:define name="content">
+        <h2>Paiement</h2>
 
-	</ui:define>
+        <p:panelGrid id="pnlCreditCard" columns="4">
+            <f:facet name="header">
+                <pe:creditCard id="creditCard" labelMonthYear="MM/YY" placeholderExpiry="**/**"
+                               placeholderName="Optimus Prime"/>
+            </f:facet>
+            <p:inputText id="number" placeholder="Card number" inputmode="numeric"/>
+            <p:inputText id="name" placeholder="Full name"/>
+            <p:outputPanel id="expiration">
+                <p:datePicker id="month" widgetVar="monthPicker" view="month" pattern="MM/yy" yearNavigator="true"
+                              yearRange="2000:2050"
+                              placeholder="MM/YY"
+                              onchange="$('#expiry').val(PF('monthPicker').input.val()); $('#expiry')[0].dispatchEvent(new Event('change'));"/>
+                <!-- Hide Expiration field so we can use PF MonthPicker -->
+                <p:inputText id="expiry" placeholder="MM/YY" inputmode="numeric" style="display:none"/>
+            </p:outputPanel>
+            <p:inputText id="cvc" placeholder="CVC" inputmode="numeric"/>
+        </p:panelGrid>
+
+    </ui:define>
 
 
 </ui:composition>

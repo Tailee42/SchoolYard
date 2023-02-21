@@ -1,12 +1,11 @@
 <ui:composition template="WEB-INF/templates/commonLayout.xhtml"
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
 
     <ui:define name="cssFiles">
-		<h:outputStylesheet name="cards.css" library="css"/>
+        <h:outputStylesheet name="cards.css" library="css"/>
     </ui:define>
 
     <ui:define name="title">Liste des écoles</ui:define>
@@ -14,33 +13,44 @@
     <ui:define name="header">
         <h:link outcome="searchSchoolByName">Rechercher école par nom</h:link>
         <h:link outcome="searchSchoolByType">Rechercher école par type</h:link>
+        <h:link outcome="userDashboard" rendered="#{welcomeBean.userConnected}">Tableau de bord</h:link>
+        <h:form class="inline">
+            <h:commandLink action="#{loginBean.logout()}"
+                           rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+        </h:form>
+        <h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:link>
+
     </ui:define>
 
-	<ui:define name="content">
-		<h1>Liste des écoles</h1>
+    <ui:define name="content">
+        <h1>Liste des écoles</h1>
 
-		<div class="container">
-			<ui:repeat value="#{schoolsListBean.allSchools()}" var="s"
-				varStatus="status">
-				<!--			TODO Rajouter ici le style pour la couleur de l'école avec le managedbean -->
-				<!--			TODO Rajouter le lien vers la page d'accueil du site (surtout la card ?)  -->
-				<div class="box" style="">
-					<h2>
-						<h:outputText value="#{s.schoolName}" />
-					</h2>
-					<hr />
-<!--					Ne fonctionne pas à reprendre-->
-					<img src="school-yard-resources/images/logo.png"/>
-					<h:graphicImage value="#{schoolsListBean.getPathPicture(s)}" alt="Logo" width="100" />
-					<br />
-					<p>
-						<h:outputText value="#{s.synthesis}" />
-					</p>
-					<h:outputText value="#{s.contact.address.town}" />
-				</div>
-			</ui:repeat>
-		</div>
-	</ui:define>
+        <div class="container">
+            <ui:repeat value="#{schoolsListBean.allSchools()}" var="s"
+                       varStatus="status">
+
+                <h:form class="link">
+                    <h:commandLink action="#{schoolsListBean.navigationIndexSchool(s)}">
+                        <div class="box" style="border-top: 3px solid ##{s.schoolPage.theme.primaryColor}">
+                            <h2>
+                                <h:outputText value="#{s.schoolName}"/>
+                            </h2>
+                            <hr/>
+                            <!--					Ne fonctionne pas à reprendre-->
+                            <img src="school-yard-resources/images/logo.png"/>
+                            <h:graphicImage value="#{schoolsListBean.getPathPicture(s)}" alt="Logo" width="100"/>
+                            <br/>
+                            <p>
+                                <h:outputText value="#{s.synthesis}"/>
+                            </p>
+                            <h:outputText value="#{s.contact.address.town}"/>
+                        </div>
+                    </h:commandLink>
+                </h:form>
+
+            </ui:repeat>
+        </div>
+    </ui:define>
 
 
 </ui:composition>
