@@ -6,6 +6,10 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui">
 
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="common-style.css" library="css"/>
+		<h:outputStylesheet name="buttons.css" library="css"/>
+    </ui:define>	
 
 	<ui:define name="title">Présentation de mon école</ui:define>
 
@@ -31,10 +35,10 @@
 							 value="#{schoolPageBean.schoolPage.schoolValue.descriptionValue}" />
 				
 				<h:outputLabel value="Photo de votre école : " for="picture" />
-				<h:inputFile id="picture" value="#{schoolPageBean.schoolPage.schoolValue.picture}" />			 
+				<h:inputFile id="picture" value="#{schoolPageBean.schoolPage.schoolValue.picture}"/>			 
 				
 				<h:commandButton action="#{schoolPageBean.createSchoolPage()}"
-					value="Valider" />
+					value="Valider" class="custom-button"/>
 
 			</h:panelGrid>
 
