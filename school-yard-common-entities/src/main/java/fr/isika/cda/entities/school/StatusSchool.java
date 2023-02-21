@@ -4,7 +4,9 @@ public enum StatusSchool {
     TOPUBLISH("A publier"), 
     PUBLISHED("En ligne"), 
     TOUPDATE("A mettre à jour"),
-    EXPIRED("Abonnement échu");
+    EXPIRED("Abonnement échu"),
+	TODELETE("A supprimer"),
+	INACTIVE("Fermée");
     
     private final String displayValue;
 	
