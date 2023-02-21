@@ -16,6 +16,9 @@
 
 		<h:link outcome="index">Accueil</h:link>
 		<h:link outcome="userDashboard">Tableau de bord</h:link>
+		<h:form class="inline">
+			<h:commandLink action="#{loginBean.logout()}" rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+		</h:form>
 
 	</ui:define>
 

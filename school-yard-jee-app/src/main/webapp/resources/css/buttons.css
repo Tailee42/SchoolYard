@@ -12,7 +12,8 @@
    4px 4px 5px 0px rgba(0,0,0,.1);
    	outline: none;
    	font-weight: 100;
-   	font-size: 15px;   	
+   	font-size: 15px;
+	margin: 5px;
 }
 
 .custom-button:hover, .custom-little-button:hover, .custom-long-button:hover, .custom-student-little-button:hover {

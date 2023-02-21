@@ -20,12 +20,7 @@ import fr.isika.cda.entities.common.Security;
 import fr.isika.cda.entities.lesson.PhysicalOption;
 import fr.isika.cda.entities.lesson.SynchronousLesson;
 import fr.isika.cda.entities.lesson.VirtualOption;
-import fr.isika.cda.entities.school.Admin;
-import fr.isika.cda.entities.school.Membership;
-import fr.isika.cda.entities.school.School;
-import fr.isika.cda.entities.school.SchoolPage;
-import fr.isika.cda.entities.school.SchoolValue;
-import fr.isika.cda.entities.school.Theme;
+import fr.isika.cda.entities.school.*;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.entities.subscription.Subscription;
@@ -138,7 +133,9 @@ public class DataSetBean {
 				new Contact("collegeDesBois@gmail.com", "05 05 05 05 05",
 						new Address(789, "Rue du college", "TOULOUSE", "31000")),
 				SchoolTypeEnum.COLLEGE);
-		SchoolPage schoolPage1 = new SchoolPage("Collège des bois", new SchoolValue("Collège bienveillant et inclusif", "Favoriser la confiance en soi, l’autonomie, tout en permettant à l’enfant d’évoluer à son propre rythme et en toute liberté.", ""), new Theme() );		
+		SchoolPage schoolPage1 = new SchoolPage("Collège des bois", new SchoolValue("Collège bienveillant et inclusif",
+				"Favoriser la confiance en soi, l’autonomie, tout en permettant à l’enfant d’évoluer à son propre rythme et en toute liberté.", ""),
+				new Theme("D4C685", "F7EF81", "E5F1EB", FontEnum.ROBOTO.name()) );
 		school1.setSchoolPage(schoolPage1);
 		schoolRepository.save(school1);
 		school1.setMembership(membership2);
@@ -148,7 +145,9 @@ public class DataSetBean {
 				new Contact("ecoledelaplage@gmail.com", "05 36 36 36 36",
 						new Address(56, "Rue de la plage", "BIARRITZ", "64200")),
 				SchoolTypeEnum.ELEMENTAIRE);
-		SchoolPage schoolPage2 = new SchoolPage("Ecole de la plage", new SchoolValue("Ecole en plein air", "Favoriser l'apprentissage et l'esprit d'équipe par le jeu en plein air.", ""), new Theme() );		
+		SchoolPage schoolPage2 = new SchoolPage("Ecole de la plage", new SchoolValue("Ecole en plein air",
+				"Favoriser l'apprentissage et l'esprit d'équipe par le jeu en plein air.", ""),
+				new Theme("FECDAA", "F5F58E", "F8FFF4", FontEnum.UBUNTU.name()) );
 		school2.setSchoolPage(schoolPage2);
 		schoolRepository.save(school2);
 		school2.setMembership(membership3);
@@ -167,6 +166,10 @@ public class DataSetBean {
 				new ArrayList<>(), new Contact("collegeDeLaMontagne@gmail.com", "04 06 06 06 06",
 						new Address(45, "Rue du sommet", "ALBERTVILLE", "73200")),
 				SchoolTypeEnum.COLLEGE);
+		SchoolPage schoolPage4 = new SchoolPage("Au coeur des montagnes", new SchoolValue("Le partage en plein air",
+				"Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.", ""),
+				new Theme("BF1363", "2FABEE", "FBFEF9", FontEnum.PLAYFAIRDISPLAY.name()) );
+		school4.setSchoolPage(schoolPage4);
 		school4.setMembership(membership5);
 		schoolRepository.save(school4);
 		createAdmin(user3, school4);
@@ -175,6 +178,10 @@ public class DataSetBean {
 				new ArrayList<>(), new Contact("ecoleDuPort@gmail.com", "04 03 03 03 03",
 						new Address(17, "Rue de l'embarcadère", "NICE", "06100")),
 				SchoolTypeEnum.ELEMENTAIRE);
+		SchoolPage schoolPage5 = new SchoolPage("Près de la mère", new SchoolValue("Le partage en plein air",
+				"Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.", ""),
+				new Theme("1B9AAA", "06D6A0", "F8FFE5", FontEnum.ZEYADA.name()) );
+		school5.setSchoolPage(schoolPage5);
 		school5.setMembership(membership4);
 		schoolRepository.save(school5);
 		createAdmin(user4, school5);

@@ -48,10 +48,18 @@
             </ui:fragment>
 
             <!--            TODO rajouter les liens pour accéder aux cours particuliers et aux contenus -->
+            <ui:fragment rendered="#{ indexSchoolBean.isUserConnected()}">
+                <h:form class="inline">
+                    <h:commandLink action="#{indexSchoolBean.logoutSchool()}">Tableau de bord</h:commandLink>
+                </h:form>
+            </ui:fragment>
 
-            <h:form class="inline">
-                <h:commandLink action="#{indexSchoolBean.logoutSchool()}">Tableau de bord</h:commandLink>
-            </h:form>
+            <ui:fragment rendered="#{not indexSchoolBean.isUserConnected()}">
+                <h:form class="inline">
+                    <h:commandLink action="#{loginBean.logout()}">Accueil SchoolYard</h:commandLink>
+                </h:form>
+            </ui:fragment>
+
 
             <h:form class="inline">
                 <h:commandLink action="#{loginBean.logout()}"
