@@ -7,6 +7,7 @@
 
 	<ui:define name="cssFiles">
 		<h:outputStylesheet name="cards.css" library="css" />
+		<h:outputStylesheet name="buttons.css" library="css"/>
 	</ui:define>
 
 	<ui:define name="title">Tableau de bord utilisateur</ui:define>
@@ -45,7 +46,7 @@
 
 					<h:form>
 						<h:commandButton action="#{membersListBean.goToIndexSchool(m)}"
-							value="Espace école " />
+							value="Espace école " class="custom-little-button"/>
 						<br />
 					</h:form>
 

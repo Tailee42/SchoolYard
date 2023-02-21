@@ -4,6 +4,11 @@
 				xmlns:h="http://xmlns.jcp.org/jsf/html"
 				xmlns:f="http://xmlns.jcp.org/jsf/core"
 				xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+				
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="common-style.css" library="css"/>
+		<h:outputStylesheet name="buttons.css" library="css"/>
+    </ui:define>	
 
 	<ui:define name="title">Formulaire d'inscription de mon école</ui:define>
 
@@ -67,7 +72,7 @@
 								 value="#{createSchoolBean.school.synthesis}" />
 
 				<h:commandButton action="#{createSchoolBean.create()}"
-								 value="Valider" />
+								 value="Valider" class="custom-button"/>
 
 			</h:panelGrid>
 

@@ -4,6 +4,12 @@
 				xmlns:h="http://xmlns.jcp.org/jsf/html"
 				xmlns:f="http://xmlns.jcp.org/jsf/core"
 				xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+				
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="common-style.css" library="css"/>
+		<h:outputStylesheet name="forms.css" library="css"/>
+		<h:outputStylesheet name="buttons.css" library="css"/>
+    </ui:define>	
 
 	<ui:define name="title">Formulaire d'inscription</ui:define>
 
@@ -14,48 +20,58 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h1>Formulaire d'inscription</h1>
+	<h1>Formulaire d'inscription</h1>
+	<div class="form-container">
+
 		<h:form id="createUserForm" >
-
-			<h:panelGrid columns="1">
-
-				<h:outputLabel value="Identifiant : " for="loginInput" />
-				<h:inputText id="loginInput" value="#{createUserBean.user.login}" />
-
-				<h:outputLabel value="Mot de passe : " for="passwordInput" />
-				<h:inputSecret id="passwordInput"
-							   value="#{createUserBean.user.security.password}" />
-
-				<h:outputLabel value="Nom : " for="lastNameInput" />
-				<h:inputText id="lastNameInput"  value="#{createUserBean.user.profil.lastName}"/>
-
-				<h:outputLabel value="Prénom : " for="firstNameInput" />
-				<h:inputText id="firstNameInput" value="#{createUserBean.user.profil.firstName}"/>
-
-				<h:outputLabel value="Email: " for="emailInput" />
-				<h:inputText id="emailInput" value="#{createUserBean.user.profil.contact.email}"/>
-
-				<h:outputLabel value="Numéro : " for="numberInput" />
-				<h:inputText id="numberInput" value="#{createUserBean.user.profil.contact.address.number}"/>
-
-				<h:outputLabel value="Rue : " for="streetInput" />
-				<h:inputText id="streetInput" value="#{createUserBean.user.profil.contact.address.street}"/>
-
-				<h:outputLabel value="Code Postal : " for="zipcodeInput" />
-				<h:inputText id="zipcodeInput" value="#{createUserBean.user.profil.contact.address.zipcode}"/>
-
-				<h:outputLabel value="Ville : " for="townInput" />
-				<h:inputText id="townInput" value="#{createUserBean.user.profil.contact.address.town}"/>
-
-				<h:commandButton action="#{createUserBean.create()}" value="Valider" />
-
-			</h:panelGrid>
-
-
+		
+		<div class="form-container">
+			<div class="grid">
+				<h:panelGrid columns="1" class="grid">
+	
+					<h:outputLabel value="Identifiant" for="loginInput" />
+					<h:inputText id="loginInput" value="#{createUserBean.user.login}" class="formInput"/>
+	
+					<h:outputLabel value="Mot de passe" for="passwordInput" />
+					<h:inputSecret id="passwordInput"
+								   value="#{createUserBean.user.security.password}" class="formInput"/>
+					
+					<h:outputLabel value="Nom" for="lastNameInput" />
+					<h:inputText id="lastNameInput"  value="#{createUserBean.user.profil.lastName}" class="formInput"/>
+	
+					<h:outputLabel value="Prénom" for="firstNameInput" />
+					<h:inputText id="firstNameInput" value="#{createUserBean.user.profil.firstName}" class="formInput"/>
+					
+					<h:outputLabel value="Email" for="emailInput" />
+					<h:inputText id="emailInput" value="#{createUserBean.user.profil.contact.email}" class="formInput"/>
+				</h:panelGrid>
+			</div>
+			
+			<div class="grid">
+				<h:panelGrid columns="1" class="grid">
+					<h3>Adresse</h3>
+					<h:outputLabel value="N°" for="numberInput" />
+					<h:inputText id="numberInput" value="#{createUserBean.user.profil.contact.address.number}" class="formNumInput"/>
+	
+					<h:outputLabel value="Rue" for="streetInput" />
+					<h:inputText id="streetInput" value="#{createUserBean.user.profil.contact.address.street}" class="formInput"/>
+	
+					<h:outputLabel value="Code Postal" for="zipcodeInput" />
+					<h:inputText id="zipcodeInput" value="#{createUserBean.user.profil.contact.address.zipcode}" class="formNumInput"/>
+	
+					<h:outputLabel value="Ville" for="townInput" />
+					<h:inputText id="townInput" value="#{createUserBean.user.profil.contact.address.town}" class="formInput"/>
+				</h:panelGrid>
+			</div>	
+		</div>
+		
+		<h:commandButton action="#{createUserBean.create()}" value="Valider" class="custom-button"/>
+		
 		</h:form>
+	
+	</div>
 
 	</ui:define>
-
 
 </ui:composition>
 

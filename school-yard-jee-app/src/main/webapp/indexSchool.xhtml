@@ -9,6 +9,7 @@
         <style type="text/css">
             #{indexSchoolBean.styles()}
         </style>
+        <h:outputStylesheet name="common-style.css" library="css"/>
     </ui:define>
 
     <ui:define name="title">Accueil Ecole</ui:define>
@@ -17,12 +18,12 @@
 
         <h:link outcome="teacherSubscriptionForm">Nouveau professeur</h:link>
         <h:link outcome="createUnitForm">Créer du contenu pédagogique</h:link>
+        <h:link outcome="unitsList">Créer du contenu pédagogique</h:link>
 
     </ui:define>
 
     <ui:define name="content">
         <h2>Accueil de l'école</h2>
-
 
 
     </ui:define>
