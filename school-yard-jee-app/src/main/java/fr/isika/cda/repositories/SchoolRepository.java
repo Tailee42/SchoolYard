@@ -20,12 +20,12 @@ public class SchoolRepository {
 		entityManager.persist(school);
 	}
 
-	public Optional<School> getSchoolById(Long id) {
-		School school = entityManager
+	public School getSchoolById(Long id) {
+		return  entityManager
 				.createQuery("SELECT s FROM School s WHERE s.id = :id_param", School.class)
 				.setParameter("id_param", id)
 				.getSingleResult();
-		return Optional.ofNullable(school);
+		
 	}
 
 	public List<School> getAll() {

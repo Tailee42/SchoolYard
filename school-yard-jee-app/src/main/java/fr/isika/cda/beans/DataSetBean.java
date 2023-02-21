@@ -72,11 +72,11 @@ public class DataSetBean {
 				"Pour permettre à vos adhérents de régler leurs achats sur la plateforme");
 		featureRepository.save(feature3);
 
-		Subscription subscription1 = new Subscription(375.00, 12, "Premium");
+		Subscription subscription1 = new Subscription(375.00, 12L, "Premium");
 		subscription1.getFeatures().add(feature3);
 		subscriptionRepository.save(subscription1);
 
-		Subscription subscription2 = new Subscription(170.00, 12, "Basic");
+		Subscription subscription2 = new Subscription(170.00, 12L, "Basic");
 		subscription2.getFeatures().add(feature1);
 		subscriptionRepository.save(subscription2);
 

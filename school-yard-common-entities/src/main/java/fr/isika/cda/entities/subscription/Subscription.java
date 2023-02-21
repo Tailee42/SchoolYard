@@ -16,7 +16,7 @@ public class Subscription {
 	@GeneratedValue
 	private Long id;
 	private Double price;
-	private int duration;
+	private Long duration;
 	private String name;
 
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -25,7 +25,7 @@ public class Subscription {
 	public Subscription() {
 	}
 
-	public Subscription(Double price, int duration, String name) {
+	public Subscription(Double price, Long duration, String name) {
 		super();
 		this.price = price;
 		this.duration = duration;
@@ -40,11 +40,11 @@ public class Subscription {
 		this.price = price;
 	}
 
-	public void setDuration(int duration) {
+	public void setDuration(Long duration) {
 		this.duration = duration;
 	}
 
-	public int getDuration() {
+	public Long getDuration() {
 		return duration;
 	}
 
@@ -68,5 +68,4 @@ public class Subscription {
 		return name;
 	}
 
-	
 }

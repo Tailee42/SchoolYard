@@ -25,7 +25,7 @@ public class CreateStudentBean {
     private Long idSchool;
 
     public String create() {
-        Optional<School> school = schoolRepository.getSchoolById(idSchool);
+        Optional<School> school = Optional.ofNullable(schoolRepository.getSchoolById(idSchool));
         if (school.isPresent()) {
             User user = SessionUtils.getConnectedUser();
             student.setUser(user);
