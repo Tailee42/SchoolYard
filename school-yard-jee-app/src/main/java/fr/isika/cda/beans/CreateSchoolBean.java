@@ -1,6 +1,10 @@
 package fr.isika.cda.beans;
 
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
@@ -16,15 +20,10 @@ import fr.isika.cda.entities.subscription.Subscription;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.repositories.FeatureRepository;
 import fr.isika.cda.repositories.MemberRepository;
-import fr.isika.cda.repositories.MembershipRepository;
 import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.repositories.SubscriptionRepository;
 import fr.isika.cda.utils.FileUtils;
 import fr.isika.cda.utils.SessionUtils;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.UUID;
 
 @ManagedBean
 @SessionScoped
@@ -53,8 +52,7 @@ public class CreateSchoolBean {
 		school.setLogo(createImagePath());
 		school.setStatusSchool(StatusSchool.TOPUBLISH);
 		schoolRepository.save(school);
-		Admin admin = createAdmin();
-		memberRepository.save(admin);
+		memberRepository.save(createAdmin());
 
 		return "schoolMembershipForm";
 	}
