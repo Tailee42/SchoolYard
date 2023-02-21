@@ -22,23 +22,8 @@
 
     <ui:define name="content">
         <h2>Accueil de l'école</h2>
-	<ui:repeat value="#{schoolsListBean.allSchools()}" var="s"
-				varStatus="status">
-				<!--			TODO Rajouter ici le style pour la couleur de l'école avec le managedbean -->
-				<!--			TODO Rajouter le lien vers la page d'accueil du site (surtout la card ?)  -->
-				<div class="box" style="">
-					<h2>
-						<h:outputText value="#{s.schoolName}" />
-					</h2>
-					<hr />
-					<h:graphicImage value="#{s.logo}" alt="Logo" width="100" />
-					<br />
-					<p>
-						<h:outputText value="#{s.synthesis}" />
-					</p>
-					<h:outputText value="#{s.contact.address.town}" />
-				</div>
-			</ui:repeat>
+
+
 
 
     </ui:define>
