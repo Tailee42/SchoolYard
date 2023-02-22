@@ -24,11 +24,13 @@ public abstract class Activity implements Serializable {
 
 	@ManyToOne
 	protected Teacher teacher;
+	private String title;
 
-	protected Activity(SubjectEnum subject, AcademicLevel level, Teacher teacher) {
+	protected Activity(SubjectEnum subject, AcademicLevel level, Teacher teacher, String title) {
 		this.subject = subject;
 		this.level = level;
 		this.teacher = teacher;
+		this.title = title;
 	}
 
 	protected Activity() {
@@ -60,5 +62,13 @@ public abstract class Activity implements Serializable {
 
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }

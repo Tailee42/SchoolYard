@@ -172,6 +172,7 @@ a:hover {
 /* footer */
 #footer {
     text-align: center;
+    min-height: unset;
 }
 
 /*Div cachées formulaires (id, mdp)*/

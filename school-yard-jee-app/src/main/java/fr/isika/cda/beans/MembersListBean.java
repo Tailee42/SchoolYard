@@ -1,16 +1,21 @@
 package fr.isika.cda.beans;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
+import fr.isika.cda.entities.lesson.SynchronousLesson;
 import fr.isika.cda.entities.school.Admin;
 import fr.isika.cda.entities.school.Member;
+import fr.isika.cda.entities.student.LearningPath;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.teacher.Teacher;
+import fr.isika.cda.repositories.LearningPathRepository;
 import fr.isika.cda.repositories.MemberRepository;
+import fr.isika.cda.repositories.SynchronousLessonRepository;
 import fr.isika.cda.utils.SessionUtils;
 
 @ManagedBean
@@ -18,9 +23,14 @@ public class MembersListBean {
 
 	@Inject
 	private MemberRepository memberRepository;
+	@Inject
+	private SynchronousLessonRepository synchronousLessonRepository;
+	@Inject
+	private LearningPathRepository learningPathRepository;
 
 	private List<Member> members;
 	private String memberRole;
+
 
 	public List<Member> allMembersForOneUser() {
 		members = memberRepository.getAllMembersForOneUser(SessionUtils.getConnectedUser().getId());
@@ -43,6 +53,37 @@ public class MembersListBean {
 		} else {
 			memberRole = "Utilisateur sans aucun rôle";
 		}
+	}
+
+	public List<SynchronousLesson>  getSynchronousLessonLikeTeacher(){
+		List<SynchronousLesson> synchronousLessonList = new ArrayList<>();
+		for (Member member : members) {
+			if (member instanceof Teacher) {
+				synchronousLessonList.addAll(synchronousLessonRepository.getFuturSynchronousLessonsByIdSchool(member.getSchool().getId()));
+			}
+		}
+		return synchronousLessonList;
+	}
+
+	public List<LearningPath>  getSynchronousLessonLikeStudent(){
+		List<LearningPath> learningPathList = new ArrayList<>();
+		for (Member member : members) {
+			if (member instanceof Student) {
+				learningPathList.addAll(learningPathRepository.getLearningPathsByStudentId(member.getId()));
+			}
+		}
+		return learningPathList;
+	}
+
+	public String getStringClassDate(LearningPath learningPath) {
+		SynchronousLesson synchronousLesson = (SynchronousLesson) learningPath.getActivity();
+		final DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		return synchronousLesson.getClassDate().format(customFormatter);
+	}
+
+	public String getStringDuration(LearningPath learningPath) {
+		SynchronousLesson synchronousLesson = (SynchronousLesson) learningPath.getActivity();
+		return synchronousLesson.getDuration();
 	}
 
 	public List<Member> getMembers() {

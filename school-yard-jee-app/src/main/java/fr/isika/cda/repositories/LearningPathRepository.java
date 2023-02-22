@@ -22,4 +22,11 @@ public class LearningPathRepository {
                  .setParameter("id_activity", idActivity)
                  .getResultList();
      }
+
+    public List<LearningPath> getLearningPathsByStudentId(Long idStudent) {
+        return entityManager
+                .createQuery("select l FROM LearningPath l WHERE l.student.id = :id_student", LearningPath.class)
+                .setParameter("id_student", idStudent)
+                .getResultList();
+    }
 }

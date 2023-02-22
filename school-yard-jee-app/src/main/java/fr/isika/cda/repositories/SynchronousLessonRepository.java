@@ -26,4 +26,6 @@ public class SynchronousLessonRepository {
                 .setParameter("id_date", LocalDateTime.now())
                 .getResultList();
     }
+
+
 }
