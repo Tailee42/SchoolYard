@@ -48,11 +48,27 @@ public class SchoolRepository {
 				.setParameter("name_param", name)
 				.getResultList();
 	}
+	
+	public List<School> getActiveSchoolByName(String name, StatusSchool schoolStatus) {
+		return entityManager
+				.createQuery("SELECT s FROM School s WHERE s.schoolName LIKE '%' || :name_param || '%' and s.statusSchool = :status_param", School.class)
+				.setParameter("name_param", name)
+				.setParameter("status_param", schoolStatus)
+				.getResultList();
+	}
 
 	public List<School> getByType(SchoolTypeEnum schoolType) {
 		return entityManager
 				.createQuery("SELECT s FROM School s WHERE s.schoolTypeEnum = :type_param", School.class)
 				.setParameter("type_param", schoolType)
+				.getResultList();
+	}
+	
+	public List<School> getActiveSchoolByType(SchoolTypeEnum schoolType, StatusSchool schoolStatus) {
+		return entityManager
+				.createQuery("SELECT s FROM School s WHERE s.schoolTypeEnum = :type_param and s.statusSchool = :status_param", School.class)
+				.setParameter("type_param", schoolType)
+				.setParameter("status_param", schoolStatus)
 				.getResultList();
 	}
 

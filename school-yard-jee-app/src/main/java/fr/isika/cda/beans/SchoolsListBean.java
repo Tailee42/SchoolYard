@@ -37,11 +37,21 @@ public class SchoolsListBean {
         schools = schoolRepository.getByName(school.getSchoolName());
         return schools;
     }
+    
+    public List<School> getActiveSchoolByName() {
+    	schools = schoolRepository.getActiveSchoolByName(school.getSchoolName(), StatusSchool.PUBLISHED);
+    	return schools;
+    }
 
     public List<School> getByType() {
         if (school.getSchoolTypeEnum() != null) {
             schools = schoolRepository.getByType(school.getSchoolTypeEnum());
         }
+        return schools;
+    }
+    
+    public List<School> getActiveSchoolByType() {	
+        schools = schoolRepository.getActiveSchoolByType(school.getSchoolTypeEnum(), StatusSchool.PUBLISHED);
         return schools;
     }
 
