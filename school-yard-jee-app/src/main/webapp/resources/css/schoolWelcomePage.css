@@ -35,6 +35,7 @@
 	margin: 20px;
 	width: 180px;
 	background:var(--primaryColor);
+	color: var(--textColor);
 	 
 		
 }
