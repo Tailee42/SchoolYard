@@ -33,8 +33,11 @@
                     <h2>
                         <h:outputText value="#{m.school.schoolName}"/>
                     </h2>
-                    <hr/>
                     #{membersListBean.getMemberRole(m)}
+                 	<p>
+                        <h:outputText rendered="#{membersListBean.isAdmin(m)}" value="#{m.school.statusSchool.displayValue}"/>
+                    </p>
+                    <hr/>
                     <p>
                         <h:outputText value="Dans cet établissement, vous êtes : "/>
                     </p>

@@ -2,6 +2,7 @@ package fr.isika.cda.beans;
 
 import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.school.School;
+import fr.isika.cda.entities.school.StatusSchool;
 import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.utils.FileUtils;
 import fr.isika.cda.utils.SessionUtils;
@@ -24,6 +25,11 @@ public class SchoolsListBean {
 
     public List<School> allSchools() {
         schools = schoolRepository.getAll();
+        return schools;
+    }
+    
+    public List<School> allActiveSchools() {
+    	schools = schoolRepository.getAllActiveSchool(StatusSchool.PUBLISHED);
         return schools;
     }
 

@@ -1,6 +1,5 @@
 package fr.isika.cda.beans;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -21,6 +20,8 @@ public class MembersListBean {
 
 	private List<Member> members;
 	private String memberRole;
+	
+	private boolean isAdmin = true;
 
 	public List<Member> allMembersForOneUser() {
 		members = memberRepository.getAllMembersForOneUser(SessionUtils.getConnectedUser().getId());
@@ -49,6 +50,14 @@ public class MembersListBean {
 			memberRole = "Utilisateur sans aucun rôle";
 		}
 	}
+	
+	public boolean isAdmin(Member member) {
+		if (member instanceof Admin) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	public List<Member> getMembers() {
 		return members;
@@ -66,4 +75,14 @@ public class MembersListBean {
 		this.memberRole = memberRole;
 	}
 
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	
+	
 }
