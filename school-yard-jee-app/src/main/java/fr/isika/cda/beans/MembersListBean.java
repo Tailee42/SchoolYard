@@ -62,18 +62,14 @@ public class MembersListBean {
 	}
 
 	public boolean isAdmin(Member member) {
-		if (member instanceof Admin) {
-			return true;
-		} else {
-			return false;
-		}
+		return member instanceof Admin;
 	}
 
 	public List<SynchronousLesson>  getSynchronousLessonLikeTeacher(){
 		List<SynchronousLesson> synchronousLessonList = new ArrayList<>();
 		for (Member member : members) {
 			if (member instanceof Teacher) {
-				synchronousLessonList.addAll(synchronousLessonRepository.getFuturSynchronousLessonsByIdSchool(member.getSchool().getId()));
+				synchronousLessonList.addAll(synchronousLessonRepository.getFuturSynchronousLessonsByIdMember(member.getId()));
 			}
 		}
 		return synchronousLessonList;

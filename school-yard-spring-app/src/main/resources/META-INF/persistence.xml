@@ -22,6 +22,7 @@
 		<class>fr.isika.cda.entities.student.Student</class>
 		<class>fr.isika.cda.entities.teacher.Teacher</class>
 		<class>fr.isika.cda.entities.school.Admin</class>
+		<class>fr.isika.cda.entities.school.Statistics</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"

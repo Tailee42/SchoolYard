@@ -19,10 +19,10 @@ public class SynchronousLessonRepository {
     }
 
 
-    public List<SynchronousLesson> getFuturSynchronousLessonsByIdSchool(Long id) {
+    public List<SynchronousLesson> getFuturSynchronousLessonsByIdMember(Long id) {
         return entityManager
-                .createQuery("SELECT sc FROM SynchronousLesson sc WHERE sc.teacher.school.id = :id_school AND sc.classDate > :id_date", SynchronousLesson.class)
-                .setParameter("id_school", id)
+                .createQuery("SELECT sc FROM SynchronousLesson sc WHERE sc.teacher.id = :id_member AND sc.classDate > :id_date", SynchronousLesson.class)
+                .setParameter("id_member", id)
                 .setParameter("id_date", LocalDateTime.now())
                 .getResultList();
     }

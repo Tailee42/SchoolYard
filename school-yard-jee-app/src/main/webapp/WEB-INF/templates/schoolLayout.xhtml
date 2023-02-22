@@ -48,12 +48,12 @@
             <ui:fragment rendered="#{indexSchoolBean.isTeacher() and indexSchoolBean.isAsynchronousLesson()}">
                 <h:link outcome="createUnitForm">Créer du contenu pédagogique</h:link>
             </ui:fragment>
-
+            <ui:insert name="navbar-link"></ui:insert>
             <!--            TODO rajouter les liens pour accéder aux cours particuliers et aux contenus -->
             <ui:fragment rendered="#{indexSchoolBean.isUserConnected()}">
                 <h:form class="inline">
                     <h:commandLink action="#{indexSchoolBean.logoutSchool()}">Tableau de bord</h:commandLink>
-                    <ui:insert name="navbar-link"></ui:insert>
+
                 </h:form>
             </ui:fragment>
 
@@ -74,7 +74,7 @@
         <div class="navbar-mobile">
             <i class="fas fa-bars"></i>
             <div class="modal">
-                <div id="navbar-mobile-list">>
+                <div id="navbar-mobile-list">
                     <!-- Se recopie tout seul avec le code burgerMenu.js -->
                 </div>
             </div>

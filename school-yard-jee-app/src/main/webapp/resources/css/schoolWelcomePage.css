@@ -8,7 +8,7 @@
 
 .divsection1, .divsection2{
 	border: 3px solid black;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
 
 .divsection1 {
@@ -31,17 +31,23 @@
 		
 }
 
+.button {
+	margin-top: 20px;
+}
+
 .button .custom-button {
 	margin: 20px;
+	padding: 10px 20px 10px 20px;
 	width: 180px;
 	background:var(--primaryColor);
 	color: var(--textColor);
-	 
-		
+	font-weight: bold;
 }
 
 .custom-button:hover {
+	transition: 0.4s ease;
 	background: var(--accentColor);
 	color: var(--textColor);
+	font-weight: bold;
 	
 }
