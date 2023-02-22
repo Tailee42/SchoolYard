@@ -81,11 +81,8 @@ public class SchoolController {
 		Optional<School> optional = schoolService.findById(id);
 		if(optional.isPresent()) {
 			School school = optional.get();
-			System.out.println("je suis la sub n° "+subscription.getId());
-			System.out.println("je suis l'école n°"+school.getId());
 			school.getMembership().setSubscription(subscription);	
 			schoolService.updateSchool(school);
-			System.out.println("je suis l'ecole n° "+school.getId()+" et j'ai un membership qui l'abonnement n° "+school.getMembership().getSubscription().getId()+" la modification de l'abo concerne le n° "+subscription.getId());
 		}
 		return new ModelAndView("redirect:/schoolForm/?id="+id);
 	}

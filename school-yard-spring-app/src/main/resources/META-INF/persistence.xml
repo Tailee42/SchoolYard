@@ -19,7 +19,9 @@
 		<class>fr.isika.cda.entities.school.SchoolPage</class>
 		<class>fr.isika.cda.entities.school.SchoolValue</class>
 		<class>fr.isika.cda.entities.school.Theme</class>
-
+		<class>fr.isika.cda.entities.student.Student</class>
+		<class>fr.isika.cda.entities.teacher.Teacher</class>
+		<class>fr.isika.cda.entities.school.Admin</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"
