@@ -10,6 +10,11 @@
     color: var(--grayishBlue);
 }
 
+.schoolStatus {
+	font-size: 14px;
+	text-align: right;
+}
+
 .box {
     background-color : var(--snow);
     border-top: 3px solid var(--color);
