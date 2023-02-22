@@ -145,6 +145,19 @@ a:hover {
     );
 }
 
+.link a {
+    transition: unset;
+    color: var(--textColor);
+    font-weight: unset;
+    background: unset;
+    background-size: unset;
+    padding: unset;
+}
+
+.link a:hover {
+    background: unset;
+}
+
 /* Style du nom utilisateur */
 .nomUtilisateur {
     text-align: right;
@@ -187,6 +200,5 @@ a:hover {
 
 
 section {
-    clip-path: polygon(0 12%, 100% 0, 100% 88%, 0 100%);
     padding: 30px 0 30px 0;
 }

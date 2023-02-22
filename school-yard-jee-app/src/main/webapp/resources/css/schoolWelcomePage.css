@@ -6,8 +6,8 @@
 	text-align: center;
 }
 
-.divsection1, .divsection2, .divsection3 {
-	border: 3px solid black; 
+.divsection1, .divsection2{
+	border: 3px solid black;
 	margin-bottom: 10px;
 }
 
@@ -16,29 +16,29 @@
 	flex-direction: column;
 	height: 300px;
 	justify-content: center;
-	
 }
 
 .divsection2 {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	
-	
 }
 
 .divsection3 {
 	display: flex;
 	justify-content: center;
 	border: none;
-	
+		
 }
 
-.button1 {
-	margin-right: 20px;
+.button .custom-button {
+	margin: 20px;
+	width: 180px;
+	background: rgb(2, 0, 36);
+	background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%,
+		rgba(9, 85, 121, 1) 35%, rgba(6, 126, 164, 1) 56%,
+		rgba(4, 151, 191, 1) 69%, rgba(41, 69, 193, 1) 100%);
+		
 }
 
-.button2 {
-	margin-left: 20px;
-}
 

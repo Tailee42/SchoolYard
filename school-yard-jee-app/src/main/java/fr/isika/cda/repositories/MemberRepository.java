@@ -38,4 +38,14 @@ public class MemberRepository {
         return Optional.ofNullable(member);
     }
 
+    //Method to display on schoolIndex page
+	public List<Member> getAllSchoolsMembers(Long schoolId) {
+		return entityManager
+				.createQuery("SELECT m FROM Member m WHERE m.school.id = :schoolId_param",Member.class)
+				.setParameter("schoolId_param", schoolId)
+				.getResultList();
+	}
+	
+	
+	
 }

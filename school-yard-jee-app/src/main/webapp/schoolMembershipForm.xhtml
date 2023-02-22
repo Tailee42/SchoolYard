@@ -5,12 +5,20 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="cards.css" library="css"/>
+		<h:outputStylesheet name="buttons.css" library="css"/>
+	</ui:define>
+
 	<ui:define name="title">Choix de l'abonnement école</ui:define>
 
 	<ui:define name="header">
 
 		<h:link outcome="index">Accueil</h:link>
 		<h:link outcome="userDashboard">Tableau de bord</h:link>
+		<h:form class="inline">
+			<h:commandLink action="#{loginBean.logout()}" rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+		</h:form>
 
 	</ui:define>
 
@@ -18,40 +26,40 @@
 		<h1>Choix de l'abonnement</h1>
 		<h:form id="createMembership" enctype="multipart/form-data">
 
-			<h:dataTable border="1" value="#{createSchoolBean.subscriptions()}"
-				var="s">
+			<div class="container">
 
-				<h:column>
-					<f:facet name="header"> Nom </f:facet>
-					<h:outputText value="#{s.name}" />
-				</h:column>
+				<ui:repeat value="#{createSchoolBean.subscriptions()}" var="s">
+					<div class="box">
+						<h2>
+							<h:outputText value="#{s.name}" />
+						</h2>
+						<hr />
+						<h3>Fonctionnalités</h3>
+						<p>
+							<ui:repeat var="f" value="#{s.features}">
+								<h:outputText value="#{f.featureTitle}" />
+							</ui:repeat>
+						</p>
+						<hr/>
+						<h3>Durée</h3>
+						<p>
+							<h:outputText value="#{s.duration} mois" />
+						</p>
+						<hr/>
+						<h3>Prix</h3>
+						<p>
+							<h:outputText value="#{s.price}€" />
+						</p>
 
-				<h:column>
+						<h:form>
+							<h:commandButton value="souscrire" action="#{createSchoolBean.setMembership(s)}"
+											 class="custom-button"/>
+							<br />
+						</h:form>
 
-					<f:facet name="header"> fonctionnalités </f:facet>
-					<ui:repeat var="f" value="#{s.features}">
-					<h:outputText value="#{f.featureTitle}" />
-					</ui:repeat>
-				</h:column>
-
-				<h:column>
-					<f:facet name="header"> Durée </f:facet>
-					<h:outputText value="#{s.duration} mois" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header"> Prix </f:facet>
-					<h:outputText value="#{s.price}€" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">
-					Choix
-					</f:facet>
-					<h:commandButton value="souscrire" action="#{createSchoolBean.setMembership(s)}" />
-				</h:column>
-			</h:dataTable>
-
+					</div>
+				</ui:repeat>
+			</div>
 
 		</h:form>
 

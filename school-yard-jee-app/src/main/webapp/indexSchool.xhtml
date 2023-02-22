@@ -7,26 +7,14 @@
 
 	<ui:define name="cssFiles">
 		<h:outputStylesheet name="schoolWelcomePage.css" library="css" />
-    #{indexSchoolBean.getSchoolsInformations()}
-        <style type="text/css">
-            #{indexSchoolBean.styles()}
-        </style>
-        <h:outputStylesheet name="common-style.css" library="css"/>
-    </ui:define>
-
-    <ui:define name="title">Accueil Ecole</ui:define>
-
-    <ui:define name="header">
-
-        <h:link outcome="teacherSubscriptionForm">Nouveau professeur</h:link>
-        <h:link outcome="createUnitForm">Créer du contenu pédagogique</h:link>
-        <h:link outcome="unitsList">Créer du contenu pédagogique</h:link>
+		<h:outputStylesheet name="buttons.css" library="css" />
 
     </ui:define>
 
     <ui:define name="content">
 
 		<div class="container">
+
 
 			<div class="divsection1">
 				<div>
@@ -39,7 +27,6 @@
 			</div>
 
 			<div class="divsection2">
-
 
 			<div>
 			<h:graphicImage
