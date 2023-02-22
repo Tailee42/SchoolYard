@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 
 import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.school.School;
+import fr.isika.cda.entities.school.StatusSchool;
 
 @Stateless
 public class SchoolRepository {
@@ -31,6 +32,15 @@ public class SchoolRepository {
 	public List<School> getAll() {
 		return entityManager
 				.createQuery("SELECT s FROM School s ", School.class)
+				.getResultList();
+	}
+	
+	//Schools without "EXPIRED" or "INACTIVE" status
+	public List<School> getAllActiveSchool(StatusSchool status1, StatusSchool status2) {
+		return entityManager
+				.createQuery("SELECT s FROM School s WHERE s.statusSchool NOT IN (:param1, :param2)", School.class)
+				.setParameter("param1", status1)
+				.setParameter("param2", status2)
 				.getResultList();
 	}
 
