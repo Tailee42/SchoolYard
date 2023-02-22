@@ -31,14 +31,14 @@
                 <h:outputLabel value="Nom école : " for="schoolInput"/>
                 <h:inputText id="schoolInput"
                              value="#{schoolsListBean.school.schoolName }"/>
-                <h:commandButton action="#{schoolsListBean.getByName()}"
+                <h:commandButton action="#{schoolsListBean.getActiveSchoolByName()}"
                                  value="Rechercher" class="custom-little-button" process="@this, searchSchoolByNameForm"/>
             </h:form>
         </h4>
         <br/>
 
         <div class="container">
-            <ui:repeat value="#{schoolsListBean.getByName()}" var="n">
+            <ui:repeat value="#{schoolsListBean.getActiveSchoolByName()}" var="n">
                         <div class="box" style="border-top: 3px solid ##{n.schoolPage.theme.primaryColor}">
                             <h2>
                                 <h:outputText value="#{n.schoolName}"/>

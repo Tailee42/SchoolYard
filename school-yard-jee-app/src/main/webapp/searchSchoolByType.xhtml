@@ -36,14 +36,14 @@
 					<f:selectItems value="#{schoolsListBean.types()}" var="type"
 						itemLabel="#{type}" itemValue="#{type}" />
 				</h:selectOneMenu>
-				<h:commandButton action="#{schoolsListBean.getByType()}"
+				<h:commandButton action="#{schoolsListBean.getActiveSchoolByType()}"
 					value="Rechercher" class="custom-little-button" />
 			</h:form>
 		</h4>
 		<br />
 
 		<div class="container">
-			<ui:repeat value="#{schoolsListBean.getByType()}" var="t">
+			<ui:repeat value="#{schoolsListBean.getActiveSchoolByType()}" var="t">
 
 				<div class="box"
 					style="border-top: 3px solid ##{t.schoolPage.theme.primaryColor}">
