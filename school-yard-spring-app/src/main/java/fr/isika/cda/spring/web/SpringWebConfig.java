@@ -38,16 +38,14 @@ public class SpringWebConfig implements WebMvcConfigurer, ApplicationContextAwar
 
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-		WebMvcConfigurer.super.addResourceHandlers(registry);
-		registry.addResourceHandler("/images/**").addResourceLocations("/images/");
-		registry.addResourceHandler("/css/**").addResourceLocations("/css/");
-		registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+		registry
+		.addResourceHandler("/StaticResources/**")
+		.addResourceLocations("/resources/");
 	}
 
 	@Bean
 	public ResourceBundleMessageSource messageSource() {
-		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-		return messageSource;
+		return new ResourceBundleMessageSource();
 	}
 
 	@Override

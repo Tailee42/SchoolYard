@@ -5,11 +5,12 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-    <ui:define name="metaData">
-        <f:metadata>
-            <f:viewParam name ="school" value = "#{createStudentBean.idSchool}"/>
-        </f:metadata>
-    </ui:define>
+
+    
+    <ui:define name="cssFiles">
+		<h:outputStylesheet name="common-style.css" library="css"/>
+		<h:outputStylesheet name="buttons.css" library="css"/>
+    </ui:define>	
 
     <ui:define name="title">Inscription d'un élève</ui:define>
 
@@ -29,7 +30,7 @@
                 </h:selectOneMenu>
 
                 <h:commandButton action="#{createStudentBean.create()}"
-                                 value="Valider" />
+                                 value="Valider" class="custom-button"/>
 
             </h:panelGrid>
 

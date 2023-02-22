@@ -11,7 +11,7 @@ import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.common.Contact;
 
 @Entity
-public class School implements Serializable   {
+public class School implements Serializable {
 
 	private static final long serialVersionUID = 6759793081150651074L;
 
@@ -22,6 +22,10 @@ public class School implements Serializable   {
 	private String schoolName;
 	private String logo;
 	private String synthesis;
+
+	@OneToOne
+	private Statistics stats;
+
 	@Enumerated(EnumType.STRING)
 	private SchoolTypeEnum schoolTypeEnum;
 
@@ -34,20 +38,19 @@ public class School implements Serializable   {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Contact contact;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Membership membership;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private SchoolPage schoolPage;
 
 	public School() {
 		this.contact = new Contact();
+		this.schoolPage = new SchoolPage();
 	}
 
-
-	public School(String schoolName,
-				  String logo,
-				  String presentation,
-				  List<Member> members,
-				  Contact contact,
-				  SchoolTypeEnum schoolTypeEnum) {
+	public School(String schoolName, String logo, String presentation, List<Member> members, Contact contact,
+			SchoolTypeEnum schoolTypeEnum) {
 
 		this.schoolName = schoolName;
 		this.logo = logo;
@@ -128,6 +131,22 @@ public class School implements Serializable   {
 
 	public Membership getMembership() {
 		return membership;
+	}
+
+	public SchoolPage getSchoolPage() {
+		return schoolPage;
+	}
+
+	public void setSchoolPage(SchoolPage schoolPage) {
+		this.schoolPage = schoolPage;
+	}
+
+	public void setStats(Statistics stats) {
+		this.stats = stats;
+	}
+
+	public Statistics getStats() {
+		return stats;
 	}
 
 }

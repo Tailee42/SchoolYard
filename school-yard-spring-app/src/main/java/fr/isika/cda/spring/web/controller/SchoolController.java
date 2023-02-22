@@ -75,17 +75,14 @@ public class SchoolController {
 	
 	
 	@PostMapping("/modifySchoolSubscription")
-	public ModelAndView modifySchoolSubscription(@RequestParam Long id, @RequestParam String name, @RequestParam double price, @RequestParam int duration, @RequestParam List<Long> featuresId) {		
+	public ModelAndView modifySchoolSubscription(@RequestParam Long id, @RequestParam String name, @RequestParam double price, @RequestParam Long duration, @RequestParam List<Long> featuresId) {		
 		List<Feature> newFeatures = subscriptionController.getFeaturesListFromIds(featuresId);
 		Subscription subscription = subscriptionService.createSubscription(name, price, duration, newFeatures);	
 		Optional<School> optional = schoolService.findById(id);
 		if(optional.isPresent()) {
 			School school = optional.get();
-			System.out.println("je suis la sub n° "+subscription.getId());
-			System.out.println("je suis l'école n°"+school.getId());
 			school.getMembership().setSubscription(subscription);	
 			schoolService.updateSchool(school);
-			System.out.println("je suis l'ecole n° "+school.getId()+" et j'ai un membership qui l'abonnement n° "+school.getMembership().getSubscription().getId()+" la modification de l'abo concerne le n° "+subscription.getId());
 		}
 		return new ModelAndView("redirect:/schoolForm/?id="+id);
 	}

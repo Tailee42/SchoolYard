@@ -31,4 +31,9 @@ public class Student extends Member {
     public void setLevel(AcademicLevel level) {
         this.level = level;
     }
+
+	public void eraseSchool() {
+		this.school = null;
+		
+	}
 }

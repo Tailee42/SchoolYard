@@ -10,6 +10,11 @@
     color: var(--grayishBlue);
 }
 
+.schoolStatus {
+	font-size: 14px;
+	text-align: right;
+}
+
 .box {
     background-color : var(--snow);
     border-top: 3px solid var(--color);
@@ -27,6 +32,10 @@
 
 img {
     float: right;
+}
+
+.container{
+   z-index: 300;
 }
 
 @media (max-width: 450px) {
@@ -53,11 +62,12 @@ h2, h3, h4 {
     .container {
         display: flex;
         justify-content: center;
-        align-items: stretch;
+        align-items: center;
         flex-wrap: wrap;
     }
 
     .box {
+        height: 90%;
         width: 300px;
         flex-wrap: wrap;
     }

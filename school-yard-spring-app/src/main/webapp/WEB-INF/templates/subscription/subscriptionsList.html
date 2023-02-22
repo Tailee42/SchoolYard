@@ -2,20 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
 <title>Liste des abonnements</title>
+<link rel="stylesheet" type="text/css"
+	href="/school-yard-spring-app/StaticResources/css/stylesheet.css">
+<link rel="stylesheet" type="text/css"
+	href="/school-yard-spring-app/StaticResources/css/tableau.css">
 </head>
 
 <body>
-	
+
 	<nav>
-	<ul>
-		<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
-		<li><a th:href="@{/usersList}">Users</a></li>
-		<li><a th:href="@{/schoolsList}">Ecoles</a></li>
-		<li><a th:href="@{/featuresList}">Fonctionnalités</a></li>
-	</ul>
+		<ul>
+			<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
+			<li><a th:href="@{/usersList}">Users</a></li>
+			<li><a th:href="@{/schoolsList}">Ecoles</a></li>
+			<li><a th:href="@{/featuresList}">Fonctionnalités</a></li>
+		</ul>
 	</nav>
-	
-	<h2>Liste des abonnements</h2>
+
+	<h1>Liste des abonnements</h1>
 	<table>
 		<thead>
 			<tr>
@@ -31,13 +35,15 @@
 			<td><span th:text=${subscription.name}></span></td>
 			<td><span th:text=${subscription.price}></span></td>
 			<td><span th:text=${subscription.duration}></span></td>
-			<td>
-				<a th:href="@{deleteSubscription/(id=${subscription.id})}">Supprimer</a>
+			<td><a th:href="@{deleteSubscription/(id=${subscription.id})}">Supprimer</a>
 				<a th:href="@{updateSubscription/(id=${subscription.id})}">Modifier</a>
 			</td>
 		</tr>
 	</table>
-
-	<a th:href="@{/subscriptionForm}">Créer un abonnement</a>
+	
+	<section>
+		<a th:href="@{/subscriptionForm}">Créer un abonnement</a>
+	</section>
+	
 </body>
 </html>

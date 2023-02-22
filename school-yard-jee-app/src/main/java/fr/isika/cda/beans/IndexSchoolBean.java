@@ -1,20 +1,19 @@
 package fr.isika.cda.beans;
 
 import fr.isika.cda.entities.school.School;
-import fr.isika.cda.entities.school.Theme;
+import fr.isika.cda.utils.SessionUtils;
 import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.repositories.SchoolRepository;
-import fr.isika.cda.utils.SessionUtils;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.util.List;
 
 @ManagedBean
+@SessionScoped
 public class IndexSchoolBean {
-
-    private Theme theme = new Theme();
 
     private School school = new School();
     @Inject
@@ -24,34 +23,32 @@ public class IndexSchoolBean {
         school = SessionUtils.getCurrentSchool();
     }
 
-    public Boolean isTeacher() {
+    public boolean isTeacher() {
         return (SessionUtils.getConnectedMember() instanceof Teacher);
     }
 
-    public Boolean isSynchronousLesson() {
-        Boolean validation = false;
-        if (school != null) {
+    public boolean isUserConnected() {
+        return SessionUtils.isUserConnected();
+    }
+
+    public boolean isSynchronousLesson() {
+
             List<Feature> features = school.getMembership().getSubscription().getFeatures();
             for (Feature feature : features) {
                 if ("Cours online".equals(feature.getFeatureTitle())) {
-                    validation = true;
-                    break;
+                    return true;
                 }
             }
-        }
-        return validation;
+        return false;
     }
 
-    public Boolean isAsynchronousLesson() {
-        Boolean validation = false;
-        if (school != null) {
+    public boolean isAsynchronousLesson() {
             for (Feature feature : school.getMembership().getSubscription().getFeatures()) {
                 if ("Cours offline".equals(feature.getFeatureTitle())) {
-                    validation = true;
+                    return true;
                 }
             }
-        }
-        return validation;
+        return false;
     }
 
     public String logoutSchool() {
@@ -63,9 +60,9 @@ public class IndexSchoolBean {
     public String styles() {
         String colorString = new StringBuffer()
                 .append(":root {")
-                .append("--accentColor : #").append(theme.getAccentColor()).append(";")
-                .append("--backgroundColor : #").append(theme.getBackgroundColor()).append(";")
-                .append("--primaryColor : #").append(theme.getPrimaryColor()).append(";")
+                .append("--accentColor : #").append(school.getSchoolPage().getTheme().getAccentColor()).append(";")
+                .append("--backgroundColor : #").append(school.getSchoolPage().getTheme().getBackgroundColor()).append(";")
+                .append("--primaryColor : #").append(school.getSchoolPage().getTheme().getPrimaryColor()).append(";")
                 .append("}")
                 .toString();
 
@@ -76,7 +73,7 @@ public class IndexSchoolBean {
     }
 
     private String getpoliceString() {
-        switch (theme.getFont()) {
+        switch (school.getSchoolPage().getTheme().getFont()) {
             case "PlayfairDisplay":
                 return new StringBuilder()
                         .append("@font-face {\n")

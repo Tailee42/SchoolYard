@@ -44,7 +44,7 @@ public class SubscriptionController {
 
 	@PostMapping("/createSubscription")
 	public ModelAndView createSubscription(@RequestParam String name, @RequestParam Double price,
-			@RequestParam int duration, @RequestParam List<Long> id) {
+			@RequestParam Long duration, @RequestParam List<Long> id) {
 		List<Feature> featuresSelected = getFeaturesListFromIds(id);
 		subscriptionService.createSubscription(name, price, duration, featuresSelected);
 		return new ModelAndView(REDIRECT_SUBSCRIPTION_SUBSCRIPTIONS_LIST);
@@ -67,13 +67,13 @@ public class SubscriptionController {
 	}
 	
 	@PostMapping("/updateSubscription")
-	public ModelAndView updateSubscription(@RequestParam Long id, @RequestParam String subscriptionName, @RequestParam double subscriptionPrice, @RequestParam int subscriptionDuration, @RequestParam List<Long> featureId) {	
+	public ModelAndView updateSubscription(@RequestParam Long id, @RequestParam String subscriptionName, @RequestParam double subscriptionPrice, @RequestParam Long subscriptionDuration, @RequestParam List<Long> featureId) {	
 		List<Feature> featuresSelected = getFeaturesListFromIds(featureId);
 		setSubscriptionNewAttributes(id, subscriptionName, subscriptionPrice, subscriptionDuration, featuresSelected);
 		return new ModelAndView(REDIRECT_SUBSCRIPTION_SUBSCRIPTIONS_LIST);
 	}
 	
-	public void setSubscriptionNewAttributes(Long id, String subscriptionName, double subscriptionPrice, int subscriptionDuration, List<Feature> featuresSelected) {
+	public void setSubscriptionNewAttributes(Long id, String subscriptionName, double subscriptionPrice, Long subscriptionDuration, List<Feature> featuresSelected) {
 		Optional<Subscription> optional = subscriptionService.findById(id);
 		if(optional.isPresent()) {
 		Subscription subscriptionUpdated = optional.get();
@@ -100,8 +100,11 @@ public class SubscriptionController {
 	public List<Feature> getFeaturesListFromIds(List<Long> id) {
 		List<Feature> featuresSelected = new ArrayList<>();
 		for(Long idSelected : id) {
-			Feature featureToAdd = featureService.findById(idSelected);
-			featuresSelected.add(featureToAdd);
+			Optional<Feature> optional = featureService.findById(idSelected);
+			if (optional.isPresent()) {
+				Feature featureToAdd = optional.get();
+				featuresSelected.add(featureToAdd);
+			}
 		}
 		return featuresSelected;
 	}

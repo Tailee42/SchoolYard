@@ -29,6 +29,15 @@ public class SchoolPage implements Serializable {
 		this.theme = new Theme();
 		this.schoolValue = new SchoolValue();	
 	}
+	
+	public SchoolPage(String description, SchoolValue schoolValue, Theme theme) {
+		super();
+		this.description = description;
+		this.schoolValue = schoolValue;
+		this.theme = theme;
+	}
+
+
 
 	public String getDescription() {
 		return description;

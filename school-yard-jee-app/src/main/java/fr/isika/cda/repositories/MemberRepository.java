@@ -36,6 +36,5 @@ public class MemberRepository {
                 .setParameter("id_user", idUser)
                 .getSingleResult();
         return Optional.ofNullable(member);
-    }
-
+    }	
 }

@@ -1,0 +1,43 @@
+.custom-button, .custom-little-button, .custom-long-button, .custom-student-little-button {
+	width: 130px;
+  	height: 40px;
+  	background: #414143;
+  	background: linear-gradient(0deg, rgba(65,65,67,1) 0%, rgba(129,129,130,1) 100%);
+  	border: none;
+  	color: #E8E9EB;
+  	border-radius: 5px;
+  	cursor: pointer;
+  	box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+   	outline: none;
+   	font-weight: 100;
+   	font-size: 15px;
+	margin: 5px;
+}
+
+.custom-button:hover, .custom-little-button:hover, .custom-long-button:hover, .custom-student-little-button:hover {
+	background: rgb(0,3,255);
+	background: linear-gradient(0deg, rgba(111,111,111,1) 0%, rgba(157,157,157,1) 100%);
+}
+
+/*For buttons in cards and buttons like "Rechercher"*/
+.custom-little-button {
+	width: 90px;
+	height: 25px;
+	font-size: 12px;
+}
+
+/*For buttons where text is too long*/
+.custom-long-button {
+	width: 190px;
+	height: 40px;
+	font-size: 15px;
+}
+
+/*In school cards, "S'inscrire en tant qu'élève"*/
+.custom-student-little-button {
+	width: 190px;
+	height: 25px;
+	font-size: 12px;
+}

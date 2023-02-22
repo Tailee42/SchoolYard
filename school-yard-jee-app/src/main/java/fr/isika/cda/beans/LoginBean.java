@@ -8,6 +8,7 @@ import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.users.User;
+import fr.isika.cda.entities.users.UserStatus;
 import fr.isika.cda.repositories.UserRepository;
 import fr.isika.cda.utils.SessionUtils;
 
@@ -16,6 +17,10 @@ import fr.isika.cda.utils.SessionUtils;
 public class LoginBean {
 
 	private User user = new User();
+	
+	private boolean correctPassword = true;
+	
+	private boolean userActive = true;
 
 	@Inject
 	private UserRepository userRepository;
@@ -39,12 +44,14 @@ public class LoginBean {
 
 	private String validationLogin() {
 		Optional<User> userByLogin = userRepository.getUserByLogin(user.getLogin());
-		if (userByLogin.isPresent() && validatePasswords(userByLogin)) {
+		correctPassword = validatePasswords(userByLogin);
+		userActive = isUserActive(userByLogin);
+		if (userByLogin.isPresent() && correctPassword && userActive) {
 			userRepository.updateLastConnection(userByLogin.get(), LocalDateTime.now());
 			SessionUtils.setConnectedUser(userByLogin.get());
 			return "userDashboard?faces-redirect=true";
 		}
-		return "login";
+		return "";
 	}
 
 	private boolean validatePasswords(Optional<User> userByLogin) {
@@ -54,6 +61,15 @@ public class LoginBean {
 			return false;
 		}
 	}
+	
+	private boolean isUserActive(Optional<User> userByLogin) {
+		if (userByLogin.isPresent()) {
+			return userByLogin.get().getStatus().equals(UserStatus.ACTIVE);
+		} else {
+			return false;
+		}
+	}
+	
 
 	public User getUser() {
 		return user;
@@ -62,4 +78,23 @@ public class LoginBean {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	public boolean getCorrectPassword() {
+		return correctPassword;
+	}
+
+	public void setCorrectPassword(boolean correctPassword) {
+		this.correctPassword = correctPassword;
+	}
+
+	public boolean isUserActive() {
+		return userActive;
+	}
+
+	public void setUserActive(boolean userActive) {
+		this.userActive = userActive;
+	}
+
+
+	
 }

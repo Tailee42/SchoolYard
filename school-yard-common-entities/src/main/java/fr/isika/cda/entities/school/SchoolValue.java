@@ -18,6 +18,17 @@ public class SchoolValue implements Serializable {
 	private String descriptionValue;
 	private String picture;
 
+	
+	public SchoolValue() {
+	}
+	
+	public SchoolValue(String titleValue, String descriptionValue, String picture) {
+		super();
+		this.titleValue = titleValue;
+		this.descriptionValue = descriptionValue;
+		this.picture = picture;
+	}
+
 	public String getTitleValue() {
 		return titleValue;
 	}
@@ -45,5 +56,4 @@ public class SchoolValue implements Serializable {
 	public Long getId() {
 		return id;
 	}
-	
 }

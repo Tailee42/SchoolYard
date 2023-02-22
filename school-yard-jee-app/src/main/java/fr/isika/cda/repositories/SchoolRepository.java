@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 
 import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.school.School;
+import fr.isika.cda.entities.school.StatusSchool;
 
 @Stateless
 public class SchoolRepository {
@@ -20,17 +21,28 @@ public class SchoolRepository {
 		entityManager.persist(school);
 	}
 
-	public Optional<School> getSchoolById(Long id) {
-		School school = entityManager
+	public void update(School school) {
+		entityManager.merge(school);
+	}
+
+	public School getSchoolById(Long id) {
+		return  entityManager
 				.createQuery("SELECT s FROM School s WHERE s.id = :id_param", School.class)
 				.setParameter("id_param", id)
 				.getSingleResult();
-		return Optional.ofNullable(school);
+		
 	}
 
 	public List<School> getAll() {
 		return entityManager
 				.createQuery("SELECT s FROM School s ", School.class)
+				.getResultList();
+	}
+	
+	public List<School> getAllActiveSchool(StatusSchool status1) {
+		return entityManager
+				.createQuery("SELECT s FROM School s WHERE s.statusSchool = :param1", School.class)
+				.setParameter("param1", status1)
 				.getResultList();
 	}
 
@@ -40,6 +52,14 @@ public class SchoolRepository {
 				.setParameter("name_param", name)
 				.getResultList();
 	}
+	
+	public List<School> getActiveSchoolByName(String name, StatusSchool schoolStatus) {
+		return entityManager
+				.createQuery("SELECT s FROM School s WHERE s.schoolName LIKE '%' || :name_param || '%' and s.statusSchool = :status_param", School.class)
+				.setParameter("name_param", name)
+				.setParameter("status_param", schoolStatus)
+				.getResultList();
+	}
 
 	public List<School> getByType(SchoolTypeEnum schoolType) {
 		return entityManager
@@ -47,10 +67,14 @@ public class SchoolRepository {
 				.setParameter("type_param", schoolType)
 				.getResultList();
 	}
-
-
-	public void update(School school) {
-		entityManager.merge(school);
+	
+	public List<School> getActiveSchoolByType(SchoolTypeEnum schoolType, StatusSchool schoolStatus) {
+		return entityManager
+				.createQuery("SELECT s FROM School s WHERE s.schoolTypeEnum = :type_param and s.statusSchool = :status_param", School.class)
+				.setParameter("type_param", schoolType)
+				.setParameter("status_param", schoolStatus)
+				.getResultList();
 	}
+
 
 }

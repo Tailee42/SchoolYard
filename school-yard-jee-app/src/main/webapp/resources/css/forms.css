@@ -1,0 +1,66 @@
+:root {
+	--paddingLeft: 0px 0px 0px 15px;
+	--borderInput: 1px solid var(--accentColor);
+}
+
+.form-container {
+	display: flex;
+	justify-content: row;
+	align-items: center;
+}
+
+form {
+	padding: var(--paddingLeft);
+	border-left: 5px var(--accentColor) solid;
+	width:100%
+}
+
+.grid {
+	width: 70%;
+}
+
+.formInput, .formNumInput {
+	border: var(--borderInput);
+	border-radius: 60px;
+	margin: 5px 0px;
+	height: 35px;
+	width: 80%;
+	padding: 10px 15px;
+	font-size: 15px;
+	font-weight: 100;
+}
+
+.formNumInput{
+	width: 30%;
+}
+
+.formInput:focus, .formNumInput:focus {
+	outline: none;
+	background: var(--accentColor);
+	color:var(--textColor);
+}
+
+label {
+	font-weight: 500;
+}
+
+.custom-button {
+	margin-top: 30px;
+}
+
+@media (max-width: 950px) {
+	.form-container {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	
+	.grid {
+		width: 80%;
+	}
+}
+
+
+	
+
+
+

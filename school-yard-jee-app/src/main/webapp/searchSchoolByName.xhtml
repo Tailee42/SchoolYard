@@ -1,69 +1,83 @@
 <ui:composition template="/WEB-INF/templates/commonLayout.xhtml"
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
 
-	<ui:define name="cssFiles">
-		<h:outputStylesheet name="cards.css" library="css" />
-	</ui:define>
+    <ui:define name="cssFiles">
+        <h:outputStylesheet name="cards.css" library="css"/>
+        <h:outputStylesheet name="buttons.css" library="css"/>
+    </ui:define>
 
-	<ui:define name="title">Rechercher école par nom</ui:define>
+    <ui:define name="title">Rechercher école par nom</ui:define>
 
-	<ui:define name="header">
-		<h:link outcome="schoolsList">Liste des écoles</h:link>
-		<h:link outcome="searchSchoolByType">Rechercher école par type</h:link>
-		<h:link outcome="userDashboard" rendered="#{welcomeBean.userConnected}">Tableau de bord</h:link>
-		<h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:link>
-		<h:form class="inline">
-			<h:commandLink action="#{loginBean.logout()}" rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
-		</h:form>
-	</ui:define>
+    <ui:define name="header">
+        <h:link outcome="schoolsList">Liste des écoles</h:link>
+        <h:link outcome="searchSchoolByType">Rechercher école par type</h:link>
+        <h:link outcome="userDashboard" rendered="#{welcomeBean.userConnected}">Tableau de bord</h:link>
+        <h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:link>
+        <h:form class="inline">
+            <h:commandLink action="#{loginBean.logout()}"
+                           rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+        </h:form>
+    </ui:define>
 
-	<ui:define name="content">
-		<h1>Rechercher école par nom</h1>
-		<br />
-		<h4>
-			<h:form id="searchSchoolByNameForm">
-				<h:outputLabel value="Nom école : " for="schoolInput" />
-				<h:inputText id="schoolInput"
-					value="#{schoolsListBean.school.schoolName }" />
-				<h:commandButton action="#{schoolsListBean.getByName()}"
-					value="Rechercher" />
-			</h:form>
-		</h4>
-		<br />
+    <ui:define name="content">
+        <h1>Rechercher école par nom</h1>
+        <br/>
+        <h4>
+            <h:form id="searchSchoolByNameForm">
+                <h:outputLabel value="Nom école : " for="schoolInput"/>
+                <h:inputText id="schoolInput"
+                             value="#{schoolsListBean.school.schoolName }"/>
+                <h:commandButton action="#{schoolsListBean.getActiveSchoolByName()}"
+                                 value="Rechercher" class="custom-little-button"
+                                 process="@this, searchSchoolByNameForm"/>
+            </h:form>
+        </h4>
+        <br/>
 
-		<div class="container">
-			<ui:repeat value="#{schoolsListBean.getByName()}" var="n">
-				<div class="box">
-					<h2>
-						<h:outputText value="#{n.schoolName}" />
-					</h2>
-					<hr />
-					<h:graphicImage value="#{n.logo}" alt="Logo" width="100" />
-					<br />
-					<p>
-						<h:outputText value="#{n.synthesis}" />
-					</p>
-					<h:outputText value="#{n.contact.email}" />
-					<br />
-					<h:outputText value="#{n.contact.phone}" />
-					<br />
-					<h:outputText value="#{n.contact.address.town}" />
-					<br /> <br />
-					<h:button value="S'inscrire en tant qu'élève"
-						outcome="studentSubscriptionForm">
-						<f:param name="school" value="#{n.id}" />
-					</h:button>
-					<br /> <br />
-					<h:button value="Postuler" outcome="teacherSubscriptionForm">
-						<f:param name="school" value="#{n.id}" />
-					</h:button>
-				</div>
-			</ui:repeat>
-		</div>
-	</ui:define>
+        <div class="container">
+
+            <ui:repeat value="#{schoolsListBean.getActiveSchoolByName()}" var="n">
+                <h:form class="link">
+                    <h:commandLink action="#{schoolsListBean.navigationIndexSchool(n)}">
+                        <div class="box" style="border-top: 3px solid ##{n.schoolPage.theme.primaryColor}">
+                            <h2>
+                                <h:outputText value="#{n.schoolName}"/>
+                            </h2>
+                            <hr/>
+                            <h:graphicImage value="#{n.logo}" alt="Logo" width="100"/>
+                            <br/>
+                            <p>
+                                <h:outputText value="#{n.synthesis}"/>
+                            </p>
+                            <h:outputText value="#{n.contact.email}"/>
+                            <br/>
+                            <h:outputText value="#{n.contact.phone}"/>
+                            <br/>
+                            <h:outputText value="#{n.contact.address.town}"/>
+                            <br/> <br/>
+
+                            <ui:fragment rendered="#{welcomeBean.isUserConnected()}">
+                                <h:button value="S'inscrire en tant qu'élève"
+                                          outcome="studentSubscriptionForm" class="custom-student-little-button">
+                                    <f:param name="school" value="#{n.id}"/>
+                                </h:button>
+                                <br/> <br/>
+                                <h:button value="Postuler" outcome="teacherSubscriptionForm"
+                                          class="custom-little-button">
+                                    <f:param name="school" value="#{n.id}"/>
+                                </h:button>
+                            </ui:fragment>
+
+                        </div>
+                    </h:commandLink>
+                </h:form>
+            </ui:repeat>
+        </div>
+
+    </ui:define>
 
 </ui:composition>

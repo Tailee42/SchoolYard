@@ -1,0 +1,105 @@
+<ui:composition template="WEB-INF/templates/schoolLayout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="cards.css" library="css" />
+	</ui:define>
+
+	<ui:define name="title">Accueil Ecole</ui:define>
+	
+	<ui:define name="navbar-link">
+		<h:form class="inline">
+			<h:commandLink action="#{adminBean.allTeachers()}" >Enseignants</h:commandLink>
+		</h:form>
+		<h:form class="inline">
+			<h:commandLink action="#{adminBean.allStudents()}" >Etudiants</h:commandLink>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="content">
+		<h2>Administrateur école</h2>
+		
+		<h3>Candidatures</h3>
+			<h:outputLabel value="Vous avez #{adminBean.allSchoolCandidates().size()} nouveau(x)
+				candidat(s)."
+				rendered="#{not adminBean.allSchoolCandidates().isEmpty()}" />
+		
+		<!-- 1rst div to display new teachers-candidates -->
+		<div class="container">
+
+			
+
+			<h:outputLabel value="Aucune candidature ..."
+				rendered="#{adminBean.allSchoolCandidates().isEmpty()}" />
+			<ui:repeat value="#{adminBean.allSchoolCandidates()}" var="c" varStatus="status">
+				<div class="box">
+					<h2>
+						<h:outputText value="#{c.user.profil.firstName} " />
+
+						<h:outputText value="#{c.user.profil.lastName}" />
+					</h2>
+					<hr />
+					<p>
+						<h:outputText value="#{c.subject}" />
+					</p>
+					<p>
+						<a href="mailto:#{c.user.profil.contact.email}"> Contacter </a>
+					</p>
+					<p>
+						<br />
+						<h:outputText value="#{c.user.profil.contact.phone}" />
+					</p>
+					<br />
+					<h:outputText value="#{c.user.profil.picturePath}" />
+					<br />
+					<h:form id="updateTeacherStatus">
+						<h:commandButton action="#{adminBean.validateTeacher(c.id)}"
+							value="Valider" />
+						<h:commandButton action="#{adminBean.rejectTeacher(c.id)}"
+							value="Rejeter" />
+					</h:form>
+				</div>
+			</ui:repeat>
+		</div>
+
+		<hr />
+
+		<!-- 2nd div to place alongside the first, displaying lesson to validate or reject -->
+		<h3>Nouveaux cours proposés </h3>
+		<div class="container">
+
+			<h:outputLabel value="Aucun nouveau cours..."
+				rendered="#{adminBean.unitsToUpdate().isEmpty()}" />
+
+			<ui:repeat value="#{adminBean.unitsToUpdate()}" var="u"
+				varStatus="status">
+				<div class="box">
+					<h3>
+						<h:outputText value="#{u.teacher.user.fullName()} " />
+					</h3>
+					<h:outputText value="#{u.level}" />
+					<hr />
+					<p>
+						<h:outputText value="#{u.subject}" />
+					</p>
+					<p>bouton consulter</p>
+					<h:form id="updateUnitStatus">
+						<h:commandButton action="#{adminBean.validateUnit(u.id)}"
+							value="Valider" />
+						<h:commandButton action="#{adminBean.rejectUnit(u.id)}"
+							value="Refuser" />
+					</h:form>
+				</div>
+			</ui:repeat>
+		</div>
+
+<hr />
+
+	</ui:define>
+
+
+</ui:composition>

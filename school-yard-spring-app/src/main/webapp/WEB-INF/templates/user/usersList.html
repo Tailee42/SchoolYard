@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
 <title>Liste des users</title>
-
+<link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/tableau.css">
 </head>
 
 <body>
@@ -16,7 +17,7 @@
 	</ul>
 	</nav>
 	
-	<h2>Liste des utilisateurs</h2>
+	<h1>Liste des utilisateurs</h1>
 	<table>
 		<thead>
 			<tr>
@@ -28,6 +29,7 @@
 				<th>Prénom</th>
 				<th>Email</th>
 				<th>Ville</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tr th:each="user : ${users}">
@@ -39,6 +41,7 @@
 			<td><span th:text=${user.profil.firstName}></span></td>
 			<td><span th:text=${user.profil.contact.email}></span></td>
 			<td><span th:text=${user.profil.contact.address.town}></span></td>
+			<td><a th:href="@{deleteUser/(id=${user.id})}">Supprimer</a></td>
 		</tr>
 	</table>
 

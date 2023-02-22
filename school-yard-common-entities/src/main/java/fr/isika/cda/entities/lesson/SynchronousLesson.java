@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 public class SynchronousLesson extends Activity {
-    private String title;
+
     private String duration;
     private LocalDateTime classDate;
     private int maxStudentNumber;
@@ -28,8 +28,7 @@ public class SynchronousLesson extends Activity {
                              LocalDateTime classDate,
                              int maxStudentNumber,
                              BigDecimal price) {
-        super(subject, level, teacher);
-        this.title = title;
+        super(subject, level, teacher, title);
         this.duration = duration;
         this.classDate = classDate;
         this.maxStudentNumber = maxStudentNumber;
@@ -40,13 +39,6 @@ public class SynchronousLesson extends Activity {
         this.maxStudentNumber = 1;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getDuration() {
         return duration;

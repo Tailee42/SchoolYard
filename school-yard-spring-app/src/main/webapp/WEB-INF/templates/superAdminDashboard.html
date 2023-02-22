@@ -2,12 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
 <title>Dashboard</title>
-<link href="/src/main/resources/static/css/style.css" rel="stylesheet" type="text/css" >
+<link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/stylesheet.css">
 </head>
 
-<body>
-	<h1>Dashboard du SuperAdmin</h1>	
-	
 	<nav>
 	<ul>
 		<li><a th:href="@{/usersList}">Utilisateurs</a></li>
@@ -17,5 +14,7 @@
 	</ul>
 	</nav>
 
+<body>
+	<h1>Dashboard du SuperAdmin</h1>	
 </body>
 </html>
