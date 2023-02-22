@@ -218,7 +218,7 @@ public class DataSetBean {
 		userRepository.save(user14);
 		createStudent(school4, user14, AcademicLevel.CM1);
 
-		// Create User for student (from user21 to user29 for future)
+		// Create user for teacher (from user21 to user29 for future)
 		User user21 = new User("jules", LocalDateTime.of(2022, Month.OCTOBER, 19, 13, 25), RoleTypeEnum.USER,
 				new Security("Jules-789"), new Profil("TESSIER", "Jules", "", new Contact("jules@gmail.com", "06 52 52 52 52",
 						new Address(26, "Rue de la boulangerie", "BRIANCON", "05100"))));
@@ -230,6 +230,12 @@ public class DataSetBean {
 						"06 62 62 62 62", new Address(74, "Rue du téléphérique", "BORDEAUX", "33000"))));
 		userRepository.save(user22);
 		Teacher teacher2 = createTeacher(school2, user22, SchoolTypeEnum.ELEMENTAIRE, SubjectEnum.MATHS);
+		
+		User user23 = new User("minerva", LocalDateTime.of(2022, Month.JULY, 19, 6, 6), RoleTypeEnum.USER,
+				new Security("min"), new Profil("McGonagall", "Minerva", "", new Contact("minerva@gmail.com",
+						"06 01 19 35 23", new Address(4, "rue Privet Drive", "Drancy", "93700"))));
+		userRepository.save(user23);
+		Teacher teacher3 = createTeacher(school1, user23, SchoolTypeEnum.COLLEGE, SubjectEnum.CHIMIE);
 
         //Create some synchronous lessons
         VirtualOption virtual1 = new VirtualOption("www.zoom.fr",

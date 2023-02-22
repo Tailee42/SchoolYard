@@ -29,6 +29,16 @@ public class Teacher extends Member {
 	public Teacher() {
 	}
 
+	/**
+	 * Méthodes fonctionnelles "comportement"
+	 */
+	public void reject() {
+		this.status = TeacherStatusEnum.Rejected;
+	}
+	
+	public void validate() {
+		this.status = TeacherStatusEnum.Approved;
+	}
 
 	public SchoolTypeEnum getSchoolType() {
 		return schoolType;
@@ -53,5 +63,6 @@ public class Teacher extends Member {
 	public TeacherStatusEnum getStatus() {
 		return status;
 	}
+
 
 }

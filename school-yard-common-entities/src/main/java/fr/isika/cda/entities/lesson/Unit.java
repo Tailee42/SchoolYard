@@ -10,7 +10,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-public class Unit implements Serializable{
+public class Unit implements Serializable {
 
 	/**
 	 * 
@@ -26,6 +26,8 @@ public class Unit implements Serializable{
 	private String content;
 
 	private boolean visibility;
+
+	private UnitStatusEnum status;
 
 	@Enumerated(EnumType.STRING)
 	private SubjectEnum subject;
@@ -86,5 +88,13 @@ public class Unit implements Serializable{
 
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
+	}
+
+	public void setStatus(UnitStatusEnum status) {
+		this.status = status;
+	}
+
+	public UnitStatusEnum getStatus() {
+		return status;
 	}
 }

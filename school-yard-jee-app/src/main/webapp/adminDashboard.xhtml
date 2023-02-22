@@ -1,0 +1,151 @@
+<ui:composition template="WEB-INF/templates/schoolLayout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:define name="cssFiles">
+		<style type="text/css">
+#{
+indexSchoolBean
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.styles
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+</style>
+		<h:outputStylesheet name="common-style.css" library="css" />
+	</ui:define>
+
+	<ui:define name="title">Accueil Ecole</ui:define>
+	<ui:define name="header">
+
+		<h:link outcome="teacherSubscriptionForm">Nouveau professeur</h:link>
+		<h:link outcome="createUnitForm">Créer du contenu pédagogique</h:link>
+		<h:link outcome="unitsList">Créer du contenu pédagogique</h:link>
+
+	</ui:define>
+
+	<ui:define name="content">
+		<h2>Accueil de l'école</h2>
+
+<!-- 1rst div to display new teachers-candidates -->
+		<div class="container">
+		<h2>Vous avez <strong>#{adminBean.teachers().size()}</strong> nouveau(x) candidat(s).</h2>
+			<ui:repeat value="#{adminBean.teachers()}" var="t" varStatus="status">
+				<div class="box">
+					<h2>
+						<h:outputText value="#{t.user.profil.firstName} " />
+
+						<h:outputText value="#{t.user.profil.lastName}" />
+					</h2>
+					<hr />
+					<p>
+						<h:outputText value="#{t.subject}" />
+					</p>
+					<p>
+						<a href="mailto:#{t.user.profil.contact.email}"> Contacter </a>
+					</p>
+					<p>
+						<br />
+						<h:outputText value="#{t.user.profil.contact.phone}" />
+					</p>
+					<br />
+					<h:outputText value="#{t.status}" />
+					<br />
+					<h:form id="updateTeacherStatus">
+						<h:commandButton action="#{adminBean.validateTeacher(t.id)}"
+							value="Valider" />
+						<h:commandButton action="#{adminBean.rejectTeacher(t.id)}"
+							value="Rejeter" />
+					</h:form>
+				</div>
+			</ui:repeat>
+		</div>
+		
+		<hr/>
+		
+		<!-- 2nd div to place alongside the first, displaying lesson to validate or reject -->
+				<div class="container">
+				
+				<h3>Units available</h3>
+				<hr/>
+				<h:outputLabel value="No units available ..." rendered="#{adminBean.newSchoolUnits().isEmpty()}"/>
+
+			<ui:repeat value="#{adminBean.newSchoolUnits()}" var="u" varStatus="status">
+				<div class="box">
+					<h2>
+						<h:outputText value="#{u.title} " />
+
+						<h:outputText value="#{u.teacher.user.profil.lastName} #{u.teacher.user.profil.firstName}" />
+					</h2>
+					<hr />
+					<p>
+						<h:outputText value="#{u.subject}" />
+					</p>
+					
+				</div>
+			</ui:repeat>
+		</div>
+		
+
+	</ui:define>
+
+
+</ui:composition>
