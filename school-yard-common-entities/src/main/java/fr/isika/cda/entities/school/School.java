@@ -37,9 +37,13 @@ public class School implements Serializable {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Membership membership;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private SchoolPage schoolPage;
 
 	public School() {
 		this.contact = new Contact();
+		this.schoolPage = new SchoolPage();
 	}
 
 	public School(String schoolName, String logo, String presentation, List<Member> members, Contact contact,
@@ -125,5 +129,16 @@ public class School implements Serializable {
 	public Membership getMembership() {
 		return membership;
 	}
+
+
+	public SchoolPage getSchoolPage() {
+		return schoolPage;
+	}
+
+
+	public void setSchoolPage(SchoolPage schoolPage) {
+		this.schoolPage = schoolPage;
+	}
+	
 
 }
