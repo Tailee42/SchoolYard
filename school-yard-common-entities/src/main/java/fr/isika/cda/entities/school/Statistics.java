@@ -1,9 +1,15 @@
 package fr.isika.cda.entities.school;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class Statistics {
+	
+	@Id
+	@GeneratedValue
+	private Long id;
 
 	private int numberOfTeachers;
 
@@ -34,5 +40,10 @@ public class Statistics {
 	public void setNumberOfTeachers(int numberOfTeachers) {
 		this.numberOfTeachers = numberOfTeachers;
 	}
+	
+	public Long getId() {
+		return id;
+	}
+	
 
 }
