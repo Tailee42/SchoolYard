@@ -44,6 +44,9 @@ body > div {
     background-color: var(--primaryColor);
     min-height: 10vh;
     clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100% );
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
 }
 
 
@@ -97,18 +100,21 @@ body > div {
     display: flex;
     height: 100vh;
     flex-direction: column;
-    /*align-items: center;*/
     justify-content: center;
     gap: 20px;
     padding: 20px;
 }
 
-.navbar-mobile #navbar-mobile-list a {
+.navbar-mobile #navbar-mobile-list a{
     font-size: 2em;
     font-weight: 800;
     padding: 2rem;
     border-bottom: none;
 }
+
+.navbar-mobile #navbar-mobile-list form{
+      padding: 2rem 0 2rem 0;
+  }
 
 /* Style des liens */
 #navbar-desktop a {
