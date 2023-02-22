@@ -6,70 +6,10 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:define name="cssFiles">
-		<style type="text/css">
-#{
-indexSchoolBean
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.styles
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-(
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
-</style>
+		
+	<style type="text/css">
+		#{indexSchoolBean.styles()}
+	</style>
 		<h:outputStylesheet name="common-style.css" library="css" />
 	</ui:define>
 
@@ -85,9 +25,12 @@ indexSchoolBean
 	<ui:define name="content">
 		<h2>Accueil de l'école</h2>
 
-<!-- 1rst div to display new teachers-candidates -->
+		<!-- 1rst div to display new teachers-candidates -->
 		<div class="container">
-		<h2>Vous avez <strong>#{adminBean.teachers().size()}</strong> nouveau(x) candidat(s).</h2>
+			<h2>
+				Vous avez <strong>#{adminBean.teachers().size()}</strong> nouveau(x)
+				candidat(s).
+			</h2>
 			<ui:repeat value="#{adminBean.teachers()}" var="t" varStatus="status">
 				<div class="box">
 					<h2>
@@ -118,32 +61,35 @@ indexSchoolBean
 				</div>
 			</ui:repeat>
 		</div>
-		
-		<hr/>
-		
-		<!-- 2nd div to place alongside the first, displaying lesson to validate or reject -->
-				<div class="container">
-				
-				<h3>Units available</h3>
-				<hr/>
-				<h:outputLabel value="No units available ..." rendered="#{adminBean.newSchoolUnits().isEmpty()}"/>
 
-			<ui:repeat value="#{adminBean.newSchoolUnits()}" var="u" varStatus="status">
+		<hr />
+
+		<!-- 2nd div to place alongside the first, displaying lesson to validate or reject -->
+		<div class="container">
+
+			<h3>Units available</h3>
+			<hr />
+			<h:outputLabel value="No units available ..."
+				rendered="#{adminBean.newSchoolUnits().isEmpty()}" />
+
+			<ui:repeat value="#{adminBean.newSchoolUnits()}" var="u"
+				varStatus="status">
 				<div class="box">
 					<h2>
 						<h:outputText value="#{u.title} " />
 
-						<h:outputText value="#{u.teacher.user.profil.lastName} #{u.teacher.user.profil.firstName}" />
+						<h:outputText
+							value="#{u.teacher.user.profil.lastName} #{u.teacher.user.profil.firstName}" />
 					</h2>
 					<hr />
 					<p>
 						<h:outputText value="#{u.subject}" />
 					</p>
-					
+
 				</div>
 			</ui:repeat>
 		</div>
-		
+
 
 	</ui:define>
 
