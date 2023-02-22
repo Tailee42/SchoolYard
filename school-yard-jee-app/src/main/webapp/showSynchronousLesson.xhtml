@@ -5,6 +5,7 @@
 
     <ui:define name="cssFiles">
         <h:outputStylesheet name="cards.css" library="css"/>
+        <h:outputStylesheet name="buttons.css" library="css"/>
 
     </ui:define>
 
@@ -17,44 +18,46 @@
                        varStatus="status">
 
 
+                <div class="box">
+                    <h2>
+                        <h:outputText value="#{s.title}"/>
+                    </h2>
+                    <h3>
+                        <h:outputText value="#{s.subject}"/>
+                    </h3>
+                    <h3>
+                        <h:outputText value="#{s.level}"/>
+                    </h3>
+                    <hr/>
 
-                    <div class="box">
-                        <h2>
-                            <h:outputText value="#{s.title}"/>
-                        </h2>
-                        <h3>
-                            <h:outputText value="#{s.subject}"/>
-                        </h3>
-                        <h3>
-                            <h:outputText value="#{s.level}"/>
-                        </h3>
-                        <hr/>
+                    <p> Le ou la professeur(e) :
+                        <h:outputText value="#{s.teacher.user.profil.lastName}"/>
+                    </p>
+                    <hr/>
 
-                        <p> Le ou la professeur(e) :
-                            <h:outputText value="#{s.teacher.user.profil.lastName}"/>
-                        </p>
-                        <hr/>
+                    <p>
+                        <h:outputText value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}"/>
+                        <br/>
+                        <h:outputText value="#{s.duration}"/>
+                        <br/>
+                    </p>
 
-                        <h3>
-                            <h:outputText value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}"/>
-                        </h3>
-                        <h3>
-                            <h:outputText value="#{s.duration}"/>
-                        </h3>
+                    <hr/>
+                    <h3>
+                        <h:outputText value="#{s.price}"/> €
+                    </h3>
+                    <p>
+                        Il reste : <h:outputText
+                            value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
+                    </p>
 
-                        <hr/>
-                        <h3>
-                            <h:outputText value="#{s.price}"/> €
-                        </h3>
-                        <p>
-                            Il reste : <h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
-                        </p>
+                    <h:form rendered="#{synchronousLessonBean.isStudent() and not (synchronousLessonBean.freeSeatsNumbers(s) == 0)}">
+                        <h:commandButton action="#{synchronousLessonBean.create(s)}"
+                                         value="Inscription" class="custom-long-button"/>
+                    </h:form>
 
 
-
-
-                    </div>
-
+                </div>
 
 
             </ui:repeat>

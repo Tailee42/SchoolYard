@@ -12,7 +12,7 @@ public class LearningPathRepository {
      @PersistenceContext
     private EntityManager entityManager;
 
-     public void save (LearningPath learningPath) {
+     public void save(LearningPath learningPath) {
          entityManager.persist(learningPath);
      }
 
