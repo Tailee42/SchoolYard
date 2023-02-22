@@ -42,7 +42,7 @@
 			</div>
 
 
-			<h:form class="divsection3">
+			<h:form class="divsection3" rendered="#{welcomeBean.isUserConnected()}">
 				<div class="button">
 					<h:link outcome="studentSubscriptionForm"
 						value="Inscription élève" class="custom-button"  />
