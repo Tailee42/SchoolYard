@@ -23,7 +23,7 @@ form {
 	width: 80%;
 }
 
-.formInput, .formNumInput {
+.formInput, .formNumInput, .searchInput, .searchMenu {
 	border: var(--borderInput);
 	border-radius: 60px;
 	margin: 5px 0px;
@@ -34,11 +34,19 @@ form {
 	font-weight: 100;
 }
 
-.formNumInput{
+.formNumInput, .searchMenu, .searchInput{
 	width: 30%;
 }
 
-.formInput:focus, .formNumInput:focus {
+.searchInput {
+	height: 30px;
+}
+
+.searchMenu {
+	height: 40px;
+}
+
+.formInput:focus, .formNumInput:focus, .searchInput:focus {
 	outline: none;
 	background: var(--accentColor);
 	color:var(--textColor);
@@ -46,6 +54,10 @@ form {
 
 label {
 	font-weight: 500;
+}
+
+.searchLabel{
+	font-weight: bold;
 }
 
 .custom-button {
@@ -63,7 +75,13 @@ label {
 	}
 }
 
+#loginForm .form-container {
+	width: 50%
+}
 
+#loginForm .formNumInput {
+	width: 80%
+}
 	
 
 

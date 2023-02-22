@@ -95,7 +95,7 @@
 							<h:outputLabel value="Numéro : " for="numberInput" />
 							<h:inputText id="numberInput"
 								value="#{createUserBean.user.profil.contact.address.number}"
-								class="formInput" />
+								class="formNumInput" />
 
 							<h:outputLabel value="Voie ou Lieu-dit : " for="streetInput" />
 							<h:inputText id="streetInput"
@@ -109,7 +109,7 @@
 							<h:outputLabel value="Code Postal : " for="zipcodeInput" />
 							<h:inputText id="zipcodeInput"
 								value="#{createUserBean.user.profil.contact.address.zipcode}"
-								class="formInput" required="true"
+								class="formNumInput" required="true"
 								requiredMessage="Veuillez saisir un code postal !"
 								validatorMessage="Le code postal doit contenir 5 chiffres et aucun espace !">
 								<f:validateRegex pattern="(^(\d){5})" for="zipcodeInput" />

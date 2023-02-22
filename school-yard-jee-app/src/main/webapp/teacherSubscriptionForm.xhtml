@@ -29,18 +29,18 @@
 
 			<h:panelGrid columns="1">
 				
-				<h:outputLabel value="Niveau enseigné : " for="selectLevel" />
+				<h:outputLabel value="Niveau enseigné : " for="selectLevel" class="searchLabel"/>
 				<h:selectOneMenu id="selectLevel"
-					value="#{createTeacherBean.teacher.schoolType}">
+					value="#{createTeacherBean.teacher.schoolType}" class="searchInput">
 					<f:selectItem itemLabel="--Selectionner un établissement--"
 						noSelectionOption="true" />
 					<f:selectItems value="#{createTeacherBean.schoolTypes()}"
 						var="levels" itemLabel="#{levels}" itemValue="#{levels}" />
 				</h:selectOneMenu>
 
-				<h:outputLabel value="Matière enseignée : " for="selectSubject" />
+				<h:outputLabel value="Matière enseignée : " for="selectSubject" class="searchLabel"/>
 				<h:selectOneMenu id="selectSubject"
-					value="#{createTeacherBean.teacher.subject}">
+					value="#{createTeacherBean.teacher.subject}" class="searchInput">
 					<f:selectItem itemLabel="--Selectionner une matière--"
 						noSelectionOption="true" />
 					<f:selectItems value="#{createTeacherBean.subjects()}"
@@ -51,8 +51,6 @@
 					value="Valider" class="custom-button"/>
 
 			</h:panelGrid>
-
-
 		</h:form>
 	</ui:define>
 </ui:composition>
