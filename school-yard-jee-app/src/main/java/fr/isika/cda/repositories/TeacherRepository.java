@@ -31,7 +31,7 @@ public class TeacherRepository {
 		return Optional.ofNullable(teacher);
 	}
 
-	public List<Teacher> thisSchoolTeachers(Long schoolId) {
+	public List<Teacher> currentSchoolTeachers(Long schoolId) {
 		return entityManager
 				.createQuery(
 				"SELECT t FROM Teacher t WHERE t.school.id = :schoolId_param AND t.status = :teacherstatus_param",

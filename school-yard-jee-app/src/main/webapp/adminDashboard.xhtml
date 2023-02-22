@@ -6,10 +6,15 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:define name="cssFiles">
-		
-	<style type="text/css">
-		#{indexSchoolBean.styles()}
-	</style>
+
+		<style type="text/css">
+#{
+indexSchoolBean
+.styles
+(
+)
+}
+</style>
 		<h:outputStylesheet name="common-style.css" library="css" />
 	</ui:define>
 
@@ -23,10 +28,15 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h2>Accueil de l'école</h2>
+		<h2>Administrateur école</h2>
+
+
+
 
 		<!-- 1rst div to display new teachers-candidates -->
 		<div class="container">
+		<h:outputLabel value="Aucune candidature ..."
+				rendered="#{adminBean.teachers().isEmpty()}" />
 			<h2>
 				Vous avez <strong>#{adminBean.teachers().size()}</strong> nouveau(x)
 				candidat(s).
@@ -70,22 +80,26 @@
 			<h3>Units available</h3>
 			<hr />
 			<h:outputLabel value="No units available ..."
-				rendered="#{adminBean.newSchoolUnits().isEmpty()}" />
+				rendered="#{adminBean.unitsToUpdate().isEmpty()}" />
 
-			<ui:repeat value="#{adminBean.newSchoolUnits()}" var="u"
+			<ui:repeat value="#{adminBean.unitsToUpdate()}" var="u"
 				varStatus="status">
 				<div class="box">
 					<h2>
-						<h:outputText value="#{u.title} " />
-
-						<h:outputText
-							value="#{u.teacher.user.profil.lastName} #{u.teacher.user.profil.firstName}" />
+						<h:outputText value="#{u.teacher.user.fullName()} " />
 					</h2>
+					<h:outputText value="#{u.level}" />
 					<hr />
 					<p>
 						<h:outputText value="#{u.subject}" />
 					</p>
-
+					<p>
+						bouton consulter
+					</p>
+					<h:form id="updateUnitStatus">
+					<h:commandButton action="#{adminBean.validateUnit(u.id)}" value="Valider" />
+					<h:commandButton action="#{adminBean.rejectUnit(u.id)}" value="Refuser" />
+					</h:form>
 				</div>
 			</ui:repeat>
 		</div>

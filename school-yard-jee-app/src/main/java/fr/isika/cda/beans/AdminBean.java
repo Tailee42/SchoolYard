@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.lesson.Unit;
@@ -17,13 +18,8 @@ import fr.isika.cda.repositories.UnitRepository;
 import fr.isika.cda.utils.SessionUtils;
 
 @ManagedBean
+@SessionScoped
 public class AdminBean {
-
-	@Inject
-	private MemberRepository memberRepository;
-
-	@Inject
-	private SchoolRepository schoolRepository;
 
 	@Inject
 	private TeacherRepository teacherRepository;
@@ -31,12 +27,8 @@ public class AdminBean {
 	@Inject
 	private UnitRepository unitRepository;
 
-	public List<Member> members() {
-		return memberRepository.getAllSchoolsMembers(getThisSchoolId());
-	}
-
 	public String validateTeacher(Long teacherId) {
-		Teacher teacher = getThisTeacher(teacherId);
+		Teacher teacher = getCurrentTeacher(teacherId);
 		teacher.validate();
 
 		teacherRepository.update(teacher);
@@ -44,30 +36,51 @@ public class AdminBean {
 	}
 
 	public String rejectTeacher(Long teacherId) {
-		Teacher teacher = getThisTeacher(teacherId);
+		Teacher teacher = getCurrentTeacher(teacherId);
 		teacher.reject();
 
 		teacherRepository.update(teacher);
 		return "adminDashboard";
 	}
+	
+	public String deleteTeacher(Long teacherId) {
+		Teacher teacher = getCurrentTeacher(teacherId);
+		teacher.eraseSchool();
 
-	public List<Unit> newSchoolUnits() {
-		return unitRepository.thisSchoolUnits(teachersIds(teachers()));
+		teacherRepository.update(teacher);
+		return "adminDashboard";
 	}
-
-	public School getCurrentSchool() {
-		return schoolRepository.getSchoolById(getThisSchoolId());
+	
+	public String validateUnit(Long unitId) {
+		Unit unit = getCurrentUnit(unitId);
+		unit.validate();
+		unitRepository.save(unit);
+		return "adminDashboard?faces-redirect=true";
 	}
-
-	private Teacher getThisTeacher(Long teacherId) {
-		return teacherRepository.getTeacherById(teacherId).get();
+	
+	public String rejectUnit(Long unitId) {
+		Unit unit = getCurrentUnit(unitId);
+		unit.reject();
+		unitRepository.save(unit);
+		return "adminDashboard?faces-redirect=true";
 	}
 
 	public List<Teacher> teachers() {
-		return teacherRepository.thisSchoolTeachers(getThisSchoolId());
+		return teacherRepository.currentSchoolTeachers(getCurrentSchoolId());
 	}
 
-	private Long getThisSchoolId() {
+	public List<Unit> unitsToUpdate() {
+		return unitRepository.currentSchoolUnits(teachersIds(teachers()));
+	}
+
+	private Unit getCurrentUnit(Long unitId) {
+		return unitRepository.getUnitById(unitId);
+	}
+	private Teacher getCurrentTeacher(Long teacherId) {
+		return teacherRepository.getTeacherById(teacherId).get();
+	}
+
+	private Long getCurrentSchoolId() {
 		return SessionUtils.getConnectedMember().getSchool().getId();
 	}
 
