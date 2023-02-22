@@ -16,6 +16,8 @@ import fr.isika.cda.utils.SessionUtils;
 public class LoginBean {
 
 	private User user = new User();
+	
+	private boolean correctPassword = true;
 
 	@Inject
 	private UserRepository userRepository;
@@ -39,12 +41,13 @@ public class LoginBean {
 
 	private String validationLogin() {
 		Optional<User> userByLogin = userRepository.getUserByLogin(user.getLogin());
-		if (userByLogin.isPresent() && validatePasswords(userByLogin)) {
+		correctPassword = validatePasswords(userByLogin);
+		if (userByLogin.isPresent() && correctPassword) {
 			userRepository.updateLastConnection(userByLogin.get(), LocalDateTime.now());
 			SessionUtils.setConnectedUser(userByLogin.get());
 			return "userDashboard?faces-redirect=true";
 		}
-		return "login";
+		return "";
 	}
 
 	private boolean validatePasswords(Optional<User> userByLogin) {
@@ -61,5 +64,9 @@ public class LoginBean {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public boolean getCorrectPassword() {
+		return correctPassword;
 	}
 }
