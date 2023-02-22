@@ -9,7 +9,7 @@
 	align-items: center;
 }
 
-Form {
+form {
 	padding: var(--paddingLeft);
 	border-left: 5px var(--accentColor) solid;
 	width:100%
