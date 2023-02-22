@@ -6,33 +6,28 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:define name="cssFiles">
-		<style type="text/css">#{indexSchoolBean.styles()}</style>
-		<h:outputStylesheet name="common-style.css" library="css" />
+		<h:outputStylesheet name="cards.css" library="css" />
 	</ui:define>
 
 	<ui:define name="title">Accueil Ecole</ui:define>
 	
-	<ui:define name="header">
-
-		<h:link outcome="teacherSubscriptionForm">Nouveau professeur</h:link>
-		<h:link outcome="createUnitForm">Créer du contenu pédagogique</h:link>
-		<h:link outcome="unitsList">Créer du contenu pédagogique</h:link>
-
-	</ui:define>
+<ui:define name="navbar-link">
+<h:commandLink action="#{adminBean.allTeachers()}" >Enseignants</h:commandLink>
+<h:commandLink action="#{adminBean.allStudents()}" >Etudiants</h:commandLink>
+</ui:define>
 
 	<ui:define name="content">
-		<h3>Administrateur école</h3>
-
-
-
-
+		<h2>Administrateur école</h2>
+		
+		<h3>Candidatures</h3>
+			<h:outputLabel value="Vous avez #{adminBean.allSchoolCandidates().size()} nouveau(x)
+				candidat(s)."
+				rendered="#{not adminBean.allSchoolCandidates().isEmpty()}" />
+		
 		<!-- 1rst div to display new teachers-candidates -->
 		<div class="container">
 
-			<h2>
-				Vous avez <strong>#{adminBean.allSchoolCandidates().size()}</strong> nouveau(x)
-				candidat(s).
-			</h2>
+			
 
 			<h:outputLabel value="Aucune candidature ..."
 				rendered="#{adminBean.allSchoolCandidates().isEmpty()}" />
@@ -70,19 +65,18 @@
 		<hr />
 
 		<!-- 2nd div to place alongside the first, displaying lesson to validate or reject -->
+		<h3>Nouveaux cours proposés </h3>
 		<div class="container">
 
-			<h2>Nouveaux cours proposés </h2>
-			<hr />
-			<h:outputLabel value="Aucun nouveau cours."
+			<h:outputLabel value="Aucun nouveau cours..."
 				rendered="#{adminBean.unitsToUpdate().isEmpty()}" />
 
 			<ui:repeat value="#{adminBean.unitsToUpdate()}" var="u"
 				varStatus="status">
 				<div class="box">
-					<h2>
+					<h3>
 						<h:outputText value="#{u.teacher.user.fullName()} " />
-					</h2>
+					</h3>
 					<h:outputText value="#{u.level}" />
 					<hr />
 					<p>
@@ -99,7 +93,7 @@
 			</ui:repeat>
 		</div>
 	
-
+<hr />
 
 	</ui:define>
 

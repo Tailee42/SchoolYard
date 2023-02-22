@@ -50,11 +50,10 @@
             </ui:fragment>
 
             <!--            TODO rajouter les liens pour accéder aux cours particuliers et aux contenus -->
-            <ui:fragment rendered="#{ indexSchoolBean.isUserConnected()}">
+            <ui:fragment rendered="#{indexSchoolBean.isUserConnected()}">
                 <h:form class="inline">
                     <h:commandLink action="#{indexSchoolBean.logoutSchool()}">Tableau de bord</h:commandLink>
-                    <h:commandLink action="#{adminBean.allTeachers()}" >Enseignants</h:commandLink>
-                    <h:commandLink action="#{adminBean.allStudents()}" >Etudiants</h:commandLink>
+                    <ui:insert name="navbar-link"></ui:insert>
                 </h:form>
             </ui:fragment>
 
