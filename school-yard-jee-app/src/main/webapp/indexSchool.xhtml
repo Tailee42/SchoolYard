@@ -8,12 +8,14 @@
 	<ui:define name="cssFiles">
 		<h:outputStylesheet name="buttons.css" library="css" />
 		<h:outputStylesheet name="schoolWelcomePage.css" library="css" />
+
+
+
     </ui:define>
 
     <ui:define name="content">
 
 		<div class="container">
-
 
 			<div class="divsection1">
 				<div>
@@ -40,7 +42,7 @@
 			</div>
 
 
-			<div class="divsection3">
+			<h:form class="divsection3">
 				<div class="button">
 					<h:commandButton action="#{createStudentBean.create()}"
 						value="Inscription élève" class="custom-button"  />
@@ -51,7 +53,7 @@
 						value="Inscription professeur" class="custom-button" />
 				</div>
 
-			</div>
+			</h:form>
 
 		</div>
 	</ui:define>

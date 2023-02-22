@@ -8,6 +8,7 @@ import fr.isika.cda.utils.FileUtils;
 import fr.isika.cda.utils.SessionUtils;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean
+@SessionScoped
 public class SchoolsListBean {
 
     @Inject
@@ -53,6 +55,10 @@ public class SchoolsListBean {
     public List<School> getActiveSchoolByType() {	
         schools = schoolRepository.getActiveSchoolByType(school.getSchoolTypeEnum(), StatusSchool.PUBLISHED);
         return schools;
+    }
+
+    public void reset(){
+        schools = new ArrayList<>();
     }
 
     public String getPathPicture(School school) {

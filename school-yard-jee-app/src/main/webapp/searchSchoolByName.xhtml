@@ -32,13 +32,17 @@
                 <h:inputText id="schoolInput"
                              value="#{schoolsListBean.school.schoolName }"/>
                 <h:commandButton action="#{schoolsListBean.getActiveSchoolByName()}"
-                                 value="Rechercher" class="custom-little-button" process="@this, searchSchoolByNameForm"/>
+                                 value="Rechercher" class="custom-little-button"
+                                 process="@this, searchSchoolByNameForm"/>
             </h:form>
         </h4>
         <br/>
 
         <div class="container">
+
             <ui:repeat value="#{schoolsListBean.getActiveSchoolByName()}" var="n">
+                <h:form class="link">
+                    <h:commandLink action="#{schoolsListBean.navigationIndexSchool(n)}">
                         <div class="box" style="border-top: 3px solid ##{n.schoolPage.theme.primaryColor}">
                             <h2>
                                 <h:outputText value="#{n.schoolName}"/>
@@ -69,6 +73,8 @@
                             </ui:fragment>
 
                         </div>
+                    </h:commandLink>
+                </h:form>
             </ui:repeat>
         </div>
 

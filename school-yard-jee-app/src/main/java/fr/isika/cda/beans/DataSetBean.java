@@ -85,8 +85,8 @@ public class DataSetBean {
 		subscriptionRepository.save(subscription2);
 
 		Subscription subscription3 = new Subscription(300.00, 12L, "Normal");
-		subscription1.getFeatures().add(feature1);
-		subscription1.getFeatures().add(feature2);
+		subscription3.getFeatures().add(feature1);
+		subscription3.getFeatures().add(feature2);
 		subscriptionRepository.save(subscription3);
 
 		Membership membership1 = new Membership(LocalDateTime.of(2024, Month.JANUARY, 5, 10, 30),
@@ -141,8 +141,8 @@ public class DataSetBean {
 				new Theme("D4C685", "F7EF81", "E5F1EB", FontEnum.ROBOTO.name()) );
 		school1.setSchoolPage(schoolPage1);
 		school1.setStatusSchool(StatusSchool.PUBLISHED);
-		schoolRepository.save(school1);
 		school1.setMembership(membership2);
+		schoolRepository.save(school1);
 		createAdmin(user1, school1);
 
 		School school2 = new School("Ecole de la plage", "", "Ecole en plein air", new ArrayList<>(),
@@ -154,8 +154,8 @@ public class DataSetBean {
 				new Theme("FECDAA", "F5F58E", "F8FFF4", FontEnum.UBUNTU.name()) );
 		school2.setSchoolPage(schoolPage2);
 		school2.setStatusSchool(StatusSchool.PUBLISHED);
-		schoolRepository.save(school2);
 		school2.setMembership(membership3);
+		schoolRepository.save(school2);
 		createAdmin(user2, school2);
 
 		School school3 = new School(
@@ -166,6 +166,7 @@ public class DataSetBean {
 		school3.setSchoolPage(schoolPage3);
 		school3.setMembership(membership1);
 		schoolRepository.save(school3);
+		createAdmin(user3, school3);
 
 		School school4 = new School("Collège de la montagne", "", "Collège pour aller plus loin et plus haut",
 				new ArrayList<>(), new Contact("collegeDeLaMontagne@gmail.com", "04 06 06 06 06",
@@ -236,7 +237,7 @@ public class DataSetBean {
 						"06 62 62 62 62", new Address(74, "Rue du téléphérique", "BORDEAUX", "33000"))));
 		userRepository.save(user22);
 		Teacher teacher2 = createTeacher(school2, user22, SchoolTypeEnum.ELEMENTAIRE, SubjectEnum.MATHS);
-		
+
 		User user23 = new User("minerva", LocalDateTime.of(2022, Month.JULY, 19, 6, 6), RoleTypeEnum.USER,
 				new Security("min"), new Profil("McGonagall", "Minerva", "", new Contact("minerva@gmail.com",
 						"06 01 19 35 23", new Address(4, "rue Privet Drive", "Drancy", "93700"))));
@@ -263,12 +264,17 @@ public class DataSetBean {
 				new SynchronousLesson(SubjectEnum.MATHS, AcademicLevel.CM2, teacher2, "Les longueurs", "45 minutes",
 						LocalDateTime.of(2023, Month.APRIL, 12, 9, 45), 3, new BigDecimal("27")));
 		physicalRepository.save(physical2);
-		
+
+		VirtualOption virtual3 = new VirtualOption("www.zoom.fr",
+				"Zoom",
+				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.CINQUIEME, teacher1, "Babylone", "1 heure", LocalDateTime.of(2022, Month.MARCH, 12, 14, 30), 5, new BigDecimal("25")));
+		virtualRepository.save(virtual3);
+
 		//Creating some units
 		Unit unit = new Unit("Lorem Ipsum", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
 				teacher1,AcademicLevel.TROISIEME);
 		unitRepository.save(unit);
-		
+
 		Unit unit2 = new Unit("Lorem Ipsum", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
 				teacher3,AcademicLevel.CINQUIEME);
 		unitRepository.save(unit2);

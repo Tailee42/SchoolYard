@@ -23,11 +23,11 @@
     </ui:define>
 
     <ui:define name="content">
-        <h2>Bienvenue #{welcomeBean.getUserConnectedName()} sur votre
-            espace utilisateur</h2>
+        <h1>Bienvenue #{welcomeBean.getUserConnectedName()} sur votre
+            espace utilisateur</h1>
 
+        <h2>Mes écoles</h2>
         <div class="container">
-
             <ui:repeat value="#{membersListBean.allMembersForOneUser()}" var="m">
                 <div class="box" style="border-top: 3px solid ##{m.school.schoolPage.theme.primaryColor}">
                     <h2>
@@ -54,6 +54,65 @@
                 </div>
             </ui:repeat>
         </div>
+
+        <h2>Mes cours particuliers en tant que professeur</h2>
+        <div class="container">
+            <ui:repeat value="#{membersListBean.getSynchronousLessonLikeTeacher()}" var="s">
+                <div class="box" style="border-top: 3px solid ##{s.teacher.school.schoolPage.theme.primaryColor}">
+                    <h2>
+                        <h:outputText value="#{s.title}"/>
+                    </h2>
+                    <h3>
+                        <h:outputText value="#{s.subject}"/>
+                    </h3>
+                    <h3>
+                        <h:outputText value="#{s.level}"/>
+                    </h3>
+                    <hr/>
+                    <p>
+                        <h:outputText value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}"/>
+                        <br/>
+                        <h:outputText value="#{s.duration}"/>
+                        <br/>
+                    </p>
+
+                    <p>
+                        Il reste : <h:outputText
+                            value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
+                    </p>
+
+
+                </div>
+            </ui:repeat>
+        </div>
+
+        <h2>Mes cours particuliers en tant qu'élève</h2>
+        <div class="container">
+            <ui:repeat value="#{membersListBean.getSynchronousLessonLikeStudent()}" var="l">
+                <div class="box" style="border-top: 3px solid ##{l.student.school.schoolPage.theme.primaryColor}">
+                    <h2>
+                        <h:outputText value="#{l.activity.title}"/>
+                    </h2>
+                    <h3>
+                        <h:outputText value="#{l.activity.subject}"/>
+                    </h3>
+                    <h3>
+                        <h:outputText value="#{l.activity.level}"/>
+                    </h3>
+                    <hr/>
+                    <p>
+                        <h:outputText value="#{membersListBean.getStringClassDate(l)}"/>
+                        <br/>
+                        <h:outputText value="#{membersListBean.getStringDuration(l)}"/>
+                        <br/>
+                    </p>
+
+
+                </div>
+            </ui:repeat>
+        </div>
+
+
     </ui:define>
 
 </ui:composition>

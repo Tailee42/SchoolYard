@@ -34,6 +34,10 @@ img {
     float: right;
 }
 
+.container{
+   z-index: 300;
+}
+
 @media (max-width: 450px) {
     .box {
         min-height: 200px;
@@ -58,7 +62,7 @@ h2, h3, h4 {
     .container {
         display: flex;
         justify-content: center;
-        align-items: stretch;
+        align-items: center;
         flex-wrap: wrap;
     }
 
