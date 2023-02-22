@@ -9,7 +9,7 @@
 	align-items: center;
 }
 
-form {
+.forms {
 	padding: var(--paddingLeft);
 	border-left: 5px var(--accentColor) solid;
 	width:100%
@@ -23,12 +23,12 @@ form {
 	width: 80%;
 }
 
-.formInput, .formNumInput, .searchInput, .searchMenu {
+.formInput, .formNumInput, .searchInput, .searchMenu, .formAreaInput {
 	border: var(--borderInput);
 	border-radius: 60px;
 	margin: 5px 0px;
 	height: 35px;
-	width: 80%;
+	width: 55%;
 	padding: 10px 15px;
 	font-size: 15px;
 	font-weight: 100;
@@ -53,10 +53,6 @@ form {
 }
 
 label {
-	font-weight: 500;
-}
-
-.searchLabel{
 	font-weight: bold;
 }
 
@@ -76,13 +72,18 @@ label {
 }
 
 #loginForm .form-container {
-	width: 50%
+	width: 50%;
 }
 
 #loginForm .formNumInput {
-	width: 80%
+	width: 80%;
 }
-	
 
+.imgInput {
+	width : 55%;
+}
 
+.formAreaInput {
+	height: 70px;
+}
 
