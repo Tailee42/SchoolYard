@@ -17,6 +17,7 @@ import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.repositories.StudentRepository;
 import fr.isika.cda.repositories.TeacherRepository;
 import fr.isika.cda.repositories.UnitRepository;
+import fr.isika.cda.services.adminService;
 import fr.isika.cda.utils.SessionUtils;
 import java.util.Collections;
 
@@ -29,66 +30,60 @@ public class AdminBean {
 
 	@Inject
 	private UnitRepository unitRepository;
-	
+
 	@Inject
 	private StudentRepository studentRepository;
 
-	//méthodes de redirection
+	@Inject
+	private adminService adminService;
+
+	// méthodes de redirection
 	public String allTeachers() {
 		return "schoolTeachersList?faces-redirect=true";
 	}
+
 	public String allStudents() {
 		return "schoolStudentsList?faces-redirect=true";
 	}
 
-	//méthodes métier
+	// méthodes métier
 	public String validateTeacher(Long teacherId) {
 		Teacher teacher = getCurrentTeacher(teacherId);
-		teacher.validate();
-
-		teacherRepository.update(teacher);
+		adminService.validateTeacher(teacher);
 		return "adminDashboard";
 	}
 
 	public String rejectTeacher(Long teacherId) {
 		Teacher teacher = getCurrentTeacher(teacherId);
-		teacher.reject();
-
-		teacherRepository.update(teacher);
+		adminService.rejectTeacher(teacher);
 		return "adminDashboard";
 	}
 
 	public String deleteTeacher(Long teacherId) {
 		Teacher teacher = getCurrentTeacher(teacherId);
-		teacher.eraseSchool();
-
-		teacherRepository.update(teacher);
+		adminService.deleteTeacher(teacher);
 		return "schoolTeachersList";
 	}
 
 	public String validateUnit(Long unitId) {
 		Unit unit = getCurrentUnit(unitId);
-		unit.validate();
-		unitRepository.update(unit);
+		adminService.validateUnit(unit);
 		return "adminDashboard";
 	}
 
 	public String rejectUnit(Long unitId) {
 		Unit unit = getCurrentUnit(unitId);
-		unit.reject();
-		unitRepository.update(unit);
+		adminService.rejectUnit(unit);
 		return "adminDashboard?faces-redirect=true";
 	}
-	
+
 	public String deleteStudent(Long studentId) {
 		Student student = getCurrentStudent(studentId);
-		student.eraseSchool();
-		studentRepository.update(student);
+		adminService.deleteStudent(student);
 		return "schoolStudentsList";
 	}
 
-	
-	//méthode d'affichage
+	// méthode d'affichage
 	public List<Teacher> allSchoolTeachers() {
 		return teacherRepository.currentSchoolTeachers(getCurrentSchoolId());
 	}
@@ -103,13 +98,12 @@ public class AdminBean {
 	public List<Teacher> allSchoolCandidates() {
 		return teacherRepository.allSchoolCandidates(getCurrentSchoolId());
 	}
-	
-	public List<Student> allSchoolStudents(){
+
+	public List<Student> allSchoolStudents() {
 		return studentRepository.currentSchoolStudents(getCurrentSchoolId());
 	}
-	
-	
-	//méthode internes
+
+	// méthode internes
 	private Unit getCurrentUnit(Long unitId) {
 		return unitRepository.getUnitById(unitId);
 	}
@@ -117,6 +111,7 @@ public class AdminBean {
 	private Teacher getCurrentTeacher(Long teacherId) {
 		return teacherRepository.getTeacherById(teacherId).get();
 	}
+
 	private Student getCurrentStudent(Long studentId) {
 		return studentRepository.getStudentById(studentId).get();
 	}

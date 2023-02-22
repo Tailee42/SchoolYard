@@ -23,6 +23,10 @@ public class School implements Serializable {
 	private String schoolName;
 	private String logo;
 	private String synthesis;
+
+	@OneToOne
+	private Statistics stats;
+
 	@Enumerated(EnumType.STRING)
 	private SchoolTypeEnum schoolTypeEnum;
 
@@ -37,7 +41,7 @@ public class School implements Serializable {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Membership membership;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private SchoolPage schoolPage;
 
@@ -130,15 +134,20 @@ public class School implements Serializable {
 		return membership;
 	}
 
-
 	public SchoolPage getSchoolPage() {
 		return schoolPage;
 	}
 
-
 	public void setSchoolPage(SchoolPage schoolPage) {
 		this.schoolPage = schoolPage;
 	}
-	
+
+	public void setStats(Statistics stats) {
+		this.stats = stats;
+	}
+
+	public Statistics getStats() {
+		return stats;
+	}
 
 }

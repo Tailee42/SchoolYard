@@ -92,6 +92,32 @@
 				</div>
 			</ui:repeat>
 		</div>
+		
+		<!-- 3rd div to display some stats about the school -->
+		<h3>Statistiques </h3>
+		<div class="container">
+			<ui:repeat value="#{adminBean.schoolStats()}" var="s"
+				varStatus="status">
+				<div class="box">
+					<h3>
+						<h:outputText value="#{u.teacher.user.fullName()} " />
+					</h3>
+					<h:outputText value="#{u.level}" />
+					<hr />
+					<p>
+						<h:outputText value="#{u.subject}" />
+					</p>
+					<p>bouton consulter</p>
+					<h:form id="updateUnitStatus">
+						<h:commandButton action="#{adminBean.validateUnit(u.id)}"
+							value="Valider" />
+						<h:commandButton action="#{adminBean.rejectUnit(u.id)}"
+							value="Refuser" />
+					</h:form>
+				</div>
+			</ui:repeat>
+		</div>
+		
 	
 <hr />
 
