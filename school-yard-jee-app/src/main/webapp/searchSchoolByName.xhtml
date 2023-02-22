@@ -2,7 +2,6 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
 >
 
     <ui:define name="cssFiles">
@@ -32,13 +31,16 @@
                 <h:inputText id="schoolInput"
                              value="#{schoolsListBean.school.schoolName }"/>
                 <h:commandButton action="#{schoolsListBean.getByName()}"
-                                 value="Rechercher" class="custom-little-button" process="@this, searchSchoolByNameForm"/>
+                                 value="Rechercher" class="custom-little-button"
+                                 process="@this, searchSchoolByNameForm"/>
             </h:form>
         </h4>
         <br/>
 
         <div class="container">
-            <ui:repeat value="#{schoolsListBean.getByName()}" var="n">
+            <ui:repeat value="#{schoolsListBean.schools}" var="n">
+                <h:form class="link">
+                    <h:commandLink action="#{schoolsListBean.navigationIndexSchool(n)}">
                         <div class="box" style="border-top: 3px solid ##{n.schoolPage.theme.primaryColor}">
                             <h2>
                                 <h:outputText value="#{n.schoolName}"/>
@@ -56,19 +58,9 @@
                             <h:outputText value="#{n.contact.address.town}"/>
                             <br/> <br/>
 
-                            <ui:fragment rendered="#{welcomeBean.isUserConnected()}">
-                                <h:button value="S'inscrire en tant qu'élève"
-                                          outcome="studentSubscriptionForm" class="custom-student-little-button">
-                                    <f:param name="school" value="#{n.id}"/>
-                                </h:button>
-                                <br/> <br/>
-                                <h:button value="Postuler" outcome="teacherSubscriptionForm"
-                                          class="custom-little-button">
-                                    <f:param name="school" value="#{n.id}"/>
-                                </h:button>
-                            </ui:fragment>
-
                         </div>
+                    </h:commandLink>
+                </h:form>
             </ui:repeat>
         </div>
 
