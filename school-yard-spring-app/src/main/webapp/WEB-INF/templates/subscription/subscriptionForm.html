@@ -3,6 +3,7 @@
 <head>
 <title>Ajouter un abonnement</title>
 <link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/tableau.css">
 </head>
 
 <body>
@@ -11,7 +12,7 @@
 		<ul>
 			<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
 			<li><a th:href="@{/usersList}">Liste des users</a></li>
-			<li><a th:href="@{/index}">Liste des écoles</a></li>
+			<li><a th:href="@{/schoolsList}">Liste des écoles</a></li>
 			<li><a th:href="@{/featuresList}">Liste des features</a></li>
 			<li><a th:href="@{/subscriptionsList}">Liste des abonnements</a></li>
 		</ul>
@@ -25,10 +26,14 @@
 			<input name="price" th:value="${price}" /> 
 			<label>Durée</label> 
 			<input name="duration" th:value="${duration}" /> 
+			
+			<div class="divOptions">
 			<label>Options à ajouter</label> 
 			<div th:each="featureToDisplay : ${features}">
 			<input type="checkbox" name="id" th:value="${featureToDisplay.id}"/>
-			<label th:text="${featureToDisplay.featureTitle}"/>
+			<label th:text="${featureToDisplay.featureTitle}"></label>
+			</div>
+			
 			</div>
 
 

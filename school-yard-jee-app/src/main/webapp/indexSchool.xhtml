@@ -6,9 +6,8 @@
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:define name="cssFiles">
-		<h:outputStylesheet name="schoolWelcomePage.css" library="css" />
 		<h:outputStylesheet name="buttons.css" library="css" />
-
+		<h:outputStylesheet name="schoolWelcomePage.css" library="css" />
     </ui:define>
 
     <ui:define name="content">
@@ -42,12 +41,12 @@
 
 
 			<div class="divsection3">
-				<div class="button1">
+				<div class="button">
 					<h:commandButton action="#{createStudentBean.create()}"
 						value="Inscription élève" class="custom-button"  />
 				</div>
 
-				<div class="button2">
+				<div class="button">
 					<h:commandButton action="#{createTeacherBean.create()}"
 						value="Inscription professeur" class="custom-button" />
 				</div>

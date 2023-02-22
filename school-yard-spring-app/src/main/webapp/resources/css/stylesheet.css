@@ -7,6 +7,21 @@
     --primaryColor : #7df2ea;
 }
 
+nav {
+	margin: 2%;
+}
+
+ul {
+	display: flex;
+	flex-direction: row;
+	list-style-type: none;
+	justify-content: center;
+}
+
+li {
+	
+}
+
 body {
     background-color: var(--backgroundColor);
     font-family: 'Open Sans', sans-serif;
@@ -19,7 +34,7 @@ h1 {
 	text-align: center;
 }
 
-body > div {
+body {
     padding: 10px;
     min-height: 75vh;
 }
@@ -33,37 +48,6 @@ body > div {
     padding-right: 10px;
 }
 
-.inline {
-    display: inline;
-}
-
-/* Mise en page du header desktop*/
-#header {
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: space-between;
-    background-color: var(--primaryColor);
-    min-height: 10vh;
-    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100% );
-}
-
-
-#header.change{
-    clip-path: inherit;
-}
-
-#entreprise {
-    display: flex;
-    padding-left: 20px;
-    align-items: center;
-}
-
-i {
-    color: var(--textColor);
-}
 
 a {
     cursor: pointer;
@@ -104,6 +88,18 @@ a:hover {
 }
 
 
+section {
+   display: flex;
+   margin: 40px;
+   justify-content: center ;
+    }
+   
+  .divOptions {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  justify-content: flex-start;
+  } 
 
 
 

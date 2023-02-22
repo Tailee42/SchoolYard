@@ -30,7 +30,7 @@ table thead th {
 
 table thead th:nth-child(odd) {
     color: #ffffff;
-    background: #0080ff;
+    background: var(--accentColor);
 }
 
 table tr:nth-child(even) {
@@ -101,4 +101,5 @@ table tr:nth-child(even) {
         display: block;
         text-align: center;
     }
+      
 }
