@@ -21,7 +21,7 @@ public class CreateUserBean {
 		user.setLastConnection(LocalDateTime.now());
 		user.setRole(RoleTypeEnum.USER);
 		userRepository.save(user);
-		System.out.println("l'identifiant de mon user est "+user.getLogin());
+		user = new User();
 		return "index?faces-redirect=true";
 	}
 

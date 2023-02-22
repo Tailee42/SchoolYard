@@ -1,26 +1,41 @@
 package fr.isika.cda.beans;
 
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
 
 import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.school.Admin;
+import fr.isika.cda.entities.school.Membership;
 import fr.isika.cda.entities.school.School;
+import fr.isika.cda.entities.school.StatusSchool;
+import fr.isika.cda.entities.subscription.Feature;
+import fr.isika.cda.entities.subscription.Subscription;
 import fr.isika.cda.entities.users.User;
+import fr.isika.cda.repositories.FeatureRepository;
 import fr.isika.cda.repositories.MemberRepository;
 import fr.isika.cda.repositories.SchoolRepository;
+import fr.isika.cda.repositories.SubscriptionRepository;
+import fr.isika.cda.utils.FileUpload;
 import fr.isika.cda.utils.FileUtils;
 import fr.isika.cda.utils.SessionUtils;
-
-import java.util.UUID;
+import org.primefaces.event.FileUploadEvent;
 
 @ManagedBean
+@SessionScoped
 public class CreateSchoolBean {
 
 	private School school = new School();
 
-	private Part logoFile;
+	private String logoFileName;
+
+	private Membership membership = new Membership();
 
 	@Inject
 	private SchoolRepository schoolRepository;
@@ -28,27 +43,53 @@ public class CreateSchoolBean {
 	@Inject
 	private MemberRepository memberRepository;
 
+	@Inject
+	private SubscriptionRepository subscriptionRepository;
+
+	@Inject
+	private FeatureRepository featureRepository;
+
 	public String create() {
-		FileUtils.initResourcesDir();
-
-
-		String uuid = UUID.randomUUID().toString();
-		String filename = uuid + ".png";
-		String logoRelativePath = "/school-yard-resources/images/" + filename;
-
 		// TODO : ecrire le fichier sur le disque
-
-		school.setLogo(logoRelativePath);
+		school.setLogo(logoFileName);
+		school.setStatusSchool(StatusSchool.TOPUBLISH);
 		schoolRepository.save(school);
+		memberRepository.save(createAdmin());
 
-		Admin admin = createAdmin();
-		memberRepository.save(admin);
-
-		school = new School();
-
-
-		return "index?faces-redirect=true";
+		return "schoolMembershipForm";
 	}
+
+	public String setMembership(Subscription subscription) {
+		membership.setSubscription(subscription);
+		initMembershipDuration(subscription.getDuration());
+		school.setMembership(membership);
+		schoolRepository.update(school);
+
+		resetAll();
+
+		return "userDashboard?faces-redirect=true";
+	}
+
+	private void initMembershipDuration(Long subscriptionDuration) {
+		LocalDateTime startingDate = LocalDateTime.now();
+		membership.setStartingDate(startingDate);
+		membership.setEndingDate(startingDate.plusMonths(subscriptionDuration));
+	}
+
+
+	private void resetAll() {
+		school = new School();
+		membership = new Membership();
+	}
+
+	public void uploadFile(FileUploadEvent event) {
+		String absoluteFilePath = FileUtils.getResourceImageFilePath(event.getFile().getFileName());
+
+		// Mémorise le nom du fichier => à reconstituer lors de la lecture
+		logoFileName =  event.getFile().getFileName();
+		FileUpload.doUpLoad(event.getFile(), absoluteFilePath);
+	}
+
 
 	private Admin createAdmin() {
 		Admin admin = new Admin();
@@ -56,6 +97,14 @@ public class CreateSchoolBean {
 		admin.setSchool(school);
 		admin.setUser(user);
 		return admin;
+	}
+
+	public List<Feature> featuresBySubscription(Long subscriptionId) {
+		return featureRepository.getFeatureBySubscriptionId(subscriptionId);
+	}
+
+	public List<Subscription> subscriptions() {
+		return subscriptionRepository.getAll();
 	}
 
 	public SchoolTypeEnum[] levels() {
@@ -70,11 +119,16 @@ public class CreateSchoolBean {
 		this.school = school;
 	}
 
-	public Part getLogoFile() {
-		return logoFile;
+	public String getLogoFile() {
+		return logoFileName;
 	}
 
-	public void setLogoFile(Part logoFile) {
-		this.logoFile = logoFile;
+	public void setLogoFile(String logoFile) {
+		this.logoFileName = logoFile;
 	}
+
+	public Membership getMembership() {
+		return membership;
+	}
+
 }

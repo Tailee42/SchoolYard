@@ -4,14 +4,14 @@
 				xmlns:h="http://xmlns.jcp.org/jsf/html"
 				xmlns:f="http://xmlns.jcp.org/jsf/core"
 				xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+				
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="common-style.css" library="css"/>
+		<h:outputStylesheet name="buttons.css" library="css"/>
+    </ui:define>
 
 	<ui:define name="title">Création de contenu</ui:define>
-	
-	<ui:define name="header">
 
-		<h:link outcome="login" >Se connecter</h:link>
-
-	</ui:define>
 
 	<ui:define name="content">
 		<h1>Création d'un contenu pédagogique</h1>
@@ -37,7 +37,7 @@
 					<f:selectItems value="#{createUnitBean.levels()}" var="level" itemLabel="#{level}" itemValue="#{level}" />
 				</h:selectOneMenu>
 
-				<h:commandButton action="#{createUnitBean.create()}" value="Valider" />
+				<h:commandButton action="#{createUnitBean.create()}" value="Valider" class="custom-button"/>
 
 			</h:panelGrid>
 
