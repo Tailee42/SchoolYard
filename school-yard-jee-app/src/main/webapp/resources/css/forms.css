@@ -9,7 +9,7 @@
 	align-items: center;
 }
 
-#createUserForm {
+Form {
 	padding: var(--paddingLeft);
 	border-left: 5px var(--accentColor) solid;
 	width:100%

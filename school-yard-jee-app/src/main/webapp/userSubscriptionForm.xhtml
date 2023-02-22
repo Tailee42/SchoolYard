@@ -126,15 +126,13 @@
 								<f:validateRegex pattern="([a-zA-Z '-]{1,45})" />
 							</h:inputText>
 							<h:message styleclasse="errorMessage" for="townInput" />
+							<br />
+							<h:commandButton action="#{createUserBean.create()}"
+								value="Valider" class="custom-button"/>
 
 						</h:panelGrid>
 					</div>
 				</div>
-				<br />
-
-				<h:commandButton action="#{createUserBean.create()}" value="Valider"
-					class="custom-button" />
-
 			</h:form>
 
 		</div>
