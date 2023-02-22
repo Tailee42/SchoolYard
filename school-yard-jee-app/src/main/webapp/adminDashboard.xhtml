@@ -6,19 +6,12 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:define name="cssFiles">
-
-		<style type="text/css">
-#{
-indexSchoolBean
-.styles
-(
-)
-}
-</style>
+		<style type="text/css">#{indexSchoolBean.styles()}</style>
 		<h:outputStylesheet name="common-style.css" library="css" />
 	</ui:define>
 
 	<ui:define name="title">Accueil Ecole</ui:define>
+	
 	<ui:define name="header">
 
 		<h:link outcome="teacherSubscriptionForm">Nouveau professeur</h:link>
@@ -28,44 +21,46 @@ indexSchoolBean
 	</ui:define>
 
 	<ui:define name="content">
-		<h2>Administrateur école</h2>
+		<h3>Administrateur école</h3>
 
 
 
 
 		<!-- 1rst div to display new teachers-candidates -->
 		<div class="container">
-		<h:outputLabel value="Aucune candidature ..."
-				rendered="#{adminBean.teachers().isEmpty()}" />
+
 			<h2>
-				Vous avez <strong>#{adminBean.teachers().size()}</strong> nouveau(x)
+				Vous avez <strong>#{adminBean.allSchoolCandidates().size()}</strong> nouveau(x)
 				candidat(s).
 			</h2>
-			<ui:repeat value="#{adminBean.teachers()}" var="t" varStatus="status">
+
+			<h:outputLabel value="Aucune candidature ..."
+				rendered="#{adminBean.allSchoolCandidates().isEmpty()}" />
+			<ui:repeat value="#{adminBean.allSchoolCandidates()}" var="c" varStatus="status">
 				<div class="box">
 					<h2>
-						<h:outputText value="#{t.user.profil.firstName} " />
+						<h:outputText value="#{c.user.profil.firstName} " />
 
-						<h:outputText value="#{t.user.profil.lastName}" />
+						<h:outputText value="#{c.user.profil.lastName}" />
 					</h2>
 					<hr />
 					<p>
-						<h:outputText value="#{t.subject}" />
+						<h:outputText value="#{c.subject}" />
 					</p>
 					<p>
-						<a href="mailto:#{t.user.profil.contact.email}"> Contacter </a>
+						<a href="mailto:#{c.user.profil.contact.email}"> Contacter </a>
 					</p>
 					<p>
 						<br />
-						<h:outputText value="#{t.user.profil.contact.phone}" />
+						<h:outputText value="#{c.user.profil.contact.phone}" />
 					</p>
 					<br />
-					<h:outputText value="#{t.status}" />
+					<h:outputText value="#{c.user.profil.picturePath}" />
 					<br />
 					<h:form id="updateTeacherStatus">
-						<h:commandButton action="#{adminBean.validateTeacher(t.id)}"
+						<h:commandButton action="#{adminBean.validateTeacher(c.id)}"
 							value="Valider" />
-						<h:commandButton action="#{adminBean.rejectTeacher(t.id)}"
+						<h:commandButton action="#{adminBean.rejectTeacher(c.id)}"
 							value="Rejeter" />
 					</h:form>
 				</div>
@@ -77,9 +72,9 @@ indexSchoolBean
 		<!-- 2nd div to place alongside the first, displaying lesson to validate or reject -->
 		<div class="container">
 
-			<h3>Units available</h3>
+			<h2>Nouveaux cours proposés </h2>
 			<hr />
-			<h:outputLabel value="No units available ..."
+			<h:outputLabel value="Aucun nouveau cours."
 				rendered="#{adminBean.unitsToUpdate().isEmpty()}" />
 
 			<ui:repeat value="#{adminBean.unitsToUpdate()}" var="u"
@@ -93,16 +88,17 @@ indexSchoolBean
 					<p>
 						<h:outputText value="#{u.subject}" />
 					</p>
-					<p>
-						bouton consulter
-					</p>
+					<p>bouton consulter</p>
 					<h:form id="updateUnitStatus">
-					<h:commandButton action="#{adminBean.validateUnit(u.id)}" value="Valider" />
-					<h:commandButton action="#{adminBean.rejectUnit(u.id)}" value="Refuser" />
+						<h:commandButton action="#{adminBean.validateUnit(u.id)}"
+							value="Valider" />
+						<h:commandButton action="#{adminBean.rejectUnit(u.id)}"
+							value="Refuser" />
 					</h:form>
 				</div>
 			</ui:repeat>
 		</div>
+	
 
 
 	</ui:define>

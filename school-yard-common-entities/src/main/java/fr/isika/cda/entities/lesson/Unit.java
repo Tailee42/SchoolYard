@@ -23,7 +23,7 @@ public class Unit implements Serializable {
 
 	private String title;
 	
-	@Column(length = 1000)
+	@Lob
 	private String content;
 
 	private boolean visibility;
@@ -41,6 +41,7 @@ public class Unit implements Serializable {
 	private Teacher teacher;
 
 	public Unit() {
+
 	}
 
 	public Unit(String title, String content, Teacher teacher, AcademicLevel level) {
