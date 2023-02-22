@@ -1,5 +1,109 @@
-@charset "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;800&display=swap');
+
+:root {
+    --accentColor: #F99120;
+    --backgroundColor : #e8e9eb;
+    --textColor : #414143;
+    --primaryColor : #7df2ea;
+}
+
 body {
-	background-color: yellow;
+    background-color: var(--backgroundColor);
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding-top: 6em;
+    color: var(--textColor);
+}
+
+h1 {
 	text-align: center;
 }
+
+body > div {
+    padding: 10px;
+    min-height: 75vh;
+}
+
+#page {
+    padding-top: 50px;
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.inline {
+    display: inline;
+}
+
+/* Mise en page du header desktop*/
+#header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--primaryColor);
+    min-height: 10vh;
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100% );
+}
+
+
+#header.change{
+    clip-path: inherit;
+}
+
+#entreprise {
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+}
+
+i {
+    color: var(--textColor);
+}
+
+a {
+    cursor: pointer;
+    transition: all 0.4s ease-in-out 0s;
+    color: var(--textColor);
+    font-weight: 600;
+    background: linear-gradient(
+            to right,
+            var(--accentColor) 0%,
+            var(--accentColor) 5px,
+            transparent 5px
+    ) repeat-x;
+    background-size: 100%;
+    padding: 0 5px 0 10px;
+    text-decoration: none;
+}
+
+a:hover {
+    background: linear-gradient(
+            to right,
+            var(--accentColor) 0%,
+            var(--accentColor) 5px,
+            transparent
+    );
+}
+
+.link a {
+    transition: unset;
+    color: var(--textColor);
+    font-weight: unset;
+    background: unset;
+    background-size: unset;
+    padding: unset;
+}
+
+.link a:hover {
+    background: unset;
+}
+
+
+
+
+

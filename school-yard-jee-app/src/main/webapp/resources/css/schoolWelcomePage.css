@@ -34,7 +34,7 @@
 .button .custom-button {
 	margin: 20px;
 	width: 180px;
-	background: rgb(2, 0, 36);
+	background: rgb(0, 255, 0);
 	background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%,
 		rgba(9, 85, 121, 1) 35%, rgba(6, 126, 164, 1) 56%,
 		rgba(4, 151, 191, 1) 69%, rgba(41, 69, 193, 1) 100%);
