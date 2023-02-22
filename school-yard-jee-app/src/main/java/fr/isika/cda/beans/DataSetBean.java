@@ -137,6 +137,7 @@ public class DataSetBean {
 				"Favoriser la confiance en soi, l’autonomie, tout en permettant à l’enfant d’évoluer à son propre rythme et en toute liberté.", ""),
 				new Theme("D4C685", "F7EF81", "E5F1EB", FontEnum.ROBOTO.name()) );
 		school1.setSchoolPage(schoolPage1);
+		school1.setStatusSchool(StatusSchool.PUBLISHED);
 		schoolRepository.save(school1);
 		school1.setMembership(membership2);
 		createAdmin(user1, school1);
@@ -149,6 +150,7 @@ public class DataSetBean {
 				"Favoriser l'apprentissage et l'esprit d'équipe par le jeu en plein air.", ""),
 				new Theme("FECDAA", "F5F58E", "F8FFF4", FontEnum.UBUNTU.name()) );
 		school2.setSchoolPage(schoolPage2);
+		school2.setStatusSchool(StatusSchool.PUBLISHED);
 		schoolRepository.save(school2);
 		school2.setMembership(membership3);
 		createAdmin(user2, school2);
@@ -170,6 +172,7 @@ public class DataSetBean {
 				"Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.", ""),
 				new Theme("BF1363", "2FABEE", "FBFEF9", FontEnum.PLAYFAIRDISPLAY.name()) );
 		school4.setSchoolPage(schoolPage4);
+		school4.setStatusSchool(StatusSchool.PUBLISHED);
 		school4.setMembership(membership5);
 		schoolRepository.save(school4);
 		createAdmin(user3, school4);

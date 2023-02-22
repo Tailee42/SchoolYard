@@ -35,12 +35,10 @@ public class SchoolRepository {
 				.getResultList();
 	}
 	
-	//Schools without "EXPIRED" or "INACTIVE" status
-	public List<School> getAllActiveSchool(StatusSchool status1, StatusSchool status2) {
+	public List<School> getAllActiveSchool(StatusSchool status1) {
 		return entityManager
-				.createQuery("SELECT s FROM School s WHERE s.statusSchool NOT IN (:param1, :param2)", School.class)
+				.createQuery("SELECT s FROM School s WHERE s.statusSchool = :param1", School.class)
 				.setParameter("param1", status1)
-				.setParameter("param2", status2)
 				.getResultList();
 	}
 

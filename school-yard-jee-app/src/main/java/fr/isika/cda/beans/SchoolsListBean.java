@@ -29,7 +29,7 @@ public class SchoolsListBean {
     }
     
     public List<School> allActiveSchools() {
-    	schools = schoolRepository.getAllActiveSchool(StatusSchool.EXPIRED, StatusSchool.INACTIVE);
+    	schools = schoolRepository.getAllActiveSchool(StatusSchool.PUBLISHED);
         return schools;
     }
 
