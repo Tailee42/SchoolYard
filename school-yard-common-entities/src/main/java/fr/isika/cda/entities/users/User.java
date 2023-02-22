@@ -40,11 +40,14 @@ public class User implements Serializable {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Profil profil;
+	
+	@Enumerated(EnumType.STRING)
+	private UserStatus status;
 
 	public User() {
 		this.security = new Security();
 		this.profil = new Profil();
-
+		this.status = UserStatus.ACTIVE;
 	}
 
 	public User(String login, LocalDateTime lastConnection, RoleTypeEnum role, Security security, Profil profil) {
@@ -53,6 +56,7 @@ public class User implements Serializable {
 		this.role = role;
 		this.security = security;
 		this.profil = profil;
+		this.status = UserStatus.ACTIVE;
 	}
 
 	public Long getId() {
@@ -97,6 +101,14 @@ public class User implements Serializable {
 
 	public void setProfil(Profil profil) {
 		this.profil = profil;
+	}
+	
+	public UserStatus getStatus() {
+		return status;
+	}
+	
+	public void setStatus(UserStatus status) {
+		this.status = status;
 	}
 
 }
