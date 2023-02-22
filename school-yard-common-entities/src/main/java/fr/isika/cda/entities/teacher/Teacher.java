@@ -39,6 +39,10 @@ public class Teacher extends Member {
 	public void validate() {
 		this.status = TeacherStatusEnum.Approved;
 	}
+	
+	public void eraseSchool() {
+		this.school = null;
+	}
 
 	public SchoolTypeEnum getSchoolType() {
 		return schoolType;
@@ -63,6 +67,8 @@ public class Teacher extends Member {
 	public TeacherStatusEnum getStatus() {
 		return status;
 	}
+
+
 
 
 }

@@ -4,39 +4,46 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.school.Member;
 import fr.isika.cda.entities.school.School;
+import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.repositories.MemberRepository;
 import fr.isika.cda.repositories.SchoolRepository;
+import fr.isika.cda.repositories.StudentRepository;
 import fr.isika.cda.repositories.TeacherRepository;
 import fr.isika.cda.repositories.UnitRepository;
 import fr.isika.cda.utils.SessionUtils;
+import java.util.Collections;
 
 @ManagedBean
+@SessionScoped
 public class AdminBean {
-
-	@Inject
-	private MemberRepository memberRepository;
-
-	@Inject
-	private SchoolRepository schoolRepository;
 
 	@Inject
 	private TeacherRepository teacherRepository;
 
 	@Inject
 	private UnitRepository unitRepository;
+	
+	@Inject
+	private StudentRepository studentRepository;
 
-	public List<Member> members() {
-		return memberRepository.getAllSchoolsMembers(getThisSchoolId());
+	//méthodes de redirection
+	public String allTeachers() {
+		return "schoolTeachersList?faces-redirect=true";
+	}
+	public String allStudents() {
+		return "schoolStudentsList?faces-redirect=true";
 	}
 
+	//méthodes métier
 	public String validateTeacher(Long teacherId) {
-		Teacher teacher = getThisTeacher(teacherId);
+		Teacher teacher = getCurrentTeacher(teacherId);
 		teacher.validate();
 
 		teacherRepository.update(teacher);
@@ -44,30 +51,77 @@ public class AdminBean {
 	}
 
 	public String rejectTeacher(Long teacherId) {
-		Teacher teacher = getThisTeacher(teacherId);
+		Teacher teacher = getCurrentTeacher(teacherId);
 		teacher.reject();
 
 		teacherRepository.update(teacher);
 		return "adminDashboard";
 	}
 
-	public List<Unit> newSchoolUnits() {
-		return unitRepository.thisSchoolUnits(teachersIds(teachers()));
+	public String deleteTeacher(Long teacherId) {
+		Teacher teacher = getCurrentTeacher(teacherId);
+		teacher.eraseSchool();
+
+		teacherRepository.update(teacher);
+		return "schoolTeachersList";
 	}
 
-	public School getCurrentSchool() {
-		return schoolRepository.getSchoolById(getThisSchoolId());
+	public String validateUnit(Long unitId) {
+		Unit unit = getCurrentUnit(unitId);
+		unit.validate();
+		unitRepository.update(unit);
+		return "adminDashboard";
 	}
 
-	private Teacher getThisTeacher(Long teacherId) {
+	public String rejectUnit(Long unitId) {
+		Unit unit = getCurrentUnit(unitId);
+		unit.reject();
+		unitRepository.update(unit);
+		return "adminDashboard?faces-redirect=true";
+	}
+	
+	public String deleteStudent(Long studentId) {
+		Student student = getCurrentStudent(studentId);
+		student.eraseSchool();
+		studentRepository.update(student);
+		return "schoolStudentsList";
+	}
+
+	
+	//méthode d'affichage
+	public List<Teacher> allSchoolTeachers() {
+		return teacherRepository.currentSchoolTeachers(getCurrentSchoolId());
+	}
+
+	public List<Unit> unitsToUpdate() {
+		if (!allSchoolTeachers().isEmpty()) {
+			return unitRepository.currentSchoolUnits(teachersIds(allSchoolTeachers()));
+		} else
+			return Collections.emptyList();
+	}
+
+	public List<Teacher> allSchoolCandidates() {
+		return teacherRepository.allSchoolCandidates(getCurrentSchoolId());
+	}
+	
+	public List<Student> allSchoolStudents(){
+		return studentRepository.currentSchoolStudents(getCurrentSchoolId());
+	}
+	
+	
+	//méthode internes
+	private Unit getCurrentUnit(Long unitId) {
+		return unitRepository.getUnitById(unitId);
+	}
+
+	private Teacher getCurrentTeacher(Long teacherId) {
 		return teacherRepository.getTeacherById(teacherId).get();
 	}
-
-	public List<Teacher> teachers() {
-		return teacherRepository.thisSchoolTeachers(getThisSchoolId());
+	private Student getCurrentStudent(Long studentId) {
+		return studentRepository.getStudentById(studentId).get();
 	}
 
-	private Long getThisSchoolId() {
+	private Long getCurrentSchoolId() {
 		return SessionUtils.getConnectedMember().getSchool().getId();
 	}
 

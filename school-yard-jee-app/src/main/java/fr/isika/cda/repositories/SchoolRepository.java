@@ -21,6 +21,10 @@ public class SchoolRepository {
 		entityManager.persist(school);
 	}
 
+	public void update(School school) {
+		entityManager.merge(school);
+	}
+
 	public School getSchoolById(Long id) {
 		return  entityManager
 				.createQuery("SELECT s FROM School s WHERE s.id = :id_param", School.class)
@@ -56,9 +60,5 @@ public class SchoolRepository {
 				.getResultList();
 	}
 
-
-	public void update(School school) {
-		entityManager.merge(school);
-	}
 
 }

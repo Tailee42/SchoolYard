@@ -58,6 +58,10 @@ public class User implements Serializable {
 		this.profil = profil;
 		this.status = UserStatus.ACTIVE;
 	}
+	
+	public String fullName() {
+		return this.profil.getLastName()+" "+this.profil.getFirstName();
+	}
 
 	public Long getId() {
 		return id;

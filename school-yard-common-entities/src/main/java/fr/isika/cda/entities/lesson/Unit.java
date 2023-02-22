@@ -22,11 +22,13 @@ public class Unit implements Serializable {
 	private Long id;
 
 	private String title;
-
+	
+	@Lob
 	private String content;
 
 	private boolean visibility;
 
+	@Enumerated(EnumType.STRING)
 	private UnitStatusEnum status;
 
 	@Enumerated(EnumType.STRING)
@@ -37,6 +39,29 @@ public class Unit implements Serializable {
 
 	@ManyToOne
 	private Teacher teacher;
+
+	public Unit() {
+
+	}
+
+	public Unit(String title, String content, Teacher teacher, AcademicLevel level) {
+		this.title = title;
+		this.content = content;
+		this.teacher = teacher;
+		this.level = level;
+		this.visibility = false;
+		this.status = UnitStatusEnum.TOVALIDATE;
+		this.subject = teacher.getSubject();
+	}
+
+	public void validate() {
+		this.status = UnitStatusEnum.VALIDATED;
+		this.visibility = true;
+	}
+
+	public void reject() {
+		this.status = UnitStatusEnum.REJECTED;
+	}
 
 	public Long getId() {
 		return id;

@@ -26,12 +26,24 @@ public class TeacherRepository {
 	}
 
 	public Optional<Teacher> getTeacherById(Long id) {
-		Teacher teacher = entityManager.createQuery("SELECT t FROM Teacher t WHERE t.id = :id_param", Teacher.class)
-				.setParameter("id_param", id).getSingleResult();
-		return Optional.ofNullable(teacher);
+		return Optional.ofNullable(
+				entityManager
+				.createQuery("SELECT t FROM Teacher t WHERE t.id = :id_param", Teacher.class)
+				.setParameter("id_param", id)
+				.getSingleResult());
 	}
 
-	public List<Teacher> thisSchoolTeachers(Long schoolId) {
+	public List<Teacher> currentSchoolTeachers(Long schoolId) {
+		return entityManager
+				.createQuery(
+				"SELECT t FROM Teacher t WHERE t.school.id = :schoolId_param AND t.status = :teacherstatus_param",
+				Teacher.class)
+				.setParameter("schoolId_param", schoolId)
+				.setParameter("teacherstatus_param", TeacherStatusEnum.Approved)
+				.getResultList();
+	}
+	
+	public List<Teacher> allSchoolCandidates(Long schoolId){
 		return entityManager
 				.createQuery(
 				"SELECT t FROM Teacher t WHERE t.school.id = :schoolId_param AND t.status = :teacherstatus_param",

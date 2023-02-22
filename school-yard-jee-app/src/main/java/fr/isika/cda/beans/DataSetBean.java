@@ -19,6 +19,7 @@ import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.Security;
 import fr.isika.cda.entities.lesson.PhysicalOption;
 import fr.isika.cda.entities.lesson.SynchronousLesson;
+import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.lesson.VirtualOption;
 import fr.isika.cda.entities.school.*;
 import fr.isika.cda.entities.student.Student;
@@ -53,6 +54,8 @@ public class DataSetBean {
 	private VirtualRepository virtualRepository;
 	@Inject
 	private PhysicalRepository physicalRepository;
+	@Inject
+	private UnitRepository unitRepository;
 
 
 	@PostConstruct
@@ -260,6 +263,24 @@ public class DataSetBean {
 				new SynchronousLesson(SubjectEnum.MATHS, AcademicLevel.CM2, teacher2, "Les longueurs", "45 minutes",
 						LocalDateTime.of(2023, Month.APRIL, 12, 9, 45), 3, new BigDecimal("27")));
 		physicalRepository.save(physical2);
+		
+		//Creating some units
+		Unit unit = new Unit("Lorem Ipsum", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
+				teacher1,AcademicLevel.TROISIEME);
+		unitRepository.save(unit);
+		
+		Unit unit2 = new Unit("Lorem Ipsum", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
+				teacher3,AcademicLevel.CINQUIEME);
+		unitRepository.save(unit2);
+		Unit unit3 = new Unit("Lorem Ipsum", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
+				teacher3,AcademicLevel.QUATRIEME);
+		unitRepository.save(unit3);
+		Unit unit4 = new Unit("Lorem Ipsum", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
+				teacher3,AcademicLevel.CINQUIEME);
+		unitRepository.save(unit4);
+		Unit unit5 = new Unit("Lorem Ipsum", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
+				teacher1,AcademicLevel.SIXIEME);
+		unitRepository.save(unit5);
 	}
 
 	private void createStudent(School school, User user, AcademicLevel level) {

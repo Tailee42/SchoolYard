@@ -49,6 +49,8 @@
             <ui:fragment rendered="#{ indexSchoolBean.isUserConnected()}">
                 <h:form class="inline">
                     <h:commandLink action="#{indexSchoolBean.logoutSchool()}">Tableau de bord</h:commandLink>
+                    <h:commandLink action="#{adminBean.allTeachers()}" >Enseignants</h:commandLink>
+                    <h:commandLink action="#{adminBean.allStudents()}" >Etudiants</h:commandLink>
                 </h:form>
             </ui:fragment>
 
