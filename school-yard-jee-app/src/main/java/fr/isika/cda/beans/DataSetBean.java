@@ -82,8 +82,8 @@ public class DataSetBean {
 		subscriptionRepository.save(subscription2);
 
 		Subscription subscription3 = new Subscription(300.00, 12L, "Normal");
-		subscription1.getFeatures().add(feature1);
-		subscription1.getFeatures().add(feature2);
+		subscription3.getFeatures().add(feature1);
+		subscription3.getFeatures().add(feature2);
 		subscriptionRepository.save(subscription3);
 
 		Membership membership1 = new Membership(LocalDateTime.of(2024, Month.JANUARY, 5, 10, 30),
@@ -137,8 +137,8 @@ public class DataSetBean {
 				"Favoriser la confiance en soi, l’autonomie, tout en permettant à l’enfant d’évoluer à son propre rythme et en toute liberté.", ""),
 				new Theme("D4C685", "F7EF81", "E5F1EB", FontEnum.ROBOTO.name()) );
 		school1.setSchoolPage(schoolPage1);
-		schoolRepository.save(school1);
 		school1.setMembership(membership2);
+		schoolRepository.save(school1);
 		createAdmin(user1, school1);
 
 		School school2 = new School("Ecole de la plage", "", "Ecole en plein air", new ArrayList<>(),
@@ -149,8 +149,8 @@ public class DataSetBean {
 				"Favoriser l'apprentissage et l'esprit d'équipe par le jeu en plein air.", ""),
 				new Theme("FECDAA", "F5F58E", "F8FFF4", FontEnum.UBUNTU.name()) );
 		school2.setSchoolPage(schoolPage2);
-		schoolRepository.save(school2);
 		school2.setMembership(membership3);
+		schoolRepository.save(school2);
 		createAdmin(user2, school2);
 
 		School school3 = new School(
@@ -161,6 +161,7 @@ public class DataSetBean {
 		school3.setSchoolPage(schoolPage3);
 		school3.setMembership(membership1);
 		schoolRepository.save(school3);
+		createAdmin(user3, school3);
 
 		School school4 = new School("Collège de la montagne", "", "Collège pour aller plus loin et plus haut",
 				new ArrayList<>(), new Contact("collegeDeLaMontagne@gmail.com", "04 06 06 06 06",

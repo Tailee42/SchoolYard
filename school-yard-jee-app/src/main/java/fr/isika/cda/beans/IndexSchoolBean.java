@@ -32,26 +32,23 @@ public class IndexSchoolBean {
     }
 
     public boolean isSynchronousLesson() {
-        boolean validation = false;
+
             List<Feature> features = school.getMembership().getSubscription().getFeatures();
             for (Feature feature : features) {
                 if ("Cours online".equals(feature.getFeatureTitle())) {
-                    validation = true;
-                    break;
+                    return true;
                 }
             }
-        return validation;
+        return false;
     }
 
     public boolean isAsynchronousLesson() {
-        boolean validation = false;
             for (Feature feature : school.getMembership().getSubscription().getFeatures()) {
                 if ("Cours offline".equals(feature.getFeatureTitle())) {
-                    validation = true;
-                    break;
+                    return true;
                 }
             }
-        return validation;
+        return false;
     }
 
     public String logoutSchool() {
