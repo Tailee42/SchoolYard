@@ -31,14 +31,12 @@
     <div id="header">
         <div id="entreprise">
 
-            <ui:define name="logo">
-                <ui:fragment rendered="#{not indexSchoolBean.hasLogo()}">
-                    <h:graphicImage library="images" name="no_logo.png" alt="No school logo ..." width="50px" height="50px" />
-                </ui:fragment>
-                <ui:fragment rendered="#{indexSchoolBean.hasLogo()}">
-                    <h:graphicImage library="images" name="#{indexSchoolBean.school.logo}" alt="School logo" width="50px" height="50px" />
-                </ui:fragment>
-            </ui:define>
+            <ui:fragment rendered="#{not indexSchoolBean.hasLogo()}">
+                <h:graphicImage library="images" name="no_logo.png" alt="No school logo ..." width="50px" height="50px" />
+            </ui:fragment>
+            <ui:fragment rendered="#{indexSchoolBean.hasLogo()}">
+                <h:graphicImage library="images" name="#{indexSchoolBean.school.logo}" alt="School logo" width="50px" height="50px" />
+            </ui:fragment>
 
             <h1>#{indexSchoolBean.school.schoolName}</h1>
         </div>
