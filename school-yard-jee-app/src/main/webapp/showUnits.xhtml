@@ -1,4 +1,4 @@
-<ui:composition template="WEB-INF/templates/commonLayout.xhtml"
+<ui:composition template="WEB-INF/templates/schoolLayout.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -26,7 +26,7 @@
 		<h2>Cours en ligne</h2>
 
 		<div class="container">
-			<ui:repeat value="#{showUnitsBean.allUnits()}" var="u">
+			<ui:repeat value="#{showUnitsBean.allUnitsBySchool()}" var="u">
 				<h:form>
 					<div class="box">
 						<h2>

@@ -52,7 +52,7 @@
 								pattern="((?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*([^a-z][^A-Z]\D)){5,15})"
 								for="passwordInput" />
 						</h:inputSecret>
-						<h:message styleclasse="errorMessage" for="passwordInput" />
+						<h:message styleClass="errorMessage" for="passwordInput" />
 
 						<h:outputLabel value="Nom : " for="lastNameInput" />
 						<h:inputText id="lastNameInput"
@@ -62,7 +62,7 @@
 							<f:validateRegex pattern="(([a-zA-Z '-]){2,25})"
 								for="lastNameInput" />
 						</h:inputText>
-						<h:message styleclasse="errorMessage" for="lastNameInput" />
+						<h:message styleClass ="errorMessage" for="lastNameInput" />
 
 						<h:outputLabel value="Prénom : " for="firstNameInput" />
 						<h:inputText id="firstNameInput"
@@ -72,7 +72,7 @@
 							<f:validateRegex pattern="(([a-zA-Zéèêîàâôûù '-]){2,25})"
 								for="firstNameInput" />
 						</h:inputText>
-						<h:message styleclasse="errorMessage" for="firstNameInput" />
+						<h:message styleClass="errorMessage" for="firstNameInput" />
 
 						<h:outputLabel value="Email: " for="emailInput" />
 						<h:inputText id="emailInput"
@@ -83,7 +83,7 @@
 							<f:validateRegex pattern="(^[\S]+@(?=.*[.])[a-zA-Z\d.-]+$)"
 								for="emailInput" />
 						</h:inputText>
-						<h:message styleclasse="errorMessage" for="emailInput" />
+						<h:message styleClass="errorMessage" for="emailInput" />
 					</h:panelGrid>
 				</div>
 
@@ -102,7 +102,7 @@
 							class="formInput" required="true"
 							requiredMessage="Veuillez saisir une voie ou un lieu-dit !">
 						</h:inputText>
-						<h:message styleclasse="errorMessage" for="streetInput" />
+						<h:message styleClass="errorMessage" for="streetInput" />
 
 
 						<h:outputLabel value="Code Postal : " for="zipcodeInput" />
@@ -113,7 +113,7 @@
 							validatorMessage="Le code postal doit contenir 5 chiffres et aucun espace !">
 							<f:validateRegex pattern="(^(\d){5})" for="zipcodeInput" />
 						</h:inputText>
-						<h:message styleclasse="errorMessage" for="zipcodeInput" />
+						<h:message styleClass="errorMessage" for="zipcodeInput" />
 
 						<h:outputLabel value="Ville : " for="townInput" />
 						<h:inputText id="townInput"
@@ -123,7 +123,7 @@
 							validatorMessage="La ville doit contenir au moins une lettre, aucun chiffre et moins de 45 caractères !">
 							<f:validateRegex pattern="([a-zA-Z '-]{1,45})" />
 						</h:inputText>
-						<h:message styleclasse="errorMessage" for="townInput" />
+						<h:message styleClass="errorMessage" for="townInput" />
 						<br />
 						<h:commandButton action="#{createUserBean.create()}"
 							value="Valider" class="custom-subscription-button" />

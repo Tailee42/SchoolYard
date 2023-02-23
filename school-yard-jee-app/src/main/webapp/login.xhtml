@@ -43,7 +43,7 @@
 							required="true"
 							requiredMessage="Veuillez saisir un mot de passe !">
 						</h:inputSecret>
-						<h:message styleclasse="errorMessage" for="loginPassword" />
+						<h:message styleClass="errorMessage" for="loginPassword" />
 						<h:outputText rendered="#{not loginBean.correctPassword or not loginBean.userActive}" value="Identifiant et/ou mot de passe incorrect(s)"/>
 						<br />
 						<h:commandButton action="#{loginBean.login()}" value="Login"
