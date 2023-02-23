@@ -82,23 +82,12 @@ public class LoginBean {
 		userActive = true;
 	}
 
-	private boolean validatePasswords(Optional<User> userByLogin) {
-//		if (userByLogin.isPresent()) {
-//			return userByLogin.get().getSecurity().getPassword().equals(user.getSecurity().getPassword());
-//		} else {
-//			return false;
-//		}
-//		
+	private boolean validatePasswords(Optional<User> userByLogin) {	
 		return userByLogin.isPresent() 
 				&& userByLogin.get().getSecurity().getPassword().equals(user.getSecurity().getPassword());
 	}
 	
 	private boolean isUserActive(Optional<User> userByLogin) {
-//		if (userByLogin.isPresent()) {
-//			return userByLogin.get().getStatus().equals(UserStatus.ACTIVE);
-//		} else {
-//			return false;
-//		}
 		return userByLogin.isPresent() && userByLogin.get().getStatus().equals(UserStatus.ACTIVE);
 	}
 	
