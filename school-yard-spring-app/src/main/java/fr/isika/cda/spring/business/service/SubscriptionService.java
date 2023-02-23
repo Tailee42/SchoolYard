@@ -10,6 +10,7 @@ import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.entities.subscription.Subscription;
 import fr.isika.cda.spring.business.repository.SubscriptionRepository;
 
+
 @Service
 public class SubscriptionService {
 

@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.isika.cda.entities.school.Membership;
 import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.entities.subscription.Subscription;
 import fr.isika.cda.spring.business.service.FeatureService;
+import fr.isika.cda.spring.business.service.MembershipService;
 import fr.isika.cda.spring.business.service.SubscriptionService;
 
 @Controller
@@ -24,6 +26,9 @@ public class SubscriptionController {
 
 	@Autowired
 	private SubscriptionService subscriptionService;
+	
+	@Autowired
+	private MembershipService membershipService;
 
 	@Autowired
 	private FeatureService featureService;
@@ -54,10 +59,21 @@ public class SubscriptionController {
 	public ModelAndView deleteSubscription(@RequestParam Long id) {
 		Optional<Subscription> optional = subscriptionService.findById(id);
 		if(optional.isPresent()) {
-		Subscription subscriptionToDelete = optional.get();
-		subscriptionService.deleteSubscription(subscriptionToDelete);
+			Subscription subscriptionToDelete = optional.get();
+			setMembershipSubscription(subscriptionToDelete);
+			subscriptionService.deleteSubscription(subscriptionToDelete);
 		}
 		return new ModelAndView(REDIRECT_SUBSCRIPTION_SUBSCRIPTIONS_LIST);
+	}
+
+	private void setMembershipSubscription(Subscription subscriptionToDelete) {
+		List<Membership> memberships = membershipService.findAll();
+		for (Membership membership : memberships) {
+			if (membership.getSubscription().equals(subscriptionToDelete)) {
+				membership.setSubscription(null);
+				membershipService.save(membership);
+			}
+		}
 	}
 
 	@GetMapping("/updateSubscription")
