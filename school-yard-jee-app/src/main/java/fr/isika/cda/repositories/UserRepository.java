@@ -22,6 +22,10 @@ public class UserRepository {
 		entityManager.persist(user);
 	}
 
+	public void update(User user) {
+		entityManager.merge(user);
+	}
+	
 	// get user by login
 	public Optional<User> getUserByLogin(String login) throws UserNotFoundException {
 		try {
