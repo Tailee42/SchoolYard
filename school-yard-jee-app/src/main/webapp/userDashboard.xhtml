@@ -55,36 +55,9 @@
             </ui:repeat>
         </div>
 
-        <h2>Mes cours particuliers en tant que professeur</h2>
-        <div class="container">
-            <ui:repeat value="#{membersListBean.getSynchronousLessonLikeTeacher()}" var="s">
-                <div class="box" style="border-top: 3px solid ##{s.teacher.school.schoolPage.theme.primaryColor}">
-                    <h2>
-                        <h:outputText value="#{s.title}"/>
-                    </h2>
-                    <h3>
-                        <h:outputText value="#{s.subject}"/>
-                    </h3>
-                    <h3>
-                        <h:outputText value="#{s.level}"/>
-                    </h3>
-                    <hr/>
-                    <p>
-                        <h:outputText value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}"/>
-                        <br/>
-                        <h:outputText value="#{s.duration}"/>
-                        <br/>
-                    </p>
-
-                    <p>
-                        Il reste : <h:outputText
-                            value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
-                    </p>
+            <h:link outcome="showSynchronousLessonUser">Mes cours particuliers en tant que professeur</h:link>
 
 
-                </div>
-            </ui:repeat>
-        </div>
 
         <h2>Mes cours particuliers en tant qu'élève</h2>
         <div class="container">
