@@ -10,32 +10,37 @@
 	</ui:define>
 
 	<ui:define name="title">Accueil Ecole</ui:define>
-	
+
 	<ui:define name="navbar-link">
 		<h:form class="inline">
-			<h:commandLink action="#{adminBean.allTeachers()}" >Enseignants</h:commandLink>
+			<h:commandLink action="#{adminBean.allTeachers()}">Enseignants</h:commandLink>
 		</h:form>
 		<h:form class="inline">
-			<h:commandLink action="#{adminBean.allStudents()}" >Etudiants</h:commandLink>
+			<h:commandLink action="#{adminBean.allStudents()}">Etudiants</h:commandLink>
+		</h:form>
+		<h:form class="inline">
+			<h:commandLink action="#{adminBean.modifySchool()}">Ecole</h:commandLink>
 		</h:form>
 	</ui:define>
 
 	<ui:define name="content">
 		<h2>Administrateur école</h2>
-		
+
 		<h3>Candidatures</h3>
-			<h:outputLabel value="Vous avez #{adminBean.allSchoolCandidates().size()} nouveau(x)
+		<h:outputLabel
+			value="Vous avez #{adminBean.allSchoolCandidates().size()} nouveau(x)
 				candidat(s)."
-				rendered="#{not adminBean.allSchoolCandidates().isEmpty()}" />
-		
+			rendered="#{not adminBean.allSchoolCandidates().isEmpty()}" />
+
 		<!-- 1rst div to display new teachers-candidates -->
 		<div class="container">
 
-			
+
 
 			<h:outputLabel value="Aucune candidature ..."
 				rendered="#{adminBean.allSchoolCandidates().isEmpty()}" />
-			<ui:repeat value="#{adminBean.allSchoolCandidates()}" var="c" varStatus="status">
+			<ui:repeat value="#{adminBean.allSchoolCandidates()}" var="c"
+				varStatus="status">
 				<div class="box">
 					<h2>
 						<h:outputText value="#{c.user.profil.firstName} " />
@@ -69,7 +74,7 @@
 		<hr />
 
 		<!-- 2nd div to place alongside the first, displaying lesson to validate or reject -->
-		<h3>Nouveaux cours proposés </h3>
+		<h3>Nouveaux cours proposés</h3>
 		<div class="container">
 
 			<h:outputLabel value="Aucun nouveau cours..."
@@ -95,9 +100,31 @@
 					</h:form>
 				</div>
 			</ui:repeat>
-		</div>		
+		</div>
 
-<hr />
+		<hr />
+		<!-- 3rd div to display some stats about the school -->
+		<!-- How to call init method at page display? -->
+		<h3>Statistiques</h3>
+		<div class="container">
+			<ui:repeat value="#{welcomeBean.currentSchool}" var="st"
+				varStatus="status">
+				<div class="box">
+
+					<h:outputText
+						value="Cours disponibles :#{st.stats.numberOfLessons} ()" />
+					<hr />
+					<h:outputText
+						value="Nombre d'étudiants :#{st.stats.numberOfStudents} ()" />
+					<hr />
+
+					<h:outputText
+						value="Nombre d'enseignants :#{st.stats.numberOfTeachers} ()" />
+
+				</div>
+			</ui:repeat>
+		</div>
+		<hr />
 
 	</ui:define>
 

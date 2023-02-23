@@ -10,9 +10,13 @@
 	</ui:define>
 	
 	<ui:define name="navbar-link">
-		<h:commandLink action="#{adminBean.allTeachers()}">Enseignants</h:commandLink>
-		<h:commandLink action="#{adminBean.allStudents()}">Etudiants</h:commandLink>
-		<h:commandLink action="#{membersListBean.goToIndexSchool(welcomeBean.connectedMember)}">Retour</h:commandLink>
+		<h:form class="inline">
+			<h:commandLink action="#{adminBean.allTeachers()}">Enseignants</h:commandLink>
+		</h:form>
+		<h:form class="inline">
+			<h:commandLink
+				action="#{membersListBean.goToIndexSchool(welcomeBean.connectedMember)}">Retour</h:commandLink>
+		</h:form>
 	</ui:define>
 	
 	<ui:define name="title">Administrateur dashboard </ui:define>

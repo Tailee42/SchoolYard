@@ -1,5 +1,6 @@
 package fr.isika.cda.beans;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,18 +9,16 @@ import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.lesson.Unit;
-import fr.isika.cda.entities.school.Member;
 import fr.isika.cda.entities.school.School;
+import fr.isika.cda.entities.school.Statistics;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.teacher.Teacher;
-import fr.isika.cda.repositories.MemberRepository;
 import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.repositories.StudentRepository;
 import fr.isika.cda.repositories.TeacherRepository;
 import fr.isika.cda.repositories.UnitRepository;
-import fr.isika.cda.services.adminService;
+import fr.isika.cda.services.AdminService;
 import fr.isika.cda.utils.SessionUtils;
-import java.util.Collections;
 
 @ManagedBean
 @SessionScoped
@@ -35,7 +34,12 @@ public class AdminBean {
 	private StudentRepository studentRepository;
 
 	@Inject
-	private adminService adminService;
+	private AdminService adminService;
+
+	@Inject
+	private SchoolRepository schoolRepository;
+
+	private School school = SessionUtils.getCurrentSchool();
 
 	// méthodes de redirection
 	public String allTeachers() {
@@ -46,7 +50,16 @@ public class AdminBean {
 		return "schoolStudentsList?faces-redirect=true";
 	}
 
+	public String modifySchool() {
+		return "modifySchoolForm?faces-redirect=true";
+	}
+
 	// méthodes métier
+	public void updateSchool() {
+		schoolRepository.update(school);
+		modifySchool();
+	}
+
 	public String validateTeacher(Long teacherId) {
 		Teacher teacher = getCurrentTeacher(teacherId);
 		adminService.validateTeacher(teacher);
@@ -83,6 +96,14 @@ public class AdminBean {
 		return "schoolStudentsList";
 	}
 
+	public School getSchool() {
+		return school;
+	}
+
+	public void setSchool(School school) {
+		this.school = school;
+	}
+
 	// méthode d'affichage
 	public List<Teacher> allSchoolTeachers() {
 		return teacherRepository.currentSchoolTeachers(getCurrentSchoolId());
@@ -101,6 +122,12 @@ public class AdminBean {
 
 	public List<Student> allSchoolStudents() {
 		return studentRepository.currentSchoolStudents(getCurrentSchoolId());
+	}
+
+	public String initSchoolStats() {
+		Statistics stats = school.getStats();
+		adminService.initStats(stats, (allSchoolStudents().size()), (allSchoolTeachers().size()), getCurrentSchoolId());
+		return "adminDashboard?faces-redirect=true";
 	}
 
 	// méthode internes

@@ -1,0 +1,86 @@
+<ui:composition template="WEB-INF/templates/schoolLayout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="cards.css" library="css" />
+	</ui:define>
+
+	<ui:define name="title">Accueil Ecole</ui:define>
+
+	<ui:define name="navbar-link">
+		<h:form class="inline">
+			<h:commandLink action="#{adminBean.allTeachers()}">Enseignants</h:commandLink>
+		</h:form>
+		<h:form class="inline">
+			<h:commandLink action="#{adminBean.allStudents()}">Etudiants</h:commandLink>
+		</h:form>
+		<h:form class="inline">
+			<h:commandLink
+				action="#{membersListBean.goToIndexSchool(welcomeBean.connectedMember)}">Retour</h:commandLink>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="content">
+		<h2>Administrateur école</h2>
+
+
+		<h1>Informations de mon école</h1>
+		<h:form id="modifySchoolForm" enctype="multipart/form-data">
+
+			<h:panelGrid columns="1">
+
+				<h:outputLabel value="Nom de l'école : " for="schoolNameInput" />
+				<h:inputText id="schoolNameInput"
+							 value="#{adminBean.school.schoolName}"/>
+
+				<h:outputLabel value="Type d'établissement : " for="selectLevel" />
+				<h:selectOneMenu id="selectLevel"
+								 value="#{adminBean.school.schoolTypeEnum}">
+					<f:selectItem itemValue="#{adminBean.school.schoolTypeEnum}" />
+					<f:selectItems value="#{createSchoolBean.levels()}" var="level"
+								   itemLabel="#{level}" itemValue="#{level}" />
+				</h:selectOneMenu>
+
+				<h:outputLabel value="Email: " for="emailInput" />
+				<h:inputText id="emailInput" value="#{adminBean.school.contact.email}" />
+
+				<h:outputLabel value="Téléphone : " for="phoneInput" />
+				<h:inputText id="phoneInput" value="#{adminBean.school.contact.phone}" />
+
+				<h:outputLabel value="Numéro : " for="numberInput" />
+				<h:inputText id="numberInput"
+							 value="#{adminBean.school.contact.address.number}" />
+
+				<h:outputLabel value="Rue : " for="streetInput" />
+				<h:inputText id="streetInput"
+							 value="#{adminBean.school.contact.address.street}" />
+
+				<h:outputLabel value="Code Postal : " for="zipcodeInput" />
+				<h:inputText id="zipcodeInput"
+							 value="#{adminBean.school.contact.address.zipcode}" />
+
+				<h:outputLabel value="Ville : " for="townInput" />
+				<h:inputText id="townInput"
+							 value="#{adminBean.school.contact.address.town}" />
+
+				<h:outputLabel value="Ecrivez un court slogan pour décrire votre école :" for="synthesisInput" />
+				<h:inputTextarea id="synthesisInput"
+								 value="#{adminBean.school.synthesis}" />
+
+				<h:commandButton action="#{adminBean.updateSchool()}"
+								 value="Valider" class="custom-button"/>
+
+
+			</h:panelGrid>
+
+
+		</h:form>
+
+	</ui:define>
+
+
+</ui:composition>

@@ -4,24 +4,37 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.lesson.Unit;
+import fr.isika.cda.entities.school.Statistics;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.teacher.Teacher;
+import fr.isika.cda.repositories.ActivityRepository;
+import fr.isika.cda.repositories.SchoolRepository;
+import fr.isika.cda.repositories.StatisticsRepository;
 import fr.isika.cda.repositories.StudentRepository;
 import fr.isika.cda.repositories.TeacherRepository;
 import fr.isika.cda.repositories.UnitRepository;
 
 @Stateless
-public class adminService {
-	
+public class AdminService {
+
 	@Inject
 	private TeacherRepository teacherRepository;
-	
+
 	@Inject
 	private UnitRepository unitRepository;
-	
+
 	@Inject
 	private StudentRepository studentRepository;
+
+	@Inject
+	private ActivityRepository activityRepository;
+
+	@Inject
+	private StatisticsRepository statisticsRepository;
 	
+	@Inject
+	private SchoolRepository schoolRepository;
+
 	public void validateTeacher(Teacher teacher) {
 		teacher.validate();
 
@@ -52,12 +65,17 @@ public class adminService {
 		unit.reject();
 		unitRepository.update(unit);
 	}
-	
+
 	public void deleteStudent(Student student) {
 		student.eraseSchool();
 		studentRepository.update(student);
 	}
 
+	public void initStats(Statistics stats, int studentsNumber, int teachersNumber, Long schoolId) {
+		stats.setNumberOfStudents(studentsNumber);
+		stats.setNumberOfTeachers(teachersNumber);
+		stats.setNumberOfLessons(activityRepository.allSchoolActivities(schoolId));
+		statisticsRepository.update(stats);
+	}
 	
-
 }
