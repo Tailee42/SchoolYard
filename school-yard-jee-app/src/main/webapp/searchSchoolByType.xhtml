@@ -44,6 +44,7 @@
         <br/>
 
         <div class="container">
+
             <ui:repeat value="#{schoolsListBean.getActiveSchoolByType()}" var="t">
                 <h:form class="link">
                     <h:commandLink action="#{schoolsListBean.navigationIndexSchool(t)}">
