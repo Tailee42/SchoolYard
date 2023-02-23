@@ -3,12 +3,16 @@ package fr.isika.cda.beans;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.entities.users.UserStatus;
+import fr.isika.cda.exceptions.UserNotFoundException;
 import fr.isika.cda.repositories.UserRepository;
 import fr.isika.cda.utils.SessionUtils;
 
@@ -43,31 +47,59 @@ public class LoginBean {
 	 */
 
 	private String validationLogin() {
-		Optional<User> userByLogin = userRepository.getUserByLogin(user.getLogin());
-		correctPassword = validatePasswords(userByLogin);
-		userActive = isUserActive(userByLogin);
-		if (userByLogin.isPresent() && correctPassword && userActive) {
-			userRepository.updateLastConnection(userByLogin.get(), LocalDateTime.now());
-			SessionUtils.setConnectedUser(userByLogin.get());
-			return "userDashboard?faces-redirect=true";
+		try {
+			
+			Optional<User> userByLogin = userRepository.getUserByLogin(user.getLogin());
+			correctPassword = validatePasswords(userByLogin);
+			userActive = isUserActive(userByLogin);
+			
+			if (userByLogin.isPresent() && correctPassword && userActive) {
+				
+				userRepository.updateLastConnection(userByLogin.get(), LocalDateTime.now());
+				SessionUtils.setConnectedUser(userByLogin.get());
+				
+				resetData();
+				
+				return "userDashboard?faces-redirect=true";
+			}
+		} catch (UserNotFoundException e) {
+			
+			correctPassword = false;
+			
+//			UIComponent component = FacesContext.getCurrentInstance().getViewRoot().findComponent("loginId");
+//			FacesContext.getCurrentInstance().addMessage(component.getClientId(),
+//					new FacesMessage("Identifiant et/ou pwd incorrect"));
+			
+			
+			return "login?faces-redirect=true";
 		}
-		return "";
+		return "login?faces-redirect=true";
+	}
+
+	private void resetData() {
+		user = new User();
+		correctPassword = true;
+		userActive = true;
 	}
 
 	private boolean validatePasswords(Optional<User> userByLogin) {
-		if (userByLogin.isPresent()) {
-			return userByLogin.get().getSecurity().getPassword().equals(user.getSecurity().getPassword());
-		} else {
-			return false;
-		}
+//		if (userByLogin.isPresent()) {
+//			return userByLogin.get().getSecurity().getPassword().equals(user.getSecurity().getPassword());
+//		} else {
+//			return false;
+//		}
+//		
+		return userByLogin.isPresent() 
+				&& userByLogin.get().getSecurity().getPassword().equals(user.getSecurity().getPassword());
 	}
 	
 	private boolean isUserActive(Optional<User> userByLogin) {
-		if (userByLogin.isPresent()) {
-			return userByLogin.get().getStatus().equals(UserStatus.ACTIVE);
-		} else {
-			return false;
-		}
+//		if (userByLogin.isPresent()) {
+//			return userByLogin.get().getStatus().equals(UserStatus.ACTIVE);
+//		} else {
+//			return false;
+//		}
+		return userByLogin.isPresent() && userByLogin.get().getStatus().equals(UserStatus.ACTIVE);
 	}
 	
 

@@ -23,14 +23,14 @@
 	<ui:define name="content">
 		<h1>Connexion</h1>
 
-		<h:form id="loginForm">
+		<h:form id="loginForm" class="forms">
 			<div class="form-container">
 				<div class="grid">
 					<h:panelGrid columns="1" class="grid">
 
 						<h:outputLabel value="Identifiant : " for="loginId" />
 						<h:inputText id="loginId" value="#{loginBean.user.login}"
-							class="formInput" required="true"
+							class="formNumInput" required="true"
 							requiredMessage="Veuillez saisir un identifiant !"
 							validatorMessage="L'identifiant doit contenir 5 à 15 caractères et aucun espace !">
 							<f:validateRegex pattern="(^(\S){5,15})" for="loginId" />
@@ -39,7 +39,7 @@
 
 						<h:outputLabel value="Mot de passe : " for="loginPassword" />
 						<h:inputSecret id="loginPassword"
-							value="#{loginBean.user.security.password}" class="formInput"
+							value="#{loginBean.user.security.password}" class="formNumInput"
 							required="true"
 							requiredMessage="Veuillez saisir un mot de passe !">
 						</h:inputSecret>
