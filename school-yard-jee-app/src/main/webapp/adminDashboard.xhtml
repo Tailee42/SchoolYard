@@ -3,39 +3,47 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="cssFiles">
 		<h:outputStylesheet name="cards.css" library="css" />
+		<h:outputStylesheet name="forms.css" library="css" />
+		<h:outputStylesheet name="buttons.css" library="css" />
 	</ui:define>
 
-	<ui:define name="title">Accueil Ecole</ui:define>
-	
+	<ui:define name="title">
+	Accueil Ecole
+	#{adminBean.initSchoolStats()}
+	</ui:define>
+
 	<ui:define name="navbar-link">
 		<h:form class="inline">
-			<h:commandLink action="#{adminBean.allTeachers()}" >Enseignants</h:commandLink>
-		</h:form>
-		<h:form class="inline">
-			<h:commandLink action="#{adminBean.allStudents()}" >Etudiants</h:commandLink>
+			<h:commandLink action="#{adminBean.modifySchool()}">Ecole</h:commandLink>
 		</h:form>
 	</ui:define>
 
 	<ui:define name="content">
 		<h2>Administrateur école</h2>
-		
+		<h4>#{adminBean.school.stats.numberOfStudents} étudiants |
+			#{adminBean.school.stats.numberOfTeachers} enseignants |
+			#{adminBean.school.stats.numberOfLessons} cours</h4>
+		<hr />
+
 		<h3>Candidatures</h3>
-			<h:outputLabel value="Vous avez #{adminBean.allSchoolCandidates().size()} nouveau(x)
+		<h:outputLabel
+			value="Vous avez #{adminBean.allSchoolCandidates().size()} nouveau(x)
 				candidat(s)."
-				rendered="#{not adminBean.allSchoolCandidates().isEmpty()}" />
-		
-		<!-- 1rst div to display new teachers-candidates -->
+			rendered="#{not adminBean.allSchoolCandidates().isEmpty()}" />
+
 		<div class="container">
 
-			
+
 
 			<h:outputLabel value="Aucune candidature ..."
 				rendered="#{adminBean.allSchoolCandidates().isEmpty()}" />
-			<ui:repeat value="#{adminBean.allSchoolCandidates()}" var="c" varStatus="status">
+			<ui:repeat value="#{adminBean.allSchoolCandidates()}" var="c"
+				varStatus="status">
 				<div class="box">
 					<h2>
 						<h:outputText value="#{c.user.profil.firstName} " />
@@ -58,9 +66,9 @@
 					<br />
 					<h:form id="updateTeacherStatus">
 						<h:commandButton action="#{adminBean.validateTeacher(c.id)}"
-							value="Valider" />
+							value="Valider" class="custom-button" />
 						<h:commandButton action="#{adminBean.rejectTeacher(c.id)}"
-							value="Rejeter" />
+							value="Rejeter" class="custom-button" />
 					</h:form>
 				</div>
 			</ui:repeat>
@@ -68,36 +76,109 @@
 
 		<hr />
 
-		<!-- 2nd div to place alongside the first, displaying lesson to validate or reject -->
-		<h3>Nouveaux cours proposés </h3>
-		<div class="container">
+		<div class="card">
+			<p:tabView dynamic="true" cache="true">
+				<p:tab title="Enseignants ">
+					<div class="container">
+						<h:outputLabel value="Aucun professeur pour le moment."
+							rendered="#{adminBean.allSchoolTeachers().isEmpty()}" />
+						<ui:repeat value="#{adminBean.allSchoolTeachers()}" var="t"
+							varStatus="status">
+							<div class="box">
+								<h2>
+									<h:outputText value="#{t.user.fullName()} " />
+								</h2>
+								<hr />
+								<p>
+									<h:outputText value="#{t.subject}" />
+								</p>
+								<p>
+									<a href="mailto:#{t.user.profil.contact.email}"> Contacter
+										par mail</a>
+								</p>
+								<p>
+									<br />
+									<h:outputText value="#{t.user.profil.contact.phone}" />
+								</p>
+								<br />
+								<h:outputText value="#{t.user.profil.picturePath}" />
+								<br />
+								<h:form id="updateTeacherStatus">
+									<h:commandButton action="#{adminBean.deleteTeacher(t.id)}"
+										value="Supprimer" class="custom-button" />
+								</h:form>
+							</div>
 
-			<h:outputLabel value="Aucun nouveau cours..."
-				rendered="#{adminBean.unitsToUpdate().isEmpty()}" />
+						</ui:repeat>
+					</div>
+				</p:tab>
+				<p:tab title="Etudiants">
+					<div class="container">
 
-			<ui:repeat value="#{adminBean.unitsToUpdate()}" var="u"
-				varStatus="status">
-				<div class="box">
-					<h3>
-						<h:outputText value="#{u.teacher.user.fullName()} " />
-					</h3>
-					<h:outputText value="#{u.level}" />
-					<hr />
-					<p>
-						<h:outputText value="#{u.subject}" />
-					</p>
-					<p>bouton consulter</p>
-					<h:form id="updateUnitStatus">
-						<h:commandButton action="#{adminBean.validateUnit(u.id)}"
-							value="Valider" />
-						<h:commandButton action="#{adminBean.rejectUnit(u.id)}"
-							value="Refuser" />
-					</h:form>
-				</div>
-			</ui:repeat>
+						<h:outputLabel value="Aucun étudiant pour le moment."
+							rendered="#{adminBean.allSchoolStudents().isEmpty()}" />
+						<ui:repeat value="#{adminBean.allSchoolStudents()}" var="s"
+							varStatus="status">
+							<div class="box">
+								<h2>
+									<h:outputText value="#{s.user.fullName()} " />
+								</h2>
+								<hr />
+								<p>
+									<h:outputText value="#{s.level}" />
+								</p>
+								<p>
+									<h:outputText value="#{s.user.profil.contact.address.town}" />
+								</p>
+								<br />
+
+								<p>
+									<a href="mailto:#{s.user.profil.contact.email}"> Contacter
+										par mail</a>
+								</p>
+								<br />
+								<h:outputText value="#{t.user.profil.picturePath}" />
+								<br />
+								<h:form id="deleteStudentForm">
+									<h:commandButton action="#{adminBean.deleteStudent(s.id)}"
+										value="Supprimer" class="custom-button" />
+								</h:form>
+							</div>
+						</ui:repeat>
+					</div>
+				</p:tab>
+				<p:tab title="Cours à valider">
+					<h3>Nouveaux cours proposés</h3>
+					<div class="container">
+
+						<h:outputLabel value="Aucun nouveau cours..."
+							rendered="#{adminBean.unitsToUpdate().isEmpty()}" />
+
+						<ui:repeat value="#{adminBean.unitsToUpdate()}" var="u"
+							varStatus="status">
+							<div class="box">
+								<h3>
+									<h:outputText value="#{u.teacher.user.fullName()} " />
+								</h3>
+								<h:outputText value="#{u.level}" />
+								<hr />
+								<p>
+									<h:outputText value="#{u.subject}" />
+								</p>
+								<p>bouton consulter</p>
+								<h:form id="updateUnitStatus">
+									<h:commandButton action="#{adminBean.validateUnit(u.id)}"
+										value="Valider" class="custom-button" />
+									<h:commandButton action="#{adminBean.rejectUnit(u.id)}"
+										value="Refuser" class="custom-button" />
+								</h:form>
+							</div>
+						</ui:repeat>
+					</div>
+				</p:tab>
+			</p:tabView>
 		</div>
 
-<hr />
 
 	</ui:define>
 

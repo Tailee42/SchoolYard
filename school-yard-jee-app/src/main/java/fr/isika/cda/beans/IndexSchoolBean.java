@@ -4,11 +4,9 @@ import fr.isika.cda.entities.school.School;
 import fr.isika.cda.utils.SessionUtils;
 import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.entities.teacher.Teacher;
-import fr.isika.cda.repositories.SchoolRepository;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.inject.Inject;
 import java.util.List;
 
 @ManagedBean
@@ -16,9 +14,6 @@ import java.util.List;
 public class IndexSchoolBean {
 
     private School school = new School();
-    
-    @Inject
-    private SchoolRepository schoolRepository;
 
     public void getSchoolsInformations() {
         school = SessionUtils.getCurrentSchool();
