@@ -22,7 +22,6 @@ public class CreateUnitBean {
 	public String create() {
 		Teacher connectedTeacher = (Teacher) SessionUtils.getConnectedMember();
 		unit.setTeacher(connectedTeacher);
-		unit.setVisibility(false);
 		unit.setStatus(UnitStatusEnum.TOVALIDATE);
 		unitRepository.save(unit);
 		return "userDashboard?faces-redirect=true";

@@ -9,6 +9,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.primefaces.model.charts.optionconfig.title.Title;
+
 @Entity
 public class Unit implements Serializable {
 
@@ -22,11 +24,11 @@ public class Unit implements Serializable {
 	private Long id;
 
 	private String title;
-
+	
+	@Lob
 	private String content;
 
-	private boolean visibility;
-
+	@Enumerated(EnumType.STRING)
 	private UnitStatusEnum status;
 
 	@Enumerated(EnumType.STRING)
@@ -37,6 +39,19 @@ public class Unit implements Serializable {
 
 	@ManyToOne
 	private Teacher teacher;
+
+	public Unit() {
+		this.teacher = new Teacher();
+	}
+
+	public Unit(String title, String content, UnitStatusEnum status, SubjectEnum subject, AcademicLevel level, Teacher teacher) {
+		this.title = title;
+		this.content = content;
+		this.status = status;
+		this.subject = subject;
+		this.level = level;
+		this.teacher = teacher;
+	}
 
 	public Long getId() {
 		return id;
@@ -58,14 +73,14 @@ public class Unit implements Serializable {
 		this.content = content;
 	}
 
-	public boolean isVisibility() {
-		return visibility;
+	public void setStatus(UnitStatusEnum status) {
+		this.status = status;
 	}
 
-	public void setVisibility(boolean visibility) {
-		this.visibility = visibility;
+	public UnitStatusEnum getStatus() {
+		return status;
 	}
-
+	
 	public SubjectEnum getSubject() {
 		return subject;
 	}
@@ -90,11 +105,4 @@ public class Unit implements Serializable {
 		this.teacher = teacher;
 	}
 
-	public void setStatus(UnitStatusEnum status) {
-		this.status = status;
-	}
-
-	public UnitStatusEnum getStatus() {
-		return status;
-	}
 }

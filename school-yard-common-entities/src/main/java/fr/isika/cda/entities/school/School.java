@@ -23,6 +23,7 @@ public class School implements Serializable {
 	private String schoolName;
 	private String logo;
 	private String synthesis;
+	
 	@Enumerated(EnumType.STRING)
 	private SchoolTypeEnum schoolTypeEnum;
 
@@ -48,7 +49,6 @@ public class School implements Serializable {
 
 	public School(String schoolName, String logo, String presentation, List<Member> members, Contact contact,
 			SchoolTypeEnum schoolTypeEnum) {
-
 		this.schoolName = schoolName;
 		this.logo = logo;
 		this.synthesis = presentation;

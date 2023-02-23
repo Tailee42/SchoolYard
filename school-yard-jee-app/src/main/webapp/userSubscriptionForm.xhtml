@@ -50,10 +50,10 @@
 								validatorMessage="Le mot de passe doit contenir 5 à 15 caractères avec 
 								au moins une minuscule, une majuscule, un chiffre et un caractère spécial !">
 								<f:validateRegex
-									pattern="((?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*([^a-z][^A-Z]\D)){5,15})"
+									pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,15}$/"
 									for="passwordInput" />
 							</h:inputSecret>
-							<h:message styleclasse="errorMessage" for="passwordInput" />
+							<h:message for="passwordInput" styleclasse="errorMessage"/>	
 
 							<h:outputLabel value="Nom : " for="lastNameInput" />
 							<h:inputText id="lastNameInput"

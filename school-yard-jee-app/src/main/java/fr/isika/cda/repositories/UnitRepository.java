@@ -10,23 +10,36 @@ import fr.isika.cda.entities.lesson.Unit;
 
 @Stateless
 public class UnitRepository {
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	public void save(Unit unit) {
+		entityManager.persist(unit);
+	}
+
+	public void update(Unit unit) {
+		entityManager.merge(unit);
+	}
+
+	public List<Unit> thisSchoolUnits(List<Long> teachersIds) {
+		return entityManager.createQuery("SELECT u FROM Unit u where u.teacher.id in(:teachersIds_param)", Unit.class)
+				.setParameter("teachersIds_param", teachersIds).getResultList();
+	}
+
+	public List<Unit> getAll() {
+		return entityManager
+				.createQuery("SELECT u FROM Unit u", Unit.class)
+				.getResultList();
+	}
+
+	public Unit getUnitById(Long id) {
+				return entityManager.createQuery("SELECT u FROM Unit u WHERE u.id = :id_param", Unit.class)
+				.setParameter("id_param",id).getSingleResult();
+	}
+
 	
-	 @PersistenceContext
-	    private EntityManager entityManager;
-
-	    public void save(Unit unit) {
-	        entityManager.persist(unit);
-	    }
-	    
-	    public void update(Unit unit) {
-	    	entityManager.merge(unit);
-	    }
-	    
-	    public List<Unit> thisSchoolUnits(List<Long> teachersIds){
-	    	return entityManager
-	    			.createQuery("SELECT u FROM Unit u where u.teacher.id in(:teachersIds_param)", Unit.class)
-	    			.setParameter("teachersIds_param", teachersIds)
-	    			.getResultList();
-	    }
-
 }
+
+
+
