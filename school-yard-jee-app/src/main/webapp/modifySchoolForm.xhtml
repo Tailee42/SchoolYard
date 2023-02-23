@@ -7,7 +7,6 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="cssFiles">
-		<h:outputStylesheet name="common-style.css" library="css" />
 		<h:outputStylesheet name="forms.css" library="css" />
 		<h:outputStylesheet name="buttons.css" library="css" />
 	</ui:define>
@@ -159,13 +158,13 @@
 											<h:outputLabel value="Sélectionner la couleur principale"
 												for="primaryColor" />
 											<p:colorPicker id="primaryColor" mode="inline"
-												value="#{adminBean.school.schoolPage.theme.primaryColor}" />
+												value="#{adminBean.themeToTest.primaryColor}" />
 
 											<h:outputLabel
 												value="Sélectionner la couleur des liens et des boutons"
 												for="accentColor" />
 											<p:colorPicker id="accentColor" mode="inline"
-												value="#{adminBean.school.schoolPage.theme.accentColor}" />
+												value="#{adminBean.themeToTest.accentColor}" />
 										</h:panelGrid>
 									</div>
 									<br />
@@ -174,23 +173,23 @@
 											<h:outputLabel value="Sélectionner la couleur du fond "
 												for="backgroundColor" />
 											<p:colorPicker id="backgroundColor" mode="inline"
-												value="#{adminBean.school.schoolPage.theme.backgroundColor}" />
+												value="#{adminBean.themeToTest.backgroundColor}" />
 
 											<h:outputLabel value="Sélectionner la police d'écriture"
 												for="selectFont" />
 											<h:selectOneMenu id="selectFont"
-												value="#{adminBean.school.schoolPage.theme.font}">
+												value="#{adminBean.themeToTest.font}">
 
 												<f:selectItem
-													itemValue="#{adminBean.school.schoolPage.theme.font}" />
+													itemValue="#{adminBean.themeToTest.font}" />
 												<f:selectItems value="#{schoolPageBean.fontEnum()}"
 													var="font" itemLabel="#{font}" itemValue="#{font}" />
 											</h:selectOneMenu>
 
-											<h:commandButton action="#{adminBean.modifySchool()}"
-												value="Test" class="custom-button" />
-												
-											<h:commandButton action="#{adminBean.updateSchool()}"
+											<h:commandButton action="#{adminBean.testTheme()}"
+												value="Tester" class="custom-button" />
+																								
+											<h:commandButton action="#{adminBean.updateSchoolTheme()}"
 												value="Valider" class="custom-button" />
 
 										</h:panelGrid>

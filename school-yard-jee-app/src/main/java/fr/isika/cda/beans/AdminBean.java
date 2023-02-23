@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.school.School;
+import fr.isika.cda.entities.school.Theme;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.repositories.SchoolRepository;
@@ -40,6 +41,8 @@ public class AdminBean {
 
 	private School school = SessionUtils.getCurrentSchool();
 
+	private Theme themeToTest = new Theme();
+
 	// méthodes de redirection
 	public List<Teacher> allTeachers() {
 		return allSchoolTeachers();
@@ -52,14 +55,21 @@ public class AdminBean {
 	public String modifySchool() {
 		return "modifySchoolForm?faces-redirect=true";
 	}
-	
-	
+
 	// méthodes métier
 	public void updateSchool() {
 		schoolRepository.update(school);
 		modifySchool();
 	}
-	
+	public void updateSchoolTheme() {
+		school.getSchoolPage().setTheme(themeToTest);
+		updateSchool();
+	}
+	public void testTheme() {
+		school.getSchoolPage().setTheme(themeToTest);
+		themeToTest = new Theme();
+	}
+
 	public String validateTeacher(Long teacherId) {
 		Teacher teacher = getCurrentTeacher(teacherId);
 		adminService.validateTeacher(teacher);
@@ -104,6 +114,14 @@ public class AdminBean {
 		this.school = school;
 	}
 
+	public Theme getThemeToTest() {
+		return themeToTest;
+	}
+
+	public void setThemeToTest(Theme themeToTest) {
+		this.themeToTest = themeToTest;
+	}
+
 	// méthode d'affichage
 	public List<Teacher> allSchoolTeachers() {
 		return teacherRepository.currentSchoolTeachers(getCurrentSchoolId());
@@ -128,7 +146,7 @@ public class AdminBean {
 		adminService.initStats((allSchoolStudents().size()), (allSchoolTeachers().size()), school);
 		return "adminDashboard?faces-redirect=true";
 	}
-	
+
 	// méthode internes
 	private Unit getCurrentUnit(Long unitId) {
 		return unitRepository.getUnitById(unitId);

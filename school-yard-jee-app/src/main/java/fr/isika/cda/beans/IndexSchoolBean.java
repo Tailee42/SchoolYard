@@ -16,8 +16,6 @@ import java.util.List;
 public class IndexSchoolBean {
 
     private School school = new School();
-    @Inject
-    private SchoolRepository schoolRepository;
 
     public void getSchoolsInformations() {
         school = SessionUtils.getCurrentSchool();
