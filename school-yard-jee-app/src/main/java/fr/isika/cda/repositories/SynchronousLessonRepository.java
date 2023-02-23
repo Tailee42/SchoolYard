@@ -27,6 +27,14 @@ public class SynchronousLessonRepository {
                 .getResultList();
     }
 
+    public List<SynchronousLesson> getPastSynchronousLessonsByIdMember(Long id) {
+        return entityManager
+                .createQuery("SELECT sc FROM SynchronousLesson sc WHERE sc.teacher.id = :id_member AND sc.classDate < :id_date", SynchronousLesson.class)
+                .setParameter("id_member", id)
+                .setParameter("id_date", LocalDateTime.now())
+                .getResultList();
+    }
+
 
     public List<SynchronousLesson> getFuturSynchronousLessonsByIdSchool(Long id) {
         return entityManager

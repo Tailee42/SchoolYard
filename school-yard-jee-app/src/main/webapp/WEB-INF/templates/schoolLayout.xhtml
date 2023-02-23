@@ -38,12 +38,11 @@
         <!-- Menu desktop -->
         <div id="navbar-desktop">
             <ui:fragment rendered="#{indexSchoolBean.isTeacher() and indexSchoolBean.isSynchronousLesson()}">
-                <h:link outcome="showSynchronousLesson" value="Les cours"/>
                 <h:link outcome="synchronousLessonForm" value="Créer un cours"/>
                 
             </ui:fragment>
             <ui:fragment rendered="#{indexSchoolBean.isSynchronousLesson()}">
-            <h:link outcome="showSynchronousLesson" value="Les cours"/>
+            <h:link outcome="showSynchronousLessonSchool" value="Les cours"/>
             </ui:fragment>
 
             <ui:fragment rendered="#{indexSchoolBean.isTeacher() and indexSchoolBean.isAsynchronousLesson()}">

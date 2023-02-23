@@ -16,6 +16,10 @@ public class LearningPathRepository {
          entityManager.persist(learningPath);
      }
 
+    public void update(LearningPath learningPath) {
+        entityManager.merge(learningPath);
+    }
+
      public List<LearningPath> getLearningPathsByActivity(Long idActivity) {
          return entityManager
                  .createQuery("select l FROM LearningPath l WHERE l.activity.id = :id_activity", LearningPath.class)
@@ -29,4 +33,7 @@ public class LearningPathRepository {
                 .setParameter("id_student", idStudent)
                 .getResultList();
     }
+
+
+
 }
