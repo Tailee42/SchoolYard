@@ -279,6 +279,16 @@ public class DataSetBean {
 				UnitStatusEnum.VALIDATED, SubjectEnum.MATHS, AcademicLevel.QUATRIEME, teacher4);
 		unitRepository.save(unit6);
 
+		Unit unit7 = new Unit("Equation du 1er degré à une inconnue",
+				"Résoudre une équation à une inconnue x nécessite......",
+				UnitStatusEnum.VALIDATED, SubjectEnum.MATHS, AcademicLevel.QUATRIEME, teacher4);
+		unitRepository.save(unit7);
+		
+		Unit unit8 = new Unit("Système d'équation à deux inconnues",
+				"Résoudre une équation à 2 inconnues x et y nécessite......",
+				UnitStatusEnum.VALIDATED, SubjectEnum.MATHS, AcademicLevel.TROISIEME, teacher4);
+		unitRepository.save(unit8);
+		
 	}
 
 	private void createStudent(School school, User user, AcademicLevel level) {
