@@ -10,7 +10,6 @@ import javax.inject.Inject;
 
 import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.school.School;
-import fr.isika.cda.entities.school.Statistics;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.repositories.SchoolRepository;
@@ -53,13 +52,14 @@ public class AdminBean {
 	public String modifySchool() {
 		return "modifySchoolForm?faces-redirect=true";
 	}
-
+	
+	
 	// méthodes métier
 	public void updateSchool() {
 		schoolRepository.update(school);
 		modifySchool();
 	}
-
+	
 	public String validateTeacher(Long teacherId) {
 		Teacher teacher = getCurrentTeacher(teacherId);
 		adminService.validateTeacher(teacher);

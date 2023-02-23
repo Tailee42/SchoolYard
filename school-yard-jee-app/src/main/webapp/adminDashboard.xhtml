@@ -8,6 +8,9 @@
 
 	<ui:define name="cssFiles">
 		<h:outputStylesheet name="cards.css" library="css" />
+		<h:outputStylesheet name="common-style.css" library="css" />
+		<h:outputStylesheet name="forms.css" library="css" />
+		<h:outputStylesheet name="buttons.css" library="css" />
 	</ui:define>
 
 	<ui:define name="title">Accueil Ecole</ui:define>
@@ -20,7 +23,9 @@
 
 	<ui:define name="content">
 		<h2>Administrateur école</h2>
-		<h4>#{adminBean.school.stats.numberOfStudents} étudiants | #{adminBean.school.stats.numberOfTeachers} enseignants | #{adminBean.school.stats.numberOfLessons} cours</h4>
+		<h4>#{adminBean.school.stats.numberOfStudents} étudiants |
+			#{adminBean.school.stats.numberOfTeachers} enseignants |
+			#{adminBean.school.stats.numberOfLessons} cours</h4>
 		<hr />
 
 		<h3>Candidatures</h3>
@@ -59,9 +64,9 @@
 					<br />
 					<h:form id="updateTeacherStatus">
 						<h:commandButton action="#{adminBean.validateTeacher(c.id)}"
-							value="Valider" />
+							value="Valider" class="custom-button" />
 						<h:commandButton action="#{adminBean.rejectTeacher(c.id)}"
-							value="Rejeter" />
+							value="Rejeter" class="custom-button" />
 					</h:form>
 				</div>
 			</ui:repeat>
@@ -70,7 +75,7 @@
 		<hr />
 
 		<div class="card">
-			<p:tabView dynamic="true" cache="true" >
+			<p:tabView dynamic="true" cache="true">
 				<p:tab title="Enseignants ">
 					<div class="container">
 						<h:outputLabel value="Aucun professeur pour le moment."
@@ -98,7 +103,7 @@
 								<br />
 								<h:form id="updateTeacherStatus">
 									<h:commandButton action="#{adminBean.deleteTeacher(t.id)}"
-										value="Supprimer" />
+										value="Supprimer" class="custom-button" />
 								</h:form>
 							</div>
 
@@ -134,7 +139,7 @@
 								<br />
 								<h:form id="deleteStudentForm">
 									<h:commandButton action="#{adminBean.deleteStudent(s.id)}"
-										value="Supprimer" />
+										value="Supprimer" class="custom-button" />
 								</h:form>
 							</div>
 						</ui:repeat>
@@ -161,9 +166,9 @@
 								<p>bouton consulter</p>
 								<h:form id="updateUnitStatus">
 									<h:commandButton action="#{adminBean.validateUnit(u.id)}"
-										value="Valider" />
+										value="Valider" class="custom-button" />
 									<h:commandButton action="#{adminBean.rejectUnit(u.id)}"
-										value="Refuser" />
+										value="Refuser" class="custom-button" />
 								</h:form>
 							</div>
 						</ui:repeat>
