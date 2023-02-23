@@ -42,14 +42,14 @@
 			</div>
 
 
-			<h:form class="divsection3">
+			<h:form class="divsection3" rendered="#{welcomeBean.isUserConnected()}">
 				<div class="button">
-					<h:commandButton action="#{createStudentBean.create()}"
+					<h:link outcome="studentSubscriptionForm"
 						value="Inscription élève" class="custom-button"  />
 				</div>
 
 				<div class="button">
-					<h:commandButton action="#{createTeacherBean.create()}"
+					<h:link outcome="teacherSubscriptionForm"
 						value="Inscription professeur" class="custom-button" />
 				</div>
 

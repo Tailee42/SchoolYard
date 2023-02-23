@@ -11,10 +11,14 @@
 
 	<ui:define name="title">Accueil Ecole</ui:define>
 	
-<ui:define name="navbar-link">
-<h:commandLink action="#{adminBean.allTeachers()}" >Enseignants</h:commandLink>
-<h:commandLink action="#{adminBean.allStudents()}" >Etudiants</h:commandLink>
-</ui:define>
+	<ui:define name="navbar-link">
+		<h:form class="inline">
+			<h:commandLink action="#{adminBean.allTeachers()}" >Enseignants</h:commandLink>
+		</h:form>
+		<h:form class="inline">
+			<h:commandLink action="#{adminBean.allStudents()}" >Etudiants</h:commandLink>
+		</h:form>
+	</ui:define>
 
 	<ui:define name="content">
 		<h2>Administrateur école</h2>
@@ -92,7 +96,7 @@
 				</div>
 			</ui:repeat>
 		</div>		
-	
+
 <hr />
 
 	</ui:define>

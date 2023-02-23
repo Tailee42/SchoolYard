@@ -35,7 +35,7 @@ public class SynchronousLessonBean {
 
     public List<SynchronousLesson> getSynchronousLessonsByIdSchool() {
         School school = SessionUtils.getCurrentSchool();
-        return synchronousLessonRepository.getFuturSynchronousLessonsByIdSchool(school.getId());
+        return synchronousLessonRepository.getFuturSynchronousLessonsByIdMember(school.getId());
     }
 
     public String freeSeatsNumbers(SynchronousLesson synchronousLesson) {

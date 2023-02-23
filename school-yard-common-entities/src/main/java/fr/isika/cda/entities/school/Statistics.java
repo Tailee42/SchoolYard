@@ -6,6 +6,10 @@ import javax.persistence.Id;
 
 @Entity
 public class Statistics {
+	
+	@Id
+	@GeneratedValue
+	private Long id;
 
 	@Id
 	@GeneratedValue
@@ -40,6 +44,11 @@ public class Statistics {
 	public void setNumberOfTeachers(int numberOfTeachers) {
 		this.numberOfTeachers = numberOfTeachers;
 	}
+	
+	public Long getId() {
+		return id;
+	}
+	
 
 	public Long getId() {
 		return Id;
