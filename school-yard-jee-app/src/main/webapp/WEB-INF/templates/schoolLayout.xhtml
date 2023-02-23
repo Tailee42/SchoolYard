@@ -31,7 +31,13 @@
     <div id="header">
         <div id="entreprise">
 
-            <h:graphicImage library="images" name="LogoEcole" width="140" height="100" alt="SchoolLogo"/>
+            <ui:fragment rendered="#{not indexSchoolBean.hasLogo()}">
+                <h:graphicImage library="images" name="no_logo.png" alt="No school logo ..." width="50px" height="50px" />
+            </ui:fragment>
+            <ui:fragment rendered="#{indexSchoolBean.hasLogo()}">
+                <h:graphicImage library="images" name="#{indexSchoolBean.school.logo}" alt="School logo" width="50px" height="50px" />
+            </ui:fragment>
+
             <h1>#{indexSchoolBean.school.schoolName}</h1>
         </div>
 

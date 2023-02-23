@@ -61,36 +61,9 @@
             </ui:repeat>
         </div>
 
-            <h:link outcome="showSynchronousLessonTeacher">Mes cours particuliers en tant que professeur</h:link>
-
-
-
-        <h2>Mes cours particuliers en tant qu'élève</h2>
-        <div class="container">
-            <ui:repeat value="#{membersListBean.getSynchronousLessonLikeStudent()}" var="l">
-                <div class="box" style="border-top: 3px solid ##{l.student.school.schoolPage.theme.primaryColor}">
-                    <h2>
-                        <h:outputText value="#{l.activity.title}"/>
-                    </h2>
-                    <h3>
-                        <h:outputText value="#{l.activity.subject}"/>
-                    </h3>
-                    <h3>
-                        <h:outputText value="#{l.activity.level}"/>
-                    </h3>
-                    <hr/>
-                    <p>
-                        <h:outputText value="#{membersListBean.getStringClassDate(l)}"/>
-                        <br/>
-                        <h:outputText value="#{membersListBean.getStringDuration(l)}"/>
-                        <br/>
-                    </p>
-
-
-                </div>
-            </ui:repeat>
-        </div>
-
+            <h:link outcome="showSynchronousLessonTeacher">Mes cours particuliers en tant que professeur</h:link><br/>
+        <br/>
+        <h:link outcome="showSynchronousLessonStudent">Mes cours particuliers en tant qu'élève</h:link>
 
     </ui:define>
 
