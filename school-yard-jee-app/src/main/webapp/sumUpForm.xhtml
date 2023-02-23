@@ -30,16 +30,16 @@
     <ui:define name="content">
         <h1>Suivi des élèves</h1>
 
-        <h:form id="sumUpForm">
+        <h:form id="sumUpForm" class="forms">
             <div class="form-container">
                 <div class="grid">
                     <h:panelGrid columns="1" class="grid">
 
                         <ui:repeat value="#{sumUpBean.getLearningPathBySynchronousLesson()}" var="l">
 
-                            <h:outputLabel value="Suivi pour #{l.student.user.profil.firstName} "
-                                           for="suiviInput" />
-                            <h:inputTextarea id="suiviInput" value="#{l.sumUp}" class="formInput"/>
+                            <h:outputLabel value="Suivi pour #{l.student.user.profil.firstName} :"
+                                           for="suiviInput" /><br/>
+                            <h:inputTextarea id="suiviInput" value="#{l.sumUp}" class="formSumUpInput"/>
                             <br/>
 
                         </ui:repeat>
