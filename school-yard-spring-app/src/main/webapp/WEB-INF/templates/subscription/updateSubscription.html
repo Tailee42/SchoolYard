@@ -3,7 +3,7 @@
 <head>
 <title>Modifier un abonnement </title>
 <link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/stylesheet.css">
-<link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/tableau.css">
+<link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/forms.css">
 </head>
 
 <body>
@@ -11,31 +11,32 @@
 	<nav>
 	<ul>
 		<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
-		<li><a th:href="@{/usersList}">Liste des users</a></li>
-		<li><a th:href="@{/index}">Liste des �coles</a></li>
-		<li><a th:href="@{/featuresList}">Liste des features</a></li>
+		<li><a th:href="@{/usersList}">Utilisateurs</a></li>
+		<li><a th:href="@{/schoolsList}">Ecoles</a></li>
+		<li><a th:href="@{/featuresList}">Fonctionnalités</a></li>
+		<li><a th:href="@{/subscriptionsList}">Abonnements</a></li>
 	</ul>
 	</nav>
 	
 	<h2>Modifier un abonnement</h2>
-	<form th:action="@{/updateSubscription}" method="post" th:object="${subscription}">
+	<form th:action="@{/updateSubscription}" method="post" th:object="${subscription}" class="forms">
 		<input type="hidden" name="id" th:value="${subscription.id}"/>
-		<label>Nom de l'abonnement</label>
-		<input name="subscriptionName" th:value="${subscription.name}"/>
+		<label>Nom de l'abonnement</label><br/>
+		<input name="subscriptionName" th:value="${subscription.name}" class="input"/><br/>
 		<br/>
-		<label>Prix </label>
-		<input name="subscriptionPrice" th:value="${subscription.price}"/>
+		<label>Prix </label><br/>
+		<input name="subscriptionPrice" th:value="${subscription.price}" class="input"/><br/>
 		<br/>
-		<label>Durée </label>
-		<input name="subscriptionDuration" th:value="${subscription.duration}"/>
+		<label>Durée </label><br/>
+		<input name="subscriptionDuration" th:value="${subscription.duration}" class="input"/><br/>
 		<br/>
-		<label>Fonctionnalités </label>
+		<label>Fonctionnalités  </label><br/>
 		<div th:each="feature : ${features}">
-			<input type="checkbox" name="featureId" th:value="${feature.id}" th:checked="${subscription.features.contains(feature)}"/>
+			<input type="checkbox" name="featureId" th:value="${feature.id}" th:checked="${subscription.features.contains(feature)}" class="inputOptions"/>
 			<span th:text="${feature.featureTitle}"></span>
 		</div>
 		<br/> 
-		<button type="submit">Modifier</button>
+		<button type="submit" class="custom-button">Modifier</button>
 	</form>
 
 </body>

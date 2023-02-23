@@ -11,7 +11,7 @@
 	<nav>
 	<ul>
 		<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
-		<li><a th:href="@{/usersList}">Users</a></li>
+		<li><a th:href="@{/usersList}">Utilisateurs</a></li>
 		<li><a th:href="@{/subscriptionsList}">Abonnements</a></li>
 		<li><a th:href="@{/featuresList}">Fonctionnalités</a></li>
 	</ul>
@@ -21,7 +21,6 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Id</th>
 				<th>Nom</th>
 				<th>Description</th>
 				<th>Type</th>
@@ -33,7 +32,7 @@
 			</tr>
 		</thead>
 		<tr th:each="school : ${schools}">
-			<td><span th:text=${school.id}></span></td>
+			<td hidden="hidden"><span th:text=${school.id}></span></td>
 			<td><span th:text=${school.schoolName}></span></td>
 			<td><span th:text=${school.synthesis}></span></td>
 			<td><span th:text=${school.schoolTypeEnum}></span></td>
@@ -42,9 +41,6 @@
 			<td><span th:text=${school.membership.subscription.name}></span></td>
 			<td><span th:text=${school.statusSchool.displayValue}></span></td>
 			<td><a th:href="@{schoolForm/(id=${school.id})}">Voir</a></td>
-		<td>
-				
-			</td>
 		</tr>
 	</table>
 
