@@ -36,8 +36,11 @@
                             </h2>
                             <hr/>
                             <!--				TODO	Ne fonctionne pas à reprendre-->
-                            <img src="school-yard-resources/images/logo.png"/>
-                            <h:graphicImage value="#{schoolsListBean.getPathPicture(s)}" alt="Logo" width="100"/>
+                            4
+
+                            <h:graphicImage library="images" name="#{indexSchoolBean.school.logo}" alt="School logo"
+                                            width="50px" height="50px"/>
+
                             <br/>
                             <p>
                                 <h:outputText value="#{s.synthesis}"/>

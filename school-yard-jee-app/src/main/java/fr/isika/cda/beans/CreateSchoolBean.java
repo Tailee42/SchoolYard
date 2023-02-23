@@ -2,13 +2,12 @@ package fr.isika.cda.beans;
 
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.UUID;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
-import javax.servlet.http.Part;
 
 import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.school.Admin;
@@ -23,9 +22,9 @@ import fr.isika.cda.repositories.MemberRepository;
 import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.repositories.SubscriptionRepository;
 import fr.isika.cda.utils.FileUpload;
-import fr.isika.cda.utils.FileUtils;
 import fr.isika.cda.utils.SessionUtils;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.file.UploadedFile;
 
 @ManagedBean
 @SessionScoped
@@ -83,11 +82,10 @@ public class CreateSchoolBean {
 	}
 
 	public void uploadFile(FileUploadEvent event) {
-		String absoluteFilePath = FileUtils.getResourceImageFilePath(event.getFile().getFileName());
-
-		// Mémorise le nom du fichier => à reconstituer lors de la lecture
-		logoFileName =  event.getFile().getFileName();
-		FileUpload.doUpLoad(event.getFile(), absoluteFilePath);
+		String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyy_hhmmss"));
+		UploadedFile file = event.getFile();
+		logoFileName = timestamp + "_" + file.getFileName();
+		FileUpload.doUpLoad(file, logoFileName);
 	}
 
 
