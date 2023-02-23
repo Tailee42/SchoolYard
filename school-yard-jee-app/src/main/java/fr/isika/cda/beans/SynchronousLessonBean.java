@@ -1,5 +1,8 @@
 package fr.isika.cda.beans;
 
+import fr.isika.cda.entities.common.AcademicLevel;
+import fr.isika.cda.entities.common.SchoolTypeEnum;
+import fr.isika.cda.entities.common.SubjectEnum;
 import fr.isika.cda.entities.lesson.PhysicalOption;
 import fr.isika.cda.entities.lesson.SynchronousLesson;
 import fr.isika.cda.entities.lesson.VirtualOption;
@@ -31,7 +34,7 @@ public class SynchronousLessonBean {
     @Inject
     private PhysicalRepository physicalRepository;
 
-
+    private SynchronousLesson lesson = new SynchronousLesson();
 
     public List<SynchronousLesson> getSynchronousLessonsByIdSchool() {
         School school = SessionUtils.getCurrentSchool();
@@ -42,6 +45,18 @@ public class SynchronousLessonBean {
         Member member = SessionUtils.getConnectedMember();
         return synchronousLessonRepository.getFuturSynchronousLessonsByIdMember(member.getId());
     }
+    
+    public List<SynchronousLesson> getSynchronousLessonsByLevel() {
+        School school = SessionUtils.getCurrentSchool();
+        return synchronousLessonRepository.getFuturSynchronousLessonsByLevel(school.getId(), lesson.getLevel());
+       
+    }
+
+    public List<SynchronousLesson> getSynchronousLessonsBySubject() {
+    	School school = SessionUtils.getCurrentSchool();
+        return synchronousLessonRepository.getFuturSynchronousLessonsBySubject(school.getId(), lesson.getSubject());
+    }
+    
 
     public String freeSeatsNumbers(SynchronousLesson synchronousLesson) {
         List<LearningPath> learningPaths = learningPathRepository.getLearningPathsByActivity(synchronousLesson.getId());
@@ -77,7 +92,22 @@ public class SynchronousLessonBean {
         }
         return "";
 
+    }
 
+	public SynchronousLesson getLesson() {
+		return lesson;
+	}
+
+	public void setLesson(SynchronousLesson lesson) {
+		this.lesson = lesson;
+	}
+    
+    public SubjectEnum[] subjects() {
+        return SubjectEnum.values();
+    }
+    
+    public AcademicLevel[] levels() {
+        return AcademicLevel.values();
     }
 
 }
