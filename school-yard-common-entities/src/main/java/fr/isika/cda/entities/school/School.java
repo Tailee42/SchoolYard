@@ -41,7 +41,7 @@ public class School implements Serializable {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Membership membership;
-
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private SchoolPage schoolPage;
 
@@ -52,7 +52,6 @@ public class School implements Serializable {
 
 	public School(String schoolName, String logo, String presentation, List<Member> members, Contact contact,
 			SchoolTypeEnum schoolTypeEnum) {
-
 		this.schoolName = schoolName;
 		this.logo = logo;
 		this.synthesis = presentation;
@@ -134,9 +133,11 @@ public class School implements Serializable {
 		return membership;
 	}
 
+
 	public SchoolPage getSchoolPage() {
 		return schoolPage;
 	}
+
 
 	public void setSchoolPage(SchoolPage schoolPage) {
 		this.schoolPage = schoolPage;

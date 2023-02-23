@@ -20,6 +20,7 @@ import fr.isika.cda.entities.common.Security;
 import fr.isika.cda.entities.lesson.PhysicalOption;
 import fr.isika.cda.entities.lesson.SynchronousLesson;
 import fr.isika.cda.entities.lesson.Unit;
+import fr.isika.cda.entities.lesson.UnitStatusEnum;
 import fr.isika.cda.entities.lesson.VirtualOption;
 import fr.isika.cda.entities.school.*;
 import fr.isika.cda.entities.student.Student;
@@ -79,7 +80,6 @@ public class DataSetBean {
 		subscription1.getFeatures().add(feature3);
 		subscriptionRepository.save(subscription1);
 
-
 		Subscription subscription2 = new Subscription(170.00, 12L, "Basic");
 		subscription2.getFeatures().add(feature1);
 		subscriptionRepository.save(subscription2);
@@ -130,8 +130,8 @@ public class DataSetBean {
 						"07 48 48 48 48", new Address(52, "Place d'Italie", "NICE", "06000"))));
 		userRepository.save(user4);
 
-		//Schools need a membership !
-		
+		// Schools need a membership !
+
 		School school1 = new School("Collège des bois", "", "Collège bienveillant et inclusif", new ArrayList<>(),
 				new Contact("collegeDesBois@gmail.com", "05 05 05 05 05",
 						new Address(789, "Rue du college", "TOULOUSE", "31000")),
@@ -237,28 +237,31 @@ public class DataSetBean {
 						"06 62 62 62 62", new Address(74, "Rue du téléphérique", "BORDEAUX", "33000"))));
 		userRepository.save(user22);
 		Teacher teacher2 = createTeacher(school2, user22, SchoolTypeEnum.ELEMENTAIRE, SubjectEnum.MATHS);
-
+		
 		User user23 = new User("minerva", LocalDateTime.of(2022, Month.JULY, 19, 6, 6), RoleTypeEnum.USER,
-				new Security("min"), new Profil("McGonagall", "Minerva", "", new Contact("minerva@gmail.com",
-						"06 01 19 35 23", new Address(4, "rue Privet Drive", "Drancy", "93700"))));
+				new Security("Minerva-789"), new Profil("MCGONAGALL", "Minerva", "", new Contact("minerva@gmail.com",
+						"06 01 19 35 23", new Address(4, "Rue Privet Drive", "DRANCY", "93700"))));
 		userRepository.save(user23);
 		Teacher teacher3 = createTeacher(school1, user23, SchoolTypeEnum.COLLEGE, SubjectEnum.CHIMIE);
 
-        //Create some synchronous lessons
-        VirtualOption virtual1 = new VirtualOption("www.zoom.fr",
-				"Zoom",
-                new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.CINQUIEME, teacher1, "Seigneurs et paysans au Moyen Âge", "1 heure", LocalDateTime.of(2023, Month.MARCH, 12, 14, 30), 5, new BigDecimal("25")));
-        virtualRepository.save(virtual1);
+		Teacher teacher4 = createTeacher(school4, user3, SchoolTypeEnum.COLLEGE, SubjectEnum.MATHS);
+
+		// Create some synchronous lessons
+		VirtualOption virtual1 = new VirtualOption("www.zoom.fr", "Zoom",
+				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.CINQUIEME, teacher1,
+						"Seigneurs et paysans au Moyen Âge", "1 heure", LocalDateTime.of(2023, Month.MARCH, 12, 14, 30),
+						5, new BigDecimal("25")));
+		virtualRepository.save(virtual1);
 
 		PhysicalOption physical1 = new PhysicalOption(new Address(13, "Rue de la fontaine", "LYON", "69009"),
 				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.TROISIEME, teacher1, "La guerre froide",
 						"1 heure et quart", LocalDateTime.of(2023, Month.APRIL, 1, 10, 15), 8, new BigDecimal("27")));
 		physicalRepository.save(physical1);
 
-        VirtualOption virtual2= new VirtualOption("www.zoom.fr",
-				"Zoom",
-                new SynchronousLesson(SubjectEnum.MATHS, AcademicLevel.CM1, teacher2, "Les nombres décimaux", "1 heure et demi", LocalDateTime.of(2023, Month.MARCH, 24, 10, 30), 3, new BigDecimal("30")));
-        virtualRepository.save(virtual2);
+		VirtualOption virtual2 = new VirtualOption("www.zoom.fr", "Zoom",
+				new SynchronousLesson(SubjectEnum.MATHS, AcademicLevel.CM1, teacher2, "Les nombres décimaux",
+						"1 heure et demi", LocalDateTime.of(2023, Month.MARCH, 24, 10, 30), 3, new BigDecimal("30")));
+		virtualRepository.save(virtual2);
 
 		PhysicalOption physical2 = new PhysicalOption(new Address(75, "Place de la mairie", "DIJON", "21000"),
 				new SynchronousLesson(SubjectEnum.MATHS, AcademicLevel.CM2, teacher2, "Les longueurs", "45 minutes",
@@ -287,6 +290,27 @@ public class DataSetBean {
 		Unit unit5 = new Unit("Lorem Ipsum", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
 				teacher1,AcademicLevel.SIXIEME);
 		unitRepository.save(unit5);
+
+		Unit unit6 = new Unit("Théorème de Pythagore",
+				"Le théorème de Pythagore s'applique uniquement aux triangles rectangles. \r\n" + "\r\n"
+						+ "Un triangle est dit rectangle quand 2 côtés de celui-ci sont perpendiculaires entre eux : \r\n"
+						+ "ils forment ainsi un angle droit de 90°. \r\n" + "\r\n"
+						+ "Le théorème de Pythagore permet de trouver la mesure d’un côté lorsque l'on connait la mesure des deux autres côtés. \r\n"
+						+ "\r\n" + "Selon le théorème de Pythagore : \r\n"
+						+ "Dans un triangle ABC rectangle en A, la somme des carrés des 2 côtés AB et AC situés de part et d'autre de l'angle droit est égale au carré de l'hypothénuse BC.\r\n"
+						+ "",
+				UnitStatusEnum.VALIDATED, SubjectEnum.MATHS, AcademicLevel.QUATRIEME, teacher4);
+		unitRepository.save(unit6);
+
+		Unit unit7 = new Unit("Equation du 1er degré à une inconnue",
+				"Résoudre une équation à une inconnue x nécessite......",
+				UnitStatusEnum.VALIDATED, SubjectEnum.MATHS, AcademicLevel.QUATRIEME, teacher4);
+		unitRepository.save(unit7);
+
+		Unit unit8 = new Unit("Système d'équation à deux inconnues",
+				"Résoudre une équation à 2 inconnues x et y nécessite......",
+				UnitStatusEnum.VALIDATED, SubjectEnum.MATHS, AcademicLevel.TROISIEME, teacher4);
+		unitRepository.save(unit8);
 	}
 
 	private void createStudent(School school, User user, AcademicLevel level) {

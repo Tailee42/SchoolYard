@@ -36,5 +36,18 @@ public class UnitRepository {
 				.setParameter("status_param", UnitStatusEnum.TOVALIDATE)
 				.getResultList();
 	}
+	public List<Unit> thisSchoolUnits(List<Long> teachersIds) {
+		return entityManager.createQuery("SELECT u FROM Unit u where u.teacher.id in(:teachersIds_param)", Unit.class)
+				.setParameter("teachersIds_param", teachersIds).getResultList();
+	}
+
+	public List<Unit> getAll() {
+		return entityManager
+				.createQuery("SELECT u FROM Unit u", Unit.class)
+				.getResultList();
+	}
 
 }
+
+
+
