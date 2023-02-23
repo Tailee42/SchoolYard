@@ -5,6 +5,7 @@
     --backgroundColor : #e8e9eb;
     --textColor : #414143;
     --primaryColor : #7df2ea;
+    --errorTextColor : #ED1B24;
 }
 
 body {

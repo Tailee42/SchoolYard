@@ -1,5 +1,5 @@
 :root {
-	--paddingLeft: 0px 0px 0px 15px;
+	--paddingLeft: 0px 0px 0px 15px; 
 	--borderInput: 1px solid var(--accentColor);
 }
 
@@ -12,7 +12,7 @@
 .forms {
 	padding: var(--paddingLeft);
 	border-left: 5px var(--accentColor) solid;
-	width:100%
+	width: 100%
 }
 
 .gridDiv {
@@ -23,7 +23,8 @@
 	width: 80%;
 }
 
-.formInput, .formNumInput, .searchInput, .searchMenu, .formAreaInput, .formLargeAreaInput {
+.formInput, .formNumInput, .searchInput, .searchMenu, .formAreaInput,
+	.formLargeAreaInput {
 	border: var(--borderInput);
 	border-radius: 60px;
 	margin: 5px 0px;
@@ -34,7 +35,7 @@
 	font-weight: 100;
 }
 
-.formNumInput, .searchMenu, .searchInput{
+.formNumInput, .searchMenu, .searchInput {
 	width: 30%;
 }
 
@@ -49,7 +50,7 @@
 .formInput:focus, .formNumInput:focus, .searchInput:focus {
 	outline: none;
 	background: var(--accentColor);
-	color:var(--textColor);
+	color: var(--textColor);
 }
 
 label {
@@ -60,12 +61,15 @@ label {
 	margin-top: 30px;
 }
 
-@media (max-width: 950px) {
+.errorMessage {
+	color: var(--errorTextColor);
+}
+
+@media ( max-width : 950px) {
 	.form-container {
 		flex-direction: column;
 		align-items: flex-start;
 	}
-	
 	.gridDiv, .grid {
 		width: 80%;
 	}
@@ -80,7 +84,7 @@ label {
 }
 
 .imgInput {
-	width : 55%;
+	width: 55%;
 }
 
 .formAreaInput {
@@ -91,4 +95,3 @@ label {
 	width: 90%;
 	height: 500px;
 }
-
