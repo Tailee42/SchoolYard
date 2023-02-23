@@ -25,8 +25,11 @@
     <ui:define name="content">
         <h1>Bienvenue #{welcomeBean.getUserConnectedName()} sur votre
             espace utilisateur</h1>
-
-        <h2>Mes écoles</h2>
+		<hr/>
+		<h:link outcome="userProfileForm" value="Modifier mon profil"
+			class="custom-long-button" />
+		<hr/>
+		<h2>Mes écoles</h2>
         <div class="container">
             <ui:repeat value="#{membersListBean.allMembersForOneUser()}" var="m">
                 <div class="box" style="border-top: 3px solid ##{m.school.schoolPage.theme.primaryColor}">
@@ -46,8 +49,11 @@
                     </h3>
 
                     <h:form>
+                 
                         <h:commandButton action="#{membersListBean.goToIndexSchool(m)}"
-                                         value="Espace école " class="custom-little-button"/>
+                                         value="Espace école " class="custom-long-button"/>
+                        
+                    
                         <br/>
                     </h:form>
 
