@@ -136,7 +136,7 @@ public class DataSetBean {
 
 		// Schools need a membership !
 
-		School school1 = new School("Collège des bois", "", "Collège bienveillant et inclusif", new ArrayList<>(),
+		School school1 = new School("Collège des bois", "", "Le collège où les connaissances prennent racine", new ArrayList<>(),
 				new Contact("collegeDesBois@gmail.com", "05 05 05 05 05",
 						new Address(789, "Rue du college", "TOULOUSE", "31000")),
 				SchoolTypeEnum.COLLEGE);
@@ -149,7 +149,7 @@ public class DataSetBean {
 		schoolRepository.save(school1);
 		createAdmin(user1, school1);
 
-		School school2 = new School("Ecole de la plage", "", "Ecole en plein air", new ArrayList<>(),
+		School school2 = new School("Ecole de la plage", "", "Se détendre, pour mieux apprendre", new ArrayList<>(),
 				new Contact("ecoledelaplage@gmail.com", "05 36 36 36 36",
 						new Address(56, "Rue de la plage", "BIARRITZ", "64200")),
 				SchoolTypeEnum.ELEMENTAIRE);
