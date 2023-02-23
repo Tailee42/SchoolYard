@@ -6,7 +6,6 @@ import fr.isika.cda.entities.lesson.VirtualOption;
 import fr.isika.cda.entities.school.Member;
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.student.LearningPath;
-import fr.isika.cda.entities.student.StatusLearningPath;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.repositories.LearningPathRepository;
 import fr.isika.cda.repositories.PhysicalRepository;
@@ -61,9 +60,7 @@ public class SynchronousLessonBean {
     public String create(SynchronousLesson synchronousLesson) {
         LearningPath learningPath = new LearningPath();
         learningPath.setActivity(synchronousLesson);
-        learningPath.setStatusLearningPath(StatusLearningPath.ACTIVE);
         learningPath.setStudent((Student) SessionUtils.getConnectedMember());
-        learningPath.setRegistrationDate(LocalDateTime.now());
         learningPathRepository.save(learningPath);
         return "indexSchool?faces-redirect=true";
     }
