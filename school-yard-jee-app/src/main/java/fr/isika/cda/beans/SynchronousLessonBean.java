@@ -3,6 +3,7 @@ package fr.isika.cda.beans;
 import fr.isika.cda.entities.lesson.PhysicalOption;
 import fr.isika.cda.entities.lesson.SynchronousLesson;
 import fr.isika.cda.entities.lesson.VirtualOption;
+import fr.isika.cda.entities.school.Member;
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.student.LearningPath;
 import fr.isika.cda.entities.student.StatusLearningPath;
@@ -35,7 +36,12 @@ public class SynchronousLessonBean {
 
     public List<SynchronousLesson> getSynchronousLessonsByIdSchool() {
         School school = SessionUtils.getCurrentSchool();
-        return synchronousLessonRepository.getFuturSynchronousLessonsByIdMember(school.getId());
+        return synchronousLessonRepository.getFuturSynchronousLessonsByIdSchool(school.getId());
+    }
+
+    public List<SynchronousLesson> getSynchronousLessonsByIdMember() {
+        Member member = SessionUtils.getConnectedMember();
+        return synchronousLessonRepository.getFuturSynchronousLessonsByIdMember(member.getId());
     }
 
     public String freeSeatsNumbers(SynchronousLesson synchronousLesson) {
