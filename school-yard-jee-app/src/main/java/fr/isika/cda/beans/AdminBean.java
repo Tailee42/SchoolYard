@@ -42,12 +42,12 @@ public class AdminBean {
 	private School school = SessionUtils.getCurrentSchool();
 
 	// méthodes de redirection
-	public String allTeachers() {
-		return "schoolTeachersList?faces-redirect=true";
+	public List<Teacher> allTeachers() {
+		return allSchoolTeachers();
 	}
 
-	public String allStudents() {
-		return "schoolStudentsList?faces-redirect=true";
+	public List<Student> allStudents() {
+		return allSchoolStudents();
 	}
 
 	public String modifySchool() {
@@ -125,11 +125,10 @@ public class AdminBean {
 	}
 
 	public String initSchoolStats() {
-		Statistics stats = school.getStats();
-		adminService.initStats(stats, (allSchoolStudents().size()), (allSchoolTeachers().size()), getCurrentSchoolId());
+		adminService.initStats((allSchoolStudents().size()), (allSchoolTeachers().size()), school);
 		return "adminDashboard?faces-redirect=true";
 	}
-
+	
 	// méthode internes
 	private Unit getCurrentUnit(Long unitId) {
 		return unitRepository.getUnitById(unitId);
