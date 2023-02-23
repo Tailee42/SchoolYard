@@ -23,7 +23,7 @@
 	width: 80%;
 }
 
-.formInput, .formNumInput, .searchInput, .searchMenu, .formAreaInput {
+.formInput, .formNumInput, .searchInput, .searchMenu, .formAreaInput, .formLargeAreaInput {
 	border: var(--borderInput);
 	border-radius: 60px;
 	margin: 5px 0px;
@@ -85,5 +85,10 @@ label {
 
 .formAreaInput {
 	height: 70px;
+}
+
+.formLargeAreaInput {
+	width: 90%;
+	height: 500px;
 }
 

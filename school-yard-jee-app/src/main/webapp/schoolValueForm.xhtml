@@ -9,6 +9,7 @@
 	<ui:define name="cssFiles">
 		<h:outputStylesheet name="common-style.css" library="css"/>
 		<h:outputStylesheet name="buttons.css" library="css"/>
+		<h:outputStylesheet name="forms.css" library="css"/>
     </ui:define>	
 
 	<ui:define name="title">Présentation de mon école</ui:define>
@@ -22,17 +23,18 @@
 
 	<ui:define name="content">
 		<h1>Présentation de mon école</h1>
-		<h:form id="createThemeForm" enctype="multipart/form-data">
-
-			<h:panelGrid columns="1">
+		<h:form id="createThemeForm" enctype="multipart/form-data" class="forms">
+			<div class="form-container">
+			<div class="gridDiv">
+			<h:panelGrid columns="1" class="grid">
 
 				<h:outputLabel value="Slogan de votre école" for="titleValueInput" />
 				<h:inputTextarea id="titleValueInput"
-							 value="#{schoolPageBean.schoolPage.schoolValue.titleValue}" />
+							 value="#{schoolPageBean.schoolPage.schoolValue.titleValue}" class="formInput"/>
 							 
 				<h:outputLabel value="Texte de présentation" for="descriptionValueInput" />
 				<h:inputTextarea id="descriptionValueInput"
-							 value="#{schoolPageBean.schoolPage.schoolValue.descriptionValue}" />
+							 value="#{schoolPageBean.schoolPage.schoolValue.descriptionValue}" class="formAreaInput" />
 				
 				<h:outputLabel value="Photo de votre école : " for="picture" />
 				<h:inputFile id="picture" value="#{schoolPageBean.schoolPage.schoolValue.picture}"/>			 
@@ -41,7 +43,8 @@
 					value="Valider" class="custom-button"/>
 
 			</h:panelGrid>
-
+		</div>
+		</div>
 		</h:form>
 	</ui:define>
 </ui:composition>
