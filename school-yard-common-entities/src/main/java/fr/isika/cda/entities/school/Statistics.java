@@ -11,10 +11,6 @@ public class Statistics {
 	@GeneratedValue
 	private Long id;
 
-	@Id
-	@GeneratedValue
-	private Long Id;
-
 	private int numberOfTeachers;
 
 	private int numberOfStudents;
@@ -48,9 +44,5 @@ public class Statistics {
 	public Long getId() {
 		return id;
 	}
-	
 
-	public Long getId() {
-		return Id;
-	}
 }
