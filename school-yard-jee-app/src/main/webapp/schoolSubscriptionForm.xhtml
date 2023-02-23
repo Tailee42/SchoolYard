@@ -7,8 +7,8 @@
 				xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 				
 	<ui:define name="cssFiles">
-		<h:outputStylesheet name="common-style.css" library="css"/>
 		<h:outputStylesheet name="buttons.css" library="css"/>
+		<h:outputStylesheet name="forms.css" library="css"/>
     </ui:define>	
 
 	<ui:define name="title">Formulaire d'inscription de mon école</ui:define>
@@ -25,17 +25,18 @@
 
 	<ui:define name="content">
 		<h1>Formulaire d'inscription de mon école</h1>
-		<h:form id="createSchoolForm" enctype="multipart/form-data">
-
-			<h:panelGrid columns="1">
+		<h:form id="createSchoolForm" enctype="multipart/form-data" class="forms">
+		<div class="form-container">
+				<div class="gridDiv">
+			<h:panelGrid columns="1" class="grid">
 
 				<h:outputLabel value="Nom de l'école : " for="schoolNameInput" />
 				<h:inputText id="schoolNameInput"
-							 value="#{createSchoolBean.school.schoolName}" />
+							 value="#{createSchoolBean.school.schoolName}" class="formInput"/>
 
 				<h:outputLabel value="Type d'établissement : " for="selectLevel" />
 				<h:selectOneMenu id="selectLevel"
-								 value="#{createSchoolBean.school.schoolTypeEnum}">
+								 value="#{createSchoolBean.school.schoolTypeEnum}" class="searchMenu">
 					<f:selectItem itemLabel="--Selectionner un niveau--"
 								  noSelectionOption="true" />
 					<f:selectItems value="#{createSchoolBean.levels()}" var="level"
@@ -43,27 +44,28 @@
 				</h:selectOneMenu>
 
 				<h:outputLabel value="Email: " for="emailInput" />
-				<h:inputText id="emailInput" value="#{createSchoolBean.school.contact.email}" />
+				<h:inputText id="emailInput" value="#{createSchoolBean.school.contact.email}" class="formInput"/>
 
 				<h:outputLabel value="Téléphone : " for="phoneInput" />
-				<h:inputText id="phoneInput" value="#{createSchoolBean.school.contact.phone}" />
+				<h:inputText id="phoneInput" value="#{createSchoolBean.school.contact.phone}" class="formInput"/>
 
 				<h:outputLabel value="Numéro : " for="numberInput" />
 				<h:inputText id="numberInput"
-							 value="#{createSchoolBean.school.contact.address.number}" />
+							 value="#{createSchoolBean.school.contact.address.number}" class="formNumInput"/>
 
 				<h:outputLabel value="Rue : " for="streetInput" />
 				<h:inputText id="streetInput"
-							 value="#{createSchoolBean.school.contact.address.street}" />
+							 value="#{createSchoolBean.school.contact.address.street}" class="formInput"/>
 
 				<h:outputLabel value="Code Postal : " for="zipcodeInput" />
 				<h:inputText id="zipcodeInput"
-							 value="#{createSchoolBean.school.contact.address.zipcode}" />
+							 value="#{createSchoolBean.school.contact.address.zipcode}" class="formNumInput"/>
 
 				<h:outputLabel value="Ville : " for="townInput" />
 				<h:inputText id="townInput"
-							 value="#{createSchoolBean.school.contact.address.town}" />
-
+							 value="#{createSchoolBean.school.contact.address.town}" class="formInput"/>
+				
+				<h:outputLabel value="Logo : " for="logoInput" />
 				<p:fileUpload skinSimple="true"
 							  uploadButtonStyleClass="ui-button-outlined ui-button-secondary"
 							  chooseButtonStyleClass="ui-button-outlined ui-button-secondary"
@@ -71,19 +73,21 @@
 							  label="Choisissez une image" mode="advanced" sizeLimit="5000000"
 							  fileLimit="1" accept=".gif,.jpg,.jpeg,.png"
 							  invalidSizeMessage="L'image ne doit pas dépasser 5 Mo"
-							  listener="#{createSchoolBean.uploadFile}" />
+							  listener="#{createSchoolBean.uploadFile}" 
+							  class="imgInput"/>
 
 
 				<h:outputLabel value="Ecrivez un court slogan pour décrire votre école :" for="synthesisInput" />
 				<h:inputTextarea id="synthesisInput"
-								 value="#{createSchoolBean.school.synthesis}" />
+								 value="#{createSchoolBean.school.synthesis}" class="formAreaInput"/>
 
 				<h:commandButton action="#{createSchoolBean.create()}"
 								 value="Valider" class="custom-button"/>
 
-
 			</h:panelGrid>
-
+			
+			</div>
+			</div>
 
 		</h:form>
 

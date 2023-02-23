@@ -17,7 +17,7 @@ public class LearningPath implements Serializable {
 
     private String assignment;
     private LocalDateTime registrationDate;
-
+    @Lob
     private String sumUp;
 
     @Enumerated(EnumType.STRING)
@@ -29,8 +29,19 @@ public class LearningPath implements Serializable {
     @OneToOne
     private Student student;
 
+    public LearningPath() {
+        this.statusLearningPath = StatusLearningPath.ACTIVE;
+        this.registrationDate = LocalDateTime.now();
+    }
 
-
+    public LearningPath(Activity activity, Student student, LocalDateTime registrationDate, String sumUp, String assignment) {
+        this.assignment = assignment;
+        this.registrationDate = registrationDate;
+        this.sumUp = sumUp;
+        this.statusLearningPath = StatusLearningPath.ACTIVE;
+        this.activity = activity;
+        this.student = student;
+    }
 
     public Long getId() {
         return id;

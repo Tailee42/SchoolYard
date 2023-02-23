@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
-<title>Liste des features</title>
+<title>Liste des fonctionnalités</title>
 <link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/tableau.css">
 
@@ -12,24 +12,23 @@
 	<nav>
 	<ul>
 		<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
-		<li><a th:href="@{/usersList}">Users</a></li>
+		<li><a th:href="@{/usersList}">Utilisateurs</a></li>
 		<li><a th:href="@{/schoolsList}">Ecoles</a></li>
 		<li><a th:href="@{/subscriptionsList}">Abonnements</a></li>
 	</ul>
 	</nav>
 	
-	<h1>Liste des features</h1>
+	<h1>Liste des fonctionnalités</h1>
 	<table>
 		<thead>
 			<tr>
-				<th>Id</th>
 				<th>Titre</th>
 				<th>Description</th>
 				<th>Action</th>
 			</tr>
 		</thead>
 		<tr th:each="feature : ${features}">
-			<td><span th:text=${feature.id}></span></td>
+			<td hidden="hidden"><span th:text=${feature.id}></span></td>
 			<td><span th:text=${feature.featureTitle}></span></td>
 			<td><span th:text=${feature.featureDescription}></span></td>
 			<td>
@@ -40,7 +39,7 @@
 	</table>
 	
 	<section>
-		<a th:href="@{/featureForm}">Créer une option</a>
+		<a th:href="@{/featureForm}">Créer une fonctionnalité</a>
 	</section>
 
 </body>

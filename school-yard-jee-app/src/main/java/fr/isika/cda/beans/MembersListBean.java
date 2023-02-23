@@ -28,7 +28,7 @@ public class MembersListBean {
 	@Inject
 	private LearningPathRepository learningPathRepository;
 
-	private List<Member> members;
+	private List<Member> members = new ArrayList<>();
 	private String memberRole;
 	private boolean isAdmin = true;
 
@@ -65,11 +65,30 @@ public class MembersListBean {
 		return member instanceof Admin;
 	}
 
-	public List<SynchronousLesson>  getSynchronousLessonLikeTeacher(){
+	public List<SynchronousLesson> getFutureSynchronousLessonForUserLikeTeacher(){
+		allMembersForOneUser();
+		return getFuturSynchronousLessonLikeTeacher();
+	}
+
+	public List<SynchronousLesson> getPastSynchronousLessonForUserLikeTeacher(){
+		allMembersForOneUser();
+		return getFuturSynchronousLessonLikeTeacher();
+	}
+	public List<SynchronousLesson> getFuturSynchronousLessonLikeTeacher(){
 		List<SynchronousLesson> synchronousLessonList = new ArrayList<>();
 		for (Member member : members) {
 			if (member instanceof Teacher) {
 				synchronousLessonList.addAll(synchronousLessonRepository.getFuturSynchronousLessonsByIdMember(member.getId()));
+			}
+		}
+		return synchronousLessonList;
+	}
+
+	public List<SynchronousLesson> getPastSynchronousLessonLikeTeacher(){
+		List<SynchronousLesson> synchronousLessonList = new ArrayList<>();
+		for (Member member : members) {
+			if (member instanceof Teacher) {
+				synchronousLessonList.addAll(synchronousLessonRepository.getPastSynchronousLessonsByIdMember(member.getId()));
 			}
 		}
 		return synchronousLessonList;

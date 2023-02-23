@@ -1,4 +1,4 @@
-.custom-button, .custom-little-button, .custom-long-button, .custom-student-little-button {
+.custom-button, .custom-little-button, .custom-long-button, .custom-student-little-button, .custom-subscription-button {
 	width: 130px;
   	height: 40px;
   	background: #414143;
@@ -16,7 +16,7 @@
 	margin: 5px;
 }
 
-.custom-button:hover, .custom-little-button:hover, .custom-long-button:hover, .custom-student-little-button:hover {
+.custom-button:hover, .custom-little-button:hover, .custom-long-button:hover, .custom-student-little-button:hover, .custom-subscription-button:hover {
 	background: rgb(0,3,255);
 	background: linear-gradient(0deg, rgba(111,111,111,1) 0%, rgba(157,157,157,1) 100%);
 }
@@ -40,4 +40,9 @@
 	width: 190px;
 	height: 25px;
 	font-size: 12px;
+}
+
+.custom-subscription-button {
+	float: right;
+	margin-right: 100px;
 }

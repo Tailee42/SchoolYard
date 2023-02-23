@@ -18,10 +18,6 @@ ul {
 	justify-content: center;
 }
 
-li {
-	
-}
-
 body {
     background-color: var(--backgroundColor);
     font-family: 'Open Sans', sans-serif;

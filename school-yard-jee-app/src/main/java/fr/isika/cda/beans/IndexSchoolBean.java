@@ -16,6 +16,7 @@ import java.util.List;
 public class IndexSchoolBean {
 
     private School school = new School();
+    
     @Inject
     private SchoolRepository schoolRepository;
 

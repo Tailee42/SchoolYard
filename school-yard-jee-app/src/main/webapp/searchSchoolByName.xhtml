@@ -8,6 +8,7 @@
     <ui:define name="cssFiles">
         <h:outputStylesheet name="cards.css" library="css"/>
         <h:outputStylesheet name="buttons.css" library="css"/>
+        <h:outputStylesheet name="forms.css" library="css"/>
     </ui:define>
 
     <ui:define name="title">Rechercher école par nom</ui:define>
@@ -28,9 +29,9 @@
         <br/>
         <h4>
             <h:form id="searchSchoolByNameForm">
-                <h:outputLabel value="Nom école : " for="schoolInput"/>
+                <h:outputLabel value="Nom école : " for="schoolInput" class="searchLabel"/>
                 <h:inputText id="schoolInput"
-                             value="#{schoolsListBean.school.schoolName }"/>
+                             value="#{schoolsListBean.school.schoolName}" class="searchInput"/>
                 <h:commandButton action="#{schoolsListBean.getActiveSchoolByName()}"
                                  value="Rechercher" class="custom-little-button"
                                  process="@this, searchSchoolByNameForm"/>
@@ -51,7 +52,7 @@
                             <h:graphicImage value="#{n.logo}" alt="Logo" width="100"/>
                             <br/>
                             <p>
-                                <h:outputText value="#{n.synthesis}"/>
+                            <h:outputText value="#{n.synthesis}"/>
                             </p>
                             <h:outputText value="#{n.contact.email}"/>
                             <br/>
@@ -71,7 +72,6 @@
                                     <f:param name="school" value="#{n.id}"/>
                                 </h:button>
                             </ui:fragment>
-
                         </div>
                     </h:commandLink>
                 </h:form>

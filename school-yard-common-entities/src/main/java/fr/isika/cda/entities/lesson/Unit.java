@@ -9,6 +9,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.primefaces.model.charts.optionconfig.title.Title;
+
 @Entity
 public class Unit implements Serializable {
 
@@ -22,7 +24,7 @@ public class Unit implements Serializable {
 	private Long id;
 
 	private String title;
-	
+
 	@Lob
 	private String content;
 

@@ -25,8 +25,11 @@
     <ui:define name="content">
         <h1>Bienvenue #{welcomeBean.getUserConnectedName()} sur votre
             espace utilisateur</h1>
-
-        <h2>Mes écoles</h2>
+		<hr/>
+		<h:link outcome="userProfileForm" value="Modifier mon profil"
+			class="custom-long-button" />
+		<hr/>
+		<h2>Mes écoles</h2>
         <div class="container">
             <ui:repeat value="#{membersListBean.allMembersForOneUser()}" var="m">
                 <div class="box" style="border-top: 3px solid ##{m.school.schoolPage.theme.primaryColor}">
@@ -46,8 +49,11 @@
                     </h3>
 
                     <h:form>
+                 
                         <h:commandButton action="#{membersListBean.goToIndexSchool(m)}"
-                                         value="Espace école " class="custom-little-button"/>
+                                         value="Espace école " class="custom-long-button"/>
+                        
+                    
                         <br/>
                     </h:form>
 
@@ -55,36 +61,9 @@
             </ui:repeat>
         </div>
 
-        <h2>Mes cours particuliers en tant que professeur</h2>
-        <div class="container">
-            <ui:repeat value="#{membersListBean.getSynchronousLessonLikeTeacher()}" var="s">
-                <div class="box" style="border-top: 3px solid ##{s.teacher.school.schoolPage.theme.primaryColor}">
-                    <h2>
-                        <h:outputText value="#{s.title}"/>
-                    </h2>
-                    <h3>
-                        <h:outputText value="#{s.subject}"/>
-                    </h3>
-                    <h3>
-                        <h:outputText value="#{s.level}"/>
-                    </h3>
-                    <hr/>
-                    <p>
-                        <h:outputText value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}"/>
-                        <br/>
-                        <h:outputText value="#{s.duration}"/>
-                        <br/>
-                    </p>
-
-                    <p>
-                        Il reste : <h:outputText
-                            value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
-                    </p>
+            <h:link outcome="showSynchronousLessonTeacher">Mes cours particuliers en tant que professeur</h:link>
 
 
-                </div>
-            </ui:repeat>
-        </div>
 
         <h2>Mes cours particuliers en tant qu'élève</h2>
         <div class="container">

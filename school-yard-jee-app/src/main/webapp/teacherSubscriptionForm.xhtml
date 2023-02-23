@@ -7,8 +7,8 @@
 
 	
 	<ui:define name="cssFiles">
-		<h:outputStylesheet name="common-style.css" library="css"/>
 		<h:outputStylesheet name="buttons.css" library="css"/>
+		<h:outputStylesheet name="forms.css" library="css"/>
     </ui:define>	
 	
 	<ui:define name="title">Inscription d'un enseignant</ui:define>
@@ -25,22 +25,23 @@
 
 	<ui:define name="content">
 		<h1>Formulaire d'inscription enseignant</h1>
-		<h:form id="createTeacherForm">
-
-			<h:panelGrid columns="1">
+		<h:form id="createTeacherForm" class="forms">
+		<div class="form-container">
+		<div class="gridDiv">
+			<h:panelGrid columns="1" class="grid">
 				
-				<h:outputLabel value="Niveau enseigné : " for="selectLevel" />
+				<h:outputLabel value="Niveau enseigné : " for="selectLevel" class="searchLabel"/>
 				<h:selectOneMenu id="selectLevel"
-					value="#{createTeacherBean.teacher.schoolType}">
+					value="#{createTeacherBean.teacher.schoolType}" class="searchMenu">
 					<f:selectItem itemLabel="--Selectionner un établissement--"
 						noSelectionOption="true" />
 					<f:selectItems value="#{createTeacherBean.schoolTypes()}"
 						var="levels" itemLabel="#{levels}" itemValue="#{levels}" />
 				</h:selectOneMenu>
 
-				<h:outputLabel value="Matière enseignée : " for="selectSubject" />
+				<h:outputLabel value="Matière enseignée : " for="selectSubject" class="searchLabel"/>
 				<h:selectOneMenu id="selectSubject"
-					value="#{createTeacherBean.teacher.subject}">
+					value="#{createTeacherBean.teacher.subject}" class="searchMenu">
 					<f:selectItem itemLabel="--Selectionner une matière--"
 						noSelectionOption="true" />
 					<f:selectItems value="#{createTeacherBean.subjects()}"
@@ -51,8 +52,8 @@
 					value="Valider" class="custom-button"/>
 
 			</h:panelGrid>
-
-
+			</div>
+			</div>
 		</h:form>
 	</ui:define>
 </ui:composition>

@@ -1,0 +1,60 @@
+<ui:composition template="WEB-INF/templates/commonLayout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:define name="metaData">
+		<f:metadata>
+			<f:viewParam name="id" value="#{unitBean.id}" />
+		</f:metadata>
+	</ui:define>
+
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="unitCard.css" library="css" />
+		<h:outputStylesheet name="button.css" library="css" />
+	</ui:define>
+
+	<ui:define name="title">Contenu pédagogique</ui:define>
+
+	<ui:define name="header">
+		<h:link outcome="index">Accueil</h:link>
+		<h:link outcome="userDashboard"
+			rendered="#{welcomeBean.userConnected}">Tableau de bord</h:link>
+		<h:form class="inline">
+			<h:commandLink action="#{loginBean.logout()}"
+				rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="content">
+		<h1>Mon cours</h1>
+
+		<div class="box">
+			#{unitBean.getUnitId()}
+			<h2>
+				<h:outputText value="#{unitBean.unit.title}" />
+			</h2>
+			<hr />
+			<h3>
+				<h:outputText value="#{unitBean.unit.subject}" />
+			</h3>
+			<h4>
+				<h:outputText value="#{unitBean.unit.level}" />
+			</h4>
+			<p>
+				Prof :
+				<h:outputText
+					value="#{unitBean.unit.teacher.user.profil.firstName} #{unitBean.unit.teacher.user.profil.lastName}" />
+			</p>
+			<h:outputText value="#{unitBean.unit.content}" />
+
+			<br /> <br />
+			<h:button value="Sauvegarder dans ma liste de cours"
+				class="custom-button">
+			</h:button>
+		</div>
+	</ui:define>
+
+</ui:composition>

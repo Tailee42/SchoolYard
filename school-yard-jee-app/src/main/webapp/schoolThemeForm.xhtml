@@ -7,17 +7,18 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="cssFiles">
-		<h:outputStylesheet name="common-style.css" library="css"/>
 		<h:outputStylesheet name="buttons.css" library="css"/>
+		<h:outputStylesheet name="forms.css" library="css"/>
     </ui:define>
 
 	<ui:define name="title">Formulaire de paramétrage du site d'une école</ui:define>
 
 	<ui:define name="content">
 		<h1>Paramètres du site de mon école</h1>
-		<h:form id="createThemeForm" enctype="multipart/form-data">
-
-			<h:panelGrid columns="1">
+		<h:form id="createThemeForm" enctype="multipart/form-data" class="forms">
+		<div class="form-container">
+				<div class="gridDiv">
+			<h:panelGrid columns="1" class="grid">
 
 				<h:outputLabel value="Sélectionner la couleur principale"
 					for="primaryColor" />
@@ -37,9 +38,8 @@
 					
 					<h:outputLabel value="Sélectionner la police d'écriture"
 					for="selectFont" />
-					<h:selectOneMenu id="selectFont"
-					value="#{schoolPageBean.schoolPage.theme.font}">
-
+				<h:selectOneMenu id="selectFont"
+					value="#{schoolPageBean.schoolPage.theme.font}" class="searchMenu">
 					<f:selectItem itemLabel="--Selectionner une police d'écriture--"
 						noSelectionOption="true" />
 					<f:selectItems value="#{schoolPageBean.fontEnum()}" var="font"
@@ -50,6 +50,9 @@
 					value="Valider" class="custom-button"/>
 
 			</h:panelGrid>
+
+		</div>
+		</div>
 
 		</h:form>
 	</ui:define>

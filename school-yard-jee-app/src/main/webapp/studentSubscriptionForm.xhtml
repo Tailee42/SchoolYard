@@ -8,21 +8,22 @@
 
     
     <ui:define name="cssFiles">
-		<h:outputStylesheet name="common-style.css" library="css"/>
 		<h:outputStylesheet name="buttons.css" library="css"/>
+		<h:outputStylesheet name="forms.css" library="css"/>
     </ui:define>	
 
     <ui:define name="title">Inscription d'un élève</ui:define>
 
     <ui:define name="content">
         <h1>Formulaire d'inscription élève</h1>
-        <h:form id="createTeacherForm">
+        <h:form id="createTeacherForm" class="forms">
+		<div class="form-container">
+		<div class="gridDiv">
+            <h:panelGrid columns="1" class="grid">
 
-            <h:panelGrid columns="1">
-
-                <h:outputLabel value="Classe : " for="selectLevel" />
+                <h:outputLabel value="Classe : " for="selectLevel" class="searchLabel"/>
                 <h:selectOneMenu id="selectLevel"
-                                 value="#{createStudentBean.student.level}">
+                                 value="#{createStudentBean.student.level}" class="searchMenu">
                     <f:selectItem itemLabel="--Sélectionner un niveau--"
                                   noSelectionOption="true" />
                     <f:selectItems value="#{createStudentBean.levels()}" var="level"
@@ -33,7 +34,8 @@
                                  value="Valider" class="custom-button"/>
 
             </h:panelGrid>
-
+			</div>
+			</div>
 
         </h:form>
     </ui:define>

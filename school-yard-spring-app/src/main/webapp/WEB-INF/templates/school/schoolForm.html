@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
 <title>Ecole</title>
+<link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/forms.css">
 </head>
 
 <body>	
@@ -9,30 +11,35 @@
 	<nav>
 	<ul>
 		<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
-		<li><a th:href="@{/usersList}">Users</a></li>
+		<li><a th:href="@{/usersList}">Utilisateurs</a></li>
 		<li><a th:href="@{/schoolsList}">Ecoles</a></li>
-		<li><a th:href="@{/featuresList}">Features</a></li>
+		<li><a th:href="@{/featuresList}">Fonctionnalités</a></li>
 		<li><a th:href="@{/subscriptionsList}">Abonnements</a></li>
 	</ul>
 	</nav>
 	
 	<h2>Informations de l'école</h2>
-	<form th:action="@{/modifySchoolStatus}" method="post">
-		<input type="hidden" name="id" th:value="${school.id}"/>
+	<form th:action="@{/modifySchoolStatus}" method="post" class="forms">
+		<input type="hidden" name="id" th:value="${school.id}" />
 		<label>Nom de l'école : </label>
 		<span th:text="${school.schoolName}"></span>
+		<br/>
 		<br/>
 		<label>Description : </label>
 		<span th:text="${school.synthesis}"></span>
 		<br/>
+		<br/>
 		<label>Type d'école : </label>
 		<span th:text="${school.schoolTypeEnum}"></span>
+		<br/>
 		<br/>
 		<label>Email : </label>
 		<span th:text="${school.contact.email}"></span>
 		<br/>
+		<br/>
 		<label>Téléphone : </label>
 		<span th:text="${school.contact.phone}"></span>
+		<br/>
 		<br/>
 		<label>Adresse : </label><br/>
 		<span th:text="${school.contact.address.number}"></span><br/>
@@ -40,8 +47,10 @@
 		<span th:text="${school.contact.address.town}"></span><br/>
 		<span th:text="${school.contact.address.zipcode}"></span>
 		<br/>
+		<br/>
 		<label>Abonnement : </label>
 		<span th:text="${school.membership.subscription.name}"></span>
+		<br/>
 		<br/>
 		<label>Date de souscription : </label>
 		<span th:text="${school.membership.startingDate}"></span>
@@ -49,18 +58,22 @@
 		<label>Date de fin : </label>
 		<span th:text="${school.membership.endingDate}"></span>
 		<br/>
+		<br/>
 		<label>Liste des fonctionnalités : </label>
 		<div th:each="feature : ${features}" th:if="${subscription.features.contains(feature)}">
 			<input type="hidden" name="featureId" th:value="${feature.id}"/>
 			<span th:text="${feature.featureTitle}"></span>
 		</div>
+		<br/>
+		<br/>
 		<a th:href="@{schoolSubscriptionForm/(id=${school.id})}">Modifier l'abonnement de l'école</a>
 		<br/>
+		<br/>
 		<label>Statut de l'école : </label>
-		<select name="statut">
+		<select name="statut" class="searchMenu">
 			<option th:each="status : ${T(fr.isika.cda.entities.school.StatusSchool).values()}" th:value="${status}" th:text="${status.displayValue}" th:selected="${status == school.statusSchool}" ></option>
 		</select>
-		<button type="submit">Modifier le statut de l'école</button>
+		<button type="submit" class="custom-button">Modifier</button>
 		<br/>
 	</form>
 	

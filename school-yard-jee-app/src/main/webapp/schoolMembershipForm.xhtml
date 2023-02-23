@@ -38,6 +38,7 @@
 						<p>
 							<ui:repeat var="f" value="#{s.features}">
 								<h:outputText value="#{f.featureTitle}" />
+								<br/>
 							</ui:repeat>
 						</p>
 						<hr/>
@@ -52,7 +53,7 @@
 						</p>
 
 						<h:form>
-							<h:commandButton value="souscrire" action="#{createSchoolBean.setMembership(s)}"
+							<h:commandButton value="Souscrire" action="#{createSchoolBean.setMembership(s)}"
 											 class="custom-button"/>
 							<br />
 						</h:form>

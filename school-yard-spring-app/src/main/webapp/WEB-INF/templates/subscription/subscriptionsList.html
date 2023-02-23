@@ -23,7 +23,6 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Id</th>
 				<th>Nom</th>
 				<th>Prix</th>
 				<th>Durée</th>
@@ -31,11 +30,11 @@
 			</tr>
 		</thead>
 		<tr th:each="subscription : ${subscriptions}">
-			<td><span th:text=${subscription.id}></span></td>
+			<td hidden="hidden"><span th:text=${subscription.id}></span></td>
 			<td><span th:text=${subscription.name}></span></td>
 			<td><span th:text=${subscription.price}></span></td>
 			<td><span th:text=${subscription.duration}></span></td>
-			<td><a th:href="@{deleteSubscription/(id=${subscription.id})}">Supprimer</a>
+			<td>
 				<a th:href="@{updateSubscription/(id=${subscription.id})}">Modifier</a>
 			</td>
 		</tr>
