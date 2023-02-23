@@ -155,7 +155,7 @@ public class DataSetBean {
 
 		// Schools need a membership !
 
-		School school1 = new School("Collège des bois", NO_LOGO_PNG, "Collège bienveillant et inclusif", new ArrayList<>(),
+		School school1 = new School("Collège des bois", "LogoCollegeDeLaMontagne.png", "Collège bienveillant et inclusif", new ArrayList<>(),
 				new Contact("collegeDesBois@gmail.com", "05 05 05 05 05",
 						new Address(789, "Rue du college", "TOULOUSE", "31000")),
 				SchoolTypeEnum.COLLEGE);
