@@ -1,11 +1,15 @@
 package fr.isika.cda.repositories;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import fr.isika.cda.entities.common.AcademicLevel;
+import fr.isika.cda.entities.common.SubjectEnum;
+import fr.isika.cda.entities.lesson.SynchronousLesson;
 import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.lesson.UnitStatusEnum;
 
@@ -50,5 +54,23 @@ public class UnitRepository {
 		return entityManager.createQuery("SELECT u FROM Unit u WHERE u.teacher.school.id = : id_school_param AND u.status = :status_param", Unit.class)
 				.setParameter("id_school_param", schoolId).setParameter("status_param", UnitStatusEnum.VALIDATED).getResultList();
 	}
+	
+    public List<Unit> getValidatedUnitsByLevel(Long id, AcademicLevel level) {
+        return entityManager
+                .createQuery("SELECT u FROM Unit u WHERE u.level = :unit_level AND u.teacher.school.id = :id_school AND u.status = :status_param", Unit.class)
+                .setParameter("unit_level", level)
+                .setParameter("id_school", id)
+                .setParameter("status_param", UnitStatusEnum.VALIDATED)
+                .getResultList();
+    }
+    
+    public List<Unit> getValidatedUnitsBySubject(Long id, SubjectEnum subject) {
+        return entityManager
+                .createQuery("SELECT u FROM Unit u WHERE u.subject = :unit_subject AND u.teacher.school.id = :id_school AND u.status = :status_param", Unit.class)
+                .setParameter("unit_subject", subject)
+                .setParameter("id_school", id)
+                .setParameter("status_param", UnitStatusEnum.VALIDATED)
+                .getResultList();
+    }
 
 }
