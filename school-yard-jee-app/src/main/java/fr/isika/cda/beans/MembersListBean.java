@@ -1,5 +1,6 @@
 package fr.isika.cda.beans;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,14 +76,32 @@ public class MembersListBean {
 		return getPastSynchronousLessonLikeTeacher();
 	}
 
-	public List<SynchronousLesson> getFutureSynchronousLessonForUserLikeStudent(){
+	public List<LearningPath> getFutureSynchronousLessonForUserLikeStudent(){
 		allMembersForOneUser();
-		return getFuturSynchronousLessonLikeStudent();
+		List<LearningPath> futurLearningPathList = new ArrayList<>();
+		List<LearningPath> allLearningPathList = getSynchronousLessonLikeStudent();
+
+		for (LearningPath learningPath : allLearningPathList) {
+			SynchronousLesson synchronousLesson = (SynchronousLesson) learningPath.getActivity();
+			if(synchronousLesson.getClassDate().isAfter(LocalDateTime.now())) {
+				futurLearningPathList.add(learningPath);
+			}
+		}
+		return futurLearningPathList;
 	}
 
-	public List<SynchronousLesson> getPastSynchronousLessonForUserLikeStudent(){
+	public List<LearningPath> getPastSynchronousLessonForUserLikeStudent(){
 		allMembersForOneUser();
-		return getPastSynchronousLessonLikeStudent();
+		List<LearningPath> pastLearningPathList = new ArrayList<>();
+		List<LearningPath> allLearningPathList = getSynchronousLessonLikeStudent();
+
+		for (LearningPath learningPath : allLearningPathList) {
+			SynchronousLesson synchronousLesson = (SynchronousLesson) learningPath.getActivity();
+			if(synchronousLesson.getClassDate().isBefore(LocalDateTime.now())) {
+				pastLearningPathList.add(learningPath);
+			}
+		}
+		return pastLearningPathList;
 	}
 
 	public List<SynchronousLesson> getFuturSynchronousLessonLikeTeacher(){
@@ -105,26 +124,6 @@ public class MembersListBean {
 		return synchronousLessonList;
 	}
 
-	private List<SynchronousLesson> getFuturSynchronousLessonLikeStudent(){
-		List<SynchronousLesson> synchronousLessonList = new ArrayList<>();
-		for (Member member : members) {
-			if (member instanceof Student) {
-				synchronousLessonList.addAll(synchronousLessonRepository.getFuturSynchronousLessonsByIdMember(member.getId()));
-			}
-		}
-		return synchronousLessonList;
-	}
-
-	private List<SynchronousLesson> getPastSynchronousLessonLikeStudent(){
-		List<SynchronousLesson> synchronousLessonList = new ArrayList<>();
-		for (Member member : members) {
-			if (member instanceof Student) {
-				synchronousLessonList.addAll(synchronousLessonRepository.getPastSynchronousLessonsByIdMember(member.getId()));
-			}
-		}
-		return synchronousLessonList;
-	}
-
 	public List<LearningPath>  getSynchronousLessonLikeStudent(){
 		List<LearningPath> learningPathList = new ArrayList<>();
 		for (Member member : members) {
@@ -136,9 +135,12 @@ public class MembersListBean {
 	}
 
 	public String getStringClassDate(LearningPath learningPath) {
-		SynchronousLesson synchronousLesson = (SynchronousLesson) learningPath.getActivity();
-		final DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		return synchronousLesson.getClassDate().format(customFormatter);
+		if (learningPath != null) {
+			SynchronousLesson synchronousLesson = (SynchronousLesson) learningPath.getActivity();
+			final DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+			return synchronousLesson.getClassDate().format(customFormatter);
+		}
+		return "";
 	}
 
 	public String getStringDuration(LearningPath learningPath) {

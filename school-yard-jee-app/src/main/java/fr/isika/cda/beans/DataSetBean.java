@@ -306,9 +306,9 @@ public class DataSetBean {
 		learningPathRepository.save(learningPath1);
 		LearningPath learningPath2 = new LearningPath(virtual3.getSynchronousLesson(), student5, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
 		learningPathRepository.save(learningPath2);
-		LearningPath learningPath3 = new LearningPath(physical3.getSynchronousLesson(), student1, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
+		LearningPath learningPath3 = new LearningPath(physical3.getSynchronousLesson(), student1, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "A l'écoute et pose des questions. Ce sont les clés pour progresser. Continue ainsi !", "");
 		learningPathRepository.save(learningPath3);
-		LearningPath learningPath4 = new LearningPath(physical3.getSynchronousLesson(), student5, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
+		LearningPath learningPath4 = new LearningPath(physical3.getSynchronousLesson(), student5, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "A le soucis de bien faire. Il faut continuer ainsi.", "");
 		learningPathRepository.save(learningPath4);
 
 		//Creating some units

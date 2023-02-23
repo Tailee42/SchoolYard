@@ -23,28 +23,27 @@
         <h1>Mes cours particuliers en tant qu'élève :</h1>
 <h2>A venir</h2>
         <div class="container">
-            <ui:repeat value="#{membersListBean.getFutureSynchronousLessonForUserLikeStudent()}" var="s">
-                <div class="box" style="border-top: 3px solid ##{s.teacher.school.schoolPage.theme.primaryColor}">
+            <ui:repeat value="#{membersListBean.getFutureSynchronousLessonForUserLikeStudent()}" var="l">
+                <div class="box" style="border-top: 3px solid ##{l.student.school.schoolPage.theme.primaryColor}">
                     <h2>
-                        <h:outputText value="#{s.title}"/>
+                        <h:outputText value="#{l.student.school.schoolName}"/>
                     </h2>
+                    <h2>
+                        <h:outputText value="#{l.activity.title}"/>
+                    </h2>
+                    <hr/>
                     <h3>
-                        <h:outputText value="#{s.subject}"/>
+                        <h:outputText value="#{l.activity.subject}"/>
                     </h3>
                     <h3>
-                        <h:outputText value="#{s.level}"/>
+                        <h:outputText value="#{l.activity.level}"/>
                     </h3>
                     <hr/>
                     <p>
-                        <h:outputText value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}"/>
+                        <h:outputText value="#{membersListBean.getStringClassDate(l)}"/>
                         <br/>
-                        <h:outputText value="#{s.duration}"/>
+                        <h:outputText value="#{membersListBean.getStringDuration(l)}"/>
                         <br/>
-                    </p>
-
-                    <p>
-                        Il reste : <h:outputText
-                            value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
                     </p>
 
 
@@ -55,34 +54,28 @@
         <h2>Passés</h2>
         <div class="container">
             <ui:repeat value="#{membersListBean.getPastSynchronousLessonForUserLikeStudent()}" var="s">
-                <div class="box" style="border-top: 3px solid ##{s.teacher.school.schoolPage.theme.primaryColor}">
+                <div class="box" style="border-top: 3px solid ##{s.student.school.schoolPage.theme.primaryColor}">
                     <h2>
-                        <h:outputText value="#{s.title}"/>
+                        <h:outputText value="#{s.student.school.schoolName}"/>
                     </h2>
+                    <h2>
+                        <h:outputText value="#{s.activity.title}"/>
+                    </h2>
+                    <hr/>
                     <h3>
-                        <h:outputText value="#{s.subject}"/>
+                        <h:outputText value="#{s.activity.subject}"/>
                     </h3>
                     <h3>
-                        <h:outputText value="#{s.level}"/>
+                        <h:outputText value="#{s.activity.level}"/>
                     </h3>
                     <hr/>
                     <p>
-                        <h:outputText value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}"/>
+                        <h:outputText value="#{membersListBean.getStringClassDate(s)}"/>
                         <br/>
-                        <h:outputText value="#{s.duration}"/>
+                        Suivi :<br/>
+                        <h:outputText  value="#{s.sumUp}"/>
                         <br/>
                     </p>
-
-                    <p>
-                        Suivi pédagogique : <br/>
-                        <h:outputText value="#{learningPathBean.getSumUpBySynchronousLessonAndStudent(s.id)}"/> place(s)
-                    </p>
-
-
-                    <h:button outcome ="sumUpForm" value="Suivi des élèves" class="custom-long-button">
-                            <f:param name="idSynLes" value="#{s.id}"/>
-                    </h:button>
-
 
 
                 </div>
