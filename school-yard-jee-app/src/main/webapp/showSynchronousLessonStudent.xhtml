@@ -20,10 +20,10 @@
 
     <ui:define name="content">
 
-        <h1>Mes cours particuliers en tant que professeur :</h1>
+        <h1>Mes cours particuliers en tant qu'élève :</h1>
 <h2>A venir</h2>
         <div class="container">
-            <ui:repeat value="#{membersListBean.getFutureSynchronousLessonForUserLikeTeacher()}" var="s">
+            <ui:repeat value="#{membersListBean.getFutureSynchronousLessonForUserLikeStudent()}" var="s">
                 <div class="box" style="border-top: 3px solid ##{s.teacher.school.schoolPage.theme.primaryColor}">
                     <h2>
                         <h:outputText value="#{s.title}"/>
@@ -54,7 +54,7 @@
 
         <h2>Passés</h2>
         <div class="container">
-            <ui:repeat value="#{membersListBean.getPastSynchronousLessonForUserLikeTeacher()}" var="s">
+            <ui:repeat value="#{membersListBean.getPastSynchronousLessonForUserLikeStudent()}" var="s">
                 <div class="box" style="border-top: 3px solid ##{s.teacher.school.schoolPage.theme.primaryColor}">
                     <h2>
                         <h:outputText value="#{s.title}"/>
@@ -74,8 +74,8 @@
                     </p>
 
                     <p>
-                        Il reste : <h:outputText
-                            value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
+                        Suivi pédagogique : <br/>
+                        <h:outputText value="#{learningPathBean.getSumUpBySynchronousLessonAndStudent(s.id)}"/> place(s)
                     </p>
 
 

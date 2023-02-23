@@ -72,8 +72,19 @@ public class MembersListBean {
 
 	public List<SynchronousLesson> getPastSynchronousLessonForUserLikeTeacher(){
 		allMembersForOneUser();
-		return getFuturSynchronousLessonLikeTeacher();
+		return getPastSynchronousLessonLikeTeacher();
 	}
+
+	public List<SynchronousLesson> getFutureSynchronousLessonForUserLikeStudent(){
+		allMembersForOneUser();
+		return getFuturSynchronousLessonLikeStudent();
+	}
+
+	public List<SynchronousLesson> getPastSynchronousLessonForUserLikeStudent(){
+		allMembersForOneUser();
+		return getPastSynchronousLessonLikeStudent();
+	}
+
 	public List<SynchronousLesson> getFuturSynchronousLessonLikeTeacher(){
 		List<SynchronousLesson> synchronousLessonList = new ArrayList<>();
 		for (Member member : members) {
@@ -88,6 +99,26 @@ public class MembersListBean {
 		List<SynchronousLesson> synchronousLessonList = new ArrayList<>();
 		for (Member member : members) {
 			if (member instanceof Teacher) {
+				synchronousLessonList.addAll(synchronousLessonRepository.getPastSynchronousLessonsByIdMember(member.getId()));
+			}
+		}
+		return synchronousLessonList;
+	}
+
+	private List<SynchronousLesson> getFuturSynchronousLessonLikeStudent(){
+		List<SynchronousLesson> synchronousLessonList = new ArrayList<>();
+		for (Member member : members) {
+			if (member instanceof Student) {
+				synchronousLessonList.addAll(synchronousLessonRepository.getFuturSynchronousLessonsByIdMember(member.getId()));
+			}
+		}
+		return synchronousLessonList;
+	}
+
+	private List<SynchronousLesson> getPastSynchronousLessonLikeStudent(){
+		List<SynchronousLesson> synchronousLessonList = new ArrayList<>();
+		for (Member member : members) {
+			if (member instanceof Student) {
 				synchronousLessonList.addAll(synchronousLessonRepository.getPastSynchronousLessonsByIdMember(member.getId()));
 			}
 		}

@@ -277,14 +277,19 @@ public class DataSetBean {
 				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.CINQUIEME, teacher1, "Babylone", "1 heure", LocalDateTime.of(2022, Month.MARCH, 12, 14, 30), 5, new BigDecimal("25")));
 		virtualRepository.save(virtual3);
 
+		PhysicalOption physical3 = new PhysicalOption(new Address(13, "Rue de la fontaine", "LYON", "69009"),
+				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.QUATRIEME, teacher1, "L'urbanisation du monde",
+						"1 heure et quart", LocalDateTime.of(2023, Month.JANUARY, 1, 10, 15), 8, new BigDecimal("27")));
+		physicalRepository.save(physical3);
+
 		//Learning Path
-		LearningPath learningPath1 = new LearningPath(virtual1.getSynchronousLesson(), student1, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
+		LearningPath learningPath1 = new LearningPath(virtual3.getSynchronousLesson(), student1, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
 		learningPathRepository.save(learningPath1);
-		LearningPath learningPath2 = new LearningPath(virtual1.getSynchronousLesson(), student5, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
+		LearningPath learningPath2 = new LearningPath(virtual3.getSynchronousLesson(), student5, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
 		learningPathRepository.save(learningPath2);
-		LearningPath learningPath3 = new LearningPath(physical1.getSynchronousLesson(), student1, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
+		LearningPath learningPath3 = new LearningPath(physical3.getSynchronousLesson(), student1, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
 		learningPathRepository.save(learningPath3);
-		LearningPath learningPath4 = new LearningPath(physical1.getSynchronousLesson(), student5, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
+		LearningPath learningPath4 = new LearningPath(physical3.getSynchronousLesson(), student5, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
 		learningPathRepository.save(learningPath4);
 
 		//Creating some units
