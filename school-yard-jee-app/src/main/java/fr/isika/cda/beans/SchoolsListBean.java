@@ -56,6 +56,11 @@ public class SchoolsListBean {
         schools = schoolRepository.getActiveSchoolByType(school.getSchoolTypeEnum(), StatusSchool.PUBLISHED);
         return schools;
     }
+    
+    public void clearSchoolName() {
+        school.setSchoolName(null);
+    }
+    
 
     public void reset(){
         schools = new ArrayList<>();
