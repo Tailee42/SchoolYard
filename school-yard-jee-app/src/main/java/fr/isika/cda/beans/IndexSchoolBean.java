@@ -28,7 +28,12 @@ public class IndexSchoolBean {
 		return SessionUtils.isUserConnected();
 	}
 
-	public boolean isSynchronousLesson() {
+    public boolean hasLogo() {
+        return school.getLogo() != null
+                && !school.getLogo().isBlank();
+    }
+
+    public boolean isSynchronousLesson() {
 
 		List<Feature> features = school.getMembership().getSubscription().getFeatures();
 		for (Feature feature : features) {

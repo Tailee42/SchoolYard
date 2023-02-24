@@ -1,5 +1,6 @@
 package fr.isika.cda.beans;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,8 +73,37 @@ public class MembersListBean {
 
 	public List<SynchronousLesson> getPastSynchronousLessonForUserLikeTeacher(){
 		allMembersForOneUser();
-		return getFuturSynchronousLessonLikeTeacher();
+		return getPastSynchronousLessonLikeTeacher();
 	}
+
+	public List<LearningPath> getFutureSynchronousLessonForUserLikeStudent(){
+		allMembersForOneUser();
+		List<LearningPath> futurLearningPathList = new ArrayList<>();
+		List<LearningPath> allLearningPathList = getSynchronousLessonLikeStudent();
+
+		for (LearningPath learningPath : allLearningPathList) {
+			SynchronousLesson synchronousLesson = (SynchronousLesson) learningPath.getActivity();
+			if(synchronousLesson.getClassDate().isAfter(LocalDateTime.now())) {
+				futurLearningPathList.add(learningPath);
+			}
+		}
+		return futurLearningPathList;
+	}
+
+	public List<LearningPath> getPastSynchronousLessonForUserLikeStudent(){
+		allMembersForOneUser();
+		List<LearningPath> pastLearningPathList = new ArrayList<>();
+		List<LearningPath> allLearningPathList = getSynchronousLessonLikeStudent();
+
+		for (LearningPath learningPath : allLearningPathList) {
+			SynchronousLesson synchronousLesson = (SynchronousLesson) learningPath.getActivity();
+			if(synchronousLesson.getClassDate().isBefore(LocalDateTime.now())) {
+				pastLearningPathList.add(learningPath);
+			}
+		}
+		return pastLearningPathList;
+	}
+
 	public List<SynchronousLesson> getFuturSynchronousLessonLikeTeacher(){
 		List<SynchronousLesson> synchronousLessonList = new ArrayList<>();
 		for (Member member : members) {
@@ -105,9 +135,12 @@ public class MembersListBean {
 	}
 
 	public String getStringClassDate(LearningPath learningPath) {
-		SynchronousLesson synchronousLesson = (SynchronousLesson) learningPath.getActivity();
-		final DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		return synchronousLesson.getClassDate().format(customFormatter);
+		if (learningPath != null) {
+			SynchronousLesson synchronousLesson = (SynchronousLesson) learningPath.getActivity();
+			final DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+			return synchronousLesson.getClassDate().format(customFormatter);
+		}
+		return "";
 	}
 
 	public String getStringDuration(LearningPath learningPath) {

@@ -25,13 +25,14 @@
 
 		<div class="card">
 			<p:tabView dynamic="true" cache="true">
-				<p:tab title="infos ">
+				<p:tab title="infos">
 					<div class="container">
 						<h3>Informations de mon école</h3>
 						<div class="form-container">
-							<h:form id="modifySchoolForm" enctype="multipart/form-data">
+							<h:form id="modifySchoolForm" enctype="multipart/form-data"
+								class="forms">
 								<div class="form-container">
-									<div class="grid">
+									<div class="gridDiv">
 										<h:panelGrid columns="1" class="grid">
 
 											<h:outputLabel value="Nom de l'école : "
@@ -42,7 +43,8 @@
 											<h:outputLabel value="Type d'établissement : "
 												for="selectLevel" />
 											<h:selectOneMenu id="selectLevel"
-												value="#{adminBean.school.schoolTypeEnum}">
+												value="#{adminBean.school.schoolTypeEnum}"
+												class="searchMenu">
 												<f:selectItem itemValue="#{adminBean.school.schoolTypeEnum}" />
 												<f:selectItems value="#{createSchoolBean.levels()}"
 													var="level" itemLabel="#{level}" itemValue="#{level}" />
@@ -58,14 +60,14 @@
 										</h:panelGrid>
 									</div>
 
-									<div class="grid">
+									<div class="gridDiv">
 										<h:panelGrid class="grid">
 
 
 											<h:outputLabel value="Numéro : " for="numberInput" />
 											<h:inputText id="numberInput"
 												value="#{adminBean.school.contact.address.number}"
-												class="formInput" />
+												class="formNumInput" />
 
 											<h:outputLabel value="Rue : " for="streetInput" />
 											<h:inputText id="streetInput"
@@ -75,7 +77,7 @@
 											<h:outputLabel value="Code Postal : " for="zipcodeInput" />
 											<h:inputText id="zipcodeInput"
 												value="#{adminBean.school.contact.address.zipcode}"
-												class="formInput" />
+												class="formNumInput" />
 
 											<h:outputLabel value="Ville : " for="townInput" />
 											<h:inputText id="townInput"
@@ -84,7 +86,7 @@
 
 
 											<h:commandButton action="#{adminBean.updateSchool()}"
-												value="Valider" class="custom-button" />
+												value="Enregistrer" class="custom-button" />
 
 
 										</h:panelGrid>
@@ -104,9 +106,10 @@
 					<div class="container">
 						<h3>Description de mon école</h3>
 						<div class="form-container">
-							<h:form id="modifySchoolValueForm" enctype="multipart/form-data">
+							<h:form id="modifySchoolValueForm" enctype="multipart/form-data"
+								class="forms">
 								<div class="form-container">
-									<div class="grid">
+									<div class="gridDiv">
 										<h:panelGrid columns="1" class="grid">
 
 
@@ -114,24 +117,26 @@
 												value="Ecrivez un court slogan pour décrire votre école :"
 												for="synthesisInput" />
 											<h:inputTextarea id="synthesisInput"
-												value="#{adminBean.school.synthesis}" class="formInput" />
+												value="#{adminBean.school.synthesis}" class="formAreaInput" />
 
 											<h:outputLabel value="Les valeurs de votre école"
 												for="titleValueInput" />
 											<h:inputTextarea id="titleValueInput"
-												value="#{adminBean.school.schoolPage.schoolValue.titleValue}" />
+												value="#{adminBean.school.schoolPage.schoolValue.titleValue}"
+												class="formAreaInput" />
 
 											<h:outputLabel value="Texte de présentation"
 												for="descriptionValueInput" />
 											<h:inputTextarea id="descriptionValueInput"
-												value="#{adminBean.school.schoolPage.schoolValue.descriptionValue}" />
+												value="#{adminBean.school.schoolPage.schoolValue.descriptionValue}"
+												class="formAreaInput" />
 
 											<h:outputLabel value="Photo de votre école : " for="picture" />
 											<h:inputFile id="picture"
 												value="#{adminBean.school.schoolPage.schoolValue.picture}" />
 
 											<h:commandButton action="#{adminBean.updateSchool()}"
-												value="Valider" class="custom-button" />
+												value="Enregistrer" class="custom-button" />
 
 										</h:panelGrid>
 									</div>
@@ -150,9 +155,10 @@
 					<div class="container">
 						<h3>Personnalisation de mon école</h3>
 						<div class="form-container">
-							<h:form id="modifySchoolThemeForm" enctype="multipart/form-data">
+							<h:form id="modifySchoolThemeForm" enctype="multipart/form-data"
+								class="forms">
 								<div class="form-container">
-									<div class="grid">
+									<div class="gridDiv">
 										<h:panelGrid columns="1" class="grid">
 
 											<h:outputLabel value="Sélectionner la couleur principale"
@@ -168,7 +174,7 @@
 										</h:panelGrid>
 									</div>
 									<br />
-									<div class="grid">
+									<div class="gridDiv">
 										<h:panelGrid columns="1" class="grid">
 											<h:outputLabel value="Sélectionner la couleur du fond "
 												for="backgroundColor" />
@@ -178,19 +184,19 @@
 											<h:outputLabel value="Sélectionner la police d'écriture"
 												for="selectFont" />
 											<h:selectOneMenu id="selectFont"
-												value="#{adminBean.themeToTest.font}">
+												value="#{adminBean.themeToTest.font}"
+												class="searchMenu">
 
-												<f:selectItem
-													itemValue="#{adminBean.themeToTest.font}" />
+												<f:selectItem itemValue="#{adminBean.themeToTest.font}" />
 												<f:selectItems value="#{schoolPageBean.fontEnum()}"
 													var="font" itemLabel="#{font}" itemValue="#{font}" />
 											</h:selectOneMenu>
 
 											<h:commandButton action="#{adminBean.testTheme()}"
 												value="Tester" class="custom-button" />
-																								
+
 											<h:commandButton action="#{adminBean.updateSchoolTheme()}"
-												value="Valider" class="custom-button" />
+												value="Enregistrer" class="custom-button" />
 
 										</h:panelGrid>
 									</div>
