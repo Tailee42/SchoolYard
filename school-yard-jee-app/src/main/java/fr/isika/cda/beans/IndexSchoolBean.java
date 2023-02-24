@@ -1,6 +1,7 @@
 package fr.isika.cda.beans;
 
 import fr.isika.cda.entities.school.School;
+import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.utils.SessionUtils;
 import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.entities.teacher.Teacher;
@@ -28,6 +29,11 @@ public class IndexSchoolBean {
         return (SessionUtils.getConnectedMember() instanceof Teacher);
     }
 
+    public boolean isStudent() {
+    	return(SessionUtils.getConnectedMember() instanceof Student);
+    }
+    
+    
     public boolean isUserConnected() {
         return SessionUtils.isUserConnected();
     }

@@ -7,10 +7,10 @@
 
 	<ui:define name="cssFiles">
 		<h:outputStylesheet name="cards.css" library="css" />
-		<h:outputStylesheet name="button.css" library="css" />
+		<h:outputStylesheet name="buttons.css" library="css" />
 	</ui:define>
 
-	<ui:define name="title">Contenu pédagogique</ui:define>
+	<ui:define name="title">Cours en ligne</ui:define>
 
 	<ui:define name="header">
 		<h:link outcome="index">Accueil</h:link>
@@ -23,7 +23,7 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h2>Cours en ligne</h2>
+		<h1>Cours en ligne</h1>
 
 		<div class="container">
 			<ui:repeat value="#{showUnitsBean.allUnitsBySchool()}" var="u">

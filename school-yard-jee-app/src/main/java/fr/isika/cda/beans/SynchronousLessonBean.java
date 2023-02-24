@@ -31,8 +31,6 @@ public class SynchronousLessonBean {
     @Inject
     private PhysicalRepository physicalRepository;
 
-
-
     public List<SynchronousLesson> getSynchronousLessonsByIdSchool() {
         School school = SessionUtils.getCurrentSchool();
         return synchronousLessonRepository.getFuturSynchronousLessonsByIdSchool(school.getId());

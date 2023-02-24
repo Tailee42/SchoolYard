@@ -3,10 +3,8 @@ package fr.isika.cda.beans;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.repositories.UnitRepository;
