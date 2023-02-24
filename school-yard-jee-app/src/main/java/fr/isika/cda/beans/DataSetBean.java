@@ -164,7 +164,7 @@ public class DataSetBean {
 				new Theme("D4C685", "F7EF81", "E5F1EB", FontEnum.ROBOTO.name()) );
 		school1.setSchoolPage(schoolPage1);
 		school1.setStatusSchool(StatusSchool.PUBLISHED);
-		school1.setMembership(membership2);
+		school1.setMembership(membership3);
 		schoolRepository.save(school1);
 		createAdmin(user1, school1);
 

@@ -29,7 +29,6 @@ public class IndexSchoolBean {
     	return(SessionUtils.getConnectedMember() instanceof Student);
     }
 
-
 	public boolean isTeacher() {
 		return (SessionUtils.getConnectedMember() instanceof Teacher);
 	}
