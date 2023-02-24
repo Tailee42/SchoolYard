@@ -13,6 +13,10 @@ public class WelcomeBean {
 		return SessionUtils.isUserConnected();
 	}
 
+	public boolean isMemberConnected() {
+		return SessionUtils.isMemberConnected();
+	}
+
 	public String getUserConnectedName() {
 		return SessionUtils.getConnectedUser().getProfil().getFirstName();
 	}

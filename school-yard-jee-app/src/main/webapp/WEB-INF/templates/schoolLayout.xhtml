@@ -47,7 +47,7 @@
                 <h:link outcome="synchronousLessonForm" value="Créer un cours particulier"/>
                 
             </ui:fragment>
-            <ui:fragment rendered="#{indexSchoolBean.isSynchronousLesson() and welcomeBean.isUserConnected()}">
+            <ui:fragment rendered="#{indexSchoolBean.isSynchronousLesson() and welcomeBean.isMemberConnected()}">
             <h:link outcome="showSynchronousLessonSchool" value="Cours particuliers"/>
             </ui:fragment>
 
@@ -55,7 +55,7 @@
                 <h:link outcome="createUnitForm">Créer du contenu pédagogique</h:link>
             </ui:fragment>
             
-            <ui:fragment rendered="#{indexSchoolBean.isAsynchronousLesson() and welcomeBean.isUserConnected()}">
+            <ui:fragment rendered="#{indexSchoolBean.isAsynchronousLesson() and welcomeBean.isMemberConnected()}">
                 <h:link outcome="showUnits">Contenu pédagogique</h:link>
             </ui:fragment>
             
