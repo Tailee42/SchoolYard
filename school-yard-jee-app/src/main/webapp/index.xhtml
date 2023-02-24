@@ -6,10 +6,11 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:define name="title">Accueil</ui:define>
-	
+
 	<ui:define name="cssFiles">
-		<h:outputStylesheet name="cards.css" library="css"/>
-		<h:outputStylesheet name="buttons.css" library="css"/>
+		<h:outputStylesheet name="cards.css" library="css" />
+		<h:outputStylesheet name="buttons.css" library="css" />
+		<h:outputStylesheet name="index.css" library="css" />
 	</ui:define>
 
 	<ui:define name="header">
@@ -27,88 +28,88 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h2>Bienvenue</h2>
-		<div>
-			<img src="resources/images/img-index.jpg" width="400" height="300"/>
-			<div>
-				<h1>SchoolYard</h1>
-				<p>La solution idéale pour les écoles qui cherchent à améliorer
-					les résultats de vos élèves de niveau élémentaire et secondaire.
-					Notre plateforme offre aux établissements scolaires un accès facile
-					et rapide à des ressources éducatives (cours particuliers à
-					distance ou à domicile, contenu pédagogique, suivi des élèves...).
-					Les écoles peuvent aider leurs élèves à réussir en leur offrant
-					cette solution de qualité supérieure et en leur permettant de
-					travailler à leur propre rythme. Essayez notre plateforme de
-					soutien scolaire dès aujourd'hui !"</p>
-			</div>
-		</div>
-		<div>
-			<div>
-				<h1>Pour les écoles...</h1>
-				<p>Améliorez les résultats de vos élèves, stimulez leur
-					motivation et renforcez leur confiance en eux !</p>
-				<p>Choisissez la formule qui répondrait aux besoins de vos
-					élèves :</p>
-			</div>
-			<h:form id="createMembership" enctype="multipart/form-data">
-				<div class="container">
-					<ui:repeat value="#{createSchoolBean.subscriptions()}" var="s">
-						<div class="box">
-							<h2>
-								<h:outputText value="#{s.name}" />
-							</h2>
-							<h3>Fonctionnalités</h3>
-							<p>
-								<ui:repeat var="f" value="#{s.features}">
-									<h:outputText value="#{f.featureTitle}" />
-									<br />
-								</ui:repeat>
-							</p>
-							<h3>Durée</h3>
-							<p>
-								<h:outputText value="#{s.duration} mois" />
-							</p>
-							<h3>Prix</h3>
-							<p>
-								<h:outputText value="#{s.price}€" />
-							</p>
-							<h:link outcome="userSubscriptionForm" class="custom-little-button"> Souscrire </h:link>
-							<br />
-						</div>
-					</ui:repeat>
+		<div class="container">
+			<div class="divPresentation">
+				<img src="resources/images/img-index.jpg" width="400" height="300" />
+				<div>
+					<h1>SchoolYard</h1>
+					<p>La solution idéale pour les écoles qui cherchent à améliorer
+						les résultats de vos élèves de niveau élémentaire et secondaire.
+						Notre plateforme offre aux établissements scolaires un accès
+						facile et rapide à des ressources éducatives (cours particuliers à
+						distance ou à domicile, contenu pédagogique, suivi des élèves...).</p>
+					<p>Les écoles peuvent aider leurs élèves à réussir en leur
+						offrant cette solution de qualité supérieure et en leur permettant
+						de travailler à leur propre rythme.</p>
+					<p>Essayez notre plateforme dès aujourd'hui !</p>
 				</div>
-			</h:form>
-		</div>
-		<div>
-			<div>
-				<h1>Pour les élèves...</h1>
-				<p>Notre plateforme vous aide à surmonter les défis de l'apprentissage ! 
-				Retrouvez votre école ou l'école de votre choix pour comprendre les concepts clés et améliorer vos résultats scolaires.
-				Vous pouvez utiliser la plateforme à tout moment, n'importe où, et travailler à votre propre rythme.</p>
-				<h:link outcome="userSubscriptionForm" class="custom-button"> S'inscrire </h:link>
+			</div>
+			<div class="divSchool">
+				<div>
+					<h1>Pour les écoles...</h1>
+					<p>Améliorez les résultats de vos élèves, stimulez leur
+						motivation et renforcez leur confiance en eux !</p>
+					<p>Choisissez la formule qui répondrait aux besoins de vos
+						élèves :</p>
+				</div>
+				<h:form id="createMembership" enctype="multipart/form-data">
+					<div class="container">
+						<ui:repeat value="#{createSchoolBean.subscriptions()}" var="s">
+							<div class="box">
+								<h2>
+									<h:outputText value="#{s.name}" />
+								</h2>
+								<h3>Fonctionnalités</h3>
+								<p>
+									<ui:repeat var="f" value="#{s.features}">
+										<h:outputText value="#{f.featureTitle}" />
+										<br />
+									</ui:repeat>
+								</p>
+								<h3>Durée</h3>
+								<p>
+									<h:outputText value="#{s.duration} mois" />
+								</p>
+								<h3>Prix</h3>
+								<p>
+									<h:outputText value="#{s.price}€" />
+								</p>
+								<h:link outcome="userSubscriptionForm"
+									class="custom-little-button"> Souscrire </h:link>
+								<br />
+							</div>
+						</ui:repeat>
+					</div>
+				</h:form>
+			</div>
+			<div class="divStudent">
+				<div>
+					<h1>Pour les élèves...</h1>
+					<p>Notre plateforme vous aide à surmonter les défis de
+						l'apprentissage ! Retrouvez votre école ou l'école de votre choix
+						pour comprendre les concepts clés et améliorer vos résultats
+						scolaires. Vous pouvez utiliser la plateforme à tout moment,
+						n'importe où, et travailler à votre propre rythme.</p>
+					<h:link outcome="userSubscriptionForm" class="custom-button"> S'inscrire </h:link>
+					<h:link outcome="schoolsList" class="custom-button"> Voir les écoles </h:link>
+				</div>
+			</div>
+			<div class="divTeacher">
+				<img src="resources/images/img-index-2.jpg" width="400" height="300" />
+				<div>
+					<h1>Pour les enseignants...</h1>
+					<p>En utilisant notre plateforme, vous pouvez offrir un soutien
+						scolaire efficace et personnalisé à vos élèves, les aider à
+						réussir et à se préparer pour un avenir brillant. Retrouvez votre
+						école ou postuler auprès d'un autre établissement pour proposer
+						des cours particuliers (à distance ou à domicile) et du contenu
+						pédagogique pour vos élèves. Réalisez le suivi pédagogique de vos
+						apprenants pour les aider à améliorer leurs résultats scolaires !</p>
+					<h:link outcome="userSubscriptionForm" class="custom-button"> S'inscrire </h:link>
+					<h:link outcome="schoolsList" class="custom-button"> Voir les écoles </h:link>
+				</div>
 			</div>
 		</div>
-		<div>
-			<div>
-				<h1>Pour les enseignants...</h1>
-				<p>En utilisant notre plateforme, vous pouvez offrir un soutien scolaire efficace et personnalisé à vos élèves, les aider à réussir et à se préparer pour un avenir brillant. 
-				Retrouvez votre école ou postuler auprès d'un autre établissement pour proposer des cours particuliers (à distance ou à domicile) et du contenu pédagogique pour vos élèves.
-				Réalisez le suivi pédagogique de vos apprenants pour les aider à améliorer leurs résultats scolaires !</p>
-				<h:link outcome="userSubscriptionForm" class="custom-button"> S'inscrire </h:link>
-			</div>
-		</div>
-
-
-
-
-
-
-
-
-
-
-
 	</ui:define>
 
 
