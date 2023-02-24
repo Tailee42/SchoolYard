@@ -1,6 +1,7 @@
 package fr.isika.cda.beans;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.school.FontEnum;
@@ -10,25 +11,30 @@ import fr.isika.cda.utils.FileUpload;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @ManagedBean
-public class SchoolPageBean {
+@SessionScoped
+public class SchoolPageBean implements Serializable {
 
-	
-	private SchoolPage schoolPage = new SchoolPage();
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6466155197743420541L;
+
 	@Inject
-private SchoolPageRepository schoolPageRepository;
+	private SchoolPageRepository schoolPageRepository;
 
 	private String pictureFileName;
 
-	
+	private SchoolPage schoolPage = new SchoolPage();
+
 	public String createSchoolPage() {
 		schoolPage.getSchoolValue().setPicture(pictureFileName);
 		schoolPageRepository.save(schoolPage);
-		schoolPage = new SchoolPage();
+		resetAll();
 		return "index?faces-redirect=true";
 	}
 
@@ -39,19 +45,21 @@ private SchoolPageRepository schoolPageRepository;
 		FileUpload.doUpLoad(file, pictureFileName);
 	}
 
+	private void resetAll() {
+		schoolPage = new SchoolPage();
+		pictureFileName = "empty_school_picture.png";
+	}
 
 	public SchoolPage getSchoolPage() {
 		return schoolPage;
 	}
 
-
 	public void setSchoolPage(SchoolPage schoolPage) {
 		this.schoolPage = schoolPage;
 	}
-		
+
 	public FontEnum[] fontEnum() {
 		return FontEnum.values();
 	}
-	
-	}
-	
+
+}
