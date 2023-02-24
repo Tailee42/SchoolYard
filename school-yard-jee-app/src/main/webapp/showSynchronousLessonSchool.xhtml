@@ -2,7 +2,7 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                                                                                 xmlns:f="http://java.sun.com/jsf/core">
+                xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:define name="cssFiles">
         <h:outputStylesheet name="cards.css" library="css"/>
@@ -12,7 +12,7 @@
 
     <ui:define name="content">
 
-        <h1>Les cours particuliers</h1>
+        <h1>Cours particuliers</h1>
 
         <div class="container">
             <ui:repeat value="#{synchronousLessonBean.getSynchronousLessonsByIdSchool()}" var="s"
@@ -47,6 +47,8 @@
                     <h3>
                         <h:outputText value="#{s.price}"/> €
                     </h3>
+                    <hr/>
+
                     <p>
                         Il reste : <h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
                     </p>

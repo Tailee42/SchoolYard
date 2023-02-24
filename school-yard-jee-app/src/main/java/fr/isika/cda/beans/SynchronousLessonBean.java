@@ -1,7 +1,6 @@
 package fr.isika.cda.beans;
 
 import fr.isika.cda.entities.common.AcademicLevel;
-import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.common.SubjectEnum;
 import fr.isika.cda.entities.lesson.PhysicalOption;
 import fr.isika.cda.entities.lesson.SynchronousLesson;
