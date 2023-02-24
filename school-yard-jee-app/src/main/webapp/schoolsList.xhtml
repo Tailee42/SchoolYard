@@ -13,8 +13,6 @@
     <ui:define name="title">Liste des écoles</ui:define>
 
     <ui:define name="header">
-        <h:link outcome="searchSchoolByName">Rechercher école par nom</h:link>
-        <h:link outcome="searchSchoolByType">Rechercher école par type</h:link>
         <h:link outcome="userDashboard" rendered="#{welcomeBean.userConnected}">Tableau de bord</h:link>
         <h:form class="inline">
             <h:commandLink action="#{loginBean.logout()}"

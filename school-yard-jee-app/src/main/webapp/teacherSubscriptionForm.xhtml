@@ -15,7 +15,6 @@
 
 	<ui:define name="header">
 		<h:link outcome="schoolsList">Liste des écoles</h:link>
-		<h:link outcome="searchSchoolByName">Rechercher école par nom</h:link>
 		<h:link outcome="userDashboard" rendered="#{welcomeBean.userConnected}">Tableau de bord</h:link>
 		<h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:link>
 		<h:form class="inline">
