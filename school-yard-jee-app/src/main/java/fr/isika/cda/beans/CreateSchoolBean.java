@@ -1,6 +1,5 @@
 package fr.isika.cda.beans;
 
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -8,6 +7,9 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
+
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.file.UploadedFile;
 
 import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.school.Admin;
@@ -23,8 +25,6 @@ import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.repositories.SubscriptionRepository;
 import fr.isika.cda.utils.FileUpload;
 import fr.isika.cda.utils.SessionUtils;
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.file.UploadedFile;
 
 @ManagedBean
 @SessionScoped
@@ -75,7 +75,6 @@ public class CreateSchoolBean {
 		membership.setEndingDate(startingDate.plusMonths(subscriptionDuration));
 	}
 
-
 	private void resetAll() {
 		school = new School();
 		membership = new Membership();
@@ -87,7 +86,6 @@ public class CreateSchoolBean {
 		logoFileName = timestamp + "_" + file.getFileName();
 		FileUpload.doUpLoad(file, logoFileName);
 	}
-
 
 	private Admin createAdmin() {
 		Admin admin = new Admin();
