@@ -18,29 +18,29 @@
 		<div class="container">
 
 			<div class="divsection1">
-				<div>
-					<h:graphicImage name="#{indexSchoolBean.school.logo}"
-						library="images" width="300px" height="300px" />
+				<div class="schoolLogo">
+						<h:graphicImage name="#{indexSchoolBean.school.logo}" library="images" width="400px" height="400px" />
 				</div>
 
 				<h1>#{indexSchoolBean.school.schoolName}</h1>
-				<h2>Slogan</h2>
-				<p>#{indexSchoolBean.school.synthesis}</p>
+				<h2>#{indexSchoolBean.school.synthesis}</h2>
 			</div>
 
 			<div class="divsection2">
 
-				<div>
+			<div class="schoolPicture">
 
-					<h:graphicImage
-						name="#{indexSchoolBean.school.schoolPage.schoolValue.picture}"
+					<h:graphicImage name="#{indexSchoolBean.school.schoolPage.schoolValue.picture}"
 						library="images" width="200px" height="150px" />
 
 				</div>
 
 				<div>
 					<h2>Présentation de l'école</h2>
-					<p>#{indexSchoolBean.school.schoolPage.description}</p>
+					
+					<div class="paragraph">
+					#{indexSchoolBean.school.schoolPage.description}
+					</div>
 				</div>
 			</div>
 
@@ -56,8 +56,9 @@
 					<h:link outcome="teacherSubscriptionForm"
 						value="Inscription professeur" class="custom-button" />
 				</div>
-
 			</h:form>
+			
+			
 
 			<div class="contact">
 				<h3>Contact:</h3>
