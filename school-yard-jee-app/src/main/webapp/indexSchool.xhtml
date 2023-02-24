@@ -18,8 +18,8 @@
 		<div class="container">
 
 			<div class="divsection1">
-				<div>
-						<h:graphicImage name="#{indexSchoolBean.school.logo}" library="images" width="300px" height="300px" />
+				<div class="schoolLogo">
+						<h:graphicImage name="#{indexSchoolBean.school.logo}" library="images" width="400px" height="400px" />
 				</div>
 
 				<h1>#{indexSchoolBean.school.schoolName}</h1>
@@ -28,7 +28,7 @@
 
 			<div class="divsection2">
 
-			<div>
+			<div class="schoolPicture">
 				<h:graphicImage name="empty_school_picture.png" library="images" width="200px" height="150px"/>
 			</div>
 
@@ -52,8 +52,9 @@
 					<h:link outcome="teacherSubscriptionForm"
 						value="Inscription professeur" class="custom-button" />
 				</div>
-
 			</h:form>
+			
+			
 
 		</div>
 	</ui:define>

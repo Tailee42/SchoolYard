@@ -30,9 +30,28 @@
 		
 }
 
+
+
+.schoolLogo {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+
+
 .paragraph {
+	display: flex;
 	text-align: justify;
 	margin: 50px;
+}
+
+
+.schoolPicture {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	
 }
 
 .button {
