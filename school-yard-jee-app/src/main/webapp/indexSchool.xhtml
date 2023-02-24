@@ -1,9 +1,9 @@
 <ui:composition template="WEB-INF/templates/schoolLayout.xhtml"
-                xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:define name="cssFiles">
 		<h:outputStylesheet name="buttons.css" library="css" />
@@ -11,15 +11,15 @@
 
 
 
-    </ui:define>
+	</ui:define>
 
-    <ui:define name="content">
+	<ui:define name="content">
 
 		<div class="container">
 
 			<div class="divsection1">
 				<div>
-						<h:graphicImage name="#{indexSchoolBean.school.logo}" 
+					<h:graphicImage name="#{indexSchoolBean.school.logo}"
 						library="images" width="300px" height="300px" />
 				</div>
 
@@ -30,12 +30,13 @@
 
 			<div class="divsection2">
 
-			<div>
+				<div>
 
-				<h:graphicImage name="#{indexSchoolBean.school.schoolPage.schoolValue.picture}" 
-				library="images" width="200px" height="150px"/>
+					<h:graphicImage
+						name="#{indexSchoolBean.school.schoolPage.schoolValue.picture}"
+						library="images" width="200px" height="150px" />
 
-			</div>
+				</div>
 
 				<div>
 					<h2>Présentation de l'école</h2>
@@ -44,10 +45,11 @@
 			</div>
 
 
-			<h:form class="divsection3" rendered="#{welcomeBean.isUserConnected()}">
+			<h:form class="divsection3"
+				rendered="#{welcomeBean.isUserConnected()}">
 				<div class="button">
-					<h:link outcome="studentSubscriptionForm"
-						value="Inscription élève" class="custom-button"  />
+					<h:link outcome="studentSubscriptionForm" value="Inscription élève"
+						class="custom-button" />
 				</div>
 
 				<div class="button">
@@ -57,10 +59,17 @@
 
 			</h:form>
 
-
-
-
+			<div class="contact">
+				<h3>Contact:</h3>
+				<h4>Téléphone</h4>
+				<p>#{indexSchoolBean.school.contact.phone}</p>
+				<h4 >Email:</h4>
+				<a href="mailto:#{indexSchoolBean.school.contact.email}">#{indexSchoolBean.school.contact.email}</a>
+			</div>
+		
+		
 		</div>
+		
 	</ui:define>
 
 
