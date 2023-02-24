@@ -42,15 +42,14 @@
 							<h:outputText value="#{u.level}" />
 						</h4>
 						<p>
-							Prof :
-							<h:outputText
-								value="#{u.teacher.user.profil.firstName} #{u.teacher.user.profil.lastName}" />
+							<h:outputText value="#{u.status}"/>
 						</p>
 						<br />
-						<h:button value="Consulter " outcome="indexUnit"
-							class="custom-button">
-							<f:param name="id" value="#{u.id}" />
-						</h:button>
+						<h:form>
+							<h:commandButton action="#{showUnitsUserBean.goToUnitForTeacher(u)}" value = "Consulter"
+											 class="custom-button link">
+							</h:commandButton>
+						</h:form>
 
 					</div>
 				</h:form>

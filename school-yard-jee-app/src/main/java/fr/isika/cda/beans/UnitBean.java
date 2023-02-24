@@ -40,7 +40,7 @@ public class UnitBean implements Serializable {
 		asynchronousLesson.setLevel(unit.getLevel());
 		asynchronousLesson.setSubject(unit.getSubject());
 		asynchronousLesson.setTeacher(unit.getTeacher());
-		if (id != 0) {
+		if (id != 0 ) {
 			asynchronousLesson.setUnit(unitRepository.getUnitById(id));
 		} else {
 			asynchronousLesson.setUnit(unitRepository.getUnitById(unit.getId()));
@@ -50,12 +50,12 @@ public class UnitBean implements Serializable {
 		learningPath.setActivity(asynchronousLesson);
 		learningPath.setStudent((Student) SessionUtils.getConnectedMember());
 		learningPathRepository.save(learningPath);
-		return "indexUnit";
+		return "";
 	}
 
 	public boolean isFavorite() {
 		List<LearningPath> learningPathList = learningPathRepository
-				.getLearningPathsByUserId(SessionUtils.getConnectedMember().getId());
+				.getLearningPathsByStudentId(SessionUtils.getConnectedMember().getId());
 		for (LearningPath learningPath : learningPathList) {
 			if (learningPath.getActivity() instanceof AsynchronousLesson) {
 				AsynchronousLesson asynchronousLesson = (AsynchronousLesson) learningPath.getActivity();
@@ -65,6 +65,10 @@ public class UnitBean implements Serializable {
 			}
 		}
 		return false;
+	}
+
+	public boolean isStudent() {
+		return SessionUtils.getConnectedMember() instanceof Student;
 	}
 
 	public void getUnitId() {
