@@ -82,7 +82,12 @@ public class MembersListBean {
 		List<LearningPath> allLearningPathList = getSynchronousLessonLikeStudent();
 
 		for (LearningPath learningPath : allLearningPathList) {
-			SynchronousLesson synchronousLesson = (SynchronousLesson) learningPath.getActivity();
+			SynchronousLesson synchronousLesson;
+			if (learningPath.getActivity() instanceof SynchronousLesson) {
+				synchronousLesson = (SynchronousLesson) learningPath.getActivity();
+			} else {
+				break;
+			}
 			if(synchronousLesson.getClassDate().isAfter(LocalDateTime.now())) {
 				futurLearningPathList.add(learningPath);
 			}
@@ -96,7 +101,12 @@ public class MembersListBean {
 		List<LearningPath> allLearningPathList = getSynchronousLessonLikeStudent();
 
 		for (LearningPath learningPath : allLearningPathList) {
-			SynchronousLesson synchronousLesson = (SynchronousLesson) learningPath.getActivity();
+			SynchronousLesson synchronousLesson;
+			if (learningPath.getActivity() instanceof SynchronousLesson) {
+				synchronousLesson = (SynchronousLesson) learningPath.getActivity();
+			} else {
+				break;
+			}
 			if(synchronousLesson.getClassDate().isBefore(LocalDateTime.now())) {
 				pastLearningPathList.add(learningPath);
 			}
