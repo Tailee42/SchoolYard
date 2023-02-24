@@ -4,7 +4,6 @@ import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.school.StatusSchool;
 import fr.isika.cda.repositories.SchoolRepository;
-import fr.isika.cda.utils.FileUtils;
 import fr.isika.cda.utils.SessionUtils;
 
 import javax.faces.bean.ManagedBean;
@@ -56,16 +55,12 @@ public class SchoolsListBean {
         schools = schoolRepository.getActiveSchoolByType(school.getSchoolTypeEnum(), StatusSchool.PUBLISHED);
         return schools;
     }
-
-    public void reset(){
-        schools = new ArrayList<>();
+    
+    public void clearSchoolName() {
+        school.setSchoolName(null);
     }
+    
 
-    public String getPathPicture(School school) {
-        ServletContext context = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-        String realPath = context.getRealPath("images");
-        return realPath + FileUtils.getResourceImageFilePath(school.getLogo());
-    }
 
     public String navigationIndexSchool(School school) {
         SessionUtils.setCurrentSchool(school);

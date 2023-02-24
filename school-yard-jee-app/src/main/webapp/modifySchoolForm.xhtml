@@ -1,0 +1,210 @@
+<ui:composition template="WEB-INF/templates/schoolLayout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="forms.css" library="css" />
+		<h:outputStylesheet name="buttons.css" library="css" />
+	</ui:define>
+
+	<ui:define name="title">Accueil Ecole</ui:define>
+
+	<ui:define name="navbar-link">
+		<h:form class="inline">
+			<h:commandLink
+				action="#{membersListBean.goToIndexSchool(welcomeBean.connectedMember)}">Retour</h:commandLink>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="content">
+		<h2>Administrateur école</h2>
+
+		<div class="card">
+			<p:tabView dynamic="true" cache="true">
+				<p:tab title="Personnalisation">
+					<div class="container">
+						<h3>Personnalisation de mon école</h3>
+						<div class="form-container">
+							<h:form id="modifySchoolThemeForm" enctype="multipart/form-data"
+								class="forms">
+								<div class="form-container">
+									<div class="gridDiv">
+										<h:panelGrid columns="1" class="grid">
+
+											<h:outputLabel value="Sélectionner la couleur principale"
+												for="primaryColor" />
+											<p:colorPicker id="primaryColor" mode="inline"
+												value="#{adminBean.themeToTest.primaryColor}" styleClass="ui-colorpicker_current_color"/>
+
+											<h:outputLabel
+												value="Sélectionner la couleur des liens et des boutons"
+												for="accentColor" />
+											<p:colorPicker id="accentColor" mode="inline"
+												value="#{adminBean.themeToTest.accentColor}" styleClass="ui-colorpicker_current_color"/>
+										</h:panelGrid>
+									</div>
+									<br />
+									<div class="gridDiv">
+										<h:panelGrid columns="1" class="grid">
+											<h:outputLabel value="Sélectionner la couleur du fond "
+												for="backgroundColor" />
+											<p:colorPicker id="backgroundColor" mode="inline"
+												value="#{adminBean.themeToTest.backgroundColor}" styleClass="ui-colorpicker_current_color"/>
+
+											<h:outputLabel value="Sélectionner la police d'écriture"
+												for="selectFont" />
+											<h:selectOneMenu id="selectFont"
+												value="#{adminBean.themeToTest.font}" class="searchMenu" >
+
+												<f:selectItem itemValue="#{adminBean.themeToTest.font}" />
+												<f:selectItems value="#{schoolPageBean.fontEnum()}"
+													var="font" itemLabel="#{font}" itemValue="#{font}" />
+											</h:selectOneMenu>
+
+											<h:commandButton action="#{adminBean.testTheme()}"
+												value="Tester" class="custom-button" />
+
+											<h:commandButton action="#{adminBean.updateSchoolTheme()}"
+												value="Enregistrer" class="custom-button" />
+
+										</h:panelGrid>
+									</div>
+								</div>
+
+							</h:form>
+						</div>
+					</div>
+				</p:tab>
+				<!-- ******************************************************************************************************************* -->
+				<!-- ******************************************************************************************************************* -->
+				<!-- ******************************************************************************************************************* -->
+				<!-- ******************************************************************************************************************* -->
+				<p:tab title="Description">
+					<div class="container">
+						<h3>Description de mon école</h3>
+						<div class="form-container">
+							<h:form id="modifySchoolValueForm" enctype="multipart/form-data"
+								class="forms">
+								<div class="form-container">
+									<div class="gridDiv">
+										<h:panelGrid columns="1" class="grid">
+
+
+											<h:outputLabel
+												value="Ecrivez un court slogan pour décrire votre école :"
+												for="synthesisInput" />
+											<h:inputTextarea id="synthesisInput"
+												value="#{adminBean.school.synthesis}" class="formAreaInput" />
+
+											<h:outputLabel value="Les valeurs de votre école"
+												for="titleValueInput" />
+											<h:inputTextarea id="titleValueInput"
+												value="#{adminBean.school.schoolPage.schoolValue.titleValue}"
+												class="formAreaInput" />
+
+											<h:outputLabel value="Texte de présentation"
+												for="descriptionValueInput" />
+											<h:inputTextarea id="descriptionValueInput"
+												value="#{adminBean.school.schoolPage.schoolValue.descriptionValue}"
+												class="formAreaInput" />
+
+											<h:outputLabel value="Photo de votre école : " for="picture" />
+											<h:inputFile id="picture"
+												value="#{adminBean.school.schoolPage.schoolValue.picture}" />
+
+											<h:commandButton action="#{adminBean.updateSchool()}"
+												value="Enregistrer" class="custom-button" />
+
+										</h:panelGrid>
+									</div>
+								</div>
+
+							</h:form>
+						</div>
+					</div>
+				</p:tab>
+				<!-- *********************************************************************************************************************** -->
+				<!-- *********************************************************************************************************************** -->
+				<!-- *********************************************************************************************************************** -->
+				<!-- *********************************************************************************************************************** -->
+				<!-- *********************************************************************************************************************** -->
+				<p:tab title="infos">
+					<div class="container">
+						<h3>Informations de mon école</h3>
+						<div class="form-container">
+							<h:form id="modifySchoolForm" enctype="multipart/form-data"
+								class="forms">
+								<div class="form-container">
+									<div class="gridDiv">
+										<h:panelGrid columns="1" class="grid">
+
+											<h:outputLabel value="Nom de l'école : "
+												for="schoolNameInput" />
+											<h:inputText id="schoolNameInput"
+												value="#{adminBean.school.schoolName}" class="formInput" />
+
+											<h:outputLabel value="Type d'établissement : "
+												for="selectLevel" />
+											<h:selectOneMenu id="selectLevel"
+												value="#{adminBean.school.schoolTypeEnum}"
+												class="searchMenu">
+												<f:selectItem itemValue="#{adminBean.school.schoolTypeEnum}" />
+												<f:selectItems value="#{createSchoolBean.levels()}"
+													var="level" itemLabel="#{level}" itemValue="#{level}" />
+											</h:selectOneMenu>
+
+											<h:outputLabel value="Email: " for="emailInput" />
+											<h:inputText id="emailInput"
+												value="#{adminBean.school.contact.email}" class="formInput" />
+
+											<h:outputLabel value="Téléphone : " for="phoneInput" />
+											<h:inputText id="phoneInput"
+												value="#{adminBean.school.contact.phone}" class="formInput" />
+										</h:panelGrid>
+									</div>
+
+									<div class="gridDiv">
+										<h:panelGrid class="grid">
+
+
+											<h:outputLabel value="Numéro : " for="numberInput" />
+											<h:inputText id="numberInput"
+												value="#{adminBean.school.contact.address.number}"
+												class="formNumInput" />
+
+											<h:outputLabel value="Rue : " for="streetInput" />
+											<h:inputText id="streetInput"
+												value="#{adminBean.school.contact.address.street}"
+												class="formInput" />
+
+											<h:outputLabel value="Code Postal : " for="zipcodeInput" />
+											<h:inputText id="zipcodeInput"
+												value="#{adminBean.school.contact.address.zipcode}"
+												class="formNumInput" />
+
+											<h:outputLabel value="Ville : " for="townInput" />
+											<h:inputText id="townInput"
+												value="#{adminBean.school.contact.address.town}"
+												class="formInput" />
+
+
+											<h:commandButton action="#{adminBean.updateSchool()}"
+												value="Enregistrer" class="custom-button" />
+										</h:panelGrid>
+									</div>
+								</div>
+
+							</h:form>
+						</div>
+					</div>
+				</p:tab>
+			</p:tabView>
+		</div>
+	</ui:define>
+
+
+</ui:composition>

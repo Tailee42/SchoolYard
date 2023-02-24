@@ -12,6 +12,7 @@ import java.util.List;
 
 @Stateless
 public class LearningPathRepository {
+
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -40,5 +41,13 @@ public class LearningPathRepository {
 		}
 
 	}
+
+    public LearningPath getLearningPathBySynchronousLessonIdAndStudentID(Long idSynchronousLesson, Long idStudent) {
+        return entityManager
+                .createQuery("select l FROM LearningPath l WHERE l.student.id = :id_student AND l.activity.id = :id_lesson", LearningPath.class)
+                .setParameter("id_student", idStudent)
+                .setParameter("id_lesson", idSynchronousLesson)
+                .getSingleResult();
+    }
 
 }

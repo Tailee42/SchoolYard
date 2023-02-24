@@ -32,9 +32,18 @@
 				<h:outputLabel value="Texte de présentation" for="descriptionValueInput" />
 				<h:inputTextarea id="descriptionValueInput"
 							 value="#{schoolPageBean.schoolPage.schoolValue.descriptionValue}" class="formAreaInput" />
-				
-				<h:outputLabel value="Photo de votre école : " for="picture" />
-				<h:inputFile id="picture" value="#{schoolPageBean.schoolPage.schoolValue.picture}"/>			 
+
+
+				<h:outputLabel value="Photo de votre école : " for="" />
+				<p:fileUpload skinSimple="true"
+							  uploadButtonStyleClass="ui-button-outlined ui-button-secondary"
+							  chooseButtonStyleClass="ui-button-outlined ui-button-secondary"
+							  cancelButtonStyleClass="ui-button-outlined ui-button-secondary"
+							  label="Choisissez une image" mode="advanced" sizeLimit="5000000"
+							  fileLimit="1" accept=".gif,.jpg,.jpeg,.png"
+							  invalidSizeMessage="L'image ne doit pas dépasser 5 Mo"
+							  listener="#{schoolPageBean.schoolPage.schoolValue.picture}"
+							  class="imgInput"/>
 				
 				<h:commandButton action="#{schoolPageBean.createSchoolPage()}"
 					value="Valider" class="custom-button"/>

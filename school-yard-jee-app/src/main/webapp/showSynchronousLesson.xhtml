@@ -12,7 +12,7 @@
 
     <ui:define name="content">
 
-        <h1>Cours particuliers</h1>
+        <h1>Les cours particuliers</h1>
 
         <div class="container">
             <ui:repeat value="#{synchronousLessonBean.getSynchronousLessonsByIdSchool()}" var="s"
@@ -42,13 +42,10 @@
                         <h:outputText value="#{s.duration}"/>
                         <br/>
                     </p>
+
                     <h3>
                         <h:outputText value="#{s.price}"/> €
                     </h3>
-
-                    <hr/>
-                        <h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}"/>
-                    <hr/>
                     <p>
                         Il reste : <h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
                     </p>

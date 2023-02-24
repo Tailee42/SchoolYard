@@ -31,30 +31,36 @@
     <div id="header">
         <div id="entreprise">
 
-            <h:graphicImage library="images" name="LogoEcole" width="140" height="100" alt="SchoolLogo"/>
+            <ui:fragment rendered="#{not indexSchoolBean.hasLogo()}">
+                <h:graphicImage library="images" name="no_logo.png" alt="No school logo ..." width="100px" height="100px" />
+            </ui:fragment>
+            <ui:fragment rendered="#{indexSchoolBean.hasLogo()}">
+                <h:graphicImage library="images" name="#{indexSchoolBean.school.logo}" alt="School logo" width="50px" height="50px" />
+            </ui:fragment>
+
             <h1>#{indexSchoolBean.school.schoolName}</h1>
         </div>
 
         <!-- Menu desktop -->
         <div id="navbar-desktop">
             <ui:fragment rendered="#{indexSchoolBean.isTeacher() and indexSchoolBean.isSynchronousLesson()}">
-                <h:link outcome="synchronousLessonForm" value="Créer un cours"/>
+                <h:link outcome="synchronousLessonForm" value="Créer un cours particulier"/>
                 
             </ui:fragment>
-            <ui:fragment rendered="#{indexSchoolBean.isSynchronousLesson()}">
-            <h:link outcome="showSynchronousLessonSchool" value="Les cours"/>
+            <ui:fragment rendered="#{indexSchoolBean.isSynchronousLesson() and welcomeBean.isMemberConnected()}">
+            <h:link outcome="showSynchronousLessonSchool" value="Cours particuliers"/>
             </ui:fragment>
 
             <ui:fragment rendered="#{indexSchoolBean.isTeacher() and indexSchoolBean.isAsynchronousLesson()}">
                 <h:link outcome="createUnitForm">Créer du contenu pédagogique</h:link>
             </ui:fragment>
             
-            <ui:fragment rendered="#{indexSchoolBean.isAsynchronousLesson()}">
-                <h:link outcome="showUnits">Cours en ligne</h:link>
+            <ui:fragment rendered="#{indexSchoolBean.isAsynchronousLesson() and welcomeBean.isMemberConnected()}">
+                <h:link outcome="showUnits">Contenu en ligne</h:link>
             </ui:fragment>
             
             <ui:insert name="navbar-link"></ui:insert>
-            <!--            TODO rajouter les liens pour accéder aux cours particuliers et aux contenus -->
+
             <ui:fragment rendered="#{indexSchoolBean.isUserConnected()}">
                 <h:form class="inline">
                     <h:commandLink action="#{indexSchoolBean.logoutSchool()}">Tableau de bord</h:commandLink>

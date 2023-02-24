@@ -24,7 +24,7 @@ public class School implements Serializable {
 	private String logo;
 	private String synthesis;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Statistics stats;
 
 	@Enumerated(EnumType.STRING)
@@ -48,6 +48,8 @@ public class School implements Serializable {
 	public School() {
 		this.contact = new Contact();
 		this.schoolPage = new SchoolPage();
+		this.logo = "no_logo.png";
+		this.stats = new Statistics();
 	}
 
 	public School(String schoolName, String logo, String presentation, List<Member> members, Contact contact,
@@ -59,6 +61,7 @@ public class School implements Serializable {
 		this.contact = contact;
 		this.statusSchool = StatusSchool.TOPUBLISH;
 		this.schoolTypeEnum = schoolTypeEnum;
+		this.stats = new Statistics();
 	}
 
 	public String getSchoolName() {
