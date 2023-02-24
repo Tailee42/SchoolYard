@@ -1,14 +1,10 @@
 package fr.isika.cda.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.school.School;
-import fr.isika.cda.entities.school.Statistics;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.repositories.ActivityRepository;
@@ -35,7 +31,7 @@ public class AdminService {
 
 	@Inject
 	private StatisticsRepository statisticsRepository;
-	
+
 	@Inject
 	private SchoolRepository schoolRepository;
 
@@ -78,9 +74,9 @@ public class AdminService {
 	public void initStats(int studentsNumber, int teachersNumber, School school) {
 		school.getStats().setNumberOfStudents(studentsNumber);
 		school.getStats().setNumberOfTeachers(teachersNumber);
-		school.getStats().setNumberOfLessons(activityRepository.allSchoolActivities(school.getId()));
+		school.getStats().setNumberOfLessons(activityRepository.allSchoolActivities(school.getId())
+				+ unitRepository.getAllUnitsValidatedBySchool(school.getId()).size());
 		statisticsRepository.update(school.getStats());
 	}
-
 
 }

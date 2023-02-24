@@ -30,143 +30,141 @@
 			#{adminBean.school.stats.numberOfLessons} cours</h4>
 		<hr />
 
-			<div class="card">
-				<p:tabView dynamic="true" cache="true">
-					<p:tab title="Candidature" rendered="#{not adminBean.allSchoolCandidates().isEmpty()}">
-						<div class="container">
-							<ui:repeat value="#{adminBean.allSchoolCandidates()}" var="c"
-								varStatus="status">
-								<div class="box">
-									<h2>
-										<h:outputText value="#{c.user.profil.firstName} " />
+		<div class="card">
+			<p:tabView dynamic="true" cache="true">
+				<p:tab title="Candidature"
+					rendered="#{not adminBean.allSchoolCandidates().isEmpty()}">
+					<div class="container">
+						<ui:repeat value="#{adminBean.allSchoolCandidates()}" var="c"
+							varStatus="status">
+							<div class="box">
+								<h2>
+									<h:outputText value="#{c.user.profil.firstName} " />
 
-										<h:outputText value="#{c.user.profil.lastName}" />
-									</h2>
-									<hr />
-									<p>
-										<h:outputText value="#{c.subject}" />
-									</p>
-									<p>
-										<a href="mailto:#{c.user.profil.contact.email}"> Contacter
-										</a>
-									</p>
-									<p>
-										<br />
-										<h:outputText value="#{c.user.profil.contact.phone}" />
-									</p>
+									<h:outputText value="#{c.user.profil.lastName}" />
+								</h2>
+								<hr />
+								<p>
+									<h:outputText value="#{c.subject}" />
+								</p>
+								<p>
+									<a href="mailto:#{c.user.profil.contact.email}"> Contacter
+									</a>
+								</p>
+								<p>
 									<br />
-									<h:outputText value="#{c.user.profil.picturePath}" />
+									<h:outputText value="#{c.user.profil.contact.phone}" />
+								</p>
+								<br />
+								<h:outputText value="#{c.user.profil.picturePath}" />
+								<br />
+								<h:form id="updateTeacherStatus">
+									<h:commandButton action="#{adminBean.validateTeacher(c.id)}"
+										value="Valider" class="custom-button" />
+									<h:commandButton action="#{adminBean.rejectTeacher(c.id)}"
+										value="Rejeter" class="custom-button" />
+								</h:form>
+							</div>
+						</ui:repeat>
+					</div>
+				</p:tab>
+				<p:tab title="Cours à valider"
+					rendered="#{not adminBean.unitsToUpdate().isEmpty()}">
+					<h3>Nouveaux cours proposés</h3>
+					<div class="container">
+						<ui:repeat value="#{adminBean.unitsToUpdate()}" var="u"
+							varStatus="status">
+							<div class="box">
+								<h3>
+									<h:outputText value="#{u.teacher.user.fullName()} " />
+								</h3>
+								<h:outputText value="#{u.level}" />
+								<hr />
+								<p>
+									<h:outputText value="#{u.subject}" />
+								</p>
+								<p>bouton consulter</p>
+								<h:form id="updateUnitStatus">
+									<h:commandButton action="#{adminBean.validateUnit(u.id)}"
+										value="Valider" class="custom-button" />
+									<h:commandButton action="#{adminBean.rejectUnit(u.id)}"
+										value="Refuser" class="custom-button" />
+								</h:form>
+							</div>
+						</ui:repeat>
+					</div>
+				</p:tab>
+				<p:tab title="Enseignants ">
+					<div class="container">
+						<h:outputLabel value="Aucun professeur pour le moment."
+							rendered="#{adminBean.allSchoolTeachers().isEmpty()}" />
+						<ui:repeat value="#{adminBean.allSchoolTeachers()}" var="t"
+							varStatus="status">
+							<div class="box">
+								<h2>
+									<h:outputText value="#{t.user.fullName()} " />
+								</h2>
+								<hr />
+								<p>
+									<h:outputText value="#{t.subject}" />
+								</p>
+								<p>
+									<a href="mailto:#{t.user.profil.contact.email}"> Contacter
+										par mail</a>
+								</p>
+								<p>
 									<br />
-									<h:form id="updateTeacherStatus">
-										<h:commandButton action="#{adminBean.validateTeacher(c.id)}"
-											value="Valider" class="custom-button" />
-										<h:commandButton action="#{adminBean.rejectTeacher(c.id)}"
-											value="Rejeter" class="custom-button" />
-									</h:form>
-								</div>
-							</ui:repeat>
-						</div>
-					</p:tab>
-					<p:tab title="Enseignants ">
-						<div class="container">
-							<h:outputLabel value="Aucun professeur pour le moment."
-								rendered="#{adminBean.allSchoolTeachers().isEmpty()}" />
-							<ui:repeat value="#{adminBean.allSchoolTeachers()}" var="t"
-								varStatus="status">
-								<div class="box">
-									<h2>
-										<h:outputText value="#{t.user.fullName()} " />
-									</h2>
-									<hr />
-									<p>
-										<h:outputText value="#{t.subject}" />
-									</p>
-									<p>
-										<a href="mailto:#{t.user.profil.contact.email}"> Contacter
-											par mail</a>
-									</p>
-									<p>
-										<br />
-										<h:outputText value="#{t.user.profil.contact.phone}" />
-									</p>
-									<br />
-									<h:outputText value="#{t.user.profil.picturePath}" />
-									<br />
-									<h:form id="updateTeacherStatus">
-										<h:commandButton action="#{adminBean.deleteTeacher(t.id)}"
-											value="Supprimer" class="custom-button" />
-									</h:form>
-								</div>
+									<h:outputText value="#{t.user.profil.contact.phone}" />
+								</p>
+								<br />
+								<h:outputText value="#{t.user.profil.picturePath}" />
+								<br />
+								<h:form id="updateTeacherStatus">
+									<h:commandButton action="#{adminBean.deleteTeacher(t.id)}"
+										value="Supprimer" class="custom-button" />
+								</h:form>
+							</div>
 
-							</ui:repeat>
-						</div>
-					</p:tab>
-					<p:tab title="Etudiants">
-						<div class="container">
+						</ui:repeat>
+					</div>
+				</p:tab>
+				<p:tab title="Etudiants">
+					<div class="container">
 
-							<h:outputLabel value="Aucun étudiant pour le moment."
-								rendered="#{adminBean.allSchoolStudents().isEmpty()}" />
-							<ui:repeat value="#{adminBean.allSchoolStudents()}" var="s"
-								varStatus="status">
-								<div class="box">
-									<h2>
-										<h:outputText value="#{s.user.fullName()} " />
-									</h2>
-									<hr />
-									<p>
-										<h:outputText value="#{s.level}" />
-									</p>
-									<p>
-										<h:outputText value="#{s.user.profil.contact.address.town}" />
-									</p>
-									<br />
+						<h:outputLabel value="Aucun étudiant pour le moment."
+							rendered="#{adminBean.allSchoolStudents().isEmpty()}" />
+						<ui:repeat value="#{adminBean.allSchoolStudents()}" var="s"
+							varStatus="status">
+							<div class="box">
+								<h2>
+									<h:outputText value="#{s.user.fullName()} " />
+								</h2>
+								<hr />
+								<p>
+									<h:outputText value="#{s.level}" />
+								</p>
+								<p>
+									<h:outputText value="#{s.user.profil.contact.address.town}" />
+								</p>
+								<br />
 
-									<p>
-										<a href="mailto:#{s.user.profil.contact.email}"> Contacter
-											par mail</a>
-									</p>
-									<br />
-									<h:outputText value="#{t.user.profil.picturePath}" />
-									<br />
-									<h:form id="deleteStudentForm">
-										<h:commandButton action="#{adminBean.deleteStudent(s.id)}"
-											value="Supprimer" class="custom-button" />
-									</h:form>
-								</div>
-							</ui:repeat>
-						</div>
-					</p:tab>
-					<p:tab title="Cours à valider">
-						<h3>Nouveaux cours proposés</h3>
-						<div class="container">
-
-							<h:outputLabel value="Aucun nouveau cours..."
-								rendered="#{adminBean.unitsToUpdate().isEmpty()}" />
-
-							<ui:repeat value="#{adminBean.unitsToUpdate()}" var="u"
-								varStatus="status">
-								<div class="box">
-									<h3>
-										<h:outputText value="#{u.teacher.user.fullName()} " />
-									</h3>
-									<h:outputText value="#{u.level}" />
-									<hr />
-									<p>
-										<h:outputText value="#{u.subject}" />
-									</p>
-									<p>bouton consulter</p>
-									<h:form id="updateUnitStatus">
-										<h:commandButton action="#{adminBean.validateUnit(u.id)}"
-											value="Valider" class="custom-button" />
-										<h:commandButton action="#{adminBean.rejectUnit(u.id)}"
-											value="Refuser" class="custom-button" />
-									</h:form>
-								</div>
-							</ui:repeat>
-						</div>
-					</p:tab>
-				</p:tabView>
-			</div>
+								<p>
+									<a href="mailto:#{s.user.profil.contact.email}"> Contacter
+										par mail</a>
+								</p>
+								<br />
+								<h:outputText value="#{t.user.profil.picturePath}" />
+								<br />
+								<h:form id="deleteStudentForm">
+									<h:commandButton action="#{adminBean.deleteStudent(s.id)}"
+										value="Supprimer" class="custom-button" />
+								</h:form>
+							</div>
+						</ui:repeat>
+					</div>
+				</p:tab>
+			</p:tabView>
+		</div>
 	</ui:define>
 
 

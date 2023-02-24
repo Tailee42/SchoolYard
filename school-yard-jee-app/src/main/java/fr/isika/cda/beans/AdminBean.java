@@ -21,7 +21,6 @@ import fr.isika.cda.services.AdminService;
 import fr.isika.cda.utils.SessionUtils;
 
 @ManagedBean
-@SessionScoped
 public class AdminBean {
 
 	@Inject
