@@ -19,7 +19,7 @@
 		<h:link outcome="userSubscriptionForm">S'inscrire</h:link>
 		<h:link outcome="userDashboard"
 			rendered="#{welcomeBean.userConnected}">Tableau de bord</h:link>
-		<h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:link>
+		<h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se connecter</h:link>
 		<h:form class="inline">
 			<h:commandLink action="#{loginBean.logout()}"
 				rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
@@ -30,7 +30,7 @@
 	<ui:define name="content">
 		<div class="container">
 			<div class="divPresentation">
-				<img src="resources/images/img-index.jpg" width="400" height="300" />
+				<img src="resources/images/img-index.jpg" width="500" height="350" />
 				<div>
 					<h1>SchoolYard</h1>
 					<p>La solution idéale pour les écoles qui cherchent à améliorer
@@ -43,7 +43,7 @@
 			</div>
 			<div class="divSchool">
 				<div>
-					<h1>Pour les écoles...</h1>
+					<h1>Pour les écoles</h1>
 					<p>Améliorez les résultats de vos élèves, stimulez leur
 						motivation et renforcez leur confiance en eux !</p>
 					<p>Choisissez la formule qui répondrait aux besoins de vos
@@ -80,30 +80,35 @@
 				</h:form>
 			</div>
 			<div class="divStudent">
-					<div>
-					<h1>Pour les élèves...</h1>
+					<h1>Pour les élèves</h1>
+					<div class="divStudent-align">
 					<p>Notre plateforme vous aide à surmonter les défis de
 						l'apprentissage ! Retrouvez votre école ou l'école de votre choix
 						pour comprendre les concepts clés et améliorer vos résultats
 						scolaires. Vous pouvez utiliser la plateforme à tout moment,
 						n'importe où, et travailler à votre propre rythme.</p>
-					</div>
-					<div>	
+	
 						<h:link outcome="userSubscriptionForm" class="custom-button"> S'inscrire </h:link>
 						<h:link outcome="schoolsList" class="custom-button"> Voir les écoles </h:link>
+
 					</div>
+
 			</div>
 			<div class="divTeacher">
-				<img src="resources/images/img-index-2.jpg" width="400" height="300" />
-				<div>
-					<h1>Pour les enseignants...</h1>
+					<h1>Pour les enseignants</h1>
+					<div class="divTeacher-align">
+					<img src="resources/images/img-index-2.jpg" width="400" height="300" />
+					<div class="teacher-text">
 					<p>En utilisant notre plateforme, vous pouvez offrir un soutien
 						scolaire efficace et personnalisé à vos élèves, les aider à
-						réussir et à se préparer pour un avenir brillant. Retrouvez votre
-						école ou postuler auprès d'un autre établissement pour proposer
+						réussir et à se préparer pour un avenir brillant.</p> 
+					<p>Retrouvez votre école ou postuler auprès d'un autre établissement pour proposer
 						des cours particuliers (à distance ou à domicile) et du contenu
-						pédagogique pour vos élèves. Réalisez le suivi pédagogique de vos
-						apprenants pour les aider à améliorer leurs résultats scolaires !</p>
+						pédagogique pour vos élèves.</p> 
+					<p>Réalisez le suivi pédagogique de vos apprenants pour les aider à améliorer leurs résultats scolaires !</p>
+					</div>
+				</div>
+				<div class="teacher-button">
 					<h:link outcome="userSubscriptionForm" class="custom-button"> S'inscrire </h:link>
 					<h:link outcome="schoolsList" class="custom-button"> Voir les écoles </h:link>
 				</div>
