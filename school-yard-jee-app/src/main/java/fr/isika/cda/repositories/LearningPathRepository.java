@@ -30,16 +30,15 @@ public class LearningPathRepository {
 				.setParameter("id_activity", idActivity).getResultList();
 	}
 
-	public List<LearningPath> getLearningPathsByStudentId(Long idStudent) {
+	public List<LearningPath> getLearningPathsByUserId(Long idUser) {
 		try {
 			List<LearningPath> learningPaths = entityManager
-					.createQuery("select l FROM LearningPath l WHERE l.student.id = :id_student", LearningPath.class)
-					.setParameter("id_student", idStudent).getResultList();
+					.createQuery("select l FROM LearningPath l WHERE l.student.user.id = :id_user", LearningPath.class)
+					.setParameter("id_user", idUser).getResultList();
 			return learningPaths;
 		} catch (NoResultException noResultException) {
 			return new ArrayList<LearningPath>();
 		}
-
 	}
 
     public LearningPath getLearningPathBySynchronousLessonIdAndStudentID(Long idSynchronousLesson, Long idStudent) {

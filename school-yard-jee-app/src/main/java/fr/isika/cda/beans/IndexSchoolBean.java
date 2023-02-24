@@ -1,7 +1,6 @@
 package fr.isika.cda.beans;
 
 import fr.isika.cda.entities.student.Student;
-import fr.isika.cda.repositories.SchoolRepository;
 
 import java.util.List;
 
