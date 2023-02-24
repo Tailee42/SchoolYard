@@ -1,189 +1,226 @@
 <ui:composition template="WEB-INF/templates/schoolLayout.xhtml"
-                xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core">
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
-    <ui:define name="cssFiles">
-        <h:outputStylesheet name="cards.css" library="css"/>
-        <h:outputStylesheet name="buttons.css" library="css"/>
-		<h:outputStylesheet name="forms.css" library="css"/>
-    </ui:define>
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="cards.css" library="css" />
+		<h:outputStylesheet name="buttons.css" library="css" />
+		<h:outputStylesheet name="forms.css" library="css" />
+	</ui:define>
 
-    <ui:define name="content">
+	<ui:define name="navbar-link">
+		<h:form class="inline"
+			rendered="#{membersListBean.isAdmin(welcomeBean.connectedMember) and welcomeBean.isMemberConnected()}">
+			<h:commandLink
+				action="#{membersListBean.goToIndexSchool(welcomeBean.connectedMember)}">Retour</h:commandLink>
+		</h:form>
+	</ui:define>
 
-        <h1>Cours particuliers</h1>
+	<ui:define name="content">
 
-        <div class="container">
-            <ui:repeat value="#{synchronousLessonBean.getSynchronousLessonsByIdSchool()}" var="s"
-                       varStatus="status">
+		<h1>Cours particuliers</h1>
 
-
-                <div class="box">
-                    <h2>
-                        <h:outputText value="#{s.title}"/>
-                    </h2>
-                    <h3>
-                        <h:outputText value="#{s.subject}"/>
-                    </h3>
-                    <h3>
-                        <h:outputText value="#{s.level}"/>
-                    </h3>
-                    <hr/>
-
-                    <p> Le ou la professeur(e) :
-                        <h:outputText value="#{s.teacher.user.profil.lastName}"/>
-                    </p>
-                    <hr/>
-
-                    <p>
-                        <h:outputText value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}"/>
-                        <br/>
-                        <h:outputText value="#{s.duration}"/>
-                        <br/>
-                    </p>
-                    <h3>
-                        <h:outputText value="#{s.price}"/> €
-                    </h3>
-
-                    <hr/>
-                        <h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}"/>
-                    <hr/>
-                    <p>
-                        Il reste : <h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
-                    </p>
-
-                    <h:form rendered="#{synchronousLessonBean.isStudent() and not (synchronousLessonBean.freeSeatsNumbers(s) == 0)}">
-                        <h:commandButton action="#{synchronousLessonBean.create(s)}"
-                                         value="Inscription" class="custom-long-button"/>
-                    </h:form>
+		<div class="container">
+			<ui:repeat
+				value="#{synchronousLessonBean.getSynchronousLessonsByIdSchool()}"
+				var="s" varStatus="status">
 
 
-                </div>
+				<div class="box">
+					<h2>
+						<h:outputText value="#{s.title}" />
+					</h2>
+					<h3>
+						<h:outputText value="#{s.subject}" />
+					</h3>
+					<h3>
+						<h:outputText value="#{s.level}" />
+					</h3>
+					<hr />
+
+					<p>
+						Le ou la professeur(e) :
+						<h:outputText value="#{s.teacher.user.profil.lastName}" />
+					</p>
+					<hr />
+
+					<p>
+						<h:outputText
+							value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}" />
+						<br />
+						<h:outputText value="#{s.duration}" />
+						<br />
+					</p>
+					<h3>
+						<h:outputText value="#{s.price}" />
+						€
+					</h3>
+
+					<hr />
+					<h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}" />
+					<hr />
+					<p>
+						Il reste :
+						<h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}" />
+						place(s) pour ce cours
+					</p>
+
+					<h:form
+						rendered="#{synchronousLessonBean.isStudent() and not (synchronousLessonBean.freeSeatsNumbers(s) == 0)}">
+						<h:commandButton action="#{synchronousLessonBean.create(s)}"
+							value="Inscription" class="custom-long-button" />
+					</h:form>
 
 
-            </ui:repeat>
-        </div>
-        
-         <h1>Rechercher par matière ou par niveau</h1>
-         <br/>
-        	<h:form id="searchLessonBySubject" class="forms">
-                <h:outputLabel value="Choix de la matière : " for="selectSubject" class="searchLabel"/>
-                <h:selectOneMenu id="selectSubject"
-                                 value="#{synchronousLessonBean.lesson.subject}" class="searchMenu">
-                    <f:selectItem itemLabel="-- Sélectionner une matière -- " noSelectionOption="true"/>
-                    <f:selectItems value="#{synchronousLessonBean.subjects()}" var="subject" itemLabel="#{subject}" itemValue="#{subject}"/>
-                </h:selectOneMenu>
-                <h:commandButton action="#{synchronousLessonBean.getSynchronousLessonsBySubject()}"
-                                 value="Rechercher" class="custom-little-button"/>
-            </h:form>
-            <h:form id="searchLessonByLevel" class="forms">
-                <h:outputLabel value="Choix du niveau :  " for="selectLevel" class="searchLabel"/>
-                <h:selectOneMenu id="selectLevel"
-                                 value="#{synchronousLessonBean.lesson.level}" class="searchMenu">
-                    <f:selectItem itemLabel="-- Sélectionner un niveau -- " noSelectionOption="true"/>
-                    <f:selectItems value="#{synchronousLessonBean.levels()}" var="levels" itemLabel="#{level}" itemValue="#{level}"/>
-                </h:selectOneMenu>
-                <h:commandButton action="#{synchronousLessonBean.getSynchronousLessonsByLevel()}"
-                                 value="Rechercher" class="custom-little-button"/>
-            </h:form>
-            <div class="container">
-            <ui:repeat value="#{synchronousLessonBean.getSynchronousLessonsBySubject()}" var="s"
-                       varStatus="status">
-
-                <div class="box">
-                    <h2>
-                        <h:outputText value="#{s.title}"/>
-                    </h2>
-                    <h3>
-                        <h:outputText value="#{s.subject}"/>
-                    </h3>
-                    <h3>
-                        <h:outputText value="#{s.level}"/>
-                    </h3>
-                    <hr/>
-
-                    <p> Le ou la professeur(e) :
-                        <h:outputText value="#{s.teacher.user.profil.lastName}"/>
-                    </p>
-                    <hr/>
-
-                    <p>
-                        <h:outputText value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}"/>
-                        <br/>
-                        <h:outputText value="#{s.duration}"/>
-                        <br/>
-                    </p>
-
-                    <hr/>
-                    <h3>
-                        <h:outputText value="#{s.price}"/> €
-                    </h3>
-                    <p>
-                        Il reste : <h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
-                    </p>
-
-                    <h:form rendered="#{synchronousLessonBean.isStudent() and not (synchronousLessonBean.freeSeatsNumbers(s) == 0)}">
-                        <h:commandButton action="#{synchronousLessonBean.create(s)}"
-                                         value="Inscription" class="custom-long-button"/>
-                    </h:form>
+				</div>
 
 
-                </div>
+			</ui:repeat>
+		</div>
+
+		<h1>Rechercher par matière ou par niveau</h1>
+		<br />
+		<h:form id="searchLessonBySubject" class="forms">
+			<h:outputLabel value="Choix de la matière : " for="selectSubject"
+				class="searchLabel" />
+			<h:selectOneMenu id="selectSubject"
+				value="#{synchronousLessonBean.lesson.subject}" class="searchMenu">
+				<f:selectItem itemLabel="-- Sélectionner une matière -- "
+					noSelectionOption="true" />
+				<f:selectItems value="#{synchronousLessonBean.subjects()}"
+					var="subject" itemLabel="#{subject}" itemValue="#{subject}" />
+			</h:selectOneMenu>
+			<h:commandButton
+				action="#{synchronousLessonBean.getSynchronousLessonsBySubject()}"
+				value="Rechercher" class="custom-little-button" />
+		</h:form>
+		<h:form id="searchLessonByLevel" class="forms">
+			<h:outputLabel value="Choix du niveau :  " for="selectLevel"
+				class="searchLabel" />
+			<h:selectOneMenu id="selectLevel"
+				value="#{synchronousLessonBean.lesson.level}" class="searchMenu">
+				<f:selectItem itemLabel="-- Sélectionner un niveau -- "
+					noSelectionOption="true" />
+				<f:selectItems value="#{synchronousLessonBean.levels()}"
+					var="levels" itemLabel="#{level}" itemValue="#{level}" />
+			</h:selectOneMenu>
+			<h:commandButton
+				action="#{synchronousLessonBean.getSynchronousLessonsByLevel()}"
+				value="Rechercher" class="custom-little-button" />
+		</h:form>
+		<div class="container">
+			<ui:repeat
+				value="#{synchronousLessonBean.getSynchronousLessonsBySubject()}"
+				var="s" varStatus="status">
+
+				<div class="box">
+					<h2>
+						<h:outputText value="#{s.title}" />
+					</h2>
+					<h3>
+						<h:outputText value="#{s.subject}" />
+					</h3>
+					<h3>
+						<h:outputText value="#{s.level}" />
+					</h3>
+					<hr />
+
+					<p>
+						Le ou la professeur(e) :
+						<h:outputText value="#{s.teacher.user.profil.lastName}" />
+					</p>
+					<hr />
+
+					<p>
+						<h:outputText
+							value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}" />
+						<br />
+						<h:outputText value="#{s.duration}" />
+						<br />
+					</p>
+
+					<hr />
+					<h3>
+						<h:outputText value="#{s.price}" />
+						€
+					</h3>
+					<p>
+						Il reste :
+						<h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}" />
+						place(s) pour ce cours
+					</p>
+
+					<h:form
+						rendered="#{synchronousLessonBean.isStudent() and not (synchronousLessonBean.freeSeatsNumbers(s) == 0)}">
+						<h:commandButton action="#{synchronousLessonBean.create(s)}"
+							value="Inscription" class="custom-long-button" />
+					</h:form>
 
 
-            </ui:repeat>
-        </div>
-        
-            <div class="container">
-            <ui:repeat value="#{synchronousLessonBean.getSynchronousLessonsByLevel()}" var="s"
-                       varStatus="status">
-
-                <div class="box">
-                    <h2>
-                        <h:outputText value="#{s.title}"/>
-                    </h2>
-                    <h3>
-                        <h:outputText value="#{s.subject}"/>
-                    </h3>
-                    <h3>
-                        <h:outputText value="#{s.level}"/>
-                    </h3>
-                    <hr/>
-
-                    <p> Le ou la professeur(e) :
-                        <h:outputText value="#{s.teacher.user.profil.lastName}"/>
-                    </p>
-                    <hr/>
-
-                    <p>
-                        <h:outputText value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}"/>
-                        <br/>
-                        <h:outputText value="#{s.duration}"/>
-                        <br/>
-                    </p>
-
-                    <hr/>
-                    <h3>
-                        <h:outputText value="#{s.price}"/> €
-                    </h3>
-                    <p>
-                        Il reste : <h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
-                    </p>
-
-                    <h:form rendered="#{synchronousLessonBean.isStudent() and not (synchronousLessonBean.freeSeatsNumbers(s) == 0)}">
-                        <h:commandButton action="#{synchronousLessonBean.create(s)}"
-                                         value="Inscription" class="custom-long-button"/>
-                    </h:form>
+				</div>
 
 
-                </div>
+			</ui:repeat>
+		</div>
+
+		<div class="container">
+			<ui:repeat
+				value="#{synchronousLessonBean.getSynchronousLessonsByLevel()}"
+				var="s" varStatus="status">
+
+				<div class="box">
+					<h2>
+						<h:outputText value="#{s.title}" />
+					</h2>
+					<h3>
+						<h:outputText value="#{s.subject}" />
+					</h3>
+					<h3>
+						<h:outputText value="#{s.level}" />
+					</h3>
+					<hr />
+
+					<p>
+						Le ou la professeur(e) :
+						<h:outputText value="#{s.teacher.user.profil.lastName}" />
+					</p>
+					<hr />
+
+					<p>
+						<h:outputText
+							value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}" />
+						<br />
+						<h:outputText value="#{s.duration}" />
+						<br />
+					</p>
+
+					<hr />
+					<h3>
+						<h:outputText value="#{s.price}" />
+						€
+					</h3>
+					<p>
+						Il reste :
+						<h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}" />
+						place(s) pour ce cours
+					</p>
+
+					<h:form
+						rendered="#{synchronousLessonBean.isStudent() and not (synchronousLessonBean.freeSeatsNumbers(s) == 0)}">
+						<h:commandButton action="#{synchronousLessonBean.create(s)}"
+							value="Inscription" class="custom-long-button" />
+					</h:form>
 
 
-            </ui:repeat>
-        </div>
+				</div>
 
-    </ui:define>
+
+			</ui:repeat>
+		</div>
+
+	</ui:define>
 
 
 </ui:composition>

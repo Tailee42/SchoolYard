@@ -159,20 +159,20 @@ public class DataSetBean {
 				new Contact("collegeDesBois@gmail.com", "05 05 05 05 05",
 						new Address(789, "Rue du college", "TOULOUSE", "31000")),
 				SchoolTypeEnum.COLLEGE);
-		SchoolPage schoolPage1 = new SchoolPage("Collège des bois", new SchoolValue("Le collège où les connaissances prennent racine",
+		SchoolPage schoolPage1 = new SchoolPage("Le Collège des Bois est un établissement d'enseignement réputé qui offre une éducation de qualité à tous les élèves. Avec un corps enseignant expérimenté et des installations modernes, le collège s'efforce de fournir un environnement éducatif stimulant qui encourage les élèves à se développer académiquement et personnellement. Le slogan du collège, \"Le collège où les connaissances prennent racine\", illustre la conviction que l'éducation est un processus continu qui nécessite une base solide pour se développer. En offrant un enseignement de qualité qui prend en compte les besoins individuels de chaque élève, Le Collège des Bois aide les élèves à développer les compétences nécessaires pour réussir dans leur vie future.", new SchoolValue("Le collège où les connaissances prennent racine",
 				"Favoriser la confiance en soi, l’autonomie, tout en permettant à l’enfant d’évoluer à son propre rythme et en toute liberté.", ""),
 				new Theme("D4C685", "F7EF81", "E5F1EB", FontEnum.ROBOTO.name()) );
 		school1.setSchoolPage(schoolPage1);
 		school1.setStatusSchool(StatusSchool.PUBLISHED);
-		school1.setMembership(membership2);
+		school1.setMembership(membership3);
 		schoolRepository.save(school1);
 		createAdmin(user1, school1);
 
-		School school2 = new School("Ecole de la plage", "LogoEcoleDeLaPlage_rmBG.png", "Ecole en plein air", new ArrayList<>(),
+		School school2 = new School("Ecole de la plage", "LogoEcoleDeLaPlage_rmBG.png", "Se détendre pour mieux apprendre", new ArrayList<>(),
 				new Contact("ecoledelaplage@gmail.com", "05 36 36 36 36",
 						new Address(56, "Rue de la plage", "BIARRITZ", "64200")),
 				SchoolTypeEnum.ELEMENTAIRE);
-		SchoolPage schoolPage2 = new SchoolPage("Ecole de la plage", new SchoolValue("Ecole en plein air",
+		SchoolPage schoolPage2 = new SchoolPage("L'Ecole de la Plage est un établissement éducatif unique en son genre, offrant aux élèves la possibilité d'apprendre tout en profitant du cadre enchanteur de la plage. Avec des enseignants passionnés et des programmes pédagogiques innovants, l'école encourage les élèves à explorer leur curiosité, à développer leurs compétences et à s'épanouir tout en profitant de la détente que procure la vue de la mer. L'école offre une expérience éducative complète, intégrant une variété d'activités extrascolaires pour encourager le développement personnel et social. Que ce soit pour une journée, une semaine ou une année scolaire, l'Ecole de la Plage est l'endroit idéal pour apprendre, se détendre et s'amuser dans un environnement inspirant et stimulant.", new SchoolValue("Se détendre pour mieux apprendre",
 				"Favoriser l'apprentissage et l'esprit d'équipe par le jeu en plein air.", ""),
 				new Theme("FECDAA", "F5F58E", "F8FFF4", FontEnum.UBUNTU.name()) );
 		school2.setSchoolPage(schoolPage2);
@@ -191,11 +191,11 @@ public class DataSetBean {
 		schoolRepository.save(school3);
 		createAdmin(user3, school3);
 
-		School school4 = new School("Collège de la montagne", "LogoCollegeDeLaMontagne_rmBG.png", "Collège pour aller plus loin et plus haut",
+		School school4 = new School("Collège de la montagne", "LogoCollegeDeLaMontagne_rmBG.png", "Hissons nos ambitions vers les sommets",
 				new ArrayList<>(), new Contact("collegeDeLaMontagne@gmail.com", "04 06 06 06 06",
 						new Address(45, "Rue du sommet", "ALBERTVILLE", "73200")),
 				SchoolTypeEnum.COLLEGE);
-		SchoolPage schoolPage4 = new SchoolPage("Au coeur des montagnes", new SchoolValue("Le partage en plein air",
+		SchoolPage schoolPage4 = new SchoolPage("Le Collège de la Montagne est une institution éducative reconnue pour sa qualité académique et sa vocation à former les leaders de demain. Situé dans un environnement naturel exceptionnel, au pied des montagnes, l'établissement offre à ses élèves un cadre d'apprentissage stimulant et inspirant. Les enseignants, expérimentés et passionnés, dispensent des programmes pédagogiques novateurs et adaptés aux besoins de chaque élève, dans un environnement propice à l'excellence académique. Le Collège de la Montagne est également un lieu de vie, où les élèves peuvent développer leur personnalité et leur créativité grâce à un large éventail d'activités extrascolaires, sportives et culturelles. L'établissement est ainsi un lieu d'épanouissement, où les élèves apprennent à se dépasser et à atteindre les sommets de leur potentiel.", new SchoolValue("Le partage en plein air",
 				"Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.", ""),
 				new Theme("BF1363", "2FABEE", "FBFEF9", FontEnum.PLAYFAIRDISPLAY.name()) );
 		school4.setSchoolPage(schoolPage4);
@@ -208,7 +208,7 @@ public class DataSetBean {
 				new ArrayList<>(), new Contact("ecoleDuPort@gmail.com", "04 03 03 03 03",
 						new Address(17, "Rue de l'embarcadère", "NICE", "06100")),
 				SchoolTypeEnum.ELEMENTAIRE);
-		SchoolPage schoolPage5 = new SchoolPage("Près de la mère", new SchoolValue("Le partage en plein air",
+		SchoolPage schoolPage5 = new SchoolPage("Ecole où l'on vogue ensemble vers une meilleure connaissance", new SchoolValue("Le partage en plein air",
 				"Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.", ""),
 				new Theme("1B9AAA", "06D6A0", "F8FFE5", FontEnum.ZEYADA.name()) );
 		school5.setSchoolPage(schoolPage5);

@@ -16,7 +16,8 @@
 		<h:outputStylesheet name="unitCard.css" library="css" />
 		<h:outputStylesheet name="buttons.css" library="css" />
 	</ui:define>
-
+	<ui:define name="navbar-link">
+	</ui:define>
 	<ui:define name="title">Contenu pédagogique</ui:define>
 
 	<ui:define name="header">
@@ -50,18 +51,23 @@
 			</h4>
 			<p>
 				Prof :
-				<h:outputText
-					value="#{unitBean.unit.teacher.user.profil.firstName} #{unitBean.unit.teacher.user.profil.lastName}" />
+				<h:outputText value="#{unitBean.unit.teacher.user.fullName()}" />
 			</p>
 			<h:outputText value="#{unitBean.unit.content}" />
 			<br /> <br />
-					<h:form rendered="#{not unitBean.isFavorite()}">
+			<h:form
+				rendered="#{not unitBean.isFavorite() and not membersListBean.isAdmin(welcomeBean.connectedMember)}">
 				<h:commandButton action="#{unitBean.saveAsFavorite()}"
 					value="Enregistrer dans mes favoris"
-					class="custom-extra-long-button"
-					>
+					class="custom-extra-long-button">
 				</h:commandButton>
 			</h:form>
+			<h:form class="inline"
+				rendered="#{membersListBean.isAdmin(welcomeBean.connectedMember) and welcomeBean.isMemberConnected()}">
+				<h:commandButton
+					action="#{membersListBean.goToIndexSchool(welcomeBean.connectedMember)}" value="Retour" class="custom-button"/>
+			</h:form>
+
 		</div>
 	</ui:define>
 

@@ -11,6 +11,7 @@ import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.utils.SessionUtils;
+import fr.isika.cda.utils.StringHelper;
 
 @ManagedBean
 @SessionScoped
@@ -21,26 +22,27 @@ public class IndexSchoolBean {
 	public void getSchoolsInformations() {
 		school = SessionUtils.getCurrentSchool();
 	}
-
-
-    public boolean isStudent() {
-    	return(SessionUtils.getConnectedMember() instanceof Student);
-    }
-        
-    
-	public boolean isTeacher() {
-		return (SessionUtils.getConnectedMember() instanceof Teacher);
-	}
-
+	
 	public boolean isUserConnected() {
 		return SessionUtils.isUserConnected();
 	}
 
-    public boolean hasLogo() {
-        return school.getLogo() != null
-                && !school.getLogo().isBlank();
+    public boolean isStudent() {
+    	return(SessionUtils.getConnectedMember() instanceof Student);
     }
 
+	public boolean isTeacher() {
+		return (SessionUtils.getConnectedMember() instanceof Teacher);
+	}
+
+    public boolean hasLogo() {
+        return StringHelper.isNullOrEmpty(school.getLogo());
+    }
+    
+    public boolean hasSchoolPagePicture() {
+		return StringHelper.isNullOrEmpty(school.getSchoolPage().getSchoolValue().getPicture());
+	}
+    
     public boolean isSynchronousLesson() {
 
 		List<Feature> features = school.getMembership().getSubscription().getFeatures();

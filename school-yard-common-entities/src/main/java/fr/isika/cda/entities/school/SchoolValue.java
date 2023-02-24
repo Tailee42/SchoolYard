@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class SchoolValue implements Serializable {
@@ -15,18 +16,20 @@ public class SchoolValue implements Serializable {
 	@GeneratedValue
 	private Long id;
 	private String titleValue;
+	@Lob
 	private String descriptionValue;
 	private String picture;
 
 	
 	public SchoolValue() {
+		this.picture = "empty_school_picture.png";
 	}
 	
 	public SchoolValue(String titleValue, String descriptionValue, String picture) {
 		super();
 		this.titleValue = titleValue;
 		this.descriptionValue = descriptionValue;
-		this.picture = picture;
+		this.picture = "empty_school_picture.png";
 	}
 
 	public String getTitleValue() {

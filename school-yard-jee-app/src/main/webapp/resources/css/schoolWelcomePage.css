@@ -30,6 +30,30 @@
 		
 }
 
+
+
+.schoolLogo {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+
+
+.paragraph {
+	display: flex;
+	text-align: justify;
+	margin: 50px;
+}
+
+
+.schoolPicture {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	
+}
+
 .button {
 	margin-top: 20px;
 }
@@ -48,5 +72,11 @@
 	background: var(--accentColor);
 	color: var(--textColor);
 	font-weight: bold;
-	
 }
+
+
+.contact h4, .contact p {
+	display: inline-block;
+}
+
+
