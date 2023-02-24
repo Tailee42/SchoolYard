@@ -61,7 +61,7 @@
 												value="#{adminBean.themeToTest.font}" class="searchMenu" >
 
 												<f:selectItem itemValue="#{adminBean.themeToTest.font}" />
-												<f:selectItems value="#{schoolPageBean.fontEnum()}"
+												<f:selectItems value="#{adminBean.fontEnum()}"
 													var="font" itemLabel="#{font}" itemValue="#{font}" />
 											</h:selectOneMenu>
 
@@ -112,9 +112,16 @@
 												value="#{adminBean.school.schoolPage.schoolValue.descriptionValue}"
 												class="formAreaInput" />
 
-											<h:outputLabel value="Photo de votre école : " for="picture" />
-											<h:inputFile id="picture"
-												value="#{adminBean.school.schoolPage.schoolValue.picture}" />
+											<h:outputLabel value="Photo de votre école : " for="pictureFileUpload" />
+											<p:fileUpload skinSimple="true" id="pictureFileUpload"
+														  uploadButtonStyleClass="ui-button-outlined ui-button-secondary"
+														  chooseButtonStyleClass="ui-button-outlined ui-button-secondary"
+														  cancelButtonStyleClass="ui-button-outlined ui-button-secondary"
+														  label="Choisissez une image" mode="advanced" sizeLimit="5000000"
+														  fileLimit="1" accept=".gif,.jpg,.jpeg,.png"
+														  invalidSizeMessage="L'image ne doit pas dépasser 5 Mo"
+														  listener="#{adminBean.uploadFile}"
+														  class="imgInput"/>
 
 											<h:commandButton action="#{adminBean.updateSchool()}"
 												value="Enregistrer" class="custom-button" />

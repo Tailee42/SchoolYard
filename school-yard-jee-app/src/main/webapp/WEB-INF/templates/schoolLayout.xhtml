@@ -61,14 +61,14 @@
             
             <ui:insert name="navbar-link"></ui:insert>
 
-            <ui:fragment rendered="#{indexSchoolBean.isUserConnected()}">
+            <ui:fragment rendered="#{welcomeBean.isUserConnected()}">
                 <h:form class="inline">
                     <h:commandLink action="#{indexSchoolBean.logoutSchool()}">Tableau de bord</h:commandLink>
 
                 </h:form>
             </ui:fragment>
 
-            <ui:fragment rendered="#{not indexSchoolBean.isUserConnected()}">
+            <ui:fragment rendered="#{not welcomeBean.isUserConnected()}">
                 <h:form class="inline">
                     <h:commandLink action="#{loginBean.logout()}">Accueil SchoolYard</h:commandLink>
                 </h:form>

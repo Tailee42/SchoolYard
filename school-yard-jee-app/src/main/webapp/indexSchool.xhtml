@@ -30,7 +30,16 @@
 			<div class="divsection2">
 
 			<div>
-				<h:graphicImage name="empty_school_picture.png" library="images" width="200px" height="150px"/>
+			
+				<ui:fragment rendered="#{not indexSchoolBean.hasSchoolPagePicture()}">
+					<h:graphicImage name="empty_school_picture.png" library="images" width="150px" height="100px"/>
+				</ui:fragment>
+			
+				<ui:fragment rendered="#{indexSchoolBean.hasSchoolPagePicture()}">
+					<h:graphicImage name="#{indexSchoolBean.school.schoolPage.schoolValue.picture}"
+						 library="images" width="150px" height="100px"/>
+				</ui:fragment>
+				
 			</div>
 
 				<div>
