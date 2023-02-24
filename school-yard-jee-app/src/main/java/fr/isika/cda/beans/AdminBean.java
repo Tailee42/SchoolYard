@@ -53,7 +53,7 @@ public class AdminBean {
 	}
 
 	public String modifySchool() {
-		return "modifySchoolForm?faces-redirect=true";
+		return "modifySchoolForm";
 	}
 
 	// méthodes métier
@@ -63,11 +63,13 @@ public class AdminBean {
 	}
 	public void updateSchoolTheme() {
 		school.getSchoolPage().setTheme(themeToTest);
+		themeToTest = new Theme();
 		updateSchool();
 	}
 	public void testTheme() {
 		school.getSchoolPage().setTheme(themeToTest);
 		themeToTest = new Theme();
+		
 	}
 
 	public String validateTeacher(Long teacherId) {
