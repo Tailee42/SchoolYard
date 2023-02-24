@@ -23,7 +23,10 @@ public class IndexSchoolBean {
 	public void getSchoolsInformations() {
 		school = SessionUtils.getCurrentSchool();
 	}
-
+	
+	public boolean isUserConnected() {
+		return SessionUtils.isUserConnected();
+	}
 
     public boolean isStudent() {
     	return(SessionUtils.getConnectedMember() instanceof Student);
