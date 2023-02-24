@@ -23,8 +23,7 @@
 				</div>
 
 				<h1>#{indexSchoolBean.school.schoolName}</h1>
-				<h2>Slogan</h2>
-				<p>#{indexSchoolBean.school.synthesis}</p>
+				<h2>#{indexSchoolBean.school.synthesis}</h2>
 			</div>
 
 			<div class="divsection2">
@@ -35,7 +34,10 @@
 
 				<div>
 					<h2>Présentation de l'école</h2>
-					<p>#{indexSchoolBean.school.schoolPage.description}</p>
+					
+					<div class="paragraph">
+					#{indexSchoolBean.school.schoolPage.description}
+					</div>
 				</div>
 			</div>
 

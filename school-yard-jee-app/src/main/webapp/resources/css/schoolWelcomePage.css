@@ -30,6 +30,11 @@
 		
 }
 
+.paragraph {
+	text-align: justify;
+	margin: 50px;
+}
+
 .button {
 	margin-top: 20px;
 }
