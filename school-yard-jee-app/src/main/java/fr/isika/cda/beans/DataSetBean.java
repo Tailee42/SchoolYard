@@ -155,11 +155,11 @@ public class DataSetBean {
 
 		// Schools need a membership !
 
-		School school1 = new School("Collège des bois", "LogoCollegeDesBois_rmBG_rmName.png", "Collège bienveillant et inclusif", new ArrayList<>(),
+		School school1 = new School("Collège des bois", "LogoCollegeDesBois_rmBG.png", "Le collège où les connaissances prennent racine", new ArrayList<>(),
 				new Contact("collegeDesBois@gmail.com", "05 05 05 05 05",
 						new Address(789, "Rue du college", "TOULOUSE", "31000")),
 				SchoolTypeEnum.COLLEGE);
-		SchoolPage schoolPage1 = new SchoolPage("Collège des bois", new SchoolValue("Collège bienveillant et inclusif",
+		SchoolPage schoolPage1 = new SchoolPage("Collège des bois", new SchoolValue("Le collège où les connaissances prennent racine",
 				"Favoriser la confiance en soi, l’autonomie, tout en permettant à l’enfant d’évoluer à son propre rythme et en toute liberté.", ""),
 				new Theme("D4C685", "F7EF81", "E5F1EB", FontEnum.ROBOTO.name()) );
 		school1.setSchoolPage(schoolPage1);
@@ -168,7 +168,7 @@ public class DataSetBean {
 		schoolRepository.save(school1);
 		createAdmin(user1, school1);
 
-		School school2 = new School("Ecole de la plage", "LogoEcoleDeLaPlage_rmBG_rmName.png", "Ecole en plein air", new ArrayList<>(),
+		School school2 = new School("Ecole de la plage", "LogoEcoleDeLaPlage_rmBG.png", "Ecole en plein air", new ArrayList<>(),
 				new Contact("ecoledelaplage@gmail.com", "05 36 36 36 36",
 						new Address(56, "Rue de la plage", "BIARRITZ", "64200")),
 				SchoolTypeEnum.ELEMENTAIRE);
@@ -191,7 +191,7 @@ public class DataSetBean {
 		schoolRepository.save(school3);
 		createAdmin(user3, school3);
 
-		School school4 = new School("Collège de la montagne", "LogoCollegeDeLaMontagne_rmBG_rmName.png", "Collège pour aller plus loin et plus haut",
+		School school4 = new School("Collège de la montagne", "LogoCollegeDeLaMontagne_rmBG.png", "Collège pour aller plus loin et plus haut",
 				new ArrayList<>(), new Contact("collegeDeLaMontagne@gmail.com", "04 06 06 06 06",
 						new Address(45, "Rue du sommet", "ALBERTVILLE", "73200")),
 				SchoolTypeEnum.COLLEGE);
