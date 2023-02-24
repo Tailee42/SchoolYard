@@ -42,11 +42,13 @@
                         <h:outputText value="#{s.duration}"/>
                         <br/>
                     </p>
-
-                    <hr/>
                     <h3>
                         <h:outputText value="#{s.price}"/> €
                     </h3>
+
+                    <hr/>
+                        <h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}"/>
+                    <hr/>
                     <p>
                         Il reste : <h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
                     </p>
