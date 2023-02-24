@@ -1,5 +1,8 @@
 package fr.isika.cda.beans;
 
+import fr.isika.cda.entities.student.Student;
+import fr.isika.cda.repositories.SchoolRepository;
+
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -19,6 +22,15 @@ public class IndexSchoolBean {
 	public void getSchoolsInformations() {
 		school = SessionUtils.getCurrentSchool();
 	}
+
+
+    public boolean isStudent() {
+    	return(SessionUtils.getConnectedMember() instanceof Student);
+    }
+        
+    public boolean isUserConnected() {
+        return SessionUtils.isUserConnected();
+    }
 
 	public boolean isTeacher() {
 		return (SessionUtils.getConnectedMember() instanceof Teacher);

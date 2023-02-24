@@ -1,4 +1,4 @@
-<ui:composition template="WEB-INF/templates/commonLayout.xhtml"
+<ui:composition template="WEB-INF/templates/schoolLayout.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -12,8 +12,9 @@
 	</ui:define>
 
 	<ui:define name="cssFiles">
+		<h:outputStylesheet name="cards.css" library="css" />
 		<h:outputStylesheet name="unitCard.css" library="css" />
-		<h:outputStylesheet name="button.css" library="css" />
+		<h:outputStylesheet name="buttons.css" library="css" />
 	</ui:define>
 
 	<ui:define name="title">Contenu pédagogique</ui:define>
@@ -35,7 +36,11 @@
 			#{unitBean.getUnitId()}
 			<h2>
 				<h:outputText value="#{unitBean.unit.title}" />
+				<ui:fragment rendered="#{unitBean.isFavorite()}">
+					<i class="fa-solid fa-star"></i>
+				</ui:fragment>
 			</h2>
+
 			<hr />
 			<h3>
 				<h:outputText value="#{unitBean.unit.subject}" />
@@ -49,11 +54,14 @@
 					value="#{unitBean.unit.teacher.user.profil.firstName} #{unitBean.unit.teacher.user.profil.lastName}" />
 			</p>
 			<h:outputText value="#{unitBean.unit.content}" />
-
 			<br /> <br />
-			<h:button value="Sauvegarder dans ma liste de cours"
-				class="custom-button">
-			</h:button>
+					<h:form rendered="#{not unitBean.isFavorite()}">
+				<h:commandButton action="#{unitBean.saveAsFavorite()}"
+					value="Enregistrer dans mes favoris"
+					class="custom-extra-long-button"
+					>
+				</h:commandButton>
+			</h:form>
 		</div>
 	</ui:define>
 

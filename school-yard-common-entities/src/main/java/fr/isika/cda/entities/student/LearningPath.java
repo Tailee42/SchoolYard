@@ -94,4 +94,5 @@ public class LearningPath implements Serializable {
     public void setStudent(Student student) {
         this.student = student;
     }
+    
 }

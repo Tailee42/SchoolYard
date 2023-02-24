@@ -335,7 +335,7 @@ public class DataSetBean {
 						+ "ils forment ainsi un angle droit de 90°. \r\n" + "\r\n"
 						+ "Le théorème de Pythagore permet de trouver la mesure d’un côté lorsque l'on connait la mesure des deux autres côtés. \r\n"
 						+ "\r\n" + "Selon le théorème de Pythagore : \r\n"
-						+ "Dans un triangle ABC rectangle en A, la somme des carrés des 2 côtés AB et AC situés de part et d'autre de l'angle droit est égale au carré de l'hypothénuse BC.\r\n"
+						+ "dans un triangle ABC rectangle en A, la somme des carrés des 2 côtés AB et AC situés de part et d'autre de l'angle droit est égale au carré de l'hypothénuse BC.\r\n"
 						+ "",
 				teacher4, AcademicLevel.QUATRIEME);
 		unit6.setStatus(UnitStatusEnum.VALIDATED);
