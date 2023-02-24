@@ -1,5 +1,6 @@
 package fr.isika.cda.beans;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
@@ -14,7 +15,6 @@ import fr.isika.cda.repositories.AsynchronousLessonRepository;
 import fr.isika.cda.repositories.LearningPathRepository;
 import fr.isika.cda.repositories.UnitRepository;
 import fr.isika.cda.utils.SessionUtils;
-import java.io.Serializable;
 
 @ManagedBean
 @SessionScoped
@@ -55,7 +55,7 @@ public class UnitBean implements Serializable {
 
 	public boolean isFavorite() {
 		List<LearningPath> learningPathList = learningPathRepository
-				.getLearningPathsByStudentId(SessionUtils.getConnectedMember().getId());
+				.getLearningPathsByUserId(SessionUtils.getConnectedMember().getId());
 		for (LearningPath learningPath : learningPathList) {
 			if (learningPath.getActivity() instanceof AsynchronousLesson) {
 				AsynchronousLesson asynchronousLesson = (AsynchronousLesson) learningPath.getActivity();
@@ -68,7 +68,7 @@ public class UnitBean implements Serializable {
 	}
 
 	public void getUnitId() {
-		if (id != null && id != 0 ) {
+		if (id != null && id != 0) {
 			unit = unitRepository.getUnitById(id);
 		}
 	}

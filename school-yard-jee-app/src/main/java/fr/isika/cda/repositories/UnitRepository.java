@@ -64,4 +64,11 @@ public class UnitRepository {
                 .getResultList();
     }
 
+	public List<Unit> getAllUnitsByTeacherId(Long id) {
+		return entityManager
+        .createQuery("SELECT u FROM Unit u WHERE u.teacher.id = :id_teacher", Unit.class)
+        .setParameter("id_teacher", id)
+        .getResultList();
+	}
+
 }

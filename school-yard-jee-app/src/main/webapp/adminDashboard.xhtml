@@ -83,8 +83,11 @@
 								<p>
 									<h:outputText value="#{u.subject}" />
 								</p>
-								<p>bouton consulter</p>
 								<h:form id="updateUnitStatus">
+									<h:button value="Consulter " outcome="indexUnit"
+										class="custom-button">
+										<f:param name="id" value="#{u.id}" />
+									</h:button>
 									<h:commandButton action="#{adminBean.validateUnit(u.id)}"
 										value="Valider" class="custom-button" />
 									<h:commandButton action="#{adminBean.rejectUnit(u.id)}"

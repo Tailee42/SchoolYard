@@ -1,14 +1,19 @@
 package fr.isika.cda.beans;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.file.UploadedFile;
+
 import fr.isika.cda.entities.lesson.Unit;
+import fr.isika.cda.entities.school.FontEnum;
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.school.Theme;
 import fr.isika.cda.entities.student.Student;
@@ -18,6 +23,7 @@ import fr.isika.cda.repositories.StudentRepository;
 import fr.isika.cda.repositories.TeacherRepository;
 import fr.isika.cda.repositories.UnitRepository;
 import fr.isika.cda.services.AdminService;
+import fr.isika.cda.utils.FileUpload;
 import fr.isika.cda.utils.SessionUtils;
 
 @ManagedBean
@@ -42,6 +48,8 @@ public class AdminBean {
 
 	private Theme themeToTest = new Theme();
 
+	private String pictureFileName;
+
 	// méthodes de redirection
 	public List<Teacher> allTeachers() {
 		return allSchoolTeachers();
@@ -60,15 +68,16 @@ public class AdminBean {
 		schoolRepository.update(school);
 		modifySchool();
 	}
+
 	public void updateSchoolTheme() {
 		school.getSchoolPage().setTheme(themeToTest);
 		themeToTest = new Theme();
 		updateSchool();
 	}
+
 	public void testTheme() {
 		school.getSchoolPage().setTheme(themeToTest);
 		themeToTest = new Theme();
-		
 	}
 
 	public String validateTeacher(Long teacherId) {
@@ -146,6 +155,22 @@ public class AdminBean {
 	public String initSchoolStats() {
 		adminService.initStats((allSchoolStudents().size()), (allSchoolTeachers().size()), school);
 		return "adminDashboard?faces-redirect=true";
+	}
+
+	public void uploadFile(FileUploadEvent event) {
+		String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyy_hhmmss"));
+		UploadedFile file = event.getFile();
+		pictureFileName = timestamp + "_" + file.getFileName();
+		FileUpload.doUpLoad(file, pictureFileName);
+
+		//
+		school.getSchoolPage().getSchoolValue().setPicture(pictureFileName);
+		schoolRepository.update(school);
+		pictureFileName = "empty_school_picture.png";
+	}
+
+	public FontEnum[] fontEnum() {
+		return FontEnum.values();
 	}
 
 	// méthode internes

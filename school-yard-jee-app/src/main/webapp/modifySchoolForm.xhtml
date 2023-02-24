@@ -10,15 +10,13 @@
 		<h:outputStylesheet name="forms.css" library="css" />
 		<h:outputStylesheet name="buttons.css" library="css" />
 	</ui:define>
-
-	<ui:define name="title">Accueil Ecole</ui:define>
-
 	<ui:define name="navbar-link">
 		<h:form class="inline">
 			<h:commandLink
 				action="#{membersListBean.goToIndexSchool(welcomeBean.connectedMember)}">Retour</h:commandLink>
 		</h:form>
 	</ui:define>
+	<ui:define name="title">Accueil Ecole</ui:define>
 
 	<ui:define name="content">
 		<h2>Administrateur école</h2>
@@ -38,13 +36,15 @@
 											<h:outputLabel value="Sélectionner la couleur principale"
 												for="primaryColor" />
 											<p:colorPicker id="primaryColor" mode="inline"
-												value="#{adminBean.themeToTest.primaryColor}" styleClass="ui-colorpicker_current_color"/>
+												value="#{adminBean.themeToTest.primaryColor}"
+												styleClass="ui-colorpicker_current_color" />
 
 											<h:outputLabel
 												value="Sélectionner la couleur des liens et des boutons"
 												for="accentColor" />
 											<p:colorPicker id="accentColor" mode="inline"
-												value="#{adminBean.themeToTest.accentColor}" styleClass="ui-colorpicker_current_color"/>
+												value="#{adminBean.themeToTest.accentColor}"
+												styleClass="ui-colorpicker_current_color" />
 										</h:panelGrid>
 									</div>
 									<br />
@@ -53,15 +53,16 @@
 											<h:outputLabel value="Sélectionner la couleur du fond "
 												for="backgroundColor" />
 											<p:colorPicker id="backgroundColor" mode="inline"
-												value="#{adminBean.themeToTest.backgroundColor}" styleClass="ui-colorpicker_current_color"/>
+												value="#{adminBean.themeToTest.backgroundColor}"
+												styleClass="ui-colorpicker_current_color" />
 
 											<h:outputLabel value="Sélectionner la police d'écriture"
 												for="selectFont" />
 											<h:selectOneMenu id="selectFont"
-												value="#{adminBean.themeToTest.font}" class="searchMenu" >
+												value="#{adminBean.themeToTest.font}" class="searchMenu">
 
 												<f:selectItem itemValue="#{adminBean.themeToTest.font}" />
-												<f:selectItems value="#{schoolPageBean.fontEnum()}"
+												<f:selectItems value="#{adminBean.fontEnum()}"
 													var="font" itemLabel="#{font}" itemValue="#{font}" />
 											</h:selectOneMenu>
 
@@ -112,9 +113,16 @@
 												value="#{adminBean.school.schoolPage.schoolValue.descriptionValue}"
 												class="formAreaInput" />
 
-											<h:outputLabel value="Photo de votre école : " for="picture" />
-											<h:inputFile id="picture"
-												value="#{adminBean.school.schoolPage.schoolValue.picture}" />
+											<h:outputLabel value="Photo de votre école : " for="pictureFileUpload" />
+											<p:fileUpload skinSimple="true" id="pictureFileUpload"
+														  uploadButtonStyleClass="ui-button-outlined ui-button-secondary"
+														  chooseButtonStyleClass="ui-button-outlined ui-button-secondary"
+														  cancelButtonStyleClass="ui-button-outlined ui-button-secondary"
+														  label="Choisissez une image" mode="advanced" sizeLimit="5000000"
+														  fileLimit="1" accept=".gif,.jpg,.jpeg,.png"
+														  invalidSizeMessage="L'image ne doit pas dépasser 5 Mo"
+														  listener="#{adminBean.uploadFile}"
+														  class="imgInput"/>
 
 											<h:commandButton action="#{adminBean.updateSchool()}"
 												value="Enregistrer" class="custom-button" />
