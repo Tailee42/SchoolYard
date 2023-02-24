@@ -29,10 +29,21 @@ public class LearningPathRepository {
 
     public List<LearningPath> getLearningPathsByStudentId(Long idStudent) {
         return entityManager
-                .createQuery("select l FROM LearningPath l WHERE l.student.id = :id_student", LearningPath.class)
+                .createQuery("select l FROM LearningPath l  WHERE l.student.id = :id_student ", LearningPath.class)
                 .setParameter("id_student", idStudent)
                 .getResultList();
     }
+
+
+
+    public LearningPath getLearningPathBySynchronousLessonIdAndStudentID(Long idSynchronousLesson, Long idStudent) {
+        return entityManager
+                .createQuery("select l FROM LearningPath l WHERE l.student.id = :id_student AND l.activity.id = :id_lesson", LearningPath.class)
+                .setParameter("id_student", idStudent)
+                .setParameter("id_lesson", idSynchronousLesson)
+                .getSingleResult();
+    }
+
 
 
 

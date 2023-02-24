@@ -11,19 +11,25 @@ import javax.ejb.Startup;
 import javax.inject.Inject;
 
 import fr.isika.cda.entities.common.AcademicLevel;
-import fr.isika.cda.entities.common.SchoolTypeEnum;
-import fr.isika.cda.entities.common.SubjectEnum;
 import fr.isika.cda.entities.common.Address;
 import fr.isika.cda.entities.common.Contact;
 import fr.isika.cda.entities.common.RoleTypeEnum;
+import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.common.Security;
+import fr.isika.cda.entities.common.SubjectEnum;
 import fr.isika.cda.entities.lesson.PhysicalOption;
 import fr.isika.cda.entities.lesson.SynchronousLesson;
 import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.lesson.UnitStatusEnum;
 import fr.isika.cda.entities.lesson.VirtualOption;
-import fr.isika.cda.entities.lesson.*;
-import fr.isika.cda.entities.school.*;
+import fr.isika.cda.entities.school.Admin;
+import fr.isika.cda.entities.school.FontEnum;
+import fr.isika.cda.entities.school.Membership;
+import fr.isika.cda.entities.school.School;
+import fr.isika.cda.entities.school.SchoolPage;
+import fr.isika.cda.entities.school.SchoolValue;
+import fr.isika.cda.entities.school.StatusSchool;
+import fr.isika.cda.entities.school.Theme;
 import fr.isika.cda.entities.student.LearningPath;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.subscription.Feature;
@@ -31,12 +37,25 @@ import fr.isika.cda.entities.subscription.Subscription;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.entities.users.Profil;
 import fr.isika.cda.entities.users.User;
-import fr.isika.cda.repositories.*;
+import fr.isika.cda.repositories.FeatureRepository;
+import fr.isika.cda.repositories.LearningPathRepository;
+import fr.isika.cda.repositories.MemberRepository;
+import fr.isika.cda.repositories.MembershipRepository;
+import fr.isika.cda.repositories.PhysicalRepository;
+import fr.isika.cda.repositories.SchoolRepository;
+import fr.isika.cda.repositories.StudentRepository;
+import fr.isika.cda.repositories.SubscriptionRepository;
+import fr.isika.cda.repositories.TeacherRepository;
+import fr.isika.cda.repositories.UnitRepository;
+import fr.isika.cda.repositories.UserRepository;
+import fr.isika.cda.repositories.VirtualRepository;
 
 @Startup
 @Singleton
 public class DataSetBean {
 
+	public static final String NO_LOGO_PNG = "no_logo.png";
+	
 	@Inject
 	private StudentRepository studentRepository;
 	@Inject
@@ -136,7 +155,7 @@ public class DataSetBean {
 
 		// Schools need a membership !
 
-		School school1 = new School("Collège des bois", "", "Collège bienveillant et inclusif", new ArrayList<>(),
+		School school1 = new School("Collège des bois", NO_LOGO_PNG, "Collège bienveillant et inclusif", new ArrayList<>(),
 				new Contact("collegeDesBois@gmail.com", "05 05 05 05 05",
 						new Address(789, "Rue du college", "TOULOUSE", "31000")),
 				SchoolTypeEnum.COLLEGE);
@@ -149,7 +168,7 @@ public class DataSetBean {
 		schoolRepository.save(school1);
 		createAdmin(user1, school1);
 
-		School school2 = new School("Ecole de la plage", "", "Ecole en plein air", new ArrayList<>(),
+		School school2 = new School("Ecole de la plage", NO_LOGO_PNG, "Ecole en plein air", new ArrayList<>(),
 				new Contact("ecoledelaplage@gmail.com", "05 36 36 36 36",
 						new Address(56, "Rue de la plage", "BIARRITZ", "64200")),
 				SchoolTypeEnum.ELEMENTAIRE);
@@ -163,7 +182,7 @@ public class DataSetBean {
 		createAdmin(user2, school2);
 
 		School school3 = new School(
-				"Lycée Beaux Bâtons", "", "Lycée privé", new ArrayList<>(), new Contact("lyceebeauxbatons@gmail.com",
+				"Lycée Beaux Bâtons", NO_LOGO_PNG, "Lycée privé", new ArrayList<>(), new Contact("lyceebeauxbatons@gmail.com",
 						"04 86 11 23 36", new Address(11, "Avenue des lutins", "PAIMPONT", "35380")),
 				SchoolTypeEnum.LYCEE);
 		SchoolPage schoolPage3 = new SchoolPage("Lycée Beaux Bâtons", new SchoolValue("Lycée privé", "Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.", ""), new Theme() );		
@@ -172,7 +191,7 @@ public class DataSetBean {
 		schoolRepository.save(school3);
 		createAdmin(user3, school3);
 
-		School school4 = new School("Collège de la montagne", "", "Collège pour aller plus loin et plus haut",
+		School school4 = new School("Collège de la montagne", NO_LOGO_PNG, "Collège pour aller plus loin et plus haut",
 				new ArrayList<>(), new Contact("collegeDeLaMontagne@gmail.com", "04 06 06 06 06",
 						new Address(45, "Rue du sommet", "ALBERTVILLE", "73200")),
 				SchoolTypeEnum.COLLEGE);
@@ -185,7 +204,7 @@ public class DataSetBean {
 		schoolRepository.save(school4);
 		createAdmin(user3, school4);
 
-		School school5 = new School("Ecole du Port", "", "Ecole où l'on vogue ensemble vers une meilleure connaissance",
+		School school5 = new School("Ecole du Port", NO_LOGO_PNG, "Ecole où l'on vogue ensemble vers une meilleure connaissance",
 				new ArrayList<>(), new Contact("ecoleDuPort@gmail.com", "04 03 03 03 03",
 						new Address(17, "Rue de l'embarcadère", "NICE", "06100")),
 				SchoolTypeEnum.ELEMENTAIRE);
@@ -277,14 +296,19 @@ public class DataSetBean {
 				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.CINQUIEME, teacher1, "Babylone", "1 heure", LocalDateTime.of(2022, Month.MARCH, 12, 14, 30), 5, new BigDecimal("25")));
 		virtualRepository.save(virtual3);
 
+		PhysicalOption physical3 = new PhysicalOption(new Address(13, "Rue de la fontaine", "LYON", "69009"),
+				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.QUATRIEME, teacher1, "L'urbanisation du monde",
+						"1 heure et quart", LocalDateTime.of(2023, Month.JANUARY, 1, 10, 15), 8, new BigDecimal("27")));
+		physicalRepository.save(physical3);
+
 		//Learning Path
-		LearningPath learningPath1 = new LearningPath(virtual1.getSynchronousLesson(), student1, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
+		LearningPath learningPath1 = new LearningPath(virtual3.getSynchronousLesson(), student1, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
 		learningPathRepository.save(learningPath1);
-		LearningPath learningPath2 = new LearningPath(virtual1.getSynchronousLesson(), student5, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
+		LearningPath learningPath2 = new LearningPath(virtual3.getSynchronousLesson(), student5, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
 		learningPathRepository.save(learningPath2);
-		LearningPath learningPath3 = new LearningPath(physical1.getSynchronousLesson(), student1, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
+		LearningPath learningPath3 = new LearningPath(physical3.getSynchronousLesson(), student1, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "A l'écoute et pose des questions. Ce sont les clés pour progresser. Continue ainsi !", "");
 		learningPathRepository.save(learningPath3);
-		LearningPath learningPath4 = new LearningPath(physical1.getSynchronousLesson(), student5, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "", "");
+		LearningPath learningPath4 = new LearningPath(physical3.getSynchronousLesson(), student5, LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "A le soucis de bien faire. Il faut continuer ainsi.", "");
 		learningPathRepository.save(learningPath4);
 
 		//Creating some units
