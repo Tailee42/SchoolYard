@@ -36,10 +36,6 @@ public class IndexSchoolBean {
 		return (SessionUtils.getConnectedMember() instanceof Teacher);
 	}
 
-	public boolean isUserConnected() {
-		return SessionUtils.isUserConnected();
-	}
-
     public boolean hasLogo() {
         return school.getLogo() != null
                 && !school.getLogo().isBlank();
