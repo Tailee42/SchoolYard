@@ -55,7 +55,7 @@ public class UnitBean implements Serializable {
 
 	public boolean isFavorite() {
 		List<LearningPath> learningPathList = learningPathRepository
-				.getLearningPathsByStudentId(SessionUtils.getConnectedMember().getId());
+				.getLearningPathsByUserId(SessionUtils.getConnectedMember().getId());
 		for (LearningPath learningPath : learningPathList) {
 			if (learningPath.getActivity() instanceof AsynchronousLesson) {
 				AsynchronousLesson asynchronousLesson = (AsynchronousLesson) learningPath.getActivity();
@@ -66,6 +66,8 @@ public class UnitBean implements Serializable {
 		}
 		return false;
 	}
+	
+	
 
 	public void getUnitId() {
 		if (id != null && id != 0 ) {

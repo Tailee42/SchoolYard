@@ -138,7 +138,7 @@ public class MembersListBean {
 		List<LearningPath> learningPathList = new ArrayList<>();
 		for (Member member : members) {
 			if (member instanceof Student) {
-				learningPathList.addAll(learningPathRepository.getLearningPathsByStudentId(member.getId()));
+				learningPathList.addAll(learningPathRepository.getLearningPathsByUserId(member.getId()));
 			}
 		}
 		return learningPathList;
