@@ -155,7 +155,7 @@ public class DataSetBean {
 
 		// Schools need a membership !
 
-		School school1 = new School("Collège des bois", "LogoCollegeDeLaMontagne.png", "Collège bienveillant et inclusif", new ArrayList<>(),
+		School school1 = new School("Collège des bois", "LogoCollegeDesBois_rmBG_rmName.png", "Collège bienveillant et inclusif", new ArrayList<>(),
 				new Contact("collegeDesBois@gmail.com", "05 05 05 05 05",
 						new Address(789, "Rue du college", "TOULOUSE", "31000")),
 				SchoolTypeEnum.COLLEGE);
@@ -168,7 +168,7 @@ public class DataSetBean {
 		schoolRepository.save(school1);
 		createAdmin(user1, school1);
 
-		School school2 = new School("Ecole de la plage", NO_LOGO_PNG, "Ecole en plein air", new ArrayList<>(),
+		School school2 = new School("Ecole de la plage", "LogoEcoleDeLaPlage_rmBG_rmName.png", "Ecole en plein air", new ArrayList<>(),
 				new Contact("ecoledelaplage@gmail.com", "05 36 36 36 36",
 						new Address(56, "Rue de la plage", "BIARRITZ", "64200")),
 				SchoolTypeEnum.ELEMENTAIRE);
@@ -191,7 +191,7 @@ public class DataSetBean {
 		schoolRepository.save(school3);
 		createAdmin(user3, school3);
 
-		School school4 = new School("Collège de la montagne", NO_LOGO_PNG, "Collège pour aller plus loin et plus haut",
+		School school4 = new School("Collège de la montagne", "LogoCollegeDeLaMontagne_rmBG_rmName.png", "Collège pour aller plus loin et plus haut",
 				new ArrayList<>(), new Contact("collegeDeLaMontagne@gmail.com", "04 06 06 06 06",
 						new Address(45, "Rue du sommet", "ALBERTVILLE", "73200")),
 				SchoolTypeEnum.COLLEGE);
