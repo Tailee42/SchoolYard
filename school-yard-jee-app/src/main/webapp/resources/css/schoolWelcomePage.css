@@ -72,5 +72,11 @@
 	background: var(--accentColor);
 	color: var(--textColor);
 	font-weight: bold;
-	
 }
+
+
+.contact h4, .contact p {
+	display: inline-block;
+}
+
+

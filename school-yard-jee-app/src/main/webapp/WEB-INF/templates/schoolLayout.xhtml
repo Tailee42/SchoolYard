@@ -1,115 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      lang="fr">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" lang="fr">
 
 <h:head>
 
-    <meta name="viewport" content="width=device-width"/>
-    <ui:insert name="metaData"></ui:insert>
-    <h:outputStylesheet name="common-style.css" library="css"/>
-    <h:outputStylesheet name="css/fontawesome.css" library="fontawesome"/>
-    <h:outputStylesheet name="css/brands.css" library="fontawesome"/>
-    <h:outputStylesheet name="css/solid.css" library="fontawesome"/>
+	<meta name="viewport" content="width=device-width" />
+	<ui:insert name="metaData"></ui:insert>
+	<h:outputStylesheet name="common-style.css" library="css" />
+	<h:outputStylesheet name="css/fontawesome.css" library="fontawesome" />
+	<h:outputStylesheet name="css/brands.css" library="fontawesome" />
+	<h:outputStylesheet name="css/solid.css" library="fontawesome" />
 
     #{indexSchoolBean.getSchoolsInformations()}
 
     <ui:insert name="cssFiles"></ui:insert>
 
-    <style type="text/css">
-        #{indexSchoolBean.styles()}
-    </style>
+	<style type="text/css">
+#{indexSchoolBean.styles()}
+</style>
 
-    <title><ui:insert name="title">#{indexSchoolBean.school.schoolName}</ui:insert></title>
+	<title><ui:insert name="title">#{indexSchoolBean.school.schoolName}</ui:insert></title>
 
 </h:head>
 
 <h:body>
+	<div id="header">
+		<div id="entreprise">
 
-    <div id="header">
-        <div id="entreprise">
+			<ui:fragment rendered="#{not indexSchoolBean.hasLogo()}">
+				<h:graphicImage library="images" name="no_logo.png"
+					alt="No school logo ..." width="100px" height="100px" />
+			</ui:fragment>
+			<ui:fragment rendered="#{indexSchoolBean.hasLogo()}">
+				<h:graphicImage library="images"
+					name="#{indexSchoolBean.school.logo}" alt="School logo"
+					width="50px" height="50px" />
+			</ui:fragment>
 
-            <ui:fragment rendered="#{not indexSchoolBean.hasLogo()}">
-                <h:graphicImage library="images" name="no_logo.png" alt="No school logo ..." width="100px" height="100px" />
-            </ui:fragment>
-            <ui:fragment rendered="#{indexSchoolBean.hasLogo()}">
-                <h:graphicImage library="images" name="#{indexSchoolBean.school.logo}" alt="School logo" width="50px" height="50px" />
-            </ui:fragment>
+			<h1>#{indexSchoolBean.school.schoolName}</h1>
+		</div>
 
-            <h1>#{indexSchoolBean.school.schoolName}</h1>
-        </div>
+		<!-- Menu desktop -->
+		<div id="navbar-desktop">
+			<ui:fragment
+				rendered="#{indexSchoolBean.isTeacher() and indexSchoolBean.isSynchronousLesson()}">
+				<h:link outcome="synchronousLessonForm"
+					value="Créer un cours particulier" />
 
-        <!-- Menu desktop -->
-        <div id="navbar-desktop">
-            <ui:fragment rendered="#{indexSchoolBean.isTeacher() and indexSchoolBean.isSynchronousLesson()}">
-                <h:link outcome="synchronousLessonForm" value="Créer un cours particulier"/>
-                
-            </ui:fragment>
-            <ui:fragment rendered="#{indexSchoolBean.isSynchronousLesson() and welcomeBean.isMemberConnected()}">
-            <h:link outcome="showSynchronousLessonSchool" value="Cours particuliers"/>
-            </ui:fragment>
+			</ui:fragment>
+			<ui:fragment
+				rendered="#{indexSchoolBean.isSynchronousLesson() and welcomeBean.isMemberConnected()}">
+				<h:link outcome="showSynchronousLessonSchool"
+					value="Cours particuliers" />
+			</ui:fragment>
 
-            <ui:fragment rendered="#{indexSchoolBean.isTeacher() and indexSchoolBean.isAsynchronousLesson()}">
-                <h:link outcome="createUnitForm">Créer du contenu pédagogique</h:link>
-            </ui:fragment>
-            
-            <ui:fragment rendered="#{indexSchoolBean.isAsynchronousLesson() and welcomeBean.isMemberConnected()}">
-                <h:link outcome="showUnits">Contenu pédagogique</h:link>
-            </ui:fragment>
-            
-            <ui:insert name="navbar-link"></ui:insert>
+			<ui:fragment
+				rendered="#{indexSchoolBean.isTeacher() and indexSchoolBean.isAsynchronousLesson()}">
+				<h:link outcome="createUnitForm">Créer du contenu pédagogique</h:link>
+			</ui:fragment>
 
-            <ui:fragment rendered="#{indexSchoolBean.isUserConnected()}">
-                <h:form class="inline">
-                    <h:commandLink action="#{indexSchoolBean.logoutSchool()}">Tableau de bord</h:commandLink>
+			<ui:fragment
+				rendered="#{indexSchoolBean.isAsynchronousLesson() and welcomeBean.isMemberConnected()}">
+				<h:link outcome="showUnits">Contenu en ligne</h:link>
+			</ui:fragment>
 
-                </h:form>
-            </ui:fragment>
+			<ui:insert name="navbar-link"></ui:insert>
 
-            <ui:fragment rendered="#{not indexSchoolBean.isUserConnected()}">
-                <h:form class="inline">
-                    <h:commandLink action="#{loginBean.logout()}">Accueil SchoolYard</h:commandLink>
-                </h:form>
-            </ui:fragment>
+			<ui:fragment rendered="#{indexSchoolBean.isUserConnected()}">
+				<h:form class="inline">
+					<h:commandLink action="#{indexSchoolBean.logoutSchool()}">Tableau de bord</h:commandLink>
+
+				</h:form>
+			</ui:fragment>
+
+			<ui:fragment rendered="#{not indexSchoolBean.isUserConnected()}">
+				<h:form class="inline">
+					<h:commandLink action="#{loginBean.logout()}">Accueil SchoolYard</h:commandLink>
+				</h:form>
+			</ui:fragment>
 
 
-            <h:form class="inline">
-                <h:commandLink action="#{loginBean.logout()}"
-                               rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
-            </h:form>
-        </div>
+			<h:form class="inline">
+				<h:commandLink action="#{loginBean.logout()}"
+					rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+			</h:form>
+		</div>
 
-        <!-- Menu mobile -->
-        <div class="navbar-mobile">
-            <i class="fas fa-bars"></i>
-            <div class="modal">
-                <div id="navbar-mobile-list">
-                    <!-- Se recopie tout seul avec le code burgerMenu.js -->
-                </div>
-            </div>
-        </div>
-    </div>
+		<!-- Menu mobile -->
+		<div class="navbar-mobile">
+			<i class="fas fa-bars"></i>
+			<div class="modal">
+				<div id="navbar-mobile-list">
+					<!-- Se recopie tout seul avec le code burgerMenu.js -->
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div id="page">
+	<div id="page">
 
-        <div id="content">
-            <ui:insert name="content"></ui:insert>
-        </div>
+		<div id="content">
+			<ui:insert name="content"></ui:insert>
+		</div>
 
-    </div>
+	</div>
 
-    <div id="footer">
-        <hr/>
-        <p>Copyright © 2023. Par SchoolYard, 1ère plateforme de tutorat en principauté de Groland
-            <a href="#">Mentions légales</a>
-            <a href="#">Politique de Confidentialité</a>
-            <a href="#">Devenir annonceur</a></p>
-    </div>
+	<div id="footer">
+		<hr />
+		<p>
+			Copyright © 2023. Par SchoolYard, 1ère plateforme de tutorat en
+			principauté de Groland <a href="#">Mentions légales</a> <a href="#">Politique
+				de Confidentialité</a> <a href="#">Devenir annonceur</a>
+		</p>
+	</div>
 
-    <h:outputScript name="BurgerMenu.js" library="js"></h:outputScript>
-    <ui:insert name="script"></ui:insert>
+	<h:outputScript name="BurgerMenu.js" library="js"></h:outputScript>
+	<ui:insert name="script"></ui:insert>
 
 </h:body>
 

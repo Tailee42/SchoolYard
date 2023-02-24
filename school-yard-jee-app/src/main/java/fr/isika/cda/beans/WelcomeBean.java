@@ -28,4 +28,5 @@ public class WelcomeBean {
 	public School getCurrentSchool() {
 		return SessionUtils.getCurrentSchool();
 	}
+
 }

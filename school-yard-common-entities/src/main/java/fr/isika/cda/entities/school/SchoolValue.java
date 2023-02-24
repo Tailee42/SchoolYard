@@ -22,13 +22,14 @@ public class SchoolValue implements Serializable {
 
 	
 	public SchoolValue() {
+		this.picture = "empty_school_picture.png";
 	}
 	
 	public SchoolValue(String titleValue, String descriptionValue, String picture) {
 		super();
 		this.titleValue = titleValue;
 		this.descriptionValue = descriptionValue;
-		this.picture = picture;
+		this.picture = "empty_school_picture.png";
 	}
 
 	public String getTitleValue() {

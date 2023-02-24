@@ -47,6 +47,10 @@
                             value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
                     </p>
 
+                    <hr/>
+                    <h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}"/>
+                    <hr/>
+
 
                 </div>
             </ui:repeat>
@@ -82,8 +86,6 @@
                     <h:button outcome ="sumUpForm" value="Suivi des élèves" class="custom-long-button">
                             <f:param name="idSynLes" value="#{s.id}"/>
                     </h:button>
-
-
 
                 </div>
             </ui:repeat>
