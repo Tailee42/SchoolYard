@@ -1,14 +1,14 @@
 package fr.isika.cda.repositories;
 
-import fr.isika.cda.entities.student.LearningPath;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
-import java.util.ArrayList;
-import java.util.List;
+import fr.isika.cda.entities.student.LearningPath;
 
 @Stateless
 public class LearningPathRepository {
@@ -32,12 +32,12 @@ public class LearningPathRepository {
 
 	public List<LearningPath> getLearningPathsByUserId(Long idUser) {
 		try {
-			List<LearningPath> learningPaths = entityManager
+			return entityManager
 					.createQuery("select l FROM LearningPath l WHERE l.student.user.id = :id_user", LearningPath.class)
-					.setParameter("id_user", idUser).getResultList();
-			return learningPaths;
+					.setParameter("id_user", idUser)
+					.getResultList();
 		} catch (NoResultException noResultException) {
-			return new ArrayList<LearningPath>();
+			return new ArrayList<>();
 		}
 	}
 

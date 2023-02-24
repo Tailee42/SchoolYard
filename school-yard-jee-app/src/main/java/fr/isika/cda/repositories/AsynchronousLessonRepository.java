@@ -11,13 +11,9 @@ public class AsynchronousLessonRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
-	public void save (AsynchronousLesson asynchronousLesson){
+
+	public void save(AsynchronousLesson asynchronousLesson) {
 		entityManager.persist(asynchronousLesson);
 	}
-	
-	
-	
-	
-	
+
 }

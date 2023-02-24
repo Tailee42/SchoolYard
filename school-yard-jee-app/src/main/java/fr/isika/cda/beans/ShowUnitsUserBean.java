@@ -9,10 +9,8 @@ import javax.inject.Inject;
 import fr.isika.cda.entities.common.AcademicLevel;
 import fr.isika.cda.entities.common.SubjectEnum;
 import fr.isika.cda.entities.lesson.AsynchronousLesson;
-import fr.isika.cda.entities.lesson.SynchronousLesson;
 import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.school.Member;
-import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.student.LearningPath;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.repositories.LearningPathRepository;
@@ -33,15 +31,15 @@ public class ShowUnitsUserBean {
 	@Inject
 	private MemberRepository memberRepository;
 
-		public List<Unit> allUnitsByTeacher() {
-		List<Unit> unitsUserTeacher = new ArrayList<Unit>();
+	public List<Unit> allUnitsByTeacher() {
+		List<Unit> unitsUserTeacher = new ArrayList<>();
 		List<Member> members = memberRepository.getAllMembersForOneUser(SessionUtils.getConnectedUser().getId());
-		for(Member member : members) {
+		for (Member member : members) {
 			if (member instanceof Teacher) {
-				unitsUserTeacher.addAll( unitRepository.getAllUnitsByTeacherId(member.getId()));
+				unitsUserTeacher.addAll(unitRepository.getAllUnitsByTeacherId(member.getId()));
 			}
 		}
-		
+
 		return unitsUserTeacher;
 	}
 
@@ -50,14 +48,14 @@ public class ShowUnitsUserBean {
 		List<LearningPath> learningPathList = learningPathRepository
 				.getLearningPathsByUserId(SessionUtils.getConnectedUser().getId());
 		for (LearningPath learningPath : learningPathList) {
-			if (learningPath.getActivity() instanceof AsynchronousLesson ) {
+			if (learningPath.getActivity() instanceof AsynchronousLesson) {
 				AsynchronousLesson asynchronousLesson = (AsynchronousLesson) learningPath.getActivity();
 				unitsList.add(asynchronousLesson.getUnit());
 			}
 		}
 		return unitsList;
 	}
-	
+
 	public Unit getUnit() {
 		return unit;
 	}

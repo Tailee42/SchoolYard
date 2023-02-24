@@ -7,7 +7,6 @@ import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.common.SubjectEnum;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.entities.teacher.TeacherStatusEnum;
-import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.repositories.TeacherRepository;
 import fr.isika.cda.utils.SessionUtils;
 
@@ -17,17 +16,14 @@ public class CreateTeacherBean {
 	private Teacher teacher = new Teacher();
 
 	@Inject
-	private SchoolRepository schoolRepository;
-
-	@Inject
 	private TeacherRepository teacherRepository;
 
 	public String create() {
-			teacher.setUser(SessionUtils.getConnectedUser());
-			teacher.setSchool(SessionUtils.getCurrentSchool());
-			teacher.setStatus(TeacherStatusEnum.InProgress);
-			teacherRepository.save(teacher);
-			return "userDashboard?faces-redirect=true";
+		teacher.setUser(SessionUtils.getConnectedUser());
+		teacher.setSchool(SessionUtils.getCurrentSchool());
+		teacher.setStatus(TeacherStatusEnum.InProgress);
+		teacherRepository.save(teacher);
+		return "userDashboard?faces-redirect=true";
 	}
 
 	public SchoolTypeEnum[] schoolTypes() {
@@ -45,6 +41,5 @@ public class CreateTeacherBean {
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
 	}
-
 
 }
