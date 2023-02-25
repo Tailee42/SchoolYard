@@ -17,14 +17,14 @@
 }
 
 
-.divPresentation img, .divTeacher img {
+.divPresentation img, .divTeacher img, .divStudent img {
 	margin-right: 20px;
 	box-shadow: 5px 5px 10px black;
 	transition: transform .1s;
 	border-radius: 10px;
 }
 
-.divPresentation img:hover, .divTeacher img:hover {
+.divPresentation img:hover, .divTeacher img:hover, .divStudent img:hover {
 	transform: scale(1.1);
 }
 
@@ -50,7 +50,7 @@
 .divStudent p{
 	width: 50%;
 	text-align: justify;
-	margin:  50px 50px;
+	margin:  50px 0px;
 }
 
 .teacher-text {
@@ -85,8 +85,14 @@
 
 .teacher-button {
 	display: flex;
-	justify-content: space-around;
-	margin: 25px 50px 0 50px;
+	justify-content: flex-end;
+	margin: 25px 50px 0 100px;
+}
+
+.student-button {
+	display: flex;
+	justify-content: flex-start;
+	margin: 0 50px;
 }
 
 .box {
