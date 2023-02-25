@@ -75,8 +75,16 @@
 }
 
 
-.contact h4, .contact p {
+.contact h3, h4, p {
 	display: inline-block;
+	
 }
 
+h3, h4 {
+	padding: 5px;
+}
+
+h3 {
+	text-decoration: underline;
+}
 
