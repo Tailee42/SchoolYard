@@ -2,7 +2,21 @@ package fr.isika.cda.entities.school;
 
 public enum FontEnum {
 	
-	PLAYFAIRDISPLAY, QUICKSAND, ROBOTO, UBUNTU, ZEYADA 
+	PLAYFAIRDISPLAY("Playfair Display"),
+	QUICKSAND("Quicksand"),
+	ROBOTO("Roboto"),
+	UBUNTU("Ubuntu"),
+	ZEYADA("Zeyada");
+
+	private final String displayValue;
+
+	private FontEnum(String displayValue) {
+		this.displayValue = displayValue;
+	}
+
+	public String getDisplayValue() {
+		return displayValue;
+	}
 
 
 }
