@@ -15,10 +15,8 @@ import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.school.StatusSchool;
 import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.entities.subscription.Subscription;
-import fr.isika.cda.spring.business.service.FeatureService;
 import fr.isika.cda.spring.business.service.SchoolService;
 import fr.isika.cda.spring.business.service.SubscriptionService;
-
 
 @Controller
 public class SchoolController {
@@ -26,66 +24,65 @@ public class SchoolController {
 	@Autowired
 	private SchoolService schoolService;
 	@Autowired
-	private FeatureService featureService;
-	@Autowired
 	private SubscriptionService subscriptionService;
 	@Autowired
 	private SubscriptionController subscriptionController;
-	
+
 	@GetMapping("/schoolsList")
 	public String schoolList(Model model) {
 		List<School> schools = schoolService.findAll();
 		model.addAttribute("schools", schools);
 		return "school/schoolsList";
 	}
-	
+
 	@GetMapping("/schoolForm")
-	public String displaySchool(@RequestParam Long id, Model model) {	
+	public String displaySchool(@RequestParam Long id, Model model) {
 		Optional<School> optional = schoolService.findById(id);
-		if(optional.isPresent()) {
+		if (optional.isPresent()) {
 			School school = optional.get();
-			subscriptionController.setModelAttributesForSubscription(model,school.getMembership().getSubscription().getId());
+			subscriptionController.setModelAttributesForSubscription(model,
+					school.getMembership().getSubscription().getId());
 			model.addAttribute("school", school);
 		}
 		return "school/schoolForm";
 	}
-	
+
 	@PostMapping("/modifySchoolStatus")
-	public ModelAndView modifySchoolStatus(@RequestParam Long id, @RequestParam StatusSchool statut) {		
+	public ModelAndView modifySchoolStatus(@RequestParam Long id, @RequestParam StatusSchool statut) {
 		Optional<School> optional = schoolService.findById(id);
-		if(optional.isPresent()) {
+		if (optional.isPresent()) {
 			School school = optional.get();
-			school.setStatusSchool(statut);	
+			school.setStatusSchool(statut);
 			schoolService.updateSchool(school);
 		}
 		return new ModelAndView("redirect:/schoolsList");
 	}
-	
+
 	@GetMapping("/schoolForm/schoolSubscriptionForm")
-	public String modifySchoolSubscription(@RequestParam Long id, Model model) {	
+	public String modifySchoolSubscription(@RequestParam Long id, Model model) {
 		Optional<School> optional = schoolService.findById(id);
-		if(optional.isPresent()) {
+		if (optional.isPresent()) {
 			School school = optional.get();
 			model.addAttribute(school);
-			subscriptionController.setModelAttributesForSubscription(model, school.getMembership().getSubscription().getId());
+			subscriptionController.setModelAttributesForSubscription(model,
+					school.getMembership().getSubscription().getId());
 		}
-	
+
 		return "school/schoolSubscriptionForm";
 	}
-	
-	
+
 	@PostMapping("/modifySchoolSubscription")
-	public ModelAndView modifySchoolSubscription(@RequestParam Long id, @RequestParam String name, @RequestParam double price, @RequestParam Long duration, @RequestParam List<Long> featuresId) {		
+	public ModelAndView modifySchoolSubscription(@RequestParam Long id, @RequestParam String name,
+			@RequestParam double price, @RequestParam Long duration, @RequestParam List<Long> featuresId) {
 		List<Feature> newFeatures = subscriptionController.getFeaturesListFromIds(featuresId);
-		Subscription subscription = subscriptionService.createSubscription(name, price, duration, newFeatures);	
+		Subscription subscription = subscriptionService.createSubscription(name, price, duration, newFeatures);
 		Optional<School> optional = schoolService.findById(id);
-		if(optional.isPresent()) {
+		if (optional.isPresent()) {
 			School school = optional.get();
-			school.getMembership().setSubscription(subscription);	
+			school.getMembership().setSubscription(subscription);
 			schoolService.updateSchool(school);
 		}
-		return new ModelAndView("redirect:/schoolForm/?id="+id);
+		return new ModelAndView("redirect:/schoolForm/?id=" + id);
 	}
-	
-	
+
 }
