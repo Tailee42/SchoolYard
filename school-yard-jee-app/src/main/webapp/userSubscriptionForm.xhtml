@@ -47,8 +47,6 @@
 							requiredMessage="Veuillez saisir un mot de passe."
 							validatorMessage="Le mot de passe doit contenir 5 à 15 caractères avec
 								au moins une minuscule, une majuscule, un chiffre et un caractère spécial.">
-							<f:validateRegex
-								pattern="((?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*([^a-z][^A-Z]\D)){5,15})" />
 						</h:inputSecret>
 						<h:message styleClass="errorMessage" for="passwordInput" />
 
