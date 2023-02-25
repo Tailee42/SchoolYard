@@ -46,8 +46,6 @@ public class AdminBean {
 
 	private School school = SessionUtils.getCurrentSchool();
 
-	private Theme themeToTest = new Theme();
-
 	private String pictureFileName;
 
 	// méthodes de redirection
@@ -67,17 +65,6 @@ public class AdminBean {
 	public void updateSchool() {
 		schoolRepository.update(school);
 		modifySchool();
-	}
-
-	public void updateSchoolTheme() {
-		school.getSchoolPage().setTheme(themeToTest);
-		themeToTest = new Theme();
-		updateSchool();
-	}
-
-	public void testTheme() {
-		school.getSchoolPage().setTheme(themeToTest);
-		themeToTest = new Theme();
 	}
 
 	public String validateTeacher(Long teacherId) {
@@ -124,13 +111,6 @@ public class AdminBean {
 		this.school = school;
 	}
 
-	public Theme getThemeToTest() {
-		return themeToTest;
-	}
-
-	public void setThemeToTest(Theme themeToTest) {
-		this.themeToTest = themeToTest;
-	}
 
 	// méthode d'affichage
 	public List<Teacher> allSchoolTeachers() {
