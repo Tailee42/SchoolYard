@@ -28,10 +28,6 @@
         <h2>Bienvenue #{welcomeBean.getUserConnectedName()} sur votre
             espace utilisateur</h2>
 
-
-
-
-
         <h1>Mes écoles</h1>
         <div class="container">
             <ui:repeat value="#{membersListBean.allMembersForOneUser()}" var="m">
@@ -69,7 +65,6 @@
                 <br/>
                 <h:link outcome="showSynchronousLessonStudent"
                         rendered="#{membersListBean.userHasStudent()}">Mes cours particuliers en tant qu'élève</h:link>
-
             </div>
             <div>
                 <h:link outcome="showUnitsTeacher"
@@ -79,7 +74,6 @@
                         rendered="#{membersListBean.userHasStudent()}">Mes cours en ligne favoris en tant qu'élève</h:link>
             </div>
         </div>
-
 
     </ui:define>
 

@@ -21,6 +21,7 @@ import java.util.Map;
 @ManagedBean
 public class ShowUnitsUserBean {
 
+
     private Unit unit = new Unit();
     private List<Unit> units = new ArrayList<>();
 
