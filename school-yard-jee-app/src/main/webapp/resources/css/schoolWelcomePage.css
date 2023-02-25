@@ -9,6 +9,7 @@
 .divsection1, .divsection2{
 	border: 1px solid rgb(128, 128, 128);
 	margin-bottom: 20px;
+	background-color: #ffffff;
 }
 
 .divsection1 {
@@ -36,7 +37,6 @@
 .schoolLogo {
 	display: flex;
 	justify-content: center;
-	margin-top: 50px;
 }
 
 
