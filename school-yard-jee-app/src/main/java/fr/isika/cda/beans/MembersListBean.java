@@ -193,6 +193,4 @@ public class MembersListBean {
 		this.memberRole = memberRole;
 	}
 
-
-
 }
