@@ -209,3 +209,16 @@ a:hover {
 section {
     padding: 30px 0 30px 0;
 }
+
+.gridDiv {
+    margin: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.custom-long-button.right{
+    float: right;
+    margin: 20px;
+    display: block;
+}
+

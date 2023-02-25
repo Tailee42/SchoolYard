@@ -158,6 +158,25 @@ public class MembersListBean {
 		return synchronousLesson.getDuration();
 	}
 
+	public boolean userHasTeacher() {
+		for (Member member : members) {
+			if (member instanceof Teacher) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean userHasStudent() {
+
+		for (Member member : members) {
+			if (member instanceof Student) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public List<Member> getMembers() {
 		return members;
 	}
