@@ -1,5 +1,7 @@
 package fr.isika.cda.entities.users;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,12 @@ import javax.persistence.OneToOne;
 import fr.isika.cda.utils.EncodingUtil;
 
 @Entity
-public class SuperAdmin {
+public class SuperAdmin implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8707766156114960974L;
 
 	@Id
 	@GeneratedValue
@@ -18,7 +25,7 @@ public class SuperAdmin {
 	private String login;
 
 	private String password;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private Profil profil;
 
@@ -49,4 +56,7 @@ public class SuperAdmin {
 		return password;
 	}
 
+	public Long getId() {
+		return id;
+	}
 }
