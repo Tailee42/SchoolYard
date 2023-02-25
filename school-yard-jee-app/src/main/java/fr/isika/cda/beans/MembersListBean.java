@@ -31,7 +31,6 @@ public class MembersListBean {
 
 	private List<Member> members = new ArrayList<>();
 	private String memberRole;
-	private boolean isAdmin = true;
 
 	public List<Member> allMembersForOneUser() {
 		members = memberRepository.getAllMembersForOneUser(SessionUtils.getConnectedUser().getId());
@@ -175,9 +174,6 @@ public class MembersListBean {
 		this.memberRole = memberRole;
 	}
 
-	public boolean isAdmin() {
-		return isAdmin;
-	}
 
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
