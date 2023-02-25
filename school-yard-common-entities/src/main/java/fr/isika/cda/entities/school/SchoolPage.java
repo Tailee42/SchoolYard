@@ -17,6 +17,7 @@ public class SchoolPage implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
 	@Lob
 	private String description;
 	

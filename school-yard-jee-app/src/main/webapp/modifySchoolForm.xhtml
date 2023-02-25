@@ -14,16 +14,19 @@
 		<h:form class="inline">
 			<h:commandLink
 				action="#{membersListBean.goToIndexSchool(welcomeBean.connectedMember)}">Retour</h:commandLink>
+			<h:commandLink
+				action="#{schoolsListBean.navigationIndexSchool(adminBean.school)}"> Ecole </h:commandLink>
 		</h:form>
+
 	</ui:define>
-	<ui:define name="title">Accueil Ecole</ui:define>
+	<ui:define name="title">Paramètres Ecole</ui:define>
 
 	<ui:define name="content">
 		<h2>Administrateur école</h2>
 
 		<div class="card">
 			<p:tabView dynamic="true" cache="true">
-				<p:tab title="Personnalisation">
+				<p:tab title=" Personnalisation">
 					<div class="container">
 						<h3>Personnalisation de mon école</h3>
 						<div class="form-container">
@@ -35,16 +38,15 @@
 
 											<h:outputLabel value="Sélectionner la couleur principale"
 												for="primaryColor" />
-											<p:colorPicker id="primaryColor" mode="popup"
-												value="#{adminBean.themeToTest.primaryColor}"
-												styleClass="ui-colorpicker_current_color" 
-												/>
+											<p:colorPicker id="primaryColor" mode="inline"
+												value="#{adminBean.school.schoolPage.theme.primaryColor}"
+												styleClass="ui-colorpicker_current_color" />
 
 											<h:outputLabel
 												value="Sélectionner la couleur des liens et des boutons"
 												for="accentColor" />
-											<p:colorPicker id="accentColor" mode="popup"
-												value="#{adminBean.themeToTest.accentColor}"
+											<p:colorPicker id="accentColor" mode="inline"
+												value="#{adminBean.school.schoolPage.theme.accentColor}"
 												styleClass="ui-colorpicker_current_color" />
 										</h:panelGrid>
 									</div>
@@ -53,24 +55,22 @@
 										<h:panelGrid columns="1" class="grid">
 											<h:outputLabel value="Sélectionner la couleur du fond "
 												for="backgroundColor" />
-											<p:colorPicker id="backgroundColor" mode="popup"
-												value="#{adminBean.themeToTest.backgroundColor}"
+											<p:colorPicker id="backgroundColor" mode="inline"
+												value="#{adminBean.school.schoolPage.theme.backgroundColor}"
 												styleClass="ui-colorpicker_current_color" />
 
 											<h:outputLabel value="Sélectionner la police d'écriture"
 												for="selectFont" />
 											<h:selectOneMenu id="selectFont"
-												value="#{adminBean.themeToTest.font}" class="searchMenu">
+												value="#{adminBean.school.schoolPage.theme.font}"
+												class="searchMenu">
 
-												<f:selectItem itemValue="#{adminBean.themeToTest.font}" />
-												<f:selectItems value="#{adminBean.fontEnum()}"
-													var="font" itemLabel="#{font}" itemValue="#{font}" />
+												<f:selectItem
+													itemValue="#{adminBean.school.schoolPage.theme.font}" />
+												<f:selectItems value="#{adminBean.fontEnum()}" var="font"
+													itemLabel="#{font}" itemValue="#{font}" />
 											</h:selectOneMenu>
-
-											<h:commandButton action="#{adminBean.testTheme()}"
-												value="Tester" class="custom-button" />
-
-											<h:commandButton action="#{adminBean.updateSchoolTheme()}"
+											<h:commandButton action="#{adminBean.updateSchool()}"
 												value="Enregistrer" class="custom-button" />
 
 										</h:panelGrid>
@@ -81,11 +81,7 @@
 						</div>
 					</div>
 				</p:tab>
-				<!-- ******************************************************************************************************************* -->
-				<!-- ******************************************************************************************************************* -->
-				<!-- ******************************************************************************************************************* -->
-				<!-- ******************************************************************************************************************* -->
-				<p:tab title="Description">
+				<p:tab title=" Description">
 					<div class="container">
 						<h3>Description de mon école</h3>
 						<div class="form-container">
@@ -102,28 +98,23 @@
 											<h:inputTextarea id="synthesisInput"
 												value="#{adminBean.school.synthesis}" class="formAreaInput" />
 
-											<h:outputLabel value="Les valeurs de votre école"
-												for="titleValueInput" />
-											<h:inputTextarea id="titleValueInput"
-												value="#{adminBean.school.schoolPage.schoolValue.titleValue}"
-												class="formAreaInput" />
-
 											<h:outputLabel value="Texte de présentation"
 												for="descriptionValueInput" />
 											<h:inputTextarea id="descriptionValueInput"
 												value="#{adminBean.school.schoolPage.schoolValue.descriptionValue}"
 												class="formAreaInput" />
 
-											<h:outputLabel value="Photo de votre école : " for="pictureFileUpload" />
+											<h:outputLabel value="Photo de votre école : "
+												for="pictureFileUpload" />
 											<p:fileUpload skinSimple="true" id="pictureFileUpload"
-														  uploadButtonStyleClass="ui-button-outlined ui-button-secondary"
-														  chooseButtonStyleClass="ui-button-outlined ui-button-secondary"
-														  cancelButtonStyleClass="ui-button-outlined ui-button-secondary"
-														  label="Choisissez une image" mode="advanced" sizeLimit="5000000"
-														  fileLimit="1" accept=".gif,.jpg,.jpeg,.png"
-														  invalidSizeMessage="L'image ne doit pas dépasser 5 Mo"
-														  listener="#{adminBean.uploadFile}"
-														  class="imgInput"/>
+												uploadButtonStyleClass="ui-button-outlined ui-button-secondary"
+												chooseButtonStyleClass="ui-button-outlined ui-button-secondary"
+												cancelButtonStyleClass="ui-button-outlined ui-button-secondary"
+												label="Choisissez une image" mode="advanced"
+												sizeLimit="5000000" fileLimit="1"
+												accept=".gif,.jpg,.jpeg,.png"
+												invalidSizeMessage="L'image ne doit pas dépasser 5 Mo"
+												listener="#{adminBean.uploadFile}" class="imgInput" />
 
 											<h:commandButton action="#{adminBean.updateSchool()}"
 												value="Enregistrer" class="custom-button" />
@@ -136,12 +127,7 @@
 						</div>
 					</div>
 				</p:tab>
-				<!-- *********************************************************************************************************************** -->
-				<!-- *********************************************************************************************************************** -->
-				<!-- *********************************************************************************************************************** -->
-				<!-- *********************************************************************************************************************** -->
-				<!-- *********************************************************************************************************************** -->
-				<p:tab title="infos">
+				<p:tab title=" Infos">
 					<div class="container">
 						<h3>Informations de mon école</h3>
 						<div class="form-container">
