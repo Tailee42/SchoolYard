@@ -3,6 +3,7 @@ package fr.isika.cda.beans;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -103,8 +104,8 @@ public class CreateSchoolBean {
 		return subscriptionRepository.getAll();
 	}
 
-	public SchoolTypeEnum[] levels() {
-		return SchoolTypeEnum.values();
+	public Map<String, SchoolTypeEnum> levels() {
+		return SchoolTypeEnum.levels;
 	}
 
 	public School getSchool() {

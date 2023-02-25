@@ -1,5 +1,8 @@
 package fr.isika.cda.entities.common;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum AcademicLevel {
     CP("Cp"),
     CE1("CE1"),
@@ -25,4 +28,12 @@ public enum AcademicLevel {
 	public String getDisplayValue(){
 		return displayValue;
 	}
+	
+    public static Map<String, AcademicLevel> Academiclevels = new HashMap<>();
+    
+    static {
+        for (AcademicLevel a: values()) {
+            Academiclevels.put(a.displayValue, a);
+        }
+    }
 }

@@ -1,9 +1,10 @@
 package fr.isika.cda.entities.common;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum SchoolTypeEnum {
-	ELEMENTAIRE("Niveau élémentaire"),
-	COLLEGE("Niveau collège"),
-	LYCEE("Niveau lycée");
+	ELEMENTAIRE("Ecole élémentaire"), COLLEGE("Collège"), LYCEE("Lycée");
 
 	private final String displayValue;
 
@@ -13,5 +14,13 @@ public enum SchoolTypeEnum {
 
 	public String getDisplayValue() {
 		return displayValue;
+	}
+
+	public static Map<String, SchoolTypeEnum> levels = new HashMap<>();
+
+	static {
+		for (SchoolTypeEnum st : values()) {
+			levels.put(st.displayValue, st);
+		}
 	}
 }

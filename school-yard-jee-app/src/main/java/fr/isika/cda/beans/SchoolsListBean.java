@@ -2,6 +2,7 @@ package fr.isika.cda.beans;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -64,8 +65,8 @@ public class SchoolsListBean {
 		return "indexSchool?faces-redirect=true";
 	}
 
-	public SchoolTypeEnum[] types() {
-		return SchoolTypeEnum.values();
+	public Map<String, SchoolTypeEnum> types() {
+		return SchoolTypeEnum.levels;
 	}
 
 	public School getSchool() {

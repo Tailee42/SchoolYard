@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
@@ -49,14 +50,6 @@ public class AdminBean {
 	private String pictureFileName;
 
 	// méthodes de redirection
-	public List<Teacher> allTeachers() {
-		return allSchoolTeachers();
-	}
-
-	public List<Student> allStudents() {
-		return allSchoolStudents();
-	}
-
 	public String modifySchool() {
 		return "modifySchoolForm";
 	}
@@ -143,14 +136,13 @@ public class AdminBean {
 		pictureFileName = timestamp + "_" + file.getFileName();
 		FileUpload.doUpLoad(file, pictureFileName);
 
-		//
 		school.getSchoolPage().getSchoolValue().setPicture(pictureFileName);
 		schoolRepository.update(school);
 		pictureFileName = "empty_school_picture.png";
 	}
 
-	public FontEnum[] fontEnum() {
-		return FontEnum.values();
+	public Map<String, FontEnum> fontEnum() {
+		return FontEnum.fonts;
 	}
 
 	// méthode internes
