@@ -23,6 +23,7 @@
 		<class>fr.isika.cda.entities.teacher.Teacher</class>
 		<class>fr.isika.cda.entities.school.Admin</class>
 		<class>fr.isika.cda.entities.school.Statistics</class>
+		<class>fr.isika.cda.entities.users.SuperAdmin</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:mysql://localhost:3306/schoolyard_db?useUnicode=true&amp;serverTimezone=Europe/Paris" />

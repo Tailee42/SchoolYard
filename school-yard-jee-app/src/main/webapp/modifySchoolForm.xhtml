@@ -35,14 +35,15 @@
 
 											<h:outputLabel value="Sélectionner la couleur principale"
 												for="primaryColor" />
-											<p:colorPicker id="primaryColor" mode="inline"
+											<p:colorPicker id="primaryColor" mode="popup"
 												value="#{adminBean.themeToTest.primaryColor}"
-												styleClass="ui-colorpicker_current_color" />
+												styleClass="ui-colorpicker_current_color" 
+												/>
 
 											<h:outputLabel
 												value="Sélectionner la couleur des liens et des boutons"
 												for="accentColor" />
-											<p:colorPicker id="accentColor" mode="inline"
+											<p:colorPicker id="accentColor" mode="popup"
 												value="#{adminBean.themeToTest.accentColor}"
 												styleClass="ui-colorpicker_current_color" />
 										</h:panelGrid>
@@ -52,7 +53,7 @@
 										<h:panelGrid columns="1" class="grid">
 											<h:outputLabel value="Sélectionner la couleur du fond "
 												for="backgroundColor" />
-											<p:colorPicker id="backgroundColor" mode="inline"
+											<p:colorPicker id="backgroundColor" mode="popup"
 												value="#{adminBean.themeToTest.backgroundColor}"
 												styleClass="ui-colorpicker_current_color" />
 

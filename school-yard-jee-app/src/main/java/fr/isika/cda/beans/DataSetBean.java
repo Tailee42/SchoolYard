@@ -36,6 +36,7 @@ import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.entities.subscription.Subscription;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.entities.users.Profil;
+import fr.isika.cda.entities.users.SuperAdmin;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.repositories.FeatureRepository;
 import fr.isika.cda.repositories.LearningPathRepository;
@@ -45,6 +46,7 @@ import fr.isika.cda.repositories.PhysicalRepository;
 import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.repositories.StudentRepository;
 import fr.isika.cda.repositories.SubscriptionRepository;
+import fr.isika.cda.repositories.SuperAdminRepository;
 import fr.isika.cda.repositories.TeacherRepository;
 import fr.isika.cda.repositories.UnitRepository;
 import fr.isika.cda.repositories.UserRepository;
@@ -80,9 +82,17 @@ public class DataSetBean {
 	private UnitRepository unitRepository;
 	@Inject
 	private LearningPathRepository learningPathRepository;
+	@Inject
+	private SuperAdminRepository superAdminRepository;
 
 	@PostConstruct
 	private void initBDD() {
+		// creating a superAdmin to Rule them All
+		SuperAdmin superAdmin = new SuperAdmin("master", "passWorld",
+				new Profil("RUSARD", "Argus", "", new Contact("argus@cracmol.com", "07 19 73 35 69",
+						new Address(4, "Privet Drive", "Little-Whinging", "CR3 0AA"))));
+		superAdminRepository.save(superAdmin);
+
 		// creating features to fill subscriptions
 		Feature feature1 = new Feature("Cours online",
 				"Pour permettre à vos professeurs de proposer des cours en ligne");
