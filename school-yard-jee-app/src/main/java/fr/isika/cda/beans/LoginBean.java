@@ -115,7 +115,5 @@ public class LoginBean {
 	public void setUserActive(boolean userActive) {
 		this.userActive = userActive;
 	}
-
-
 	
 }

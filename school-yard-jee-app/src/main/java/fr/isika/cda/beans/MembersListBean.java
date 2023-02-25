@@ -33,19 +33,18 @@ public class MembersListBean {
 	private String memberRole;
 	private boolean isAdmin = true;
 
-
 	public List<Member> allMembersForOneUser() {
 		members = memberRepository.getAllMembersForOneUser(SessionUtils.getConnectedUser().getId());
 		return members;
 	}
 
-	//Modify to send admin to it's dashboard
+	// Modify to send admin to it's dashboard
 	public String goToIndexSchool(Member member) {
 		SessionUtils.setConnectedMember(member);
 		SessionUtils.setCurrentSchool(member.getSchool());
-		if(member instanceof Admin) {
+		if (member instanceof Admin) {
 			return "adminDashboard?faces-redirect-true";
-		}else {
+		} else {
 			return "indexSchool?faces-redirect=true";
 		}
 	}
@@ -66,17 +65,17 @@ public class MembersListBean {
 		return member instanceof Admin;
 	}
 
-	public List<SynchronousLesson> getFutureSynchronousLessonForUserLikeTeacher(){
+	public List<SynchronousLesson> getFutureSynchronousLessonForUserLikeTeacher() {
 		allMembersForOneUser();
 		return getFuturSynchronousLessonLikeTeacher();
 	}
 
-	public List<SynchronousLesson> getPastSynchronousLessonForUserLikeTeacher(){
+	public List<SynchronousLesson> getPastSynchronousLessonForUserLikeTeacher() {
 		allMembersForOneUser();
 		return getPastSynchronousLessonLikeTeacher();
 	}
 
-	public List<LearningPath> getFutureSynchronousLessonForUserLikeStudent(){
+	public List<LearningPath> getFutureSynchronousLessonForUserLikeStudent() {
 		allMembersForOneUser();
 		List<LearningPath> futurLearningPathList = new ArrayList<>();
 		List<LearningPath> allLearningPathList = getSynchronousLessonLikeStudent();
@@ -88,14 +87,14 @@ public class MembersListBean {
 			} else {
 				break;
 			}
-			if(synchronousLesson.getClassDate().isAfter(LocalDateTime.now())) {
+			if (synchronousLesson.getClassDate().isAfter(LocalDateTime.now())) {
 				futurLearningPathList.add(learningPath);
 			}
 		}
 		return futurLearningPathList;
 	}
 
-	public List<LearningPath> getPastSynchronousLessonForUserLikeStudent(){
+	public List<LearningPath> getPastSynchronousLessonForUserLikeStudent() {
 		allMembersForOneUser();
 		List<LearningPath> pastLearningPathList = new ArrayList<>();
 		List<LearningPath> allLearningPathList = getSynchronousLessonLikeStudent();
@@ -107,34 +106,36 @@ public class MembersListBean {
 			} else {
 				break;
 			}
-			if(synchronousLesson.getClassDate().isBefore(LocalDateTime.now())) {
+			if (synchronousLesson.getClassDate().isBefore(LocalDateTime.now())) {
 				pastLearningPathList.add(learningPath);
 			}
 		}
 		return pastLearningPathList;
 	}
 
-	public List<SynchronousLesson> getFuturSynchronousLessonLikeTeacher(){
+	public List<SynchronousLesson> getFuturSynchronousLessonLikeTeacher() {
 		List<SynchronousLesson> synchronousLessonList = new ArrayList<>();
 		for (Member member : members) {
 			if (member instanceof Teacher) {
-				synchronousLessonList.addAll(synchronousLessonRepository.getFuturSynchronousLessonsByIdMember(member.getId()));
+				synchronousLessonList
+						.addAll(synchronousLessonRepository.getFuturSynchronousLessonsByIdMember(member.getId()));
 			}
 		}
 		return synchronousLessonList;
 	}
 
-	public List<SynchronousLesson> getPastSynchronousLessonLikeTeacher(){
+	public List<SynchronousLesson> getPastSynchronousLessonLikeTeacher() {
 		List<SynchronousLesson> synchronousLessonList = new ArrayList<>();
 		for (Member member : members) {
 			if (member instanceof Teacher) {
-				synchronousLessonList.addAll(synchronousLessonRepository.getPastSynchronousLessonsByIdMember(member.getId()));
+				synchronousLessonList
+						.addAll(synchronousLessonRepository.getPastSynchronousLessonsByIdMember(member.getId()));
 			}
 		}
 		return synchronousLessonList;
 	}
 
-	public List<LearningPath>  getSynchronousLessonLikeStudent(){
+	public List<LearningPath> getSynchronousLessonLikeStudent() {
 		List<LearningPath> learningPathList = new ArrayList<>();
 		for (Member member : members) {
 			if (member instanceof Student) {
@@ -181,7 +182,5 @@ public class MembersListBean {
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-
-
 
 }

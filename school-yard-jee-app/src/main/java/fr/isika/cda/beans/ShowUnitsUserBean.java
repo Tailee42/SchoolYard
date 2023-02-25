@@ -33,15 +33,14 @@ public class ShowUnitsUserBean {
 	@Inject
 	private MemberRepository memberRepository;
 
-		public List<Unit> allUnitsByTeacher() {
+	public List<Unit> allUnitsByTeacher() {
 		List<Unit> unitsUserTeacher = new ArrayList<Unit>();
 		List<Member> members = memberRepository.getAllMembersForOneUser(SessionUtils.getConnectedUser().getId());
-		for(Member member : members) {
+		for (Member member : members) {
 			if (member instanceof Teacher) {
-				unitsUserTeacher.addAll( unitRepository.getAllUnitsByTeacherId(member.getId()));
+				unitsUserTeacher.addAll(unitRepository.getAllUnitsByTeacherId(member.getId()));
 			}
 		}
-		
 		return unitsUserTeacher;
 	}
 
@@ -50,7 +49,7 @@ public class ShowUnitsUserBean {
 		List<LearningPath> learningPathList = learningPathRepository
 				.getLearningPathsByUserId(SessionUtils.getConnectedUser().getId());
 		for (LearningPath learningPath : learningPathList) {
-			if (learningPath.getActivity() instanceof AsynchronousLesson ) {
+			if (learningPath.getActivity() instanceof AsynchronousLesson) {
 				AsynchronousLesson asynchronousLesson = (AsynchronousLesson) learningPath.getActivity();
 				unitsList.add(asynchronousLesson.getUnit());
 			}
