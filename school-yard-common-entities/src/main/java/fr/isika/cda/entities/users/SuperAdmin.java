@@ -56,6 +56,14 @@ public class SuperAdmin implements Serializable {
 		return password;
 	}
 
+	public Profil getProfil() {
+		return profil;
+	}
+
+	public void setProfil(Profil profil) {
+		this.profil = profil;
+	}
+
 	public Long getId() {
 		return id;
 	}

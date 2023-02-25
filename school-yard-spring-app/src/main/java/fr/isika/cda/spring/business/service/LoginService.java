@@ -17,4 +17,18 @@ public class LoginService {
 	public Optional<SuperAdmin> findByLogin(String login) {
 		return superAdminRepository.findByLogin(login);
 	}
+
+	public boolean isSecured(String login, String password) {
+		Optional<SuperAdmin> optional = findByLogin(login);
+		if(optional.isPresent()) {
+			SuperAdmin superAdmin = optional.get();
+			return validatePassword(superAdmin, password);
+		}
+		return false;
+	}
+	
+	private boolean validatePassword(SuperAdmin superAdmin, String password) {
+		return superAdmin.getPassword().equals(password);
+	}
+
 }
