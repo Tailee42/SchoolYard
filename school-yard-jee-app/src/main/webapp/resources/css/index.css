@@ -4,7 +4,7 @@
 }
 
 .divPresentation {
-	margin-top: 80px;
+	margin-top: 60px;
 	display: flex;
 	flex-direction: row-reverse;
 	justify-content: space-between;
@@ -27,7 +27,6 @@
 .divPresentation img:hover, .divTeacher img:hover, .divStudent img:hover {
 	transform: scale(1.1);
 }
-
 
 .divPresentation h1, .divSchool h1, .divStudent h1, .divTeacher h1 {
 	letter-spacing: 5px;
@@ -92,7 +91,6 @@
 .student-button {
 	display: flex;
 	justify-content: flex-start;
-	margin: 0 50px;
 }
 
 .box {
@@ -108,27 +106,77 @@
 	}
    
    .divPresentation {
-		margin-top: 80px;
+   		width:100%;
+		margin-top: 60px;
 		display: flex;
 		flex-direction: column-reverse;
+		justify-content: center;
 		align-items: center;
 	}
 	
 	.divPresentation div {
 		width: 80%;
 		text-align: justify;
-		margin: 0 50px;
+		margin: 0px;
 	}
 	
 	.box {
 		width: 300px;
 	}
 	
-	.divTeacher-align {
+	.divSchool{
+		width: 80%;
 		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
+		flex-direction: column;
+		justify-content: center;
 		align-items: center;
+	}
+	
+	.divTeacher	{
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		margin: 25px 50px;	
+	}
+
+	.divStudent-align {
+		width: 80%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	
+	
+	.divStudent p{
+		width: 80%;
+		text-align: justify;
+	}
+	
+	.student-button {
+		width:80%;
+		display: flex;
+		justify-content: center;
+	}
+	
+	.divTeacher-align {
+		width: 80%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.teacher-text {
+		display: flex;
+		flex-direction: column;
+		margin-top: 20px;
+	}
+	
+	.teacher-button {
+		width:80%;
+		display: flex;
+		justify-content: center;
+		margin: 20px 0;
 	}
 	   
 }
