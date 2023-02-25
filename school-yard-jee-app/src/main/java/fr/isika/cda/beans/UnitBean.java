@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import fr.isika.cda.entities.lesson.AsynchronousLesson;
 import fr.isika.cda.entities.lesson.Unit;
+import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.student.LearningPath;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.repositories.AsynchronousLessonRepository;
@@ -20,12 +21,10 @@ import fr.isika.cda.utils.SessionUtils;
 @SessionScoped
 public class UnitBean implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2774451567369606563L;
 	private Unit unit = new Unit();
 	private Long id;
+	private School school;
 
 	@Inject
 	private UnitRepository unitRepository;
@@ -33,6 +32,7 @@ public class UnitBean implements Serializable {
 	private AsynchronousLessonRepository asynchronousLessonRepository;
 	@Inject
 	private LearningPathRepository learningPathRepository;
+
 
 	public String saveAsFavorite() {
 		AsynchronousLesson asynchronousLesson = new AsynchronousLesson();
@@ -74,6 +74,7 @@ public class UnitBean implements Serializable {
 	public void getUnitId() {
 		if (id != null && id != 0) {
 			unit = unitRepository.getUnitById(id);
+			school = SessionUtils.getCurrentSchool();
 		}
 	}
 
@@ -93,4 +94,11 @@ public class UnitBean implements Serializable {
 		this.id = id;
 	}
 
+	public School getSchool() {
+		return school;
+	}
+
+	public void setSchool(School school) {
+		this.school = school;
+	}
 }

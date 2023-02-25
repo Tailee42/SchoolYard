@@ -30,10 +30,11 @@
 	</ui:define>
 
 	<ui:define name="content">
+		#{unitBean.getUnitId()}
 		<h1>Mon cours</h1>
 
-		<div class="box">
-			#{unitBean.getUnitId()}
+		<div class="box" style="border-top: 3px solid ##{unitBean.school.schoolPage.theme.primaryColor}">
+
 			<h2>
 				<h:outputText value="#{unitBean.unit.title}" />
 				<ui:fragment rendered="#{unitBean.isFavorite()}">

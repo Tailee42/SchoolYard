@@ -35,9 +35,10 @@ public class SynchronousLessonBean {
 	private PhysicalRepository physicalRepository;
 
 	private SynchronousLesson lesson = new SynchronousLesson();
+	private School school;
 
 	public List<SynchronousLesson> getSynchronousLessonsByIdSchool() {
-		School school = SessionUtils.getCurrentSchool();
+		school = SessionUtils.getCurrentSchool();
 		return synchronousLessonRepository.getFuturSynchronousLessonsByIdSchool(school.getId());
 	}
 
@@ -47,13 +48,13 @@ public class SynchronousLessonBean {
 	}
 
 	public List<SynchronousLesson> getSynchronousLessonsByLevel() {
-		School school = SessionUtils.getCurrentSchool();
+		school = SessionUtils.getCurrentSchool();
 		return synchronousLessonRepository.getFuturSynchronousLessonsByLevel(school.getId(), lesson.getLevel());
 
 	}
 
 	public List<SynchronousLesson> getSynchronousLessonsBySubject() {
-		School school = SessionUtils.getCurrentSchool();
+		school = SessionUtils.getCurrentSchool();
 		return synchronousLessonRepository.getFuturSynchronousLessonsBySubject(school.getId(), lesson.getSubject());
 	}
 
@@ -112,4 +113,11 @@ public class SynchronousLessonBean {
 		return AcademicLevel.values();
 	}
 
+	public School getSchool() {
+		return school;
+	}
+
+	public void setSchool(School school) {
+		this.school = school;
+	}
 }
