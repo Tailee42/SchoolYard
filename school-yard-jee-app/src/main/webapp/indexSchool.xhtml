@@ -19,28 +19,31 @@
 
 			<div class="divsection1">
 				<div class="schoolLogo">
-						<h:graphicImage name="#{indexSchoolBean.school.logo}" library="images" width="400px" height="400px" />
+					<h:graphicImage name="#{indexSchoolBean.school.logo}"
+						library="images" width="300px" height="300px" />
+				</div>
+				<div class="schoolName">
+					<h1>#{indexSchoolBean.school.schoolName}</h1>
+					<h2>#{indexSchoolBean.school.synthesis}</h2>
 				</div>
 
-				<h1>#{indexSchoolBean.school.schoolName}</h1>
-				<h2>#{indexSchoolBean.school.synthesis}</h2>
 			</div>
 
 			<div class="divsection2">
 
-			<div class="schoolPicture">
+				<div class="schoolPicture">
 
-					<h:graphicImage name="#{indexSchoolBean.school.schoolPage.schoolValue.picture}"
+					<h:graphicImage
+						name="#{indexSchoolBean.school.schoolPage.schoolValue.picture}"
 						library="images" width="200px" height="150px" />
 
 				</div>
 
 				<div>
 					<h2>Présentation de l'école</h2>
-					
+
 					<div class="paragraph">
-					#{indexSchoolBean.school.schoolPage.description}
-					</div>
+						#{indexSchoolBean.school.schoolPage.description}</div>
 				</div>
 			</div>
 
@@ -57,20 +60,20 @@
 						value="Inscription professeur" class="custom-button" />
 				</div>
 			</h:form>
-			
-			
+
+
 
 			<div class="contact">
-				<h3>Contact: </h3>
-				<h4>Téléphone: </h4>
+				<h3>Contact:</h3>
+				<h4>Téléphone:</h4>
 				<p>#{indexSchoolBean.school.contact.phone}</p>
-				<h4 >Email: </h4>
+				<h4>Email:</h4>
 				<a href="mailto:#{indexSchoolBean.school.contact.email}">#{indexSchoolBean.school.contact.email}</a>
 			</div>
-		
-		
+
+
 		</div>
-		
+
 	</ui:define>
 
 

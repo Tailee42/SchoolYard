@@ -7,7 +7,7 @@
 }
 
 .divsection1, .divsection2{
-	border: 3px solid black;
+	border: 1px solid rgb(128, 128, 128);
 	margin-bottom: 20px;
 }
 
@@ -15,6 +15,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	padding: 10px;
 }
 
 .divsection2 {
@@ -51,6 +52,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	margin: 15px;
 	
 }
 
@@ -74,6 +76,10 @@
 	font-weight: bold;
 }
 
+
+h2 {
+	justify-content: center;
+}
 
 .contact h3, h4, p {
 	display: inline-block;
