@@ -32,7 +32,7 @@
 
 		<div class="card">
 			<p:tabView dynamic="true" cache="true">
-				<p:tab title="Candidature"
+				<p:tab title=" Candidature"
 					rendered="#{not adminBean.allSchoolCandidates().isEmpty()}">
 					<div class="container">
 						<ui:repeat value="#{adminBean.allSchoolCandidates()}" var="c"
@@ -68,7 +68,7 @@
 						</ui:repeat>
 					</div>
 				</p:tab>
-				<p:tab title="Cours à valider"
+				<p:tab title=" Cours à valider"
 					rendered="#{not adminBean.unitsToUpdate().isEmpty()}">
 					<h3>Nouveaux cours proposés</h3>
 					<div class="container">
@@ -97,7 +97,7 @@
 						</ui:repeat>
 					</div>
 				</p:tab>
-				<p:tab title="Enseignants ">
+				<p:tab title=" Enseignants ">
 					<div class="container">
 						<h:outputLabel value="Aucun professeur pour le moment."
 							rendered="#{adminBean.allSchoolTeachers().isEmpty()}" />
@@ -131,7 +131,7 @@
 						</ui:repeat>
 					</div>
 				</p:tab>
-				<p:tab title="Etudiants">
+				<p:tab title=" Etudiants">
 					<div class="container">
 
 						<h:outputLabel value="Aucun étudiant pour le moment."

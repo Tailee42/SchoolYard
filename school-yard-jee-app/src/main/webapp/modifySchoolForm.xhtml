@@ -14,9 +14,10 @@
 		<h:form class="inline">
 			<h:commandLink
 				action="#{membersListBean.goToIndexSchool(welcomeBean.connectedMember)}">Retour</h:commandLink>
-				<h:commandLink action="#{schoolsListBean.navigationIndexSchool(adminBean.school)}"> Ecole </h:commandLink>
+			<h:commandLink
+				action="#{schoolsListBean.navigationIndexSchool(adminBean.school)}"> Ecole </h:commandLink>
 		</h:form>
-		
+
 	</ui:define>
 	<ui:define name="title">Paramètres Ecole</ui:define>
 
@@ -25,7 +26,7 @@
 
 		<div class="card">
 			<p:tabView dynamic="true" cache="true">
-				<p:tab title="Personnalisation">
+				<p:tab title=" Personnalisation">
 					<div class="container">
 						<h3>Personnalisation de mon école</h3>
 						<div class="form-container">
@@ -55,16 +56,17 @@
 											<h:outputLabel value="Sélectionner la couleur du fond "
 												for="backgroundColor" />
 											<p:colorPicker id="backgroundColor" mode="inline"
-											
 												value="#{adminBean.school.schoolPage.theme.backgroundColor}"
 												styleClass="ui-colorpicker_current_color" />
 
 											<h:outputLabel value="Sélectionner la police d'écriture"
 												for="selectFont" />
 											<h:selectOneMenu id="selectFont"
-												value="#{adminBean.school.schoolPage.theme.font}" class="searchMenu">
+												value="#{adminBean.school.schoolPage.theme.font}"
+												class="searchMenu">
 
-												<f:selectItem itemValue="#{adminBean.school.schoolPage.theme.font}" />
+												<f:selectItem
+													itemValue="#{adminBean.school.schoolPage.theme.font}" />
 												<f:selectItems value="#{adminBean.fontEnum()}" var="font"
 													itemLabel="#{font}" itemValue="#{font}" />
 											</h:selectOneMenu>
@@ -79,7 +81,7 @@
 						</div>
 					</div>
 				</p:tab>
-				<p:tab title="Description">
+				<p:tab title=" Description">
 					<div class="container">
 						<h3>Description de mon école</h3>
 						<div class="form-container">
@@ -95,12 +97,6 @@
 												for="synthesisInput" />
 											<h:inputTextarea id="synthesisInput"
 												value="#{adminBean.school.synthesis}" class="formAreaInput" />
-
-											<h:outputLabel value="Les valeurs de votre école"
-												for="titleValueInput" />
-											<h:inputTextarea id="titleValueInput"
-												value="#{adminBean.school.schoolPage.schoolValue.titleValue}"
-												class="formAreaInput" />
 
 											<h:outputLabel value="Texte de présentation"
 												for="descriptionValueInput" />
@@ -131,7 +127,7 @@
 						</div>
 					</div>
 				</p:tab>
-				<p:tab title="infos">
+				<p:tab title=" Infos">
 					<div class="container">
 						<h3>Informations de mon école</h3>
 						<div class="form-container">
