@@ -175,8 +175,5 @@ public class MembersListBean {
 	}
 
 
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
 
 }
