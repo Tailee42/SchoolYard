@@ -3,6 +3,7 @@ package fr.isika.cda.beans;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -59,8 +60,8 @@ public class SchoolPageBean implements Serializable {
 		this.schoolPage = schoolPage;
 	}
 
-	public FontEnum[] fontEnum() {
-		return FontEnum.values();
+	public Map<String, FontEnum> fontEnum() {
+		return FontEnum.fonts;
 	}
 
 }
