@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import fr.isika.cda.spring.business.service.LoginService;
 
@@ -20,11 +21,11 @@ public class LoginController {
 	}
 
 	@PostMapping("/login")
-	public String login(@RequestParam String login, @RequestParam String password) {
+	public ModelAndView login(@RequestParam String login, @RequestParam String password) {
 		if (loginService.isSecured(login, password)) {
-			return "/superAdminDashboard";
+			return new ModelAndView("redirect:/superAdminDashboard");
 		}
-		return "/login";
+		return new ModelAndView("redirect:/login");
 	}
 
 }

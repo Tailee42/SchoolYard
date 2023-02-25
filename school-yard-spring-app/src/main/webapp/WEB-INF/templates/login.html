@@ -8,13 +8,13 @@
 <body>
 	<h1>Accès au compte Super-Administrateur</h1>
 
-	<form action="@{/login}" method="post" class="forms">
+	<form th:action="@{/login}" method="post" class="forms">
 		<div class="container">
 			<input placeholder="Identifiant" name="login"
-				th:value="${SuperAdminLogin}" required> <br />
+				th:value="${login}" required> <br />
 				 <input
 				type="password" placeholder="Mot de passe"
-				th:value="${SuperAdminPassword}" name="password" required>
+				th:value="${password}" name="password" required>
 			<hr />
 			<button type="submit" class="custom-button">Connexion</button>
 

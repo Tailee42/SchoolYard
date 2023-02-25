@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import fr.isika.cda.entities.users.SuperAdmin;
 import fr.isika.cda.spring.business.repository.SuperAdminRepository;
+import fr.isika.cda.utils.EncodingUtil;
 
 @Service
 public class LoginService {
@@ -28,7 +29,8 @@ public class LoginService {
 	}
 	
 	private boolean validatePassword(SuperAdmin superAdmin, String password) {
-		return superAdmin.getPassword().equals(password);
+		String pwd = EncodingUtil.encode(password);
+		return superAdmin.getPassword().equals(pwd);
 	}
 
 }
