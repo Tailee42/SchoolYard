@@ -30,7 +30,7 @@
 		<div class="container">
 			<ui:repeat value="#{showUnitsUserBean.allUnitsByUserByStudent()}" var="u">
 				<h:form>
-					<div class="box">
+					<div class="box" style="border-top: 3px solid ##{u.teacher.school.schoolPage.theme.primaryColor}">
 						<h2>
 							<h:outputText value="#{u.title}" />
 						</h2>
@@ -46,10 +46,13 @@
 								value="#{u.teacher.user.profil.firstName} #{u.teacher.user.profil.lastName}" />
 						</p>
 						<br />
-						<h:button value="Consulter " outcome="indexUnit"
-							class="custom-button">
-							<f:param name="id" value="#{u.id}" />
-						</h:button>
+
+						<h:form>
+							<h:commandButton action="#{showUnitsUserBean.goToUnitForStudent(u)}" value = "Consulter"
+											 class="custom-button link">
+							</h:commandButton>
+						</h:form>
+
 
 					</div>
 				</h:form>

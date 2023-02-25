@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<title>Login</title>
+<link rel="stylesheet" type="text/css"
+	href="/school-yard-spring-app/StaticResources/css/stylesheet.css">
+</head>
+<body>
+	<h1>Accès au compte Super-Administrateur</h1>
+
+	<form th:action="@{/login}" method="post" class="forms">
+		<div class="container">
+			<input placeholder="Identifiant" name="login"
+				th:value="${login}" required> <br />
+				 <input
+				type="password" placeholder="Mot de passe"
+				th:value="${password}" name="password" required>
+			<hr />
+			<button type="submit" class="custom-button">Connexion</button>
+
+		</div>
+	</form>
+</body>
+</html>

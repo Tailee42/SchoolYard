@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import org.primefaces.event.FileUploadEvent;
@@ -16,11 +15,9 @@ import org.primefaces.model.file.UploadedFile;
 import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.school.FontEnum;
 import fr.isika.cda.entities.school.School;
-import fr.isika.cda.entities.school.SchoolPage;
 import fr.isika.cda.entities.school.Theme;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.teacher.Teacher;
-import fr.isika.cda.repositories.SchoolPageRepository;
 import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.repositories.StudentRepository;
 import fr.isika.cda.repositories.TeacherRepository;
@@ -49,11 +46,6 @@ public class AdminBean {
 
 	private School school = SessionUtils.getCurrentSchool();
 
-	private Theme themeToTest = new Theme();
-
-	@Inject
-	private SchoolPageRepository schoolPageRepository;
-
 	private String pictureFileName;
 
 	// méthodes de redirection
@@ -73,16 +65,6 @@ public class AdminBean {
 	public void updateSchool() {
 		schoolRepository.update(school);
 		modifySchool();
-	}
-	public void updateSchoolTheme() {
-		school.getSchoolPage().setTheme(themeToTest);
-		themeToTest = new Theme();
-		updateSchool();
-	}
-	public void testTheme() {
-		school.getSchoolPage().setTheme(themeToTest);
-		themeToTest = new Theme();
-		
 	}
 
 	public String validateTeacher(Long teacherId) {
@@ -129,13 +111,6 @@ public class AdminBean {
 		this.school = school;
 	}
 
-	public Theme getThemeToTest() {
-		return themeToTest;
-	}
-
-	public void setThemeToTest(Theme themeToTest) {
-		this.themeToTest = themeToTest;
-	}
 
 	// méthode d'affichage
 	public List<Teacher> allSchoolTeachers() {
@@ -167,17 +142,17 @@ public class AdminBean {
 		UploadedFile file = event.getFile();
 		pictureFileName = timestamp + "_" + file.getFileName();
 		FileUpload.doUpLoad(file, pictureFileName);
-		
-		// 
+
+		//
 		school.getSchoolPage().getSchoolValue().setPicture(pictureFileName);
 		schoolRepository.update(school);
 		pictureFileName = "empty_school_picture.png";
 	}
-	
+
 	public FontEnum[] fontEnum() {
 		return FontEnum.values();
 	}
-	
+
 	// méthode internes
 	private Unit getCurrentUnit(Long unitId) {
 		return unitRepository.getUnitById(unitId);

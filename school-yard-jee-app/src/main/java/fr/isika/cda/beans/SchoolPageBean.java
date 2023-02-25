@@ -1,19 +1,20 @@
 package fr.isika.cda.beans;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
+
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.file.UploadedFile;
 
 import fr.isika.cda.entities.school.FontEnum;
 import fr.isika.cda.entities.school.SchoolPage;
 import fr.isika.cda.repositories.SchoolPageRepository;
 import fr.isika.cda.utils.FileUpload;
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.file.UploadedFile;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @ManagedBean
 @SessionScoped

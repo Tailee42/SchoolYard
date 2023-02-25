@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import fr.isika.cda.entities.common.AcademicLevel;
 import fr.isika.cda.entities.common.SubjectEnum;
 import fr.isika.cda.entities.lesson.AsynchronousLesson;
-import fr.isika.cda.entities.lesson.SynchronousLesson;
 import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.student.LearningPath;

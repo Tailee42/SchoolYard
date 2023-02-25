@@ -31,7 +31,6 @@ public class MembersListBean {
 
 	private List<Member> members = new ArrayList<>();
 	private String memberRole;
-	private boolean isAdmin = true;
 
 	public List<Member> allMembersForOneUser() {
 		members = memberRepository.getAllMembersForOneUser(SessionUtils.getConnectedUser().getId());
@@ -159,6 +158,25 @@ public class MembersListBean {
 		return synchronousLesson.getDuration();
 	}
 
+	public boolean userHasTeacher() {
+		for (Member member : members) {
+			if (member instanceof Teacher) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean userHasStudent() {
+
+		for (Member member : members) {
+			if (member instanceof Student) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public List<Member> getMembers() {
 		return members;
 	}
@@ -173,14 +191,6 @@ public class MembersListBean {
 
 	public void setMemberRole(String memberRole) {
 		this.memberRole = memberRole;
-	}
-
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
 	}
 
 }

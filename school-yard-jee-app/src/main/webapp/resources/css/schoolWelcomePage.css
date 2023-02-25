@@ -7,14 +7,16 @@
 }
 
 .divsection1, .divsection2{
-	border: 3px solid black;
+	border: 1px solid rgb(128, 128, 128);
 	margin-bottom: 20px;
+	background-color: #ffffff;
 }
 
 .divsection1 {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	padding: 10px;
 }
 
 .divsection2 {
@@ -35,7 +37,6 @@
 .schoolLogo {
 	display: flex;
 	justify-content: center;
-	margin-top: 50px;
 }
 
 
@@ -51,6 +52,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	margin: 15px;
 	
 }
 
@@ -75,8 +77,20 @@
 }
 
 
-.contact h4, .contact p {
-	display: inline-block;
+h2 {
+	justify-content: center;
 }
 
+.contact h3, h4, p {
+	display: inline-block;
+	
+}
+
+h3, h4 {
+	padding: 5px;
+}
+
+h3 {
+	text-decoration: underline;
+}
 

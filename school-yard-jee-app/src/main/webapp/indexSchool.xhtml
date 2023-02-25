@@ -8,7 +8,14 @@
 	<ui:define name="cssFiles">
 		<h:outputStylesheet name="buttons.css" library="css" />
 		<h:outputStylesheet name="schoolWelcomePage.css" library="css" />
-
+	</ui:define>
+	
+	<ui:define name="navbar-link">
+		<h:form class="inline"
+			rendered="#{membersListBean.isAdmin(welcomeBean.connectedMember)}">
+			<h:commandLink
+				action="#{membersListBean.goToIndexSchool(welcomeBean.connectedMember)}">Retour</h:commandLink>
+		</h:form>
 	</ui:define>
 
 	<ui:define name="content">
@@ -21,7 +28,6 @@
 					<h:graphicImage name="#{indexSchoolBean.school.logo}"
 						library="images" width="200px" height="200px" />
 				</div>
-
 				<h1>#{indexSchoolBean.school.schoolName}</h1>
 				<h2>
 					#{indexSchoolBean.school.synthesis}<br /> <br />
@@ -62,12 +68,14 @@
 
 			<div class="contact">
 				<h3>Contact:</h3>
-				<h4>Téléphone</h4>
+				<h4>Téléphone:</h4>
 				<p>#{indexSchoolBean.school.contact.phone}</p>
 				<h4>Email:</h4>
 				<a href="mailto:#{indexSchoolBean.school.contact.email}">#{indexSchoolBean.school.contact.email}</a>
 			</div>
 		</div>
+
+	</ui:define>
 
 	</ui:define>
 

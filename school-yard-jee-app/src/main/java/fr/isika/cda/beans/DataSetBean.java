@@ -36,6 +36,7 @@ import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.entities.subscription.Subscription;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.entities.users.Profil;
+import fr.isika.cda.entities.users.SuperAdmin;
 import fr.isika.cda.entities.users.User;
 import fr.isika.cda.repositories.FeatureRepository;
 import fr.isika.cda.repositories.LearningPathRepository;
@@ -45,6 +46,7 @@ import fr.isika.cda.repositories.PhysicalRepository;
 import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.repositories.StudentRepository;
 import fr.isika.cda.repositories.SubscriptionRepository;
+import fr.isika.cda.repositories.SuperAdminRepository;
 import fr.isika.cda.repositories.TeacherRepository;
 import fr.isika.cda.repositories.UnitRepository;
 import fr.isika.cda.repositories.UserRepository;
@@ -81,8 +83,17 @@ public class DataSetBean {
 	@Inject
 	private LearningPathRepository learningPathRepository;
 
+	@Inject
+	private SuperAdminRepository superAdminRepository;
+
 	@PostConstruct
 	private void initBDD() {
+		// creating a superAdmin to Rule them All
+		SuperAdmin superAdmin = new SuperAdmin("master", "passWorld",
+				new Profil("RUSARD", "Argus", "", new Contact("argus@cracmol.com", "07 19 73 35 69",
+						new Address(4, "Privet Drive", "Little-Whinging", "CR3 0AA"))));
+		superAdminRepository.save(superAdmin);
+
 		// creating features to fill subscriptions
 		Feature feature1 = new Feature("Cours online",
 				"Pour permettre à vos professeurs de proposer des cours en ligne");
@@ -154,6 +165,7 @@ public class DataSetBean {
 
 		// Schools need a membership !
 
+
 		School school1 = new School("Collège des bois", "Logo_Crop_CollegeDesBois.png",
 				"Le collège où les connaissances prennent racine", new ArrayList<>(),
 				new Contact("collegeDesBois@gmail.com", "05 05 05 05 05",
@@ -186,7 +198,7 @@ public class DataSetBean {
 		schoolRepository.save(school2);
 		createAdmin(user2, school2);
 
-		School school3 = new School("Lycée Beaux Bâtons", "LogoLyceeBeauxBatons.png", "Lycée privé", new ArrayList<>(),
+    School school3 = new School("Lycée Beaux Bâtons", "LogoLyceeBeauxBatons.png", "Lycée privé", new ArrayList<>(),
 				new Contact("lyceebeauxbatons@gmail.com", "04 86 11 23 36",
 						new Address(11, "Avenue des lutins", "PAIMPONT", "35380")),
 				SchoolTypeEnum.LYCEE);
@@ -198,6 +210,7 @@ public class DataSetBean {
 		createAdmin(user3, school3);
 
 		School school4 = new School("Collège de la montagne", "Logo_Crop_CollegeDeLaMontagne.png",
+
 				"Hissons nos ambitions vers les sommets", new ArrayList<>(),
 				new Contact("collegeDeLaMontagne@gmail.com", "04 06 06 06 06",
 						new Address(45, "Rue du sommet", "ALBERTVILLE", "73200")),
@@ -212,6 +225,7 @@ public class DataSetBean {
 		school4.setMembership(membership5);
 		schoolRepository.save(school4);
 		createAdmin(user3, school4);
+
 
 		School school5 = new School("Ecole du Port", "LogoEcoleDuPortNoName.png",
 				"Ecole où l'on vogue ensemble vers une meilleure connaissance", new ArrayList<>(),
@@ -346,12 +360,12 @@ public class DataSetBean {
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
 				teacher3, AcademicLevel.QUATRIEME);
 		unitRepository.save(unit3);
-		
+
 		Unit unit4 = new Unit("Lorem Ipsum",
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
 				teacher3, AcademicLevel.CINQUIEME);
 		unitRepository.save(unit4);
-		
+
 		Unit unit5 = new Unit("Lorem Ipsum",
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
 				teacher1, AcademicLevel.SIXIEME);
