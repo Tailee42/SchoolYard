@@ -11,6 +11,7 @@
     <ui:define name="title">Tableau de bord utilisateur</ui:define>
 
     <ui:define name="header">
+     #{membersListBean.getMemberRole(m)}
         <h:link outcome="schoolsList">Liste des écoles</h:link>
         <h:link outcome="schoolSubscriptionForm">Créer une école</h:link>
         <h:form class="inline">

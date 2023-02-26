@@ -13,15 +13,15 @@
 		<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
 		<li><a th:href="@{/usersList}">Utilisateurs</a></li>
 		<li><a th:href="@{/schoolsList}">Ecoles</a></li>
-		<li><a th:href="@{/featuresList}">Fonctionnalités</a></li>
+		<li><a th:href="@{/featuresList}">FonctionnalitÃ©s</a></li>
 		<li><a th:href="@{/subscriptionsList}">Abonnements</a></li>
 	</ul>
 	</nav>
 	
-	<h2>Informations de l'école</h2>
+	<h2>Informations de l'Ã©cole</h2>
 	<form th:action="@{/modifySchoolStatus}" method="post" class="forms">
 		<input type="hidden" name="id" th:value="${school.id}" />
-		<label>Nom de l'école : </label>
+		<label>Nom de l'Ã©cole : </label>
 		<span th:text="${school.schoolName}"></span>
 		<br/>
 		<br/>
@@ -29,7 +29,7 @@
 		<span th:text="${school.synthesis}"></span>
 		<br/>
 		<br/>
-		<label>Type d'école : </label>
+		<label>Type d'Ã©cole : </label>
 		<span th:text="${school.schoolTypeEnum}"></span>
 		<br/>
 		<br/>
@@ -37,7 +37,7 @@
 		<span th:text="${school.contact.email}"></span>
 		<br/>
 		<br/>
-		<label>Téléphone : </label>
+		<label>TÃ©lÃ©phone : </label>
 		<span th:text="${school.contact.phone}"></span>
 		<br/>
 		<br/>
@@ -59,17 +59,17 @@
 		<span th:text="${school.membership.endingDate}"></span>
 		<br/>
 		<br/>
-		<label>Liste des fonctionnalités : </label>
+		<label>Liste des fonctionnalitÃ©s : </label>
 		<div th:each="feature : ${features}" th:if="${subscription.features.contains(feature)}">
 			<input type="hidden" name="featureId" th:value="${feature.id}"/>
 			<span th:text="${feature.featureTitle}"></span>
 		</div>
 		<br/>
 		<br/>
-		<a th:href="@{schoolSubscriptionForm/(id=${school.id})}">Modifier l'abonnement de l'école</a>
+		<a th:href="@{schoolSubscriptionForm/(id=${school.id})}">Modifier l'abonnement de l'Ã©cole</a>
 		<br/>
 		<br/>
-		<label>Statut de l'école : </label>
+		<label>Statut de l'Ã©cole : </label>
 		<select name="statut" class="searchMenu">
 			<option th:each="status : ${T(fr.isika.cda.entities.school.StatusSchool).values()}" th:value="${status}" th:text="${status.displayValue}" th:selected="${status == school.statusSchool}" ></option>
 		</select>
