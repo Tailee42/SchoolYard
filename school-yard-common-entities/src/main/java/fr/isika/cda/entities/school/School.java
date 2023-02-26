@@ -49,6 +49,7 @@ public class School implements Serializable {
 		this.contact = new Contact();
 		this.schoolPage = new SchoolPage();
 		this.logo = "no_logo.png";
+		this.stats = new Statistics();
 	}
 
 	public School(String schoolName, String logo, String presentation, List<Member> members, Contact contact,

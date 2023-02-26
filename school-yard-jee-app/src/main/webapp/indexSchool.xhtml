@@ -1,62 +1,80 @@
 <ui:composition template="WEB-INF/templates/schoolLayout.xhtml"
-                xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:define name="cssFiles">
 		<h:outputStylesheet name="buttons.css" library="css" />
 		<h:outputStylesheet name="schoolWelcomePage.css" library="css" />
+	</ui:define>
+	
+	<ui:define name="navbar-link">
+		<h:form class="inline"
+			rendered="#{membersListBean.isAdmin(welcomeBean.connectedMember)}">
+			<h:commandLink
+				action="#{membersListBean.goToIndexSchool(welcomeBean.connectedMember)}">Retour</h:commandLink>
+		</h:form>
+	</ui:define>
 
-
-
-    </ui:define>
-
-    <ui:define name="content">
-
+	<ui:define name="content">
+		<br />
+		<br />
 		<div class="container">
 
 			<div class="divsection1">
-				<div>
-						<h:graphicImage name="#{indexSchoolBean.school.logo}" library="images" />
+				<div class="schoolLogo">
+					<h:graphicImage name="#{indexSchoolBean.school.logo}"
+						library="images" width="200px" height="200px" />
 				</div>
-
 				<h1>#{indexSchoolBean.school.schoolName}</h1>
-				<h2>Slogan</h2>
-				<p>#{indexSchoolBean.school.synthesis}</p>
+				<h2>
+					#{indexSchoolBean.school.synthesis}<br /> <br />
+				</h2>
 			</div>
-
+			
 			<div class="divsection2">
 
-			<div>
-			<h:graphicImage
-					action="#{indexSchoolBean.school.schoolPage.schoolValue.picture}"
-					value="picture" />
-			</div>
+				<div class="schoolPicture">
+
+					<h:graphicImage
+						name="#{indexSchoolBean.school.schoolPage.schoolValue.picture}"
+						library="images" width="200px" height="150px" />
+
+				</div>
 
 				<div>
 					<h2>Présentation de l'école</h2>
-					<p>#{indexSchoolBean.school.schoolPage.description}</p>
+
+					<div class="paragraph">
+						#{indexSchoolBean.school.schoolPage.description}</div>
 				</div>
 			</div>
 
 
-			<h:form class="divsection3" rendered="#{welcomeBean.isUserConnected()}">
+			<h:form class="divsection3"
+				rendered="#{welcomeBean.isUserConnected()}">
 				<div class="button">
-					<h:link outcome="studentSubscriptionForm"
-						value="Inscription élève" class="custom-button"  />
+					<h:link outcome="studentSubscriptionForm" value="Inscription élève"
+						class="custom-button" />
 				</div>
 
 				<div class="button">
 					<h:link outcome="teacherSubscriptionForm"
 						value="Inscription professeur" class="custom-button" />
 				</div>
-
 			</h:form>
 
+			<div class="contact">
+				<h3>Contact:</h3>
+				<h4>Téléphone:</h4>
+				<p>#{indexSchoolBean.school.contact.phone}</p>
+				<h4>Email:</h4>
+				<a href="mailto:#{indexSchoolBean.school.contact.email}">#{indexSchoolBean.school.contact.email}</a>
+			</div>
 		</div>
-	</ui:define>
 
+	</ui:define>
 
 </ui:composition>

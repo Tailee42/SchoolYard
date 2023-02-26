@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -16,6 +17,8 @@ public class SchoolPage implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	@Lob
 	private String description;
 	
 	@OneToOne(cascade = CascadeType.ALL)

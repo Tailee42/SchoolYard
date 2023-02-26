@@ -15,6 +15,7 @@
 	<ui:define name="header">
 
 		<h:link outcome="index">Accueil</h:link>
+		<h:link outcome="schoolsList">Liste des écoles</h:link>
 		<h:link outcome="userSubscriptionForm">S'inscrire</h:link>
 
 	</ui:define>
@@ -30,8 +31,8 @@
 						<h:outputLabel value="Identifiant : " for="loginId" />
 						<h:inputText id="loginId" value="#{loginBean.user.login}"
 							class="formNumInput" required="true"
-							requiredMessage="Veuillez saisir un identifiant !"
-							validatorMessage="L'identifiant doit contenir 5 à 15 caractères et aucun espace !">
+							requiredMessage="Veuillez saisir un identifiant"
+							validatorMessage="L'identifiant doit contenir 5 à 15 caractères et aucun espace">
 							<f:validateRegex pattern="(^(\S){5,15})" for="loginId" />
 						</h:inputText>
 						<h:message styleClass="errorMessage" for="loginId" />
@@ -40,7 +41,7 @@
 						<h:inputSecret id="loginPassword"
 							value="#{loginBean.user.security.password}" class="formNumInput"
 							required="true"
-							requiredMessage="Veuillez saisir un mot de passe !">
+							requiredMessage="Veuillez saisir un mot de passe">
 						</h:inputSecret>
 						<h:message styleClass="errorMessage" for="loginPassword" />
 						<h:outputText rendered="#{not loginBean.correctPassword or not loginBean.userActive}" value="Identifiant et/ou mot de passe incorrect(s)"/>

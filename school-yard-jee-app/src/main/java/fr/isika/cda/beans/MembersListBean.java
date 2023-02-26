@@ -31,21 +31,19 @@ public class MembersListBean {
 
 	private List<Member> members = new ArrayList<>();
 	private String memberRole;
-	private boolean isAdmin = true;
-
 
 	public List<Member> allMembersForOneUser() {
 		members = memberRepository.getAllMembersForOneUser(SessionUtils.getConnectedUser().getId());
 		return members;
 	}
 
-	//Modify to send admin to it's dashboard
+	// Modify to send admin to it's dashboard
 	public String goToIndexSchool(Member member) {
 		SessionUtils.setConnectedMember(member);
 		SessionUtils.setCurrentSchool(member.getSchool());
-		if(member instanceof Admin) {
+		if (member instanceof Admin) {
 			return "adminDashboard?faces-redirect-true";
-		}else {
+		} else {
 			return "indexSchool?faces-redirect=true";
 		}
 	}
@@ -66,69 +64,81 @@ public class MembersListBean {
 		return member instanceof Admin;
 	}
 
-	public List<SynchronousLesson> getFutureSynchronousLessonForUserLikeTeacher(){
+	public List<SynchronousLesson> getFutureSynchronousLessonForUserLikeTeacher() {
 		allMembersForOneUser();
 		return getFuturSynchronousLessonLikeTeacher();
 	}
 
-	public List<SynchronousLesson> getPastSynchronousLessonForUserLikeTeacher(){
+	public List<SynchronousLesson> getPastSynchronousLessonForUserLikeTeacher() {
 		allMembersForOneUser();
 		return getPastSynchronousLessonLikeTeacher();
 	}
 
-	public List<LearningPath> getFutureSynchronousLessonForUserLikeStudent(){
+	public List<LearningPath> getFutureSynchronousLessonForUserLikeStudent() {
 		allMembersForOneUser();
 		List<LearningPath> futurLearningPathList = new ArrayList<>();
 		List<LearningPath> allLearningPathList = getSynchronousLessonLikeStudent();
 
 		for (LearningPath learningPath : allLearningPathList) {
-			SynchronousLesson synchronousLesson = (SynchronousLesson) learningPath.getActivity();
-			if(synchronousLesson.getClassDate().isAfter(LocalDateTime.now())) {
+			SynchronousLesson synchronousLesson;
+			if (learningPath.getActivity() instanceof SynchronousLesson) {
+				synchronousLesson = (SynchronousLesson) learningPath.getActivity();
+			} else {
+				break;
+			}
+			if (synchronousLesson.getClassDate().isAfter(LocalDateTime.now())) {
 				futurLearningPathList.add(learningPath);
 			}
 		}
 		return futurLearningPathList;
 	}
 
-	public List<LearningPath> getPastSynchronousLessonForUserLikeStudent(){
+	public List<LearningPath> getPastSynchronousLessonForUserLikeStudent() {
 		allMembersForOneUser();
 		List<LearningPath> pastLearningPathList = new ArrayList<>();
 		List<LearningPath> allLearningPathList = getSynchronousLessonLikeStudent();
 
 		for (LearningPath learningPath : allLearningPathList) {
-			SynchronousLesson synchronousLesson = (SynchronousLesson) learningPath.getActivity();
-			if(synchronousLesson.getClassDate().isBefore(LocalDateTime.now())) {
+			SynchronousLesson synchronousLesson;
+			if (learningPath.getActivity() instanceof SynchronousLesson) {
+				synchronousLesson = (SynchronousLesson) learningPath.getActivity();
+			} else {
+				break;
+			}
+			if (synchronousLesson.getClassDate().isBefore(LocalDateTime.now())) {
 				pastLearningPathList.add(learningPath);
 			}
 		}
 		return pastLearningPathList;
 	}
 
-	public List<SynchronousLesson> getFuturSynchronousLessonLikeTeacher(){
+	public List<SynchronousLesson> getFuturSynchronousLessonLikeTeacher() {
 		List<SynchronousLesson> synchronousLessonList = new ArrayList<>();
 		for (Member member : members) {
 			if (member instanceof Teacher) {
-				synchronousLessonList.addAll(synchronousLessonRepository.getFuturSynchronousLessonsByIdMember(member.getId()));
+				synchronousLessonList
+						.addAll(synchronousLessonRepository.getFuturSynchronousLessonsByIdMember(member.getId()));
 			}
 		}
 		return synchronousLessonList;
 	}
 
-	public List<SynchronousLesson> getPastSynchronousLessonLikeTeacher(){
+	public List<SynchronousLesson> getPastSynchronousLessonLikeTeacher() {
 		List<SynchronousLesson> synchronousLessonList = new ArrayList<>();
 		for (Member member : members) {
 			if (member instanceof Teacher) {
-				synchronousLessonList.addAll(synchronousLessonRepository.getPastSynchronousLessonsByIdMember(member.getId()));
+				synchronousLessonList
+						.addAll(synchronousLessonRepository.getPastSynchronousLessonsByIdMember(member.getId()));
 			}
 		}
 		return synchronousLessonList;
 	}
 
-	public List<LearningPath>  getSynchronousLessonLikeStudent(){
+	public List<LearningPath> getSynchronousLessonLikeStudent() {
 		List<LearningPath> learningPathList = new ArrayList<>();
 		for (Member member : members) {
 			if (member instanceof Student) {
-				learningPathList.addAll(learningPathRepository.getLearningPathsByStudentId(member.getId()));
+				learningPathList.addAll(learningPathRepository.getLearningPathsByUserId(member.getId()));
 			}
 		}
 		return learningPathList;
@@ -148,6 +158,25 @@ public class MembersListBean {
 		return synchronousLesson.getDuration();
 	}
 
+	public boolean userHasTeacher() {
+		for (Member member : members) {
+			if (member instanceof Teacher) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean userHasStudent() {
+
+		for (Member member : members) {
+			if (member instanceof Student) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public List<Member> getMembers() {
 		return members;
 	}
@@ -163,15 +192,5 @@ public class MembersListBean {
 	public void setMemberRole(String memberRole) {
 		this.memberRole = memberRole;
 	}
-
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
-
-
 
 }

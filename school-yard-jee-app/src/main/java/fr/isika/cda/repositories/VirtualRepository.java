@@ -4,6 +4,7 @@ import fr.isika.cda.entities.lesson.VirtualOption;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.Optional;
 
@@ -17,11 +18,15 @@ public class VirtualRepository {
     }
 
     public Optional<VirtualOption> getVirtualOptionBySynchronousLessonById(Long id) {
-        VirtualOption virtualOption = entityManager
-                .createQuery("SELECT v FROM VirtualOption v WHERE v.synchronousLesson.id = :id_synchronousLesson", VirtualOption.class)
-                .setParameter("id_synchronousLesson", id)
-                .getSingleResult();
-        return Optional.ofNullable(virtualOption);
+        try {
+            VirtualOption virtualOption = entityManager
+                    .createQuery("SELECT v FROM VirtualOption v WHERE v.synchronousLesson.id = :id_synchronousLesson", VirtualOption.class)
+                    .setParameter("id_synchronousLesson", id)
+                    .getSingleResult();
+            return Optional.ofNullable(virtualOption);
+        } catch (NoResultException noResultException) {
+            return Optional.empty();
+        }
 
     }
 }

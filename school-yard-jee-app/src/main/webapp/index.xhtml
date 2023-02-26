@@ -19,7 +19,7 @@
 		<h:link outcome="userSubscriptionForm">S'inscrire</h:link>
 		<h:link outcome="userDashboard"
 			rendered="#{welcomeBean.userConnected}">Tableau de bord</h:link>
-		<h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se connecter</h:link>
+		<h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:link>
 		<h:form class="inline">
 			<h:commandLink action="#{loginBean.logout()}"
 				rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
@@ -117,13 +117,11 @@
 					<h:link outcome="userSubscriptionForm" class="custom-button"> S'inscrire </h:link>
 					<h:link outcome="schoolsList" class="custom-button"> Voir les écoles </h:link>
 				</div>
-				
 
 		</div>
 		</div>
 		</div>
 	</ui:define>
-
 
 </ui:composition>
 

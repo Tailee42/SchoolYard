@@ -1,9 +1,8 @@
-<ui:composition template="WEB-INF/templates/commonLayout.xhtml"
+<ui:composition template="WEB-INF/templates/schoolLayout.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 	<ui:define name="metaData">
 		<f:metadata>
@@ -12,10 +11,12 @@
 	</ui:define>
 
 	<ui:define name="cssFiles">
+		<h:outputStylesheet name="cards.css" library="css" />
 		<h:outputStylesheet name="unitCard.css" library="css" />
-		<h:outputStylesheet name="button.css" library="css" />
+		<h:outputStylesheet name="buttons.css" library="css" />
 	</ui:define>
-
+	<ui:define name="navbar-link">
+	</ui:define>
 	<ui:define name="title">Contenu pédagogique</ui:define>
 
 	<ui:define name="header">
@@ -29,13 +30,18 @@
 	</ui:define>
 
 	<ui:define name="content">
+		#{unitBean.getUnitId()}
 		<h1>Mon cours</h1>
 
-		<div class="box">
-			#{unitBean.getUnitId()}
+		<div class="box" style="border-top: 3px solid ##{unitBean.school.schoolPage.theme.primaryColor}">
+
 			<h2>
 				<h:outputText value="#{unitBean.unit.title}" />
+				<ui:fragment rendered="#{unitBean.isFavorite()}">
+					<i class="fa-solid fa-star" ></i>
+				</ui:fragment>
 			</h2>
+
 			<hr />
 			<h3>
 				<h:outputText value="#{unitBean.unit.subject}" />
@@ -45,15 +51,24 @@
 			</h4>
 			<p>
 				Prof :
-				<h:outputText
-					value="#{unitBean.unit.teacher.user.profil.firstName} #{unitBean.unit.teacher.user.profil.lastName}" />
+				<h:outputText value="#{unitBean.unit.teacher.user.fullName()}" />
 			</p>
 			<h:outputText value="#{unitBean.unit.content}" />
-
 			<br /> <br />
-			<h:button value="Sauvegarder dans ma liste de cours"
-				class="custom-button">
-			</h:button>
+			<h:form
+				rendered="#{not unitBean.isFavorite() and unitBean.isStudent()}">
+				<h:commandButton action="#{unitBean.saveAsFavorite()}"
+					value="Enregistrer dans mes favoris"
+					class="custom-extra-long-button">
+				</h:commandButton>
+			</h:form>
+
+			<h:form>
+			<h:commandLink
+				action="#{membersListBean.goToIndexSchool(welcomeBean.connectedMember)}">Retour</h:commandLink>
+			</h:form>
+
+
 		</div>
 	</ui:define>
 

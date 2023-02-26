@@ -8,12 +8,12 @@ import fr.isika.cda.entities.school.Membership;
 
 @Stateless
 public class MembershipRepository {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
-	
-    public void save(Membership membership) {
-        entityManager.persist(membership);
-    }
+
+	public void save(Membership membership) {
+		entityManager.persist(membership);
+	}
 
 }

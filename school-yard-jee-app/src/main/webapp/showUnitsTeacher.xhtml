@@ -1,0 +1,62 @@
+<ui:composition template="WEB-INF/templates/commonLayout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:define name="cssFiles">
+		<h:outputStylesheet name="cards.css" library="css" />
+
+		<h:outputStylesheet name="buttons.css" library="css" />
+		<h:outputStylesheet name="forms.css" library="css" />
+
+	</ui:define>
+
+	<ui:define name="title">Cours en ligne professeur</ui:define>
+
+	<ui:define name="header">
+		<h:link outcome="index">Accueil</h:link>
+		<h:link outcome="userDashboard"
+			rendered="#{welcomeBean.userConnected}">Tableau de bord</h:link>
+		<h:form class="inline">
+			<h:commandLink action="#{loginBean.logout()}"
+				rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="content">
+		<h1>Cours en ligne en tant que professeur</h1>
+
+		<div class="container">
+			<ui:repeat value="#{showUnitsUserBean.allUnitsByTeacher()}" var="u">
+				<h:form>
+					<div class="box" style="border-top: 3px solid ##{u.teacher.school.schoolPage.theme.primaryColor}">
+						<h2>
+							<h:outputText value="#{u.title}" />
+						</h2>
+						<h3>
+							<h:outputText value="#{u.subject.displayValue}" />
+						</h3>
+						<h4>
+							<h:outputText value="#{u.level.displayValue}" />
+						</h4>
+						<p>
+							<h:outputText value="#{u.status.displayValue}"/>
+						</p>
+						<br />
+						<h:form>
+							<h:commandButton action="#{showUnitsUserBean.goToUnitForTeacher(u)}" value = "Consulter"
+											 class="custom-button link">
+							</h:commandButton>
+						</h:form>
+
+					</div>
+				</h:form>
+			</ui:repeat>
+		</div>
+		<br/>
+		
+	</ui:define>
+
+</ui:composition>

@@ -1,15 +1,11 @@
 package fr.isika.cda.repositories;
-
-import java.time.LocalDateTime;
 import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import fr.isika.cda.entities.common.AcademicLevel;
 import fr.isika.cda.entities.common.SubjectEnum;
-import fr.isika.cda.entities.lesson.SynchronousLesson;
 import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.lesson.UnitStatusEnum;
 
@@ -41,11 +37,6 @@ public class UnitRepository {
 				.getResultList();
 	}
 
-	public List<Unit> thisSchoolUnits(List<Long> teachersIds) {
-		return entityManager.createQuery("SELECT u FROM Unit u WHERE u.teacher.id in(:teachersIds_param)", Unit.class)
-				.setParameter("teachersIds_param", teachersIds).getResultList();
-	}
-
 	public List<Unit> getAll() {
 		return entityManager.createQuery("SELECT u FROM Unit u", Unit.class).getResultList();
 	}
@@ -72,5 +63,12 @@ public class UnitRepository {
                 .setParameter("status_param", UnitStatusEnum.VALIDATED)
                 .getResultList();
     }
+
+	public List<Unit> getAllUnitsByTeacherId(Long id) {
+		return entityManager
+        .createQuery("SELECT u FROM Unit u WHERE u.teacher.id = :id_teacher", Unit.class)
+        .setParameter("id_teacher", id)
+        .getResultList();
+	}
 
 }

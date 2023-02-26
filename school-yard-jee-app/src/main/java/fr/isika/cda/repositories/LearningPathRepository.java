@@ -1,40 +1,56 @@
 package fr.isika.cda.repositories;
 
-import fr.isika.cda.entities.student.LearningPath;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import java.util.List;
+
+import fr.isika.cda.entities.student.LearningPath;
 
 @Stateless
 public class LearningPathRepository {
-     @PersistenceContext
-    private EntityManager entityManager;
 
-     public void save(LearningPath learningPath) {
-         entityManager.persist(learningPath);
-     }
+	@PersistenceContext
+	private EntityManager entityManager;
 
-    public void update(LearningPath learningPath) {
-        entityManager.merge(learningPath);
-    }
+	public void save(LearningPath learningPath) {
+		entityManager.persist(learningPath);
+	}
 
-     public List<LearningPath> getLearningPathsByActivity(Long idActivity) {
-         return entityManager
-                 .createQuery("select l FROM LearningPath l WHERE l.activity.id = :id_activity", LearningPath.class)
-                 .setParameter("id_activity", idActivity)
-                 .getResultList();
-     }
+	public void update(LearningPath learningPath) {
+		entityManager.merge(learningPath);
+	}
 
-    public List<LearningPath> getLearningPathsByStudentId(Long idStudent) {
-        return entityManager
-                .createQuery("select l FROM LearningPath l  WHERE l.student.id = :id_student ", LearningPath.class)
-                .setParameter("id_student", idStudent)
-                .getResultList();
-    }
+	public List<LearningPath> getLearningPathsByActivity(Long idActivity) {
+		return entityManager
+				.createQuery("select l FROM LearningPath l WHERE l.activity.id = :id_activity", LearningPath.class)
+				.setParameter("id_activity", idActivity).getResultList();
+	}
 
+	public List<LearningPath> getLearningPathsByStudentId(Long idUser) {
+		try {
+			return entityManager
+					.createQuery("select l FROM LearningPath l WHERE l.student.id = :id_user", LearningPath.class)
+					.setParameter("id_user", idUser)
+					.getResultList();
+		} catch (NoResultException noResultException) {
+			return new ArrayList<>();
+		}
+	}
 
+	public List<LearningPath> getLearningPathsByUserId(Long idUser) {
+		try {
+			return entityManager
+					.createQuery("select l FROM LearningPath l WHERE l.student.user.id = :id_user", LearningPath.class)
+					.setParameter("id_user", idUser)
+					.getResultList();
+		} catch (NoResultException noResultException) {
+			return new ArrayList<>();
+		}
+	}
 
     public LearningPath getLearningPathBySynchronousLessonIdAndStudentID(Long idSynchronousLesson, Long idStudent) {
         return entityManager
@@ -43,8 +59,5 @@ public class LearningPathRepository {
                 .setParameter("id_lesson", idSynchronousLesson)
                 .getSingleResult();
     }
-
-
-
 
 }
