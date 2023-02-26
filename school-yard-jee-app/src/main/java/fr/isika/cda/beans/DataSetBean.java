@@ -256,7 +256,7 @@ public class DataSetBean {
 		userRepository.save(user11);
 		Student student1 = createStudent(school1, user11, AcademicLevel.QUATRIEME);
 		userRepository.save(user11);
-		Student student2 = createStudent(school3, user11, AcademicLevel.TROISIEME);
+		Student student2 = createStudent(school4, user11, AcademicLevel.TROISIEME);
 
 		User user12 = new User("fleur", LocalDate.of(2022, Month.OCTOBER, 25), RoleTypeEnum.USER,
 				new Security("Fleur-123"), new Profil("ALBRAND", "Fleur", "", new Contact("fleur@gmail.com",
@@ -268,9 +268,9 @@ public class DataSetBean {
 				new Security("Herve-123"), new Profil("LEGRAND", "Hervé", "", new Contact("herve@gmail.com",
 						"06 32 32 32 32", new Address(12, "Rue des remparts", "BOURGES", "18000"))));
 		userRepository.save(user13);
-		Student student4 = createStudent(school3, user13, AcademicLevel.SIXIEME);
+		Student student4 = createStudent(school3, user13, AcademicLevel.SECONDE);
 		userRepository.save(user13);
-		Student student5 = createStudent(school1, user13, AcademicLevel.CINQUIEME);
+		Student student5 = createStudent(school1, user13, AcademicLevel.TROISIEME);
 
 		User user14 = new User("emilie", LocalDate.of(2022, Month.JANUARY, 15), RoleTypeEnum.USER,
 				new Security("Emilie-123"), new Profil("GRANDY", "Emilie", "", new Contact("emilie@gmail.com",
