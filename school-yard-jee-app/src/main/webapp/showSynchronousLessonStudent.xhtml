@@ -23,7 +23,7 @@
         <h1>Mes cours particuliers en tant qu'élève :</h1>
 <h2>A venir</h2>
         <div class="container">
-            <ui:repeat value="#{membersListBean.getFutureSynchronousLessonForUserLikeStudent()}" var="l">
+            <ui:repeat value="#{membersListBean.getFutureLearningPathForUserLikeStudent()}" var="l">
                 <div class="box" style="border-top: 3px solid ##{l.student.school.schoolPage.theme.primaryColor}">
                     <h2>
                         <h:outputText value="#{l.student.school.schoolName}"/>
@@ -47,7 +47,7 @@
                     </p>
 
                     <hr/>
-                    <h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}"/>
+                    <h:outputText value="#{synchronousLessonBean.typeOfLesson(l.activity.id)}"/>
 
 
 
@@ -57,7 +57,7 @@
 
         <h2>Passés</h2>
         <div class="container">
-            <ui:repeat value="#{membersListBean.getPastSynchronousLessonForUserLikeStudent()}" var="s">
+            <ui:repeat value="#{membersListBean.getPastLearningPathForUserLikeStudent()}" var="s">
                 <div class="box" style="border-top: 3px solid ##{s.student.school.schoolPage.theme.primaryColor}">
                     <h2>
                         <h:outputText value="#{s.student.school.schoolName}"/>

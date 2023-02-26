@@ -12,7 +12,7 @@
 
 	<ui:define name="navbar-link">
 		<h:form class="inline"
-			rendered="#{membersListBean.isAdmin(welcomeBean.connectedMember) and welcomeBean.isMemberConnected()}">
+			rendered="#{membersListBean.memberIsAdmin(welcomeBean.connectedMember) and welcomeBean.isMemberConnected()}">
 			<h:commandLink
 				action="#{membersListBean.goToIndexSchool(welcomeBean.connectedMember)}">Retour</h:commandLink>
 		</h:form>
@@ -115,7 +115,7 @@
 				value="#{synchronousLessonBean.getSynchronousLessonsBySubject()}"
 				var="s" varStatus="status">
 
-				<div class="box">
+				<div class="box" style="border-top: 3px solid ##{s.teacher.school.schoolPage.theme.primaryColor}">
 					<h2>
 						<h:outputText value="#{s.title}" />
 					</h2>
@@ -146,6 +146,9 @@
 						<h:outputText value="#{s.price}" />
 						€
 					</h3>
+					<hr />
+					<h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}" />
+					<hr />
 					<p>
 						Il reste :
 						<h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}" />
