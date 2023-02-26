@@ -173,7 +173,7 @@
 				value="#{synchronousLessonBean.getSynchronousLessonsByLevel()}"
 				var="s" varStatus="status">
 
-				<div class="box">
+				<div class="box" style="border-top: 3px solid ##{s.teacher.school.schoolPage.theme.primaryColor}">
 					<h2>
 						<h:outputText value="#{s.title}" />
 					</h2>
@@ -204,6 +204,9 @@
 						<h:outputText value="#{s.price}" />
 						€
 					</h3>
+					<hr />
+					<h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}" />
+					<hr />
 					<p>
 						Il reste :
 						<h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}" />
