@@ -16,7 +16,6 @@ import org.primefaces.model.file.UploadedFile;
 import fr.isika.cda.entities.lesson.Unit;
 import fr.isika.cda.entities.school.FontEnum;
 import fr.isika.cda.entities.school.School;
-import fr.isika.cda.entities.school.Theme;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.teacher.Teacher;
 import fr.isika.cda.repositories.SchoolRepository;
@@ -46,8 +45,6 @@ public class AdminBean {
 	private SchoolRepository schoolRepository;
 
 	private School school = SessionUtils.getCurrentSchool();
-
-	private String pictureFileName;
 
 	// méthodes de redirection
 	public String modifySchool() {
@@ -104,7 +101,6 @@ public class AdminBean {
 		this.school = school;
 	}
 
-
 	// méthode d'affichage
 	public List<Teacher> allSchoolTeachers() {
 		return teacherRepository.currentSchoolTeachers(getCurrentSchoolId());
@@ -133,12 +129,11 @@ public class AdminBean {
 	public void uploadFile(FileUploadEvent event) {
 		String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyy_hhmmss"));
 		UploadedFile file = event.getFile();
-		pictureFileName = timestamp + "_" + file.getFileName();
+		String pictureFileName = timestamp + "_" + file.getFileName();
 		FileUpload.doUpLoad(file, pictureFileName);
 
 		school.getSchoolPage().getSchoolValue().setPicture(pictureFileName);
 		schoolRepository.update(school);
-		pictureFileName = "empty_school_picture.png";
 	}
 
 	public Map<String, FontEnum> fontEnum() {

@@ -26,6 +26,7 @@
 				<th>PrÃ©nom</th>
 				<th>Email</th>
 				<th>Ville</th>
+				<th>Dernière connexion</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -36,6 +37,7 @@
 			<td><span th:text=${user.profil.firstName}></span></td>
 			<td><span th:text=${user.profil.contact.email}></span></td>
 			<td><span th:text=${user.profil.contact.address.town}></span></td>
+			<td><span th:text=${user.lastConnection}></span></td>
 			<td><a th:href="@{deleteUser/(id=${user.id})}">Supprimer</a></td>
 		</tr>
 	</table>
