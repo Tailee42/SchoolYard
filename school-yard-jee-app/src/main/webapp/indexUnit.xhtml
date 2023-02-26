@@ -63,10 +63,11 @@
 				</h:commandButton>
 			</h:form>
 
-			<h:form>
+			<h:form rendered="#{membersListBean.memberIsAdmin(welcomeBean.connectedMember)}">
 			<h:commandLink
 				action="#{membersListBean.goToIndexSchool(welcomeBean.connectedMember)}">Retour</h:commandLink>
 			</h:form>
+			<h:link rendered="#{not membersListBean.memberIsAdmin(welcomeBean.connectedMember)}" outcome="showUnits" value="Retour"/>
 
 
 		</div>

@@ -23,7 +23,7 @@
     <ui:define name="content">
 
         <h:link outcome="userProfileForm" value="Modifier mon profil"
-                class="custom-long-button link right" />
+                class="custom-long-button link right"/>
         <br/>
         <h2>Bienvenue #{welcomeBean.getUserConnectedName()} sur votre
             espace utilisateur</h2>
@@ -40,6 +40,9 @@
                     <p>
                         <h:outputText rendered="#{membersListBean.memberIsAdmin(m)}"
                                       value="#{m.school.statusSchool.displayValue}"/>
+                        <h:outputText rendered="#{membersListBean.memberIsTeacher(m)}"
+                                      value="#{membersListBean.getTeacherStatus(m)}"/>
+
                     </p>
                     <hr/>
                     <p>
@@ -50,11 +53,9 @@
                     </h3>
 
                     <p>
-                        <ui:fragment rendered="#{membersListBean.memberIsTeacher(m)}">
-                            <h:outputText  value="#{membersListBean.getTeacherStatus(m)}"/><br/>
-                            <br/>
-                            <h:outputText  value="#{membersListBean.getTeacherSubject(m)}"/>
-                        </ui:fragment>
+
+                        <h:outputText rendered="#{membersListBean.memberIsTeacher(m)}"
+                                      value="#{membersListBean.getTeacherSubject(m)}"/>
                         <h:outputText rendered="#{membersListBean.memberIsStudent(m)}"
                                       value="#{membersListBean.getStudentLevel(m)}"/>
                     </p>
