@@ -16,6 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @ManagedBean
 public class ShowUnitsUserBean {
@@ -95,12 +96,12 @@ public class ShowUnitsUserBean {
         this.units = units;
     }
 
-    public SubjectEnum[] subjects() {
-        return SubjectEnum.values();
+    public Map<String, SubjectEnum> subjects() {
+        return SubjectEnum.subjects;
     }
 
-    public AcademicLevel[] levels() {
-        return AcademicLevel.values();
+    public Map<String, AcademicLevel> levels() {
+        return AcademicLevel.Academiclevels;
     }
 
 }

@@ -1,5 +1,7 @@
 package fr.isika.cda.beans;
 
+import java.util.Map;
+
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
@@ -22,8 +24,8 @@ public class CreateStudentBean {
 		return "userDashboard?faces-redirect=true";
 	}
 
-	public AcademicLevel[] levels() {
-		return AcademicLevel.values();
+	public Map<String, AcademicLevel> levels() {
+		return AcademicLevel.Academiclevels;
 	}
 
 	public Student getStudent() {

@@ -3,6 +3,7 @@ package fr.isika.cda.beans;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
@@ -105,12 +106,12 @@ public class SynchronousLessonBean {
 		this.lesson = lesson;
 	}
 
-	public SubjectEnum[] subjects() {
-		return SubjectEnum.values();
+	public Map<String, SubjectEnum> subjects() {
+		return SubjectEnum.subjects;
 	}
 
-	public AcademicLevel[] levels() {
-		return AcademicLevel.values();
+	public Map<String, AcademicLevel> levels() {
+		return AcademicLevel.Academiclevels;
 	}
 
 	public School getSchool() {

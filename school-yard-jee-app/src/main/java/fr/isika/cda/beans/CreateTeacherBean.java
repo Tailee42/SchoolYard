@@ -1,5 +1,7 @@
 package fr.isika.cda.beans;
 
+import java.util.Map;
+
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
@@ -26,12 +28,12 @@ public class CreateTeacherBean {
 		return "userDashboard?faces-redirect=true";
 	}
 
-	public SchoolTypeEnum[] schoolTypes() {
-		return SchoolTypeEnum.values();
+	public Map<String, SchoolTypeEnum> schoolTypes() {
+		return SchoolTypeEnum.levels;
 	}
 
-	public SubjectEnum[] subjects() {
-		return SubjectEnum.values();
+	public Map<String, SubjectEnum> subjects() {
+		return SubjectEnum.subjects;
 	}
 
 	public Teacher getTeacher() {
