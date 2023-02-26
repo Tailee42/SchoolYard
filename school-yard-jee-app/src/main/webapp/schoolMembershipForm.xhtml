@@ -6,7 +6,7 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 	<ui:define name="cssFiles">
-		<h:outputStylesheet name="cards.css" library="css"/>
+		<h:outputStylesheet name="card.css" library="css"/>
 		<h:outputStylesheet name="buttons.css" library="css"/>
 	</ui:define>
 
@@ -51,12 +51,8 @@
 						<p>
 							<h:outputText value="#{s.price}€" />
 						</p>
-
-					
 							<h:commandButton value="Souscrire" action="#{createSchoolBean.setMembership(s)}"
 											 class="custom-button"/>
-						
-
 					</div>
 				</ui:repeat>
 			</div>
