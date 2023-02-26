@@ -210,9 +210,10 @@ public class DataSetBean {
 				new Contact("lyceebeauxbatons@gmail.com", "02 86 11 23 36",
 						new Address(11, "Avenue des lutins", "PAIMPONT", "35380")),
 				SchoolTypeEnum.LYCEE);
-		SchoolPage schoolPage3 = new SchoolPage("Lycée Beaux Bâtons", new SchoolValue("Lycée privé",
-				"Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.", ""), new Theme());
+		SchoolPage schoolPage3 = new SchoolPage("Le lycée Beaux Bâtons est un établissement formant les jeunes élèves à l'art et à la pratique de l'apprentissage.", new SchoolValue("Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.","" ,
+				""), new Theme("6CA7E6", "A6A9AB", "F9F8F8", FontEnum.UBUNTU.name()));
 		school3.setSchoolPage(schoolPage3);
+		school3.setStatusSchool(StatusSchool.PUBLISHED);
 		school3.setMembership(membership1);
 		schoolRepository.save(school3);
 		createAdmin(user3, school3);
@@ -238,11 +239,11 @@ public class DataSetBean {
 				new Contact("ecoleDuPort@gmail.com", "04 03 03 03 03",
 						new Address(17, "Rue de l'embarcadère", "NICE", "06100")),
 				SchoolTypeEnum.ELEMENTAIRE);
-		SchoolPage schoolPage5 = new SchoolPage("Ecole où l'on vogue ensemble vers une meilleure connaissance",
-				new SchoolValue("Le partage en plein air",
-						"Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.", ""),
+		SchoolPage schoolPage5 = new SchoolPage("Aucune crainte, avec nous, votre réussite scolaire est assurée ! L'air marin procure des effets spectaculaires sur la mémoire et la rapidité de réalisation de ses devoirs ! ",
+				new SchoolValue("Ecole où l'on vogue ensemble vers une meilleure connaissance", "", ""),
 				new Theme("c8f5fa", "21c493", "f7f3ed", FontEnum.ZEYADA.name()));
 		school5.setSchoolPage(schoolPage5);
+		school5.setStatusSchool(StatusSchool.PUBLISHED);
 		school5.setMembership(membership4);
 		schoolRepository.save(school5);
 		createAdmin(user5, school5);
@@ -354,29 +355,43 @@ public class DataSetBean {
 		learningPathRepository.save(learningPath4);
 
 		// Creating some units
-		Unit unit1 = new Unit("Lorem Ipsum",
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
+		Unit unit1 = new Unit("La Première Guerre mondiale",
+				"En 1914, les grandes puissances appartiennent à des systèmes d'alliance antagonistes et les relations internationales sont tendues avec l'émergence de crises un peu partout : Balkans, politique coloniale, Weltpolitik de l'Allemagne.\r\n"
+				+ "\r\n"
+				+ "Après l'attentat de Sarajevo le 28 juin 1914, l'Autriche-Hongrie lance un ultimatum à la Serbie. Le refus des conditions sert de prétexte pour déclarer la guerre à la Serbie le 28 juillet. En une semaine, toute l'Europe entre en guerre par le jeu des alliances et par réflexe patriotique.",
 				teacher1, AcademicLevel.TROISIEME);
+		unit1.setStatus(UnitStatusEnum.VALIDATED);
 		unitRepository.save(unit1);
 
-		Unit unit2 = new Unit("Lorem Ipsum",
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
-				teacher2, AcademicLevel.CINQUIEME);
+		Unit unit2 = new Unit("Les nombres entiers",
+				"Les nombres entiers sont des nombres qui ne comportent pas de partie décimale. Ils peuvent être positifs (plus grands que zéro), négatifs (plus petits que zéro) ou nuls..",
+				teacher2, AcademicLevel.CM1);
+		unit2.setStatus(UnitStatusEnum.VALIDATED);
 		unitRepository.save(unit2);
 
-		Unit unit3 = new Unit("Lorem Ipsum",
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
+		Unit unit3 = new Unit("Les éléments et composés chimiques",
+				"Toutes les substances autour de nous sont constituées d'éléments ou de composés chimiques. Les éléments chimiques sont des substances simples qui ne peuvent pas être décomposées en d'autres substances par des moyens chimiques. Les composés chimiques sont des substances qui sont formées par la combinaison de deux ou plusieurs éléments chimiques différents.\r\n"
+				+ "\r\n"
+				+ "Les éléments chimiques sont représentés par des symboles chimiques, tels que H pour l'hydrogène, O pour l'oxygène et C pour le carbone. Il existe plus de 100 éléments différents dans la nature, mais seulement une trentaine d'entre eux sont couramment utilisés..",
 				teacher3, AcademicLevel.QUATRIEME);
+		unit3.setStatus(UnitStatusEnum.VALIDATED);
 		unitRepository.save(unit3);
 
-		Unit unit4 = new Unit("Lorem Ipsum",
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
+		Unit unit4 = new Unit("L'énergie",
+				"L'énergie est une grandeur physique qui mesure la capacité d'un système à produire un travail. Elle est présente dans tous les phénomènes physiques et chimiques qui se produisent autour de nous. Il existe différents types d'énergie, tels que l'énergie cinétique, l'énergie potentielle, l'énergie électrique, l'énergie thermique, l'énergie lumineuse, etc.\r\n"
+				+ "\r\n"
+				+ "L'énergie cinétique est l'énergie liée au mouvement d'un objet. Plus un objet se déplace rapidement, plus son énergie cinétique est grande. L'énergie potentielle est l'énergie liée à la position d'un objet dans un champ de force, comme la gravité ou l'électricité. Plus un objet est haut ou chargé, plus son énergie potentielle est grande..",
 				teacher3, AcademicLevel.CINQUIEME);
 		unitRepository.save(unit4);
 
-		Unit unit5 = new Unit("Lorem Ipsum",
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
+		Unit unit5 = new Unit("L'Union Européenne",
+				"L'Union européenne est une organisation composée de 27 pays européens qui ont décidé de travailler ensemble pour se soutenir mutuellement et résoudre des problèmes communs. Elle a été créée en 1957 avec six pays fondateurs : l'Allemagne, la Belgique, la France, l'Italie, le Luxembourg et les Pays-Bas.\r\n"
+				+ "\r\n"
+				+ "Les membres de l'Union européenne partagent un certain nombre de choses en commun, comme la monnaie (l'euro) dans 19 pays, des règles communes sur l'emploi, l'environnement et la sécurité alimentaire. Ils travaillent également ensemble pour résoudre des problèmes tels que le changement climatique et l'immigration.\r\n"
+				+ "\r\n"
+				+ "L'Union européenne est dirigée par des responsables politiques élus qui travaillent à Bruxelles, en Belgique. Le Parlement européen est l'une des principales institutions de l'Union européenne, composé de députés élus par les citoyens européens.",
 				teacher1, AcademicLevel.SIXIEME);
+		unit5.setStatus(UnitStatusEnum.VALIDATED);
 		unitRepository.save(unit5);
 
 		Unit unit6 = new Unit("Théorème de Pythagore",
@@ -392,38 +407,52 @@ public class DataSetBean {
 		unitRepository.save(unit6);
 
 		Unit unit7 = new Unit("Equation du 1er degré à une inconnue",
-				"Résoudre une équation à une inconnue x nécessite......", teacher4, AcademicLevel.QUATRIEME);
+				"Une équation est une expression mathématique qui contient une ou plusieurs inconnues et qui doit être résolue pour trouver la valeur de ces inconnues. Les équations du premier degré à une inconnue sont des équations de la forme ax + b = c, où a, b et c sont des nombres connus et x est l'inconnue que l'on cherche à trouver.\r\n"
+				+ "\r\n"
+				+ "Pour résoudre une équation du premier degré à une inconnue, on utilise des propriétés mathématiques qui nous permettent de déplacer les termes de l'équation d'un côté à l'autre de l'égalité sans la changer. Le but est de réussir à isoler l'inconnue x d'un côté de l'équation pour trouver sa valeur.", teacher4, AcademicLevel.QUATRIEME);
 		unit7.setStatus(UnitStatusEnum.VALIDATED);
 		unitRepository.save(unit7);
 
 		Unit unit8 = new Unit("Système d'équation à deux inconnues",
-				"Résoudre une équation à 2 inconnues x et y nécessite......", teacher4, AcademicLevel.TROISIEME);
+				"Un système d'équations à deux inconnues est un ensemble de deux équations qui contiennent deux inconnues différentes, par exemple x et y, et qui doivent être résolues simultanément pour trouver les valeurs de x et y qui satisfont à ces deux équations.", teacher4, AcademicLevel.TROISIEME);
 		unit8.setStatus(UnitStatusEnum.VALIDATED);
 		unitRepository.save(unit8);
 
-		Unit unit9 = new Unit("Lorem Ipsum",
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
+		Unit unit9 = new Unit("La morale et l'éthique",
+				"La morale et l'éthique sont des branches de la philosophie qui étudient la question de la moralité et de la valeur. Les questions morales portent sur des sujets tels que ce qui est bien et mal, ce qui est juste et injuste, et les raisons pour lesquelles nous devrions agir de manière morale.",
 				teacher5, AcademicLevel.TROISIEME);
+		unit9.setSubject(SubjectEnum.PHILOSOPHIE);
 		unitRepository.save(unit9);
 
-		Unit unit10 = new Unit("Lorem Ipsum",
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
+		Unit unit10 = new Unit("Le Moyen-Age",
+				"Le Moyen Âge est une période historique qui s'étend de la chute de l'Empire romain d'Occident en 476 jusqu'à la découverte de l'Amérique en 1492. Cette période est souvent divisée en trois grandes périodes : le Haut Moyen Âge (476-1000), le Moyen Âge central (1000-1300) et le Bas Moyen Âge (1300-1492).",
 				teacher5, AcademicLevel.CINQUIEME);
 		unitRepository.save(unit10);
 
-		Unit unit11 = new Unit("Lorem Ipsum",
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
-				teacher2, AcademicLevel.QUATRIEME);
+		Unit unit11 = new Unit("La numération",
+				"Les nombres sont composés de chiffres. Les chiffres utilisés en numération sont 0, 1, 2, 3, 4, 5, 6, 7, 8 et 9.\r\n"
+				+ "\r\n"
+				+ "Les nombres sont écrits à l'aide de chiffres placés dans des colonnes qui ont une valeur différente en fonction de leur position. Par exemple, dans le nombre 345, le chiffre 5 représente les unités, le chiffre 4 représente les dizaines et le chiffre 3 représente les centaines.\r\n"
+				+ "\r\n"
+				+ "Pour lire un nombre, il suffit de lire les chiffres en partant de la gauche et en respectant leur valeur de position. Par exemple, le nombre 345 se lit \"trois cent quarante-cinq\"..",
+				teacher2, AcademicLevel.CE2);
+		unit11.setStatus(UnitStatusEnum.VALIDATED);
 		unitRepository.save(unit11);
 
-		Unit unit12 = new Unit("Lorem Ipsum",
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
+		Unit unit12 = new Unit("L'atome",
+				"Un atome est la plus petite unité de matière qui a les propriétés d'un élément chimique. Chaque élément chimique est défini par le nombre de protons dans le noyau de ses atomes. Le nombre de protons est appelé numéro atomique et il détermine l'identité de l'élément. Par exemple, tous les atomes d'oxygène ont huit protons dans leur noyau.\r\n"
+				+ "\r\n"
+				+ "Les atomes sont constitués de trois types de particules subatomiques : les protons, les neutrons et les électrons. Les protons ont une charge positive et les électrons ont une charge négative, tandis que les neutrons n'ont pas de charge. Les électrons orbitent autour du noyau des atomes et sont organisés en couches électroniques. Chaque couche électronique peut contenir un nombre maximum d'électrons.",
 				teacher3, AcademicLevel.CINQUIEME);
 		unitRepository.save(unit12);
 
-		Unit unit13 = new Unit("Lorem Ipsum",
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
-				teacher2, AcademicLevel.SIXIEME);
+		Unit unit13 = new Unit("L'anatomie",
+				"Le corps humain est composé de plusieurs systèmes qui travaillent ensemble pour assurer le fonctionnement du corps. Les principaux systèmes du corps humain sont le système digestif, le système circulatoire, le système respiratoire, le système nerveux, le système musculaire, le système squelettique et le système endocrinien.\r\n"
+				+ "\r\n"
+				+ "Le système digestif est responsable de la digestion des aliments. Il se compose de l'œsophage, de l'estomac, de l'intestin grêle et du côlon. Les aliments sont décomposés en nutriments dans le système digestif et absorbés dans le sang pour être transportés à travers le corps..",
+				teacher2, AcademicLevel.CM2);
+		unit13.setStatus(UnitStatusEnum.VALIDATED);
+		unit13.setSubject(SubjectEnum.BIOLOGIE);
 		unitRepository.save(unit13);
 
 	}
