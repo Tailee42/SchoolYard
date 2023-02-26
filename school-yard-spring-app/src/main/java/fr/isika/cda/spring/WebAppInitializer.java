@@ -38,13 +38,13 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 		return new Filter[] { encodingFilter };
 	}
 
-	@Override
-	public void onStartup(ServletContext servletContext) throws ServletException {
-		AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
-		appContext.register(SpringWebConfig.class);
-		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("SpringDispatcher",
-				new DispatcherServlet(appContext));
-		dispatcher.setLoadOnStartup(1);
-		dispatcher.addMapping("/school-yard-spring-app/");
-	}
+//	@Override
+//	public void onStartup(ServletContext servletContext) throws ServletException {
+//		AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
+//		appContext.register(SpringWebConfig.class);
+//		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("SpringDispatcher",
+//				new DispatcherServlet(appContext));
+//		dispatcher.setLoadOnStartup(1);
+//		dispatcher.addMapping("/school-yard-spring-app/");
+//	}
 }

@@ -50,8 +50,6 @@ public class CreateSchoolBean {
 	private FeatureRepository featureRepository;
 
 	public String create() {
-		// TODO : ecrire le fichier sur le disque
-		school.setLogo(logoFileName);
 		school.setStatusSchool(StatusSchool.TOPUBLISH);
 		schoolRepository.save(school);
 		memberRepository.save(createAdmin());
