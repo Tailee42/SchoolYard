@@ -51,6 +51,7 @@ public class CreateSchoolBean {
 
 	public String create() {
 		school.setStatusSchool(StatusSchool.TOPUBLISH);
+		school.setLogo(logoFileName);
 		schoolRepository.save(school);
 		memberRepository.save(createAdmin());
 
