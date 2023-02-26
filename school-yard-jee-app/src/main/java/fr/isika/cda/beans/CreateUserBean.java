@@ -1,6 +1,6 @@
 package fr.isika.cda.beans;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
@@ -18,7 +18,7 @@ public class CreateUserBean {
 	private UserRepository userRepository;
 
 	public String create() {
-		user.setLastConnection(LocalDateTime.now());
+		user.setLastConnection(LocalDate.now());
 		user.setRole(RoleTypeEnum.USER);
 		userRepository.save(user);
 		user = new User();

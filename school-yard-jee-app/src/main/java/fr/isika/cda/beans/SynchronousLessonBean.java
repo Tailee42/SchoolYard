@@ -43,11 +43,6 @@ public class SynchronousLessonBean {
 		return synchronousLessonRepository.getFuturSynchronousLessonsByIdSchool(school.getId());
 	}
 
-	public List<SynchronousLesson> getSynchronousLessonsByIdMember() {
-		Member member = SessionUtils.getConnectedMember();
-		return synchronousLessonRepository.getFuturSynchronousLessonsByIdMember(member.getId());
-	}
-
 	public List<SynchronousLesson> getSynchronousLessonsByLevel() {
 		school = SessionUtils.getCurrentSchool();
 		return synchronousLessonRepository.getFuturSynchronousLessonsByLevel(school.getId(), lesson.getLevel());
@@ -72,6 +67,17 @@ public class SynchronousLessonBean {
 
 	public boolean isStudent() {
 		return (SessionUtils.getConnectedMember() instanceof Student);
+	}
+
+	public boolean showInscriptionLesson(SynchronousLesson synchronousLesson) {
+		Member member = SessionUtils.getConnectedMember();
+		if (member instanceof Student) {
+			LearningPath learningPath = learningPathRepository.getLearningPathBySynchronousLessonIdAndStudentID(synchronousLesson.getId(), member.getId());
+			if (learningPath == null) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public String create(SynchronousLesson synchronousLesson) {
