@@ -29,7 +29,7 @@ public class SchoolValue implements Serializable {
 		super();
 		this.titleValue = titleValue;
 		this.descriptionValue = descriptionValue;
-		this.picture = "empty_school_picture.png";
+		this.picture = picture;
 	}
 
 	public String getTitleValue() {

@@ -211,7 +211,7 @@ public class DataSetBean {
 						new Address(11, "Avenue des lutins", "PAIMPONT", "35380")),
 				SchoolTypeEnum.LYCEE);
 		SchoolPage schoolPage3 = new SchoolPage("Le lycée Beaux Bâtons est un établissement formant les jeunes élèves à l'art et à la pratique de l'apprentissage.", new SchoolValue("Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.","PhotoLyceeBeauxBatons.png" ,
-				""), new Theme("6CA7E6", "A6A9AB", "F9F8F8", FontEnum.UBUNTU.name()));
+				"PhotoLyceeBeauxBatons.png"), new Theme("6CA7E6", "A6A9AB", "F9F8F8", FontEnum.UBUNTU.name()));
 		school3.setSchoolPage(schoolPage3);
 		school3.setStatusSchool(StatusSchool.PUBLISHED);
 		school3.setMembership(membership1);

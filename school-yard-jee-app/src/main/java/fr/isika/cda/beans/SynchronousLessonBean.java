@@ -104,6 +104,22 @@ public class SynchronousLessonBean {
 
 	}
 
+	public String getLearningPathSubject(LearningPath learningPath) {
+		return learningPath.getActivity().getSubject().getDisplayValue();
+	}
+
+	public String getLearningPathLevel(LearningPath learningPath) {
+		return learningPath.getActivity().getLevel().getDisplayValue();
+	}
+
+	public String getSynchronousLessonSubject(SynchronousLesson synchronousLesson) {
+		return synchronousLesson.getSubject().getDisplayValue();
+	}
+
+	public String getSynchronousLessonLevel(SynchronousLesson synchronousLesson) {
+		return synchronousLesson.getLevel().getDisplayValue();
+	}
+
 	public SynchronousLesson getLesson() {
 		return lesson;
 	}

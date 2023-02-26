@@ -179,7 +179,7 @@ public class MembersListBean {
 	public String getStringClassDate(LearningPath learningPath) {
 		if (learningPath != null) {
 			SynchronousLesson synchronousLesson = (SynchronousLesson) learningPath.getActivity();
-			final DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+			final DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 			return synchronousLesson.getClassDate().format(customFormatter);
 		}
 		return "";

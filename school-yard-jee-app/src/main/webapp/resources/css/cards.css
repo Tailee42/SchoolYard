@@ -1,6 +1,6 @@
 :root {
     --color: hsl(0, 78%, 62%);
-    --grayishBlue: hsl(229, 6%, 66%);
+    --grayishBlue: #808080;
     --varyDarkBlue: hsl(234, 12%, 34%);
     --weight: 600;
     --snow : #FFFAFA;
@@ -70,5 +70,9 @@ h2, h3, h4 {
         height: 90%;
         width: 300px;
         flex-wrap: wrap;
+    }
+
+    .box.long {
+        width: 400px;
     }
 }

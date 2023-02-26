@@ -1,7 +1,6 @@
 <ui:composition template="WEB-INF/templates/commonLayout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:define name="cssFiles">
@@ -21,23 +20,23 @@
     <ui:define name="content">
 
         <h1>Mes cours particuliers en tant qu'élève :</h1>
-<h2>A venir</h2>
+        <h2>A venir</h2>
         <div class="container">
             <ui:repeat value="#{membersListBean.getFutureLearningPathForUserLikeStudent()}" var="l">
-                <div class="box" style="border-top: 3px solid ##{l.student.school.schoolPage.theme.primaryColor}">
+                <div class="box long" style="border-top: 3px solid ##{l.student.school.schoolPage.theme.primaryColor}">
                     <h2>
                         <h:outputText value="#{l.student.school.schoolName}"/>
                     </h2>
+                    <hr/>
                     <h2>
                         <h:outputText value="#{l.activity.title}"/>
                     </h2>
-                    <hr/>
-                    <h3>
-                        <h:outputText value="#{l.activity.subject}"/>
-                    </h3>
-                    <h3>
-                        <h:outputText value="#{l.activity.level}"/>
-                    </h3>
+
+                    <h4>
+                        <h:outputText value="#{synchronousLessonBean.getLearningPathSubject(l)}"/><br/>
+
+                        <h:outputText value="#{synchronousLessonBean.getLearningPathLevel(l)}"/>
+                    </h4>
                     <hr/>
                     <p>
                         <h:outputText value="#{membersListBean.getStringClassDate(l)}"/>
@@ -47,7 +46,9 @@
                     </p>
 
                     <hr/>
-                    <h:outputText value="#{synchronousLessonBean.typeOfLesson(l.activity.id)}"/>
+                    <p>
+                        <h:outputText value="#{synchronousLessonBean.typeOfLesson(l.activity.id)}"/>
+                    </p>
 
 
 
@@ -58,26 +59,25 @@
         <h2>Passés</h2>
         <div class="container">
             <ui:repeat value="#{membersListBean.getPastLearningPathForUserLikeStudent()}" var="s">
-                <div class="box" style="border-top: 3px solid ##{s.student.school.schoolPage.theme.primaryColor}">
+                <div class="box long" style="border-top: 3px solid ##{s.student.school.schoolPage.theme.primaryColor}">
                     <h2>
                         <h:outputText value="#{s.student.school.schoolName}"/>
                     </h2>
+                    <hr/>
                     <h2>
                         <h:outputText value="#{s.activity.title}"/>
                     </h2>
-                    <hr/>
-                    <h3>
-                        <h:outputText value="#{s.activity.subject}"/>
-                    </h3>
-                    <h3>
-                        <h:outputText value="#{s.activity.level}"/>
-                    </h3>
+                    <h4>
+                        <h:outputText value="#{synchronousLessonBean.getLearningPathSubject(s)}"/><br/>
+
+                        <h:outputText value="#{synchronousLessonBean.getLearningPathLevel(s)}"/>
+                    </h4>
                     <hr/>
                     <p>
                         <h:outputText value="#{membersListBean.getStringClassDate(s)}"/>
                         <br/>
-                        Suivi :<br/>
-                        <h:outputText  value="#{s.sumUp}"/>
+                        Suivi :
+                        <h:outputText value="#{s.sumUp}"/>
                         <br/>
                     </p>
 

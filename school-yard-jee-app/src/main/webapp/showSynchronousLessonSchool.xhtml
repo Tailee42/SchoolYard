@@ -28,17 +28,15 @@
 				var="s" varStatus="status">
 
 
-				<div class="box" style="border-top: 3px solid ##{synchronousLessonBean.school.schoolPage.theme.primaryColor}">
+				<div class="box long" style="border-top: 3px solid ##{synchronousLessonBean.school.schoolPage.theme.primaryColor}">
 					<h2>
 						<h:outputText value="#{s.title}" />
 					</h2>
-					<h3>
-						<h:outputText value="#{s.subject}" />
-					</h3>
-					<h3>
-						<h:outputText value="#{s.level}" />
-					</h3>
 					<hr />
+					<h4>
+						<h:outputText value="#{synchronousLessonBean.getSynchronousLessonSubject(s)}" /><br/>
+						<h:outputText value="#{synchronousLessonBean.getSynchronousLessonLevel(s)}" />
+					</h4>
 
 					<p>
 						Le ou la professeur(e) :
@@ -53,13 +51,15 @@
 						<h:outputText value="#{s.duration}" />
 						<br />
 					</p>
-					<h3>
+					<h4>
 						<h:outputText value="#{s.price}" />
 						€
-					</h3>
+					</h4>
 
 					<hr />
-					<h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}" />
+					<p>
+						<h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}" />
+					</p>
 					<hr />
 					<p>
 						Il reste :
@@ -115,17 +115,15 @@
 				value="#{synchronousLessonBean.getSynchronousLessonsBySubject()}"
 				var="s" varStatus="status">
 
-				<div class="box" style="border-top: 3px solid ##{s.teacher.school.schoolPage.theme.primaryColor}">
+				<div class="box long" style="border-top: 3px solid ##{s.teacher.school.schoolPage.theme.primaryColor}">
 					<h2>
 						<h:outputText value="#{s.title}" />
 					</h2>
-					<h3>
-						<h:outputText value="#{s.subject}" />
-					</h3>
-					<h3>
-						<h:outputText value="#{s.level}" />
-					</h3>
 					<hr />
+					<h4>
+						<h:outputText value="#{synchronousLessonBean.getSynchronousLessonSubject(s)}" /><br/>
+						<h:outputText value="#{synchronousLessonBean.getSynchronousLessonLevel(s)}" />
+					</h4>
 
 					<p>
 						Le ou la professeur(e) :
@@ -135,19 +133,20 @@
 
 					<p>
 						<h:outputText
-							value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}" />
+								value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}" />
 						<br />
 						<h:outputText value="#{s.duration}" />
 						<br />
 					</p>
-
-					<hr />
-					<h3>
+					<h4>
 						<h:outputText value="#{s.price}" />
 						€
-					</h3>
+					</h4>
+
 					<hr />
-					<h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}" />
+					<p>
+						<h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}" />
+					</p>
 					<hr />
 					<p>
 						Il reste :
@@ -156,9 +155,9 @@
 					</p>
 
 					<h:form
-						rendered="#{synchronousLessonBean.showInscriptionLesson(s) and not (synchronousLessonBean.freeSeatsNumbers(s) == 0)}">
+							rendered="#{synchronousLessonBean.showInscriptionLesson(s) and not (synchronousLessonBean.freeSeatsNumbers(s) == 0)}">
 						<h:commandButton action="#{synchronousLessonBean.create(s)}"
-							value="Inscription" class="custom-long-button" />
+										 value="Inscription" class="custom-long-button" />
 					</h:form>
 
 
@@ -173,17 +172,15 @@
 				value="#{synchronousLessonBean.getSynchronousLessonsByLevel()}"
 				var="s" varStatus="status">
 
-				<div class="box" style="border-top: 3px solid ##{s.teacher.school.schoolPage.theme.primaryColor}">
+				<div class="box long" style="border-top: 3px solid ##{s.teacher.school.schoolPage.theme.primaryColor}">
 					<h2>
 						<h:outputText value="#{s.title}" />
 					</h2>
-					<h3>
-						<h:outputText value="#{s.subject}" />
-					</h3>
-					<h3>
-						<h:outputText value="#{s.level}" />
-					</h3>
 					<hr />
+					<h4>
+						<h:outputText value="#{synchronousLessonBean.getSynchronousLessonSubject(s)}" /><br/>
+						<h:outputText value="#{synchronousLessonBean.getSynchronousLessonLevel(s)}" />
+					</h4>
 
 					<p>
 						Le ou la professeur(e) :
@@ -193,19 +190,20 @@
 
 					<p>
 						<h:outputText
-							value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}" />
+								value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}" />
 						<br />
 						<h:outputText value="#{s.duration}" />
 						<br />
 					</p>
-
-					<hr />
-					<h3>
+					<h4>
 						<h:outputText value="#{s.price}" />
 						€
-					</h3>
+					</h4>
+
 					<hr />
-					<h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}" />
+					<p>
+						<h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}" />
+					</p>
 					<hr />
 					<p>
 						Il reste :
@@ -214,9 +212,9 @@
 					</p>
 
 					<h:form
-						rendered="#{synchronousLessonBean.showInscriptionLesson(s) and not (synchronousLessonBean.freeSeatsNumbers(s) == 0)}">
+							rendered="#{synchronousLessonBean.showInscriptionLesson(s) and not (synchronousLessonBean.freeSeatsNumbers(s) == 0)}">
 						<h:commandButton action="#{synchronousLessonBean.create(s)}"
-							value="Inscription" class="custom-long-button" />
+										 value="Inscription" class="custom-long-button" />
 					</h:form>
 
 
