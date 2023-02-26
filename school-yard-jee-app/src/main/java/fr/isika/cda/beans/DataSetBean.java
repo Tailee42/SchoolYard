@@ -211,9 +211,10 @@ public class DataSetBean {
 				new Contact("lyceebeauxbatons@gmail.com", "02 86 11 23 36",
 						new Address(11, "Avenue des lutins", "PAIMPONT", "35380")),
 				SchoolTypeEnum.LYCEE);
-		SchoolPage schoolPage3 = new SchoolPage("Lycée Beaux Bâtons", new SchoolValue("Lycée privé",
-				"Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.", ""), new Theme());
+		SchoolPage schoolPage3 = new SchoolPage("Le lycée Beaux Bâtons est un établissement formant les jeunes élèves à l'art et à la pratique de l'apprentissage.", new SchoolValue("Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.","" ,
+				""), new Theme("6CA7E6", "A6A9AB", "F9F8F8", FontEnum.UBUNTU.name()));
 		school3.setSchoolPage(schoolPage3);
+		school3.setStatusSchool(StatusSchool.PUBLISHED);
 		school3.setMembership(membership1);
 		schoolRepository.save(school3);
 		createAdmin(user3, school3);
@@ -239,11 +240,11 @@ public class DataSetBean {
 				new Contact("ecoleDuPort@gmail.com", "04 03 03 03 03",
 						new Address(17, "Rue de l'embarcadère", "NICE", "06100")),
 				SchoolTypeEnum.ELEMENTAIRE);
-		SchoolPage schoolPage5 = new SchoolPage("Ecole où l'on vogue ensemble vers une meilleure connaissance",
-				new SchoolValue("Le partage en plein air",
-						"Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.", ""),
+		SchoolPage schoolPage5 = new SchoolPage("Aucune crainte, avec nous, votre réussite scolaire est assurée ! L'air marin procure des effets spectaculaires sur la mémoire et la rapidité de réalisation de ses devoirs ! ",
+				new SchoolValue("Ecole où l'on vogue ensemble vers une meilleure connaissance", "", ""),
 				new Theme("c8f5fa", "21c493", "f7f3ed", FontEnum.ZEYADA.name()));
 		school5.setSchoolPage(schoolPage5);
+		school5.setStatusSchool(StatusSchool.PUBLISHED);
 		school5.setMembership(membership4);
 		schoolRepository.save(school5);
 		createAdmin(user5, school5);
