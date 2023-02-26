@@ -1,6 +1,6 @@
 package fr.isika.cda.beans;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
@@ -52,7 +52,7 @@ public class LoginBean {
 
 			if (userByLogin.isPresent() && correctPassword && userActive) {
 
-				userRepository.updateLastConnection(userByLogin.get(), LocalDateTime.now());
+				userRepository.updateLastConnection(userByLogin.get(), LocalDate.now());
 				SessionUtils.setConnectedUser(userByLogin.get());
 
 				resetData();
@@ -62,10 +62,6 @@ public class LoginBean {
 		} catch (UserNotFoundException e) {
 
 			correctPassword = false;
-
-//			UIComponent component = FacesContext.getCurrentInstance().getViewRoot().findComponent("loginId");
-//			FacesContext.getCurrentInstance().addMessage(component.getClientId(),
-//					new FacesMessage("Identifiant et/ou pwd incorrect"));
 
 			return "login?faces-redirect=true";
 		}
