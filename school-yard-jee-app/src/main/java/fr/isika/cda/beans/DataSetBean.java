@@ -95,6 +95,7 @@ public class DataSetBean {
 		superAdminRepository.save(superAdmin);
 
 		// creating features to fill subscriptions
+		
 		Feature feature1 = new Feature("Cours online",
 				"Pour permettre à vos professeurs de proposer des cours en ligne");
 		featureRepository.save(feature1);
@@ -142,30 +143,37 @@ public class DataSetBean {
 				LocalDateTime.of(2022, Month.JUNE, 8, 16, 20), subscription1);
 		membershipRepository.save(membership5);
 
+		
 		// Create user to set as schools Admin (from user1 to user9 for future)
+		
 		User user1 = new User("albert", LocalDateTime.of(2023, Month.JANUARY, 20, 19, 30), RoleTypeEnum.USER,
 				new Security("Albert-123"), new Profil("DUPOND", "Albert", "", new Contact("albert@gmail.com",
-						"06 06 06 06 06", new Address(12, "Rue du phare", "BREST", "29000"))));
+						"06 54 77 05 06", new Address(12, "Faubourg de la madeleine ", "BLAGNAC", "31700"))));
 		userRepository.save(user1);
 
 		User user2 = new User("emma2", LocalDateTime.of(2022, Month.DECEMBER, 5, 12, 20, 0), RoleTypeEnum.USER,
-				new Security("Emma-123"), new Profil("ROUX", "Emma", "", new Contact("emma@gmail.com", "06 78 78 78 78",
-						new Address(952, "Avenue de Paris", "ORLEANS", "45000"))));
+				new Security("Emma-123"), new Profil("ROUX", "Emma", "", new Contact("emma@gmail.com", "06 78 41 23 70",
+						new Address(952, "Avenue de Paris", "ANGLET", "64600"))));
 		userRepository.save(user2);
 
 		User user3 = new User("bertrand", LocalDateTime.of(2022, Month.NOVEMBER, 10, 21, 10, 30), RoleTypeEnum.USER,
 				new Security("Bertrand-123"), new Profil("DUFOUR", "Bertrand", "", new Contact("bertrand@gmail.com",
-						"07 57 57 57 25", new Address(52, "Avenue de Lyon", "GRENOBLE", "38000"))));
+						"07 57 25 73 25", new Address(52, "Avenue de Rennes", "PLOERMEL", "56800"))));
 		userRepository.save(user3);
 
 		User user4 = new User("florence", LocalDateTime.of(2022, Month.SEPTEMBER, 1, 11, 11, 11), RoleTypeEnum.USER,
 				new Security("Florence-123"), new Profil("PIAZELLI", "Florence", "", new Contact("florence@gmail.com",
-						"07 48 48 48 48", new Address(52, "Place d'Italie", "NICE", "06000"))));
+						"07 48 75 24 48", new Address(52, "Place du marché au bois", "TOURS-EN-SAVOIE", "73290"))));
 		userRepository.save(user4);
 
+		User user5 = new User("beatrice", LocalDateTime.of(2023, Month.FEBRUARY, 07, 14, 20, 10), RoleTypeEnum.USER,
+				new Security("Beatrice-123"), new Profil("DUPONT", "Beatrice", "", new Contact("beatrice@gmail.com",
+						"07 58 04 48 80", new Address(141, "Place d'Italie", "VILLEFRANCE-SUR-MER", "06230"))));
+		userRepository.save(user5);
+
+		
 		// Schools need a membership !
-
-
+		
 		School school1 = new School("Collège des bois", "Logo_Crop_CollegeDesBois.png",
 				"Le collège où les connaissances prennent racine", new ArrayList<>(),
 				new Contact("collegeDesBois@gmail.com", "05 05 05 05 05",
@@ -198,8 +206,8 @@ public class DataSetBean {
 		schoolRepository.save(school2);
 		createAdmin(user2, school2);
 
-    School school3 = new School("Lycée Beaux Bâtons", "LogoLyceeBeauxBatons.png", "Lycée privé", new ArrayList<>(),
-				new Contact("lyceebeauxbatons@gmail.com", "04 86 11 23 36",
+		School school3 = new School("Lycée Beaux Bâtons", "LogoLyceeBeauxBatons.png", "Lycée privé", new ArrayList<>(),
+				new Contact("lyceebeauxbatons@gmail.com", "02 86 11 23 36",
 						new Address(11, "Avenue des lutins", "PAIMPONT", "35380")),
 				SchoolTypeEnum.LYCEE);
 		SchoolPage schoolPage3 = new SchoolPage("Lycée Beaux Bâtons", new SchoolValue("Lycée privé",
@@ -210,7 +218,6 @@ public class DataSetBean {
 		createAdmin(user3, school3);
 
 		School school4 = new School("Collège de la montagne", "Logo_Crop_CollegeDeLaMontagne.png",
-
 				"Hissons nos ambitions vers les sommets", new ArrayList<>(),
 				new Contact("collegeDeLaMontagne@gmail.com", "04 06 06 06 06",
 						new Address(45, "Rue du sommet", "ALBERTVILLE", "73200")),
@@ -224,8 +231,7 @@ public class DataSetBean {
 		school4.setStatusSchool(StatusSchool.PUBLISHED);
 		school4.setMembership(membership5);
 		schoolRepository.save(school4);
-		createAdmin(user3, school4);
-
+		createAdmin(user4, school4);
 
 		School school5 = new School("Ecole du Port", "LogoEcoleDuPortNoName.png",
 				"Ecole où l'on vogue ensemble vers une meilleure connaissance", new ArrayList<>(),
@@ -235,16 +241,17 @@ public class DataSetBean {
 		SchoolPage schoolPage5 = new SchoolPage("Ecole où l'on vogue ensemble vers une meilleure connaissance",
 				new SchoolValue("Le partage en plein air",
 						"Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.", ""),
-				new Theme("1B9AAA", "06D6A0", "F8FFE5", FontEnum.ZEYADA.name()));
+				new Theme("c8f5fa", "21c493", "f7f3ed", FontEnum.ZEYADA.name()));
 		school5.setSchoolPage(schoolPage5);
 		school5.setMembership(membership4);
 		schoolRepository.save(school5);
-		createAdmin(user4, school5);
+		createAdmin(user5, school5);
 
+		
 		// Create User for student (from user11 to user19 for future)
 
 		User user11 = new User("louis", LocalDateTime.of(2022, Month.NOVEMBER, 17, 13, 25), RoleTypeEnum.USER,
-				new Security("Louis-456"), new Profil("MARCHAND", "Louis", "", new Contact("louis@gmail.com",
+				new Security("Louis-123"), new Profil("MARCHAND", "Louis", "", new Contact("louis@gmail.com",
 						"06 96 69 69 69", new Address(3, "Rue de la gare", "VIERZON", "18100"))));
 		userRepository.save(user11);
 		Student student1 = createStudent(school1, user11, AcademicLevel.QUATRIEME);
@@ -252,13 +259,13 @@ public class DataSetBean {
 		Student student2 = createStudent(school3, user11, AcademicLevel.TROISIEME);
 
 		User user12 = new User("fleur", LocalDateTime.of(2022, Month.OCTOBER, 25, 6, 6, 6), RoleTypeEnum.USER,
-				new Security("Fleur-456"), new Profil("ALBRAND", "Fleur", "", new Contact("fleur@gmail.com",
+				new Security("Fleur-123"), new Profil("ALBRAND", "Fleur", "", new Contact("fleur@gmail.com",
 						"06 41 14 14 14", new Address(41, "Rue des escaliers", "ORLEANS", "45000"))));
 		userRepository.save(user12);
 		Student student3 = createStudent(school2, user12, AcademicLevel.CM1);
 
 		User user13 = new User("herve", LocalDateTime.of(2022, Month.SEPTEMBER, 5, 9, 9, 9), RoleTypeEnum.USER,
-				new Security("Herve-456"), new Profil("LEGRAND", "Hervé", "", new Contact("herve@gmail.com",
+				new Security("Herve-123"), new Profil("LEGRAND", "Hervé", "", new Contact("herve@gmail.com",
 						"06 32 32 32 32", new Address(12, "Rue des remparts", "BOURGES", "18000"))));
 		userRepository.save(user13);
 		Student student4 = createStudent(school3, user13, AcademicLevel.SIXIEME);
@@ -266,37 +273,41 @@ public class DataSetBean {
 		Student student5 = createStudent(school1, user13, AcademicLevel.CINQUIEME);
 
 		User user14 = new User("emilie", LocalDateTime.of(2022, Month.JANUARY, 15, 4, 4, 4), RoleTypeEnum.USER,
-				new Security("Emilie-456"), new Profil("GRANDY", "Emilie", "", new Contact("emilie@gmail.com",
+				new Security("Emilie-123"), new Profil("GRANDY", "Emilie", "", new Contact("emilie@gmail.com",
 						"06 24 24 24 24", new Address(142, "Place de l'Avenir", "NANTES", "44000"))));
 		userRepository.save(user14);
 		Student student6 = createStudent(school2, user14, AcademicLevel.CM2);
 		userRepository.save(user14);
 		Student student7 = createStudent(school4, user14, AcademicLevel.CM1);
 
+		
 		// Create user for teacher (from user21 to user29 for future)
+		
 		User user21 = new User("jules", LocalDateTime.of(2022, Month.OCTOBER, 19, 13, 25), RoleTypeEnum.USER,
-				new Security("Jules-789"), new Profil("TESSIER", "Jules", "", new Contact("jules@gmail.com",
+				new Security("Jules-123"), new Profil("TESSIER", "Jules", "", new Contact("jules@gmail.com",
 						"06 52 52 52 52", new Address(26, "Rue de la boulangerie", "BRIANCON", "05100"))));
 		userRepository.save(user21);
 		Teacher teacher1 = createTeacher(school1, user21, SchoolTypeEnum.COLLEGE, SubjectEnum.HISTOIRE);
 
 		User user22 = new User("pauline", LocalDateTime.of(2022, Month.OCTOBER, 25, 6, 6), RoleTypeEnum.USER,
-				new Security("Pauline-789"), new Profil("GAUDEL", "Pauline", "", new Contact("pauline@gmail.com",
+				new Security("Pauline-123"), new Profil("GAUDEL", "Pauline", "", new Contact("pauline@gmail.com",
 						"06 62 62 62 62", new Address(74, "Rue du téléphérique", "BORDEAUX", "33000"))));
 		userRepository.save(user22);
 		Teacher teacher2 = createTeacher(school2, user22, SchoolTypeEnum.ELEMENTAIRE, SubjectEnum.MATHS);
 
 		User user23 = new User("minerva", LocalDateTime.of(2022, Month.JULY, 19, 6, 6), RoleTypeEnum.USER,
-				new Security("Minerva-789"), new Profil("MCGONAGALL", "Minerva", "", new Contact("minerva@gmail.com",
+				new Security("Minerva-123"), new Profil("MCGONAGALL", "Minerva", "", new Contact("minerva@gmail.com",
 						"06 01 19 35 23", new Address(4, "Rue Privet Drive", "DRANCY", "93700"))));
 		userRepository.save(user23);
 		Teacher teacher3 = createTeacher(school1, user23, SchoolTypeEnum.COLLEGE, SubjectEnum.CHIMIE);
 
-		Teacher teacher4 = createTeacher(school4, user3, SchoolTypeEnum.COLLEGE, SubjectEnum.MATHS);
+		Teacher teacher4 = createTeacher(school4, user4, SchoolTypeEnum.COLLEGE, SubjectEnum.MATHS);
 
 		Teacher teacher5 = createTeacher(school4, user21, SchoolTypeEnum.COLLEGE, SubjectEnum.HISTOIRE);
 
+		
 		// Create some synchronous lessons
+		
 		VirtualOption virtual1 = new VirtualOption("www.zoom.fr", "Zoom",
 				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.CINQUIEME, teacher1,
 						"Seigneurs et paysans au Moyen Âge", "1 heure", LocalDateTime.of(2023, Month.MARCH, 12, 14, 30),
@@ -355,7 +366,7 @@ public class DataSetBean {
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
 				teacher2, AcademicLevel.CINQUIEME);
 		unitRepository.save(unit2);
-		
+
 		Unit unit3 = new Unit("Lorem Ipsum",
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
 				teacher3, AcademicLevel.QUATRIEME);
@@ -392,7 +403,7 @@ public class DataSetBean {
 				"Résoudre une équation à 2 inconnues x et y nécessite......", teacher4, AcademicLevel.TROISIEME);
 		unit8.setStatus(UnitStatusEnum.VALIDATED);
 		unitRepository.save(unit8);
-		
+
 		Unit unit9 = new Unit("Lorem Ipsum",
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
 				teacher5, AcademicLevel.TROISIEME);
@@ -402,25 +413,24 @@ public class DataSetBean {
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
 				teacher5, AcademicLevel.CINQUIEME);
 		unitRepository.save(unit10);
-		
+
 		Unit unit11 = new Unit("Lorem Ipsum",
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
 				teacher2, AcademicLevel.QUATRIEME);
 		unitRepository.save(unit11);
-		
+
 		Unit unit12 = new Unit("Lorem Ipsum",
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
 				teacher3, AcademicLevel.CINQUIEME);
 		unitRepository.save(unit12);
-		
+
 		Unit unit13 = new Unit("Lorem Ipsum",
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at turpis lectus. Vivamus dictum orci quis placerat fringilla. Morbi sodales leo eros, id venenatis odio pellentesque eget. Ut luctus faucibus ante nec facilisis. Mauris condimentum dignissim justo, ac sodales libero consequat id. Pellentesque id magna non erat posuere eleifend id quis dolor. Ut magna magna, viverra vel pharetra eget, lacinia sed sapien. Integer lacus ex, blandit eget libero viverra, mattis tempor erat. Aliquam vulputate rhoncus nulla, sed tempus quam elementum non.",
 				teacher2, AcademicLevel.SIXIEME);
 		unitRepository.save(unit13);
-					
+
 	}
 
-	
 	private Student createStudent(School school, User user, AcademicLevel level) {
 		Student student = new Student(level);
 		student.setUser(user);
