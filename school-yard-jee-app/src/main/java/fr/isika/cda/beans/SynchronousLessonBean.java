@@ -74,6 +74,17 @@ public class SynchronousLessonBean {
 		return (SessionUtils.getConnectedMember() instanceof Student);
 	}
 
+	public boolean showInscriptionLesson(SynchronousLesson synchronousLesson) {
+		Member member = SessionUtils.getConnectedMember();
+		if (member instanceof Student) {
+			LearningPath learningPath = learningPathRepository.getLearningPathBySynchronousLessonIdAndStudentID(synchronousLesson.getId(), member.getId());
+			if (learningPath == null) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public String create(SynchronousLesson synchronousLesson) {
 		LearningPath learningPath = new LearningPath();
 		learningPath.setActivity(synchronousLesson);
