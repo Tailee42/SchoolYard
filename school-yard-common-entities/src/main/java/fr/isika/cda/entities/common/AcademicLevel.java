@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum AcademicLevel {
-    CP("Cp"),
+    CP("CP"),
     CE1("CE1"),
     CE2("CE2"),
     CM1("CM1"),

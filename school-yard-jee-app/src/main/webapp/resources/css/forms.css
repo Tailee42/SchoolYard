@@ -94,6 +94,7 @@ label {
 .formLargeAreaInput {
 	width: 90%;
 	height: 500px;
+	padding: 10px 50px;
 }
 
 .formSumUpInput{
