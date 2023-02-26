@@ -54,7 +54,7 @@
 
 
 			<h:form class="divsection3"
-				rendered="#{welcomeBean.isUserConnected()}">
+				rendered="#{welcomeBean.isUserConnected() and not welcomeBean.memberConnected}">
 				<div class="button">
 					<h:link outcome="studentSubscriptionForm" value="Inscription élève"
 						class="custom-button" />

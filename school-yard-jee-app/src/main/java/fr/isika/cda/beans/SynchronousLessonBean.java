@@ -66,7 +66,7 @@ public class SynchronousLessonBean {
 	}
 
 	public String toStringClasseDate(LocalDateTime localDate) {
-		final DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		final DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 		return localDate.format(customFormatter);
 	}
 

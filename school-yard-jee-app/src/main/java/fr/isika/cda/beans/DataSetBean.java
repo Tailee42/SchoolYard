@@ -36,6 +36,7 @@ import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.subscription.Feature;
 import fr.isika.cda.entities.subscription.Subscription;
 import fr.isika.cda.entities.teacher.Teacher;
+import fr.isika.cda.entities.teacher.TeacherStatusEnum;
 import fr.isika.cda.entities.users.Profil;
 import fr.isika.cda.entities.users.SuperAdmin;
 import fr.isika.cda.entities.users.User;
@@ -446,6 +447,7 @@ public class DataSetBean {
 		Teacher teacher = new Teacher(schoolTypeEnum, subjectEnum);
 		teacher.setUser(user);
 		teacher.setSchool(school);
+		teacher.setStatus(TeacherStatusEnum.Approved);
 		teacherRepository.save(teacher);
 		return teacher;
 	}
