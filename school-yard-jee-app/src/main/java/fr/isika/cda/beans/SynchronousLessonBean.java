@@ -43,11 +43,6 @@ public class SynchronousLessonBean {
 		return synchronousLessonRepository.getFuturSynchronousLessonsByIdSchool(school.getId());
 	}
 
-	public List<SynchronousLesson> getSynchronousLessonsByIdMember() {
-		Member member = SessionUtils.getConnectedMember();
-		return synchronousLessonRepository.getFuturSynchronousLessonsByIdMember(member.getId());
-	}
-
 	public List<SynchronousLesson> getSynchronousLessonsByLevel() {
 		school = SessionUtils.getCurrentSchool();
 		return synchronousLessonRepository.getFuturSynchronousLessonsByLevel(school.getId(), lesson.getLevel());
