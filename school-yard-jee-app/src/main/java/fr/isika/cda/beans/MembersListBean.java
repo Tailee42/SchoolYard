@@ -14,6 +14,7 @@ import fr.isika.cda.entities.school.Member;
 import fr.isika.cda.entities.student.LearningPath;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.teacher.Teacher;
+import fr.isika.cda.entities.teacher.TeacherStatusEnum;
 import fr.isika.cda.repositories.LearningPathRepository;
 import fr.isika.cda.repositories.MemberRepository;
 import fr.isika.cda.repositories.SynchronousLessonRepository;
@@ -60,8 +61,39 @@ public class MembersListBean {
 		}
 	}
 
-	public boolean isAdmin(Member member) {
+	public boolean isAllowed(Member member) {
+		if (member instanceof Teacher) {
+			Teacher teacher =(Teacher) member;
+			return TeacherStatusEnum.Approved.equals(teacher.getStatus());
+		}
+		return true;
+	}
+
+	public boolean memberIsAdmin(Member member) {
 		return member instanceof Admin;
+	}
+
+	public boolean memberIsTeacher(Member member) {
+		return member instanceof Teacher;
+	}
+
+	public boolean memberIsStudent(Member member) {
+		return member instanceof Student;
+	}
+
+	public String getTeacherStatus(Member member) {
+		Teacher teacher = (Teacher) member;
+		return teacher.getStatus().getDisplayValue();
+	}
+
+	public String getTeacherSubject(Member member) {
+		Teacher teacher = (Teacher) member;
+		return teacher.getSubject().getDisplayValue();
+	}
+
+	public String getStudentLevel(Member member) {
+		Student student = (Student) member;
+		return student.getLevel().getDisplayValue();
 	}
 
 	public List<SynchronousLesson> getFutureSynchronousLessonForUserLikeTeacher() {
@@ -74,7 +106,7 @@ public class MembersListBean {
 		return getPastSynchronousLessonLikeTeacher();
 	}
 
-	public List<LearningPath> getFutureSynchronousLessonForUserLikeStudent() {
+	public List<LearningPath> getFutureLearningPathForUserLikeStudent() {
 		allMembersForOneUser();
 		List<LearningPath> futurLearningPathList = new ArrayList<>();
 		List<LearningPath> allLearningPathList = getSynchronousLessonLikeStudent();
@@ -93,7 +125,7 @@ public class MembersListBean {
 		return futurLearningPathList;
 	}
 
-	public List<LearningPath> getPastSynchronousLessonForUserLikeStudent() {
+	public List<LearningPath> getPastLearningPathForUserLikeStudent() {
 		allMembersForOneUser();
 		List<LearningPath> pastLearningPathList = new ArrayList<>();
 		List<LearningPath> allLearningPathList = getSynchronousLessonLikeStudent();
@@ -138,7 +170,7 @@ public class MembersListBean {
 		List<LearningPath> learningPathList = new ArrayList<>();
 		for (Member member : members) {
 			if (member instanceof Student) {
-				learningPathList.addAll(learningPathRepository.getLearningPathsByUserId(member.getId()));
+				learningPathList.addAll(learningPathRepository.getLearningPathsByMemberId(member.getId()));
 			}
 		}
 		return learningPathList;
@@ -168,7 +200,6 @@ public class MembersListBean {
 	}
 
 	public boolean userHasStudent() {
-
 		for (Member member : members) {
 			if (member instanceof Student) {
 				return true;

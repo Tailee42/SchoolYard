@@ -38,7 +38,7 @@
                     </h2>
                     #{membersListBean.getMemberRole(m)}
                     <p>
-                        <h:outputText rendered="#{membersListBean.isAdmin(m)}"
+                        <h:outputText rendered="#{membersListBean.memberIsAdmin(m)}"
                                       value="#{m.school.statusSchool.displayValue}"/>
                     </p>
                     <hr/>
@@ -49,7 +49,17 @@
                         <h:outputText value="#{membersListBean.memberRole}"/>
                     </h3>
 
-                    <h:form>
+                    <p>
+                        <ui:fragment rendered="#{membersListBean.memberIsTeacher(m)}">
+                            <h:outputText  value="#{membersListBean.getTeacherStatus(m)}"/><br/>
+                            <br/>
+                            <h:outputText  value="#{membersListBean.getTeacherSubject(m)}"/>
+                        </ui:fragment>
+                        <h:outputText rendered="#{membersListBean.memberIsStudent(m)}"
+                                      value="#{membersListBean.getStudentLevel(m)}"/>
+                    </p>
+
+                    <h:form rendered="#{membersListBean.isAllowed(m)}">
                         <h:commandButton action="#{membersListBean.goToIndexSchool(m)}"
                                          value="Espace école " class="custom-long-button"/>
                         <br/>

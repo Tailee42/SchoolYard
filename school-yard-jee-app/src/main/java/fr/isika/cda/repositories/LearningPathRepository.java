@@ -52,6 +52,17 @@ public class LearningPathRepository {
 		}
 	}
 
+	public List<LearningPath> getLearningPathsByMemberId(Long idStudent) {
+		try {
+			return entityManager
+					.createQuery("select l FROM LearningPath l WHERE l.student.id = :id_student", LearningPath.class)
+					.setParameter("id_student", idStudent)
+					.getResultList();
+		} catch (NoResultException noResultException) {
+			return new ArrayList<>();
+		}
+	}
+
     public LearningPath getLearningPathBySynchronousLessonIdAndStudentID(Long idSynchronousLesson, Long idStudent) {
         return entityManager
                 .createQuery("select l FROM LearningPath l WHERE l.student.id = :id_student AND l.activity.id = :id_lesson", LearningPath.class)
