@@ -39,27 +39,30 @@
 
 											<h:outputLabel value="Sélectionner la couleur principale"
 												for="primaryColor" />
+											
 											<p:colorPicker id="primaryColor" mode="inline"
 												value="#{adminBean.school.schoolPage.theme.primaryColor}"
 												styleClass="ui-colorpicker_current_color" />
-
+											<br />
+										
 											<h:outputLabel
 												value="Sélectionner la couleur des liens et des boutons"
 												for="accentColor" />
+										
 											<p:colorPicker id="accentColor" mode="inline"
 												value="#{adminBean.school.schoolPage.theme.accentColor}"
 												styleClass="ui-colorpicker_current_color" />
 										</h:panelGrid>
 									</div>
-									<br />
 									<div class="gridDiv">
 										<h:panelGrid columns="1" class="grid">
 											<h:outputLabel value="Sélectionner la couleur du fond "
 												for="backgroundColor" />
+											
 											<p:colorPicker id="backgroundColor" mode="inline"
 												value="#{adminBean.school.schoolPage.theme.backgroundColor}"
 												styleClass="ui-colorpicker_current_color" />
-
+											<br />
 											<h:outputLabel value="Sélectionner la police d'écriture"
 												for="selectFont" />
 											<h:selectOneMenu id="selectFont"
@@ -71,6 +74,7 @@
 												<f:selectItems value="#{adminBean.fontEnum()}" var="font"
 													itemLabel="#{font}" itemValue="#{font}" />
 											</h:selectOneMenu>
+											<br /><br /><br />
 											<h:commandButton action="#{adminBean.updateSchool()}"
 												value="Enregistrer" class="custom-button" />
 
