@@ -29,6 +29,28 @@
         <h2>Bienvenue #{welcomeBean.getUserConnectedName()} sur votre
             espace utilisateur</h2>
 
+        <div class="gridDiv">
+            <ui:fragment rendered="#{membersListBean.userHasTeacher()}">
+                <div >
+                    <h:link outcome="showSynchronousLessonTeacher">Mes cours particuliers en tant que professeur</h:link><br/>
+                    <br/>
+                    <h:link outcome="showUnitsTeacher">Mes cours en ligne en tant que professeur</h:link>
+
+                </div>
+            </ui:fragment>
+
+            <ui:fragment rendered="#{membersListBean.userHasStudent()}">
+                <div>
+                    <h:link outcome="showSynchronousLessonStudent">Mes cours particuliers en tant qu'élève</h:link><br/>
+
+                    <br/>
+                    <h:link outcome="showUnitsStudent">Mes cours en ligne favoris en tant qu'élève</h:link>
+                </div>
+            </ui:fragment>
+
+        </div>
+
+
         <h1>Mes écoles</h1>
         <div class="container">
             <ui:repeat value="#{membersListBean.allMembersForOneUser()}" var="m">
@@ -69,22 +91,6 @@
 
                 </div>
             </ui:repeat>
-        </div>
-        <div class="gridDiv">
-            <div>
-                <h:link outcome="showSynchronousLessonTeacher"
-                        rendered="#{membersListBean.userHasTeacher()}">Mes cours particuliers en tant que professeur</h:link><br/>
-                <br/>
-                <h:link outcome="showSynchronousLessonStudent"
-                        rendered="#{membersListBean.userHasStudent()}">Mes cours particuliers en tant qu'élève</h:link>
-            </div>
-            <div>
-                <h:link outcome="showUnitsTeacher"
-                        rendered="#{membersListBean.userHasTeacher()}">Mes cours en ligne en tant que professeur</h:link><br/>
-                <br/>
-                <h:link outcome="showUnitsStudent"
-                        rendered="#{membersListBean.userHasStudent()}">Mes cours en ligne favoris en tant qu'élève</h:link>
-            </div>
         </div>
 
     </ui:define>
