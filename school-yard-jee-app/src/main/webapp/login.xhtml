@@ -46,7 +46,7 @@
 						<h:message styleClass="errorMessage" for="loginPassword" />
 						<h:outputText rendered="#{not loginBean.correctPassword or not loginBean.userActive}" value="Identifiant et/ou mot de passe incorrect(s)"/>
 						<br />
-						<h:commandButton action="#{loginBean.login()}" value="Login"
+						<h:commandButton action="#{loginBean.login()}" value="Valider"
 							class="custom-button" />
 
 					</h:panelGrid>
