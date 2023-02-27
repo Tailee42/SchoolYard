@@ -247,6 +247,20 @@ public class DataSetBean {
 		school5.setMembership(membership4);
 		schoolRepository.save(school5);
 		createAdmin(user5, school5);
+		
+		School school6 = new School("Collège Poudlard", NO_LOGO_PNG,
+				"Ne chatouillez jamais un dragon qui dort...", new ArrayList<>(),
+				new Contact("albus@ac-creteil.com", "01 01 19 35 12",
+						new Address(4, "privet drive", "FOUGERES", "35300")),
+				SchoolTypeEnum.COLLEGE);
+		SchoolPage schoolPage6 = new SchoolPage("Ne chatouillez jamais un dragon qui dort...",
+				new SchoolValue("","", "empty_school_picture.png"),
+				new Theme("c8f5fa", "21c493", "f7f3ed", FontEnum.ZEYADA.name()));
+		school6.setSchoolPage(schoolPage6);
+		school6.setStatusSchool(StatusSchool.TOPUBLISH);
+		school6.setMembership(membership4);
+		schoolRepository.save(school6);
+		createAdmin(user5, school6);
 
 		// Create User for student (from user11 to user19 for future)
 
