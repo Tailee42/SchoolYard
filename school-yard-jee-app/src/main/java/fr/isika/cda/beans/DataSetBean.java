@@ -99,11 +99,11 @@ public class DataSetBean {
 		// creating features to fill subscriptions
 
 		Feature feature1 = new Feature("Cours online",
-				"Pour permettre à vos professeurs de proposer des cours en ligne");
+				"Pour permettre à vos professeurs de proposer des cours particuliers");
 		featureRepository.save(feature1);
 
 		Feature feature2 = new Feature("Cours offline",
-				"Pour permettre à vos professeurs de proposer des cours en présentiel");
+				"Pour permettre à vos professeurs de proposer du contenu pédagogique en ligne");
 		featureRepository.save(feature2);
 
 		Feature feature3 = new Feature("Outil de paiement",
@@ -210,11 +210,11 @@ public class DataSetBean {
 				new Contact("lyceebeauxbatons@gmail.com", "02 86 11 23 36",
 						new Address(11, "Avenue des lutins", "PAIMPONT", "35380")),
 				SchoolTypeEnum.LYCEE);
-		SchoolPage schoolPage3 = new SchoolPage("Le lycée Beaux Bâtons est un établissement formant les jeunes élèves à l'art et à la pratique de l'apprentissage.", new SchoolValue("Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.","PhotoLyceeBeauxBatons.png" ,
+		SchoolPage schoolPage3 = new SchoolPage("Le lycée Beaux Bâtons est un établissement formant les jeunes élèves à l'art et à la pratique de l'apprentissage grâce aux cours particuliers exceptionnels de ses enseignants.", new SchoolValue("Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.","PhotoLyceeBeauxBatons.png" ,
 				"PhotoLyceeBeauxBatons.png"), new Theme("6CA7E6", "A6A9AB", "F9F8F8", FontEnum.UBUNTU.name()));
 		school3.setSchoolPage(schoolPage3);
 		school3.setStatusSchool(StatusSchool.PUBLISHED);
-		school3.setMembership(membership1);
+		school3.setMembership(membership2);
 		schoolRepository.save(school3);
 		createAdmin(user3, school3);
 
