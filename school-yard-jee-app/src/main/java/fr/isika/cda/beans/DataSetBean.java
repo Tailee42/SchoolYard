@@ -343,13 +343,13 @@ public class DataSetBean {
 		VirtualOption virtual4 = new VirtualOption("www.teams.fr", "Teams",
 				new SynchronousLesson(SubjectEnum.MATHS, AcademicLevel.SECONDE, teacher6, "Les fonctions", "1 heure 30 minutes",
 						LocalDateTime.of(2023, Month.MARCH, 30, 9, 30), 4, new BigDecimal("30")));
-		virtualRepository.save(virtual3);
+		virtualRepository.save(virtual4);
 
 		PhysicalOption physical4 = new PhysicalOption(new Address(13, "Rue de la fontaine", "Valence", "26000"),
 				new SynchronousLesson(SubjectEnum.MATHS, AcademicLevel.TERMINALE, teacher6,
 						"Les matrices", "2 heures", LocalDateTime.of(2023, Month.APRIL, 1, 10, 15),
 						3, new BigDecimal("35")));
-		physicalRepository.save(physical3);
+		physicalRepository.save(physical4);
 
 		// Learning Path
 		LearningPath learningPath1 = new LearningPath(virtual3.getSynchronousLesson(), student1,
