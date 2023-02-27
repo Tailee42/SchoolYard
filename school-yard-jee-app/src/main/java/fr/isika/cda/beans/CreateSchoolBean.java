@@ -2,6 +2,7 @@ package fr.isika.cda.beans;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
+import fr.isika.cda.entities.common.Address;
+import fr.isika.cda.entities.common.Contact;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
@@ -97,6 +100,12 @@ public class CreateSchoolBean {
 
 	public List<Feature> featuresBySubscription(Long subscriptionId) {
 		return featureRepository.getFeatureBySubscriptionId(subscriptionId);
+	}
+
+	public void autofill() {
+		school = new School("Lycée de la Prairie", "", "Semons ensemble les graines de notre avenir !", new ArrayList<>(),
+				new Contact("lyceeDeLaPrairie@gmail.com", "01 25 26 27 28", new Address(8, "rue des Fleurs", "Chartres", "28000")),
+				SchoolTypeEnum.LYCEE);
 	}
 
 	public List<Subscription> subscriptions() {
