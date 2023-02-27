@@ -227,14 +227,14 @@ public class DataSetBean {
 				"Le Collège de la Montagne est une institution éducative reconnue pour sa qualité académique et sa vocation à former les leaders de demain. Situé dans un environnement naturel exceptionnel, au pied des montagnes, l'établissement offre à ses élèves un cadre d'apprentissage stimulant et inspirant. Les enseignants, expérimentés et passionnés, dispensent des programmes pédagogiques novateurs et adaptés aux besoins de chaque élève, dans un environnement propice à l'excellence académique. Le Collège de la Montagne est également un lieu de vie, où les élèves peuvent développer leur personnalité et leur créativité grâce à un large éventail d'activités extrascolaires, sportives et culturelles. L'établissement est ainsi un lieu d'épanouissement, où les élèves apprennent à se dépasser et à atteindre les sommets de leur potentiel.",
 				new SchoolValue("Le partage en plein air",
 						"Favoriser le partage, le respect de l'autre et l'ouverture d'esprit.", "PhotoCollegeDeLaMontagne.png"),
-				new Theme("BF1363", "2FABEE", "FBFEF9", FontEnum.PLAYFAIRDISPLAY.name()));
+				new Theme("e2daf5", "5eebb3", "f5faf6", FontEnum.PLAYFAIRDISPLAY.name()));
 		school4.setSchoolPage(schoolPage4);
 		school4.setStatusSchool(StatusSchool.PUBLISHED);
 		school4.setMembership(membership5);
 		schoolRepository.save(school4);
 		createAdmin(user4, school4);
 
-		School school5 = new School("Ecole du Port", "LogoEcoleDuPortNoName.png",
+		School school5 = new School("Ecole du Port", "LogoEcoleDuPort.png",
 				"Ecole où l'on vogue ensemble vers une meilleure connaissance", new ArrayList<>(),
 				new Contact("ecoleDuPort@gmail.com", "04 03 03 03 03",
 						new Address(17, "Rue de l'embarcadère", "NICE", "06100")),
