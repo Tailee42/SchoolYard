@@ -81,32 +81,26 @@ public class IndexSchoolBean {
 
 	private String getpoliceString() {
 		switch (school.getSchoolPage().getTheme().getFont()) {
-		case "PlayfairDisplay":
-			return new StringBuilder().append("@font-face {\n").append("            font-family: 'Playfair';\n")
-					.append("            src: url(‘/fonts/PlayfairDisplay-VariableFont_wght.ttf’) format(‘truetype’)\n")
-					.append("        }").append("body {\n").append("\tfont-family: 'Playfair', sans-serif;\n")
+		case "PLAYFAIRDISPLAY":
+			return new StringBuilder()
+					.append("body {\n")
+					.append("\tfont-family: 'Playfair Display', sans-serif;\n")
 					.append("}").toString();
 
-		case "Quicksand":
-			return new StringBuilder().append("@font-face {\n").append("            font-family: 'Quicksand';\n")
-					.append("            src: url(‘/fonts/Quicksand-VariableFont_wght.ttf’) format(‘truetype’)\n")
-					.append("        }").append("body {\n").append("\tfont-family: 'Quicksand', sans-serif;\n")
+		case "QUICKSAND":
+			return new StringBuilder().append("body {\n").append("\tfont-family: 'Quicksand', sans-serif;\n")
 					.append("}").toString();
 
-		case "Roboto":
-			return new StringBuilder().append("@font-face {\n").append("            font-family: 'Roboto';\n")
-					.append("            src: url(‘/fonts/Roboto-Black.ttf’) format(‘truetype’)\n").append("        }")
+		case "ROBOTO":
+			return new StringBuilder()
 					.append("body {\n").append("\tfont-family: 'Roboto', sans-serif;\n").append("}").toString();
 
-		case "Ubuntu":
-			return new StringBuilder().append("@font-face {\n").append("            font-family: 'Ubuntu';\n")
-					.append("            src: url(‘/fonts/Ubuntu-Light.ttf’) format(‘truetype’)\n").append("        }")
+		case "UBUNTU":
+			return new StringBuilder()
 					.append("body {\n").append("\tfont-family: 'Ubuntu', sans-serif;\n").append("}").toString();
 
-		case "Zeyada":
-			return new StringBuilder().append("@font-face {\n").append("            font-family: 'Zeyada';\n")
-					.append("            src: url(‘/fonts/Zeyada-Regular.ttf’) format(‘truetype’)\n")
-					.append("        }").append("body {\n").append("\tfont-family: 'Zeyada', sans-serif;\n").append("}")
+		case "ZEYADA":
+			return new StringBuilder().append("body {\n").append("\tfont-family: 'Pacifico', sans-serif;\n").append("}")
 					.toString();
 
 		default:
