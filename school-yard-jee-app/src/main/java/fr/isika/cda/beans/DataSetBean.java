@@ -125,24 +125,24 @@ public class DataSetBean {
 		subscription3.getFeatures().add(feature2);
 		subscriptionRepository.save(subscription3);
 
-		Membership membership1 = new Membership(LocalDateTime.of(2024, Month.JANUARY, 5, 10, 30),
-				LocalDateTime.of(2023, Month.JANUARY, 5, 10, 30), subscription1);
+		Membership membership1 = new Membership(LocalDate.of(2024, Month.JANUARY, 5),
+				LocalDate.of(2023, Month.JANUARY, 5), subscription1);
 		membershipRepository.save(membership1);
 
-		Membership membership2 = new Membership(LocalDateTime.of(2023, Month.MARCH, 9, 17, 20),
-				LocalDateTime.of(2022, Month.MARCH, 9, 17, 20), subscription2);
+		Membership membership2 = new Membership(LocalDate.of(2023, Month.MARCH, 9),
+				LocalDate.of(2022, Month.MARCH, 9), subscription2);
 		membershipRepository.save(membership2);
 
-		Membership membership3 = new Membership(LocalDateTime.of(2023, Month.NOVEMBER, 12, 12, 30),
-				LocalDateTime.of(2022, Month.NOVEMBER, 12, 12, 30), subscription3);
+		Membership membership3 = new Membership(LocalDate.of(2023, Month.NOVEMBER, 12),
+				LocalDate.of(2022, Month.NOVEMBER, 12), subscription3);
 		membershipRepository.save(membership3);
 
-		Membership membership4 = new Membership(LocalDateTime.of(2023, Month.AUGUST, 10, 11, 30),
-				LocalDateTime.of(2024, Month.AUGUST, 10, 11, 30), subscription3);
+		Membership membership4 = new Membership(LocalDate.of(2023, Month.AUGUST, 10),
+				LocalDate.of(2024, Month.AUGUST, 10), subscription3);
 		membershipRepository.save(membership4);
 
-		Membership membership5 = new Membership(LocalDateTime.of(2023, Month.JUNE, 8, 16, 20),
-				LocalDateTime.of(2022, Month.JUNE, 8, 16, 20), subscription1);
+		Membership membership5 = new Membership(LocalDate.of(2023, Month.JUNE, 8),
+				LocalDate.of(2022, Month.JUNE, 8), subscription1);
 		membershipRepository.save(membership5);
 
 		// Create user to set as schools Admin (from user1 to user9 for future)
