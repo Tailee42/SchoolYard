@@ -78,6 +78,14 @@
 							<f:validateRegex pattern="(^[\S]+@(?=.*[.])[a-zA-Z\d.-]+$)" />
 						</h:inputText>
 						<h:message styleClass="errorMessage" for="emailInput" />
+
+						<h:outputLabel value="Numéro de téléphone: " for="phoneInput" />
+						<h:inputText id="phoneInput"
+									 value="#{createUserBean.user.profil.contact.phone}"
+									 class="formInput" required="true"
+									 requiredMessage="Veuillez saisir un numéro de téléphone.">
+						</h:inputText>
+
 					</h:panelGrid>
 				</div>
 

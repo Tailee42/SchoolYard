@@ -73,6 +73,13 @@
 									for="emailInput" />
 							</h:inputText>
 							<h:message styleclasse="errorMessage" for="emailInput" />
+
+							<h:outputLabel value="Numéro de téléphone: " for="phoneInput" />
+							<h:inputText id="phoneInput"
+										 value="#{updateUserBean.user.profil.contact.phone}"
+										 class="formInput" required="true"
+										 requiredMessage="Veuillez saisir un numéro de téléphone.">
+							</h:inputText>
 						</h:panelGrid>
 					</div>
 

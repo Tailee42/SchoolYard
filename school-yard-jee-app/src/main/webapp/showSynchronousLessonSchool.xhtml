@@ -40,16 +40,19 @@
 
 					<p>
 						Le ou la professeur(e) :
-						<h:outputText value="#{s.teacher.user.profil.lastName}" />
+						<span><h:outputText value="#{s.teacher.user.profil.lastName}" /></span>
 					</p>
 					<hr />
 
 					<p>
-						<h:outputText
-							value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}" />
+						<span>
+							<h:outputText
+									value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}" />
 						<br />
 						<h:outputText value="#{s.duration}" />
 						<br />
+						</span>
+
 					</p>
 					<h4>
 						<h:outputText value="#{s.price}" />
@@ -58,12 +61,12 @@
 
 					<hr />
 					<p>
-						<h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}" />
+						<span><h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}" /></span>
 					</p>
 					<hr />
 					<p>
 						Il reste :
-						<h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}" />
+						<span><h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}" /></span>
 						place(s) pour ce cours
 					</p>
 
@@ -128,16 +131,19 @@
 
 					<p>
 						Le ou la professeur(e) :
-						<h:outputText value="#{s.teacher.user.profil.lastName}" />
+						<span><h:outputText value="#{s.teacher.user.profil.lastName}" /></span>
 					</p>
 					<hr />
 
 					<p>
-						<h:outputText
-								value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}" />
+						<span>
+							<h:outputText
+									value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}" />
 						<br />
 						<h:outputText value="#{s.duration}" />
 						<br />
+						</span>
+
 					</p>
 					<h4>
 						<h:outputText value="#{s.price}" />
@@ -146,12 +152,12 @@
 
 					<hr />
 					<p>
-						<h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}" />
+						<span><h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}" /></span>
 					</p>
 					<hr />
 					<p>
 						Il reste :
-						<h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}" />
+						<span><h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}" /></span>
 						place(s) pour ce cours
 					</p>
 
@@ -163,7 +169,6 @@
 
 
 				</div>
-
 
 			</ui:repeat>
 		</div>
@@ -185,16 +190,19 @@
 
 					<p>
 						Le ou la professeur(e) :
-						<h:outputText value="#{s.teacher.user.profil.lastName}" />
+						<span><h:outputText value="#{s.teacher.user.profil.lastName}" /></span>
 					</p>
 					<hr />
 
 					<p>
-						<h:outputText
-								value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}" />
+						<span>
+							<h:outputText
+									value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}" />
 						<br />
 						<h:outputText value="#{s.duration}" />
 						<br />
+						</span>
+
 					</p>
 					<h4>
 						<h:outputText value="#{s.price}" />
@@ -203,12 +211,12 @@
 
 					<hr />
 					<p>
-						<h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}" />
+						<span><h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}" /></span>
 					</p>
 					<hr />
 					<p>
 						Il reste :
-						<h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}" />
+						<span><h:outputText value="#{synchronousLessonBean.freeSeatsNumbers(s)}" /></span>
 						place(s) pour ce cours
 					</p>
 
@@ -218,9 +226,7 @@
 										 value="Inscription" class="custom-long-button" />
 					</h:form>
 
-
 				</div>
-
 
 			</ui:repeat>
 		</div>
