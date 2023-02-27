@@ -24,7 +24,15 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h1>Formulaire d'inscription de mon école</h1>
+
+			<h:form>
+				<h1>
+				Formulaire d'inscription de mon école
+				<h:commandLink action="#{createSchoolBean.autofill()}"
+							   value="Valider" class="custom-button hidden"/>
+				</h1>
+			</h:form>
+
 		<h:form id="createSchoolForm" enctype="multipart/form-data" class="forms">
 		<div class="form-container">
 				<div class="gridDiv">
