@@ -1,5 +1,6 @@
 package fr.isika.cda.spring.business.service;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,4 @@ public class MembershipService {
 		membershipRepository.save(membership);
 		
 	}
-
 }

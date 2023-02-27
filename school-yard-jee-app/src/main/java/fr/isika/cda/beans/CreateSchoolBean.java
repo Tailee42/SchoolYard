@@ -1,6 +1,6 @@
 package fr.isika.cda.beans;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
@@ -70,7 +70,7 @@ public class CreateSchoolBean {
 	}
 
 	private void initMembershipDuration(Long subscriptionDuration) {
-		LocalDateTime startingDate = LocalDateTime.now();
+		LocalDate startingDate = LocalDate.now();
 		membership.setStartingDate(startingDate);
 		membership.setEndingDate(startingDate.plusMonths(subscriptionDuration));
 	}
@@ -81,7 +81,7 @@ public class CreateSchoolBean {
 	}
 
 	public void uploadFile(FileUploadEvent event) {
-		String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyy_hhmmss"));
+		String timestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("ddMMyyyy_hhmmss"));
 		UploadedFile file = event.getFile();
 		logoFileName = timestamp + "_" + file.getFileName();
 		FileUpload.doUpLoad(file, logoFileName);

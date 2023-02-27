@@ -1,7 +1,7 @@
 
 table {
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: normal;
     border: none;
     border-collapse: collapse;
@@ -19,7 +19,6 @@ table td, table th {
 
 table td {
     border-right: 1px solid #f8f8f8;
-    font-size: 12px;
 }
 
 table thead th {

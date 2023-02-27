@@ -3,6 +3,7 @@ package fr.isika.cda.entities.school;
 import fr.isika.cda.entities.subscription.Subscription;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
@@ -23,8 +24,8 @@ public class Membership implements Serializable   {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private LocalDateTime endingDate;
-	private LocalDateTime startingDate;
+	private LocalDate endingDate;
+	private LocalDate startingDate;
 	
 //	@OneToOne(cascade = CascadeType.ALL)
 //	private Payment payment;
@@ -35,25 +36,25 @@ public class Membership implements Serializable   {
 	public Membership() {
 	}
 
-	public Membership(LocalDateTime endingDate, LocalDateTime startingDate, Subscription subscription) {
+	public Membership(LocalDate endingDate, LocalDate startingDate, Subscription subscription) {
 		this.endingDate = endingDate;
 		this.startingDate = startingDate;
 		this.subscription = subscription;
 	}
 
-	public LocalDateTime getEndingDate() {
+	public LocalDate getEndingDate() {
 		return endingDate;
 	}
 
-	public void setEndingDate(LocalDateTime endingDate) {
+	public void setEndingDate(LocalDate endingDate) {
 		this.endingDate = endingDate;
 	}
 
-	public LocalDateTime getStartingDate() {
+	public LocalDate getStartingDate() {
 		return startingDate;
 	}
 
-	public void setStartingDate(LocalDateTime startingDate) {
+	public void setStartingDate(LocalDate startingDate) {
 		this.startingDate = startingDate;
 	}
 
