@@ -256,7 +256,7 @@ public class DataSetBean {
 		userRepository.save(user11);
 		Student student1 = createStudent(school1, user11, AcademicLevel.QUATRIEME);
 		userRepository.save(user11);
-		Student student2 = createStudent(school4, user11, AcademicLevel.TROISIEME);
+		Student student2 = createStudent(school3, user11, AcademicLevel.SECONDE);
 
 		User user12 = new User("fleur", LocalDate.of(2022, Month.OCTOBER, 25), RoleTypeEnum.USER,
 				new Security("Fleur-123"), new Profil("ALBRAND", "Fleur", "", new Contact("fleur@gmail.com",
@@ -330,7 +330,7 @@ public class DataSetBean {
 		physicalRepository.save(physical2);
 
 		VirtualOption virtual3 = new VirtualOption("www.zoom.us", "Zoom",
-				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.CINQUIEME, teacher1, "Babylone", "1 heure",
+				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.QUATRIEME, teacher1, "Babylone", "1 heure",
 						LocalDateTime.of(2022, Month.MARCH, 12, 14, 30), 5, new BigDecimal("25")));
 		virtualRepository.save(virtual3);
 
@@ -366,6 +366,10 @@ public class DataSetBean {
 				LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "A le soucis de bien faire. Il faut continuer ainsi.",
 				"");
 		learningPathRepository.save(learningPath4);
+		LearningPath learningPath5 = new LearningPath(virtual4.getSynchronousLesson(), student2,
+				LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "A le soucis de bien faire. Il faut continuer ainsi.",
+				"");
+		learningPathRepository.save(learningPath5);
 
 		// Creating some units
 		Unit unit1 = new Unit("La Première Guerre mondiale",
