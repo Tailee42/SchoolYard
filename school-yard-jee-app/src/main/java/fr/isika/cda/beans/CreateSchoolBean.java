@@ -1,14 +1,19 @@
 package fr.isika.cda.beans;
 
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
-import javax.servlet.http.Part;
+
+import fr.isika.cda.entities.common.Address;
+import fr.isika.cda.entities.common.Contact;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.file.UploadedFile;
 
 import fr.isika.cda.entities.common.SchoolTypeEnum;
 import fr.isika.cda.entities.school.Admin;
@@ -23,9 +28,7 @@ import fr.isika.cda.repositories.MemberRepository;
 import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.repositories.SubscriptionRepository;
 import fr.isika.cda.utils.FileUpload;
-import fr.isika.cda.utils.FileUtils;
 import fr.isika.cda.utils.SessionUtils;
-import org.primefaces.event.FileUploadEvent;
 
 @ManagedBean
 @SessionScoped
@@ -50,9 +53,8 @@ public class CreateSchoolBean {
 	private FeatureRepository featureRepository;
 
 	public String create() {
-		// TODO : ecrire le fichier sur le disque
-		school.setLogo(logoFileName);
 		school.setStatusSchool(StatusSchool.TOPUBLISH);
+		school.setLogo(logoFileName);
 		schoolRepository.save(school);
 		memberRepository.save(createAdmin());
 
@@ -71,11 +73,10 @@ public class CreateSchoolBean {
 	}
 
 	private void initMembershipDuration(Long subscriptionDuration) {
-		LocalDateTime startingDate = LocalDateTime.now();
+		LocalDate startingDate = LocalDate.now();
 		membership.setStartingDate(startingDate);
 		membership.setEndingDate(startingDate.plusMonths(subscriptionDuration));
 	}
-
 
 	private void resetAll() {
 		school = new School();
@@ -83,13 +84,11 @@ public class CreateSchoolBean {
 	}
 
 	public void uploadFile(FileUploadEvent event) {
-		String absoluteFilePath = FileUtils.getResourceImageFilePath(event.getFile().getFileName());
-
-		// Mémorise le nom du fichier => à reconstituer lors de la lecture
-		logoFileName =  event.getFile().getFileName();
-		FileUpload.doUpLoad(event.getFile(), absoluteFilePath);
+		String timestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("ddMMyyyy_hhmmss"));
+		UploadedFile file = event.getFile();
+		logoFileName = timestamp + "_" + file.getFileName();
+		FileUpload.doUpLoad(file, logoFileName);
 	}
-
 
 	private Admin createAdmin() {
 		Admin admin = new Admin();
@@ -103,12 +102,18 @@ public class CreateSchoolBean {
 		return featureRepository.getFeatureBySubscriptionId(subscriptionId);
 	}
 
+	public void autofill() {
+		school = new School("Lycée de la Prairie", "", "Semons ensemble les graines de notre avenir !", new ArrayList<>(),
+				new Contact("lyceeDeLaPrairie@gmail.com", "01 25 26 27 28", new Address(8, "rue des Fleurs", "Chartres", "28000")),
+				SchoolTypeEnum.LYCEE);
+	}
+
 	public List<Subscription> subscriptions() {
 		return subscriptionRepository.getAll();
 	}
 
-	public SchoolTypeEnum[] levels() {
-		return SchoolTypeEnum.values();
+	public Map<String, SchoolTypeEnum> levels() {
+		return SchoolTypeEnum.levels;
 	}
 
 	public School getSchool() {

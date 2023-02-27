@@ -1,10 +1,10 @@
 package fr.isika.cda.repositories;
 
-import fr.isika.cda.entities.lesson.PhysicalOption;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import fr.isika.cda.entities.lesson.PhysicalOption;
 
 @Stateless
 public class PhysicalRepository {

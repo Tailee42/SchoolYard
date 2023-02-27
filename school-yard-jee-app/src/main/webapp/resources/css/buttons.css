@@ -1,4 +1,4 @@
-.custom-button, .custom-little-button, .custom-long-button, .custom-student-little-button {
+.custom-button, .custom-little-button, .custom-long-button, .custom-extra-long-button, .custom-student-little-button, .custom-subscription-button {
 	width: 130px;
   	height: 40px;
   	background: #414143;
@@ -16,7 +16,7 @@
 	margin: 5px;
 }
 
-.custom-button:hover, .custom-little-button:hover, .custom-long-button:hover, .custom-student-little-button:hover {
+.custom-button:hover, .custom-little-button:hover, .custom-long-button:hover, .custom-extra-long-button:hover, .custom-student-little-button:hover, .custom-subscription-button:hover {
 	background: rgb(0,3,255);
 	background: linear-gradient(0deg, rgba(111,111,111,1) 0%, rgba(157,157,157,1) 100%);
 }
@@ -35,9 +35,25 @@
 	font-size: 15px;
 }
 
+/*For buttons where text is extra long*/
+.custom-extra-long-button {
+	width: 250px;
+	height: 40px;
+	font-size: 15px;
+}
+
 /*In school cards, "S'inscrire en tant qu'élève"*/
 .custom-student-little-button {
 	width: 190px;
 	height: 25px;
 	font-size: 12px;
+}
+
+.custom-subscription-button {
+	float: right;
+	margin-right: 100px;
+}
+
+.link {
+	padding: 10px 20px 10px 20px;
 }

@@ -3,7 +3,7 @@
 <head>
 <title>Ajouter un abonnement</title>
 <link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/stylesheet.css">
-<link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/tableau.css">
+<link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/forms.css">
 </head>
 
 <body>
@@ -11,33 +11,31 @@
 	<nav>
 		<ul>
 			<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
-			<li><a th:href="@{/usersList}">Liste des users</a></li>
-			<li><a th:href="@{/schoolsList}">Liste des écoles</a></li>
-			<li><a th:href="@{/featuresList}">Liste des features</a></li>
-			<li><a th:href="@{/subscriptionsList}">Liste des abonnements</a></li>
+			<li><a th:href="@{/usersList}">Utilisateurs</a></li>
+			<li><a th:href="@{/schoolsList}">Ecoles</a></li>
+			<li><a th:href="@{/featuresList}">Fonctionnalités</a></li>
+			<li><a th:href="@{/subscriptionsList}">Abonnements</a></li>
 		</ul>
 	</nav>
 
 	<h2>Créer un abonnement</h2>
-	<form th:action="@{/createSubscription}" method="post">
-			<label>Nom de l'abonnement</label> 
-			<input name="name" th:value="${name}" /> 
-			<label>Prix</label> 
-			<input name="price" th:value="${price}" /> 
-			<label>Durée</label> 
-			<input name="duration" th:value="${duration}" /> 
-			
-			<div class="divOptions">
-			<label>Options à ajouter</label> 
+	<form th:action="@{/createSubscription}" method="post" class="forms">
+			<label>Nom de l'abonnement</label><br/>
+			<input name="name" th:value="${name}" class="input"/><br/>
+			<label>Prix</label>  <br/>
+			<input name="price" th:value="${price}" class="input"/><br/>
+			<label>Durée</label>  <br/>
+			<input name="duration" th:value="${duration}" class="input"/><br/>
+			<br/>
+			<div>
+			<label>Fonctionnalités à ajouter</label><br/> 
 			<div th:each="featureToDisplay : ${features}">
-			<input type="checkbox" name="id" th:value="${featureToDisplay.id}"/>
-			<label th:text="${featureToDisplay.featureTitle}"></label>
+			<input type="checkbox" name="id" th:value="${featureToDisplay.id}" class="inputOptions"/>
+			<label th:text="${featureToDisplay.featureTitle}"></label><br/>
 			</div>
-			
 			</div>
-
-
-		<button type="submit">Créer</button>
+		<br/>
+		<button type="submit" class="custom-button">Créer</button>
 	</form>
 
 </body>

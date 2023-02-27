@@ -7,9 +7,6 @@
 
     <ui:define name="cssFiles">
         #{indexSchoolBean.getSchoolsInformations()}
-        <style type="text/css">
-            #{indexSchoolBean.styles()}
-        </style>
     </ui:define>
 
     <ui:define name="schoolName">#{indexSchoolBean.school.schoolName}</ui:define>
@@ -40,10 +37,9 @@
     <ui:define name="title">Création d'un cours</ui:define>
     
     <ui:define name="cssFiles">
-		<h:outputStylesheet name="common-style.css" library="css"/>
 		<h:outputStylesheet name="buttons.css" library="css"/>
+		<h:outputStylesheet name="forms.css" library="css"/>
     </ui:define>
-
 
 
     <ui:define name="content">
@@ -52,22 +48,23 @@
         <input type="button" id="physicalbtn" value="Créer cours en présentiel" class="custom-long-button"/>
 
         <div id="physicalForm" class="hidden">
-            <h:form >
+            <h:form class="forms">
+				<div class="form-container">
+				<div class="gridDiv">
+                <h:panelGrid columns="1" class="grid">
 
-                <h:panelGrid columns="1">
-
-                    <h:outputLabel value="Niveau enseigné : " for="selectLevelp"/>
+                    <h:outputLabel value="Niveau enseigné : " for="selectLevelp" class="searchLabel"/>
                     <h:selectOneMenu id="selectLevelp"
-                                     value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.level}">
+                                     value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.level}" class="searchMenu">
                         <f:selectItem itemLabel="--Selectionner un niveau--"
                                       noSelectionOption="true"/>
                         <f:selectItems value="#{createSynchronousLessonBean.levels()}" var="levels"
                                        itemLabel="#{levels}" itemValue="#{levels}"/>
                     </h:selectOneMenu>
 
-                    <h:outputLabel value="Matière enseignée : " for="selectSubjectp"/>
+                    <h:outputLabel value="Matière enseignée : " for="selectSubjectp" class="searchLabel"/>
                     <h:selectOneMenu id="selectSubjectp"
-                                     value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.subject}">
+                                     value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.subject}" class="searchMenu">
                         <f:selectItem itemLabel="--Selectionner une matière--"
                                       noSelectionOption="true"/>
                         <f:selectItems value="#{createSynchronousLessonBean.subjects()}"
@@ -75,10 +72,10 @@
                     </h:selectOneMenu>
 
                     <h:outputLabel value="Titre du cours : " for="coursInputp"/>
-                    <h:inputText id="coursInputp" value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.title}"/>
+                    <h:inputText id="coursInputp" value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.title}" class="formInput"/>
 
                     <h:outputLabel value="Durée du cours : " for="durationInputp"/>
-                    <h:inputText id="durationInputp" value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.duration}"/>
+                    <h:inputText id="durationInputp" value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.duration}" class="formNumInput"/>
 
                     <p:outputLabel value="Date du cours : " for="dateInputp"/>
                     <p:datePicker id="dateInputp" value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.classDate}"
@@ -86,33 +83,36 @@
 
                     <h:outputLabel value="Nombre maximum d'élèves pour le cours : " for="numberStudentInputp"/>
                     <h:inputText id="numberStudentInputp"
-                                 value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.maxStudentNumber}"/>
+                                 value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.maxStudentNumber}" class="formNumInput"/>
 
 
                     <h:outputLabel value="Prix du cours : " for="priceInputp"/>
-                    <h:inputText id="priceInputp" value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.price}"/>
+                    <h:inputText id="priceInputp" value="#{createSynchronousLessonBean.physicalOption.synchronousLesson.price}" class="formNumInput"/>
 
                     <h:outputLabel value="Numéro : " for="numberInputp"/>
                     <h:inputText id="numberInputp"
-                                 value="#{createSynchronousLessonBean.physicalOption.address.number}"/>
+                                 value="#{createSynchronousLessonBean.physicalOption.address.number}" class="formNumInput"/>
 
                     <h:outputLabel value="Rue : " for="streetInputp"/>
                     <h:inputText id="streetInputp"
-                                 value="#{createSynchronousLessonBean.physicalOption.address.street}"/>
+                                 value="#{createSynchronousLessonBean.physicalOption.address.street}" class="formInput"/>
 
                     <h:outputLabel value="Code Postal : " for="zipcodeInputp"/>
                     <h:inputText id="zipcodeInputp"
-                                 value="#{createSynchronousLessonBean.physicalOption.address.zipcode}"/>
+                                 value="#{createSynchronousLessonBean.physicalOption.address.zipcode}" class="formNumInput"/>
 
                     <h:outputLabel value="Ville : " for="townInputp"/>
                     <h:inputText id="townInputp"
-                                 value="#{createSynchronousLessonBean.physicalOption.address.town}"/>
+                                 value="#{createSynchronousLessonBean.physicalOption.address.town}" class="formInput"/>
 
 
                     <h:commandButton action="#{createSynchronousLessonBean.createPhysical()}"
                                      value="Valider le cours présentiel" class="custom-long-button"/>
 
                 </h:panelGrid>
+				
+			</div>
+			</div>
 
             </h:form>
 
@@ -120,22 +120,23 @@
 
 
         <div id="virtualForm">
-            <h:form>
+              <h:form class="forms">
+				<div class="form-container">
+				<div class="gridDiv">
+              <h:panelGrid columns="1" class="grid">
 
-                <h:panelGrid columns="1">
-
-                    <h:outputLabel value="Niveau enseigné : " for="selectLevel"/>
-                    <h:selectOneMenu id="selectLevel"
-                                     value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.level}">
+                    <h:outputLabel value="Niveau enseigné : " for="selectLevel" class="searchLabel"/>
+                    <h:selectOneMenu id="selectLevel" 
+                                     value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.level}" class="searchMenu">
                         <f:selectItem itemLabel="--Selectionner un niveau--"
                                       noSelectionOption="true"/>
                         <f:selectItems value="#{createSynchronousLessonBean.levels()}" var="levels"
                                        itemLabel="#{levels}" itemValue="#{levels}"/>
                     </h:selectOneMenu>
 
-                    <h:outputLabel value="Matière enseignée : " for="selectSubject"/>
+                    <h:outputLabel value="Matière enseignée : " for="selectSubject" class="searchLabel"/>
                     <h:selectOneMenu id="selectSubject"
-                                     value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.subject}">
+                                     value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.subject}" class="searchMenu">
                         <f:selectItem itemLabel="--Selectionner une matière--"
                                       noSelectionOption="true"/>
                         <f:selectItems value="#{createSynchronousLessonBean.subjects()}"
@@ -143,35 +144,38 @@
                     </h:selectOneMenu>
 
                     <h:outputLabel value="Titre du cours : " for="coursInput"/>
-                    <h:inputText id="coursInput" value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.title}"/>
+                    <h:inputText id="coursInput" value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.title}" class="formInput"/>
 
                     <h:outputLabel value="Durée du cours : " for="durationInput"/>
-                    <h:inputText id="durationInput" value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.duration}"/>
+                    <h:inputText id="durationInput" value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.duration}" class="formNumInput"/>
 
                     <p:outputLabel value="Date du cours : " for="dateInput"/>
-                    <p:datePicker id="dateInput" value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.classDate}"
+                    <p:datePicker id="dateInput" value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.classDate}" 
                                   showTime="true"/>
 
                     <h:outputLabel value="Nombre maximum d'élèves pour le cours : " for="numberStudentInput"/>
                     <h:inputText id="numberStudentInput"
-                                 value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.maxStudentNumber}"/>
+                                 value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.maxStudentNumber}" class="formNumInput"/>
 
 
                     <h:outputLabel value="Prix du cours : " for="priceInput"/>
-                    <h:inputText id="priceInput" value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.price}"/>
+                    <h:inputText id="priceInput" value="#{createSynchronousLessonBean.virtualOption.synchronousLesson.price}" class="formNumInput"/>
 
 
                     <h:outputLabel value="Nom du site de visio : " for="nameInput"/>
                     <h:inputText id="nameInput"
-                                 value="#{createSynchronousLessonBean.virtualOption.plateforme}"/>
+                                 value="#{createSynchronousLessonBean.virtualOption.plateforme}" class="formInput"/>
 
                     <h:outputLabel value="Lien de la visio : " for="lienInput"/>
-                    <h:inputText id="lienInput" value="#{createSynchronousLessonBean.virtualOption.url}"/>
+                    <h:inputText id="lienInput" value="#{createSynchronousLessonBean.virtualOption.url}" class="formInput"/>
 
                     <h:commandButton action="#{createSynchronousLessonBean.createVirtual()}"
                                      value="Valider le cours distanciel" class="custom-long-button"/>
 
                 </h:panelGrid>
+                
+            </div>
+			</div>
             </h:form>
         </div>
 

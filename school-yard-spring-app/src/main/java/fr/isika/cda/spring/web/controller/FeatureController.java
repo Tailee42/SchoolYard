@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.isika.cda.entities.subscription.Feature;
+import fr.isika.cda.entities.subscription.Subscription;
 import fr.isika.cda.spring.business.service.FeatureService;
+import fr.isika.cda.spring.business.service.SubscriptionService;
 
 @Controller
 public class FeatureController {
@@ -21,6 +23,9 @@ public class FeatureController {
 	private static final String REDIRECT_FEATURES_LIST = "redirect:/featuresList";
 	@Autowired
 	private FeatureService featureService;
+	
+	@Autowired
+	private SubscriptionService subscriptionService;
 	
 	@GetMapping("/featuresList")
 	public String featureslist(Model model) {
@@ -45,6 +50,11 @@ public class FeatureController {
 		Optional<Feature> optional = featureService.findById(id);
 		if (optional.isPresent()) {
 			Feature featureToDelete = optional.get();
+			List<Subscription> subscriptions = subscriptionService.findAll();
+				for (Subscription subscription : subscriptions) {
+					subscription.getFeatures().remove(featureToDelete);
+					subscriptionService.updateSubscription(subscription);
+				}
 			featureService.deleteFeature(featureToDelete);
 		}
 		return new ModelAndView(REDIRECT_FEATURES_LIST);
@@ -71,6 +81,5 @@ public class FeatureController {
 		}	
 		return new ModelAndView(REDIRECT_FEATURES_LIST);
 	}
-
-
+	
 }

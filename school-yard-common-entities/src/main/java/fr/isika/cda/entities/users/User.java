@@ -4,6 +4,7 @@ import fr.isika.cda.entities.common.RoleTypeEnum;
 import fr.isika.cda.entities.common.Security;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
@@ -30,7 +31,7 @@ public class User implements Serializable {
 	@Column(unique = true, length = 100)
 	private String login;
 
-	private LocalDateTime lastConnection;
+	private LocalDate lastConnection;
 
 	@Enumerated(EnumType.STRING)
 	private RoleTypeEnum role;
@@ -50,7 +51,7 @@ public class User implements Serializable {
 		this.status = UserStatus.ACTIVE;
 	}
 
-	public User(String login, LocalDateTime lastConnection, RoleTypeEnum role, Security security, Profil profil) {
+	public User(String login, LocalDate lastConnection, RoleTypeEnum role, Security security, Profil profil) {
 		this.login = login;
 		this.lastConnection = lastConnection;
 		this.role = role;
@@ -75,12 +76,12 @@ public class User implements Serializable {
 		this.login = login;
 	}
 
-	public LocalDateTime getLastConnection() {
+	public LocalDate getLastConnection() {
 		return lastConnection;
 	}
 
-	public void setLastConnection(LocalDateTime localDateTime) {
-		this.lastConnection = localDateTime;
+	public void setLastConnection(LocalDate localDate) {
+		this.lastConnection = localDate;
 	}
 
 	public RoleTypeEnum getRole() {

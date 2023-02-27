@@ -1,28 +1,32 @@
 package fr.isika.cda.beans;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.file.UploadedFile;
+
 import fr.isika.cda.entities.lesson.Unit;
-import fr.isika.cda.entities.school.Member;
+import fr.isika.cda.entities.school.FontEnum;
 import fr.isika.cda.entities.school.School;
 import fr.isika.cda.entities.student.Student;
 import fr.isika.cda.entities.teacher.Teacher;
-import fr.isika.cda.repositories.MemberRepository;
 import fr.isika.cda.repositories.SchoolRepository;
 import fr.isika.cda.repositories.StudentRepository;
 import fr.isika.cda.repositories.TeacherRepository;
 import fr.isika.cda.repositories.UnitRepository;
-import fr.isika.cda.services.adminService;
+import fr.isika.cda.services.AdminService;
+import fr.isika.cda.utils.FileUpload;
 import fr.isika.cda.utils.SessionUtils;
-import java.util.Collections;
 
 @ManagedBean
-@SessionScoped
 public class AdminBean {
 
 	@Inject
@@ -35,18 +39,24 @@ public class AdminBean {
 	private StudentRepository studentRepository;
 
 	@Inject
-	private adminService adminService;
+	private AdminService adminService;
+
+	@Inject
+	private SchoolRepository schoolRepository;
+
+	private School school = SessionUtils.getCurrentSchool();
 
 	// méthodes de redirection
-	public String allTeachers() {
-		return "schoolTeachersList?faces-redirect=true";
-	}
-
-	public String allStudents() {
-		return "schoolStudentsList?faces-redirect=true";
+	public String modifySchool() {
+		return "modifySchoolForm";
 	}
 
 	// méthodes métier
+	public void updateSchool() {
+		schoolRepository.update(school);
+		modifySchool();
+	}
+
 	public String validateTeacher(Long teacherId) {
 		Teacher teacher = getCurrentTeacher(teacherId);
 		adminService.validateTeacher(teacher);
@@ -83,6 +93,14 @@ public class AdminBean {
 		return "schoolStudentsList";
 	}
 
+	public School getSchool() {
+		return school;
+	}
+
+	public void setSchool(School school) {
+		this.school = school;
+	}
+
 	// méthode d'affichage
 	public List<Teacher> allSchoolTeachers() {
 		return teacherRepository.currentSchoolTeachers(getCurrentSchoolId());
@@ -101,6 +119,25 @@ public class AdminBean {
 
 	public List<Student> allSchoolStudents() {
 		return studentRepository.currentSchoolStudents(getCurrentSchoolId());
+	}
+
+	public String initSchoolStats() {
+		adminService.initStats((allSchoolStudents().size()), (allSchoolTeachers().size()), school);
+		return "adminDashboard?faces-redirect=true";
+	}
+
+	public void uploadFile(FileUploadEvent event) {
+		String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyy_hhmmss"));
+		UploadedFile file = event.getFile();
+		String pictureFileName = timestamp + "_" + file.getFileName();
+		FileUpload.doUpLoad(file, pictureFileName);
+
+		school.getSchoolPage().getSchoolValue().setPicture(pictureFileName);
+		schoolRepository.update(school);
+	}
+
+	public Map<String, FontEnum> fontEnum() {
+		return FontEnum.fonts;
 	}
 
 	// méthode internes

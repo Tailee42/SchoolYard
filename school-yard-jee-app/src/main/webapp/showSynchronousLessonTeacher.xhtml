@@ -1,0 +1,96 @@
+<ui:composition template="WEB-INF/templates/commonLayout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="cssFiles">
+        <h:outputStylesheet name="cards.css" library="css"/>
+        <h:outputStylesheet name="buttons.css" library="css"/>
+    </ui:define>
+
+    <ui:define name="header">
+        <h:link outcome="userDashboard" rendered="#{welcomeBean.userConnected}">Tableau de bord</h:link>
+        <h:form class="inline">
+            <h:commandLink action="#{loginBean.logout()}"
+                           rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
+        </h:form>
+        <h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:link>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h1>Mes cours particuliers en tant que professeur :</h1>
+<h2>A venir</h2>
+        <div class="container">
+            <ui:repeat value="#{membersListBean.getFutureSynchronousLessonForUserLikeTeacher()}" var="s">
+                <div class="box long" style="border-top: 3px solid ##{s.teacher.school.schoolPage.theme.primaryColor}">
+                    <h2>
+                        <h:outputText value="#{s.title}"/>
+                    </h2>
+                    <hr/>
+                    <h4>
+                        <h:outputText value="#{synchronousLessonBean.getSynchronousLessonSubject(s)}"/><br/>
+
+                        <h:outputText value="#{synchronousLessonBean.getSynchronousLessonLevel(s)}"/>
+                    </h4>
+                    <hr/>
+                    <p>
+                        <h:outputText value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}"/>
+                        <br/>
+                        <h:outputText value="#{s.duration}"/>
+                        <br/>
+                    </p>
+
+                    <p>
+                        Il reste : <h:outputText
+                            value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
+                    </p>
+
+                    <hr/>
+                    <h:outputText value="#{synchronousLessonBean.typeOfLesson(s.id)}"/>
+
+
+
+                </div>
+            </ui:repeat>
+        </div>
+
+        <h2>Passés</h2>
+        <div class="container">
+            <ui:repeat value="#{membersListBean.getPastSynchronousLessonForUserLikeTeacher()}" var="s">
+                <div class="box long" style="border-top: 3px solid ##{s.teacher.school.schoolPage.theme.primaryColor}">
+                    <h2>
+                        <h:outputText value="#{s.title}"/>
+                    </h2>
+                    <hr/>
+                    <h4>
+                        <h:outputText value="#{synchronousLessonBean.getSynchronousLessonSubject(s)}" /><br/>
+                        <h:outputText value="#{synchronousLessonBean.getSynchronousLessonLevel(s)}" />
+                    </h4>
+                    <hr/>
+                    <p>
+                        <h:outputText value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}"/>
+                        <br/>
+                        <h:outputText value="#{s.duration}"/>
+                        <br/>
+                    </p>
+
+                    <p>
+                        Il reste : <h:outputText
+                            value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
+                    </p>
+
+
+                    <h:button outcome ="sumUpForm" value="Suivi des élèves" class="custom-long-button">
+                            <f:param name="idSynLes" value="#{s.id}"/>
+                    </h:button>
+
+                </div>
+            </ui:repeat>
+        </div>
+
+    </ui:define>
+
+
+</ui:composition>

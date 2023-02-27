@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
-<title>Modifier feature </title>
+<title>Modifier fonctionnalité</title>
 <link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/forms.css">
 </head>
 
 <body>
-	<h1>Liste des features</h1>	
-	
 	<nav>
 	<ul>
 		<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
-		<li><a th:href="@{/usersList}">Liste des users</a></li>
-		<li><a th:href="@{/index}">Liste des écoles</a></li>
-		<li><a th:href="@{/featuresList}">Liste des features</a></li>
+		<li><a th:href="@{/usersList}">Utilisateurs</a></li>
+		<li><a th:href="@{/schoolsList}">Ecoles</a></li>
+		<li><a th:href="@{/featuresList}">Fonctionnalités</a></li>
+		<li><a th:href="@{/subscriptionsList}">Abonnements</a></li>
 	</ul>
 	</nav>
 	
-	<h2>Modifier une option</h2>
-	<form th:action="@{/updateFeature}" method="post" th:object="${feature}">
+	<h2>Modifier une fonctionnalité</h2>
+	<form th:action="@{/updateFeature}" method="post" th:object="${feature}" class="forms">
 		<input type="hidden" name="id" th:value="${feature.id}"/>
-		<label>Titre de l'option</label>
-		<input name="featureTitle" th:value="${feature.featureTitle}"/>
+		<label>Titre de la fonctionnalité : </label><br/>
+		<input name="featureTitle" th:value="${feature.featureTitle}" class="input"/><br/>
 		<br/>
-		<label>Détail de l'option</label>
-		<input name="featureDescription" th:value="${feature.featureDescription}"/>
+		<label>Détail de la fonctionnalité :</label><br/>
+		<input name="featureDescription" th:value="${feature.featureDescription}" class="inputLong"/><br/>
 		<br/>
-		<button type="submit">Modifier</button>
+		<button type="submit" class="custom-button">Modifier</button>
 	</form>
 
 </body>

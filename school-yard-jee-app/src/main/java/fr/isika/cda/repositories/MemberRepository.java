@@ -1,18 +1,16 @@
 package fr.isika.cda.repositories;
 
-import fr.isika.cda.entities.school.Admin;
-import fr.isika.cda.entities.school.Member;
-import fr.isika.cda.entities.school.Member;
-import fr.isika.cda.entities.users.User;
-import fr.isika.cda.utils.SessionUtils;
-
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import java.util.Optional;
+
+import fr.isika.cda.entities.school.Admin;
+import fr.isika.cda.entities.school.Member;
 
 @Stateless
 public class MemberRepository {
@@ -24,9 +22,15 @@ public class MemberRepository {
 	}
 
 	public List<Member> getAllMembersForOneUser(Long userId) {
-		return entityManager
-				.createQuery("SELECT m FROM Member m WHERE m.user.id = :userId ", Member.class)
-				.setParameter("userId", userId).getResultList();
+		try {
+			return entityManager
+					.createQuery("SELECT m FROM Member m WHERE m.user.id = :userId ", Member.class)
+					.setParameter("userId", userId)
+					.getResultList();
+		} catch (NoResultException noResultException) {
+			return new ArrayList<>();
+		}
+
 	}
 
     public Optional<Member> findByIdSchoolAndIdUser(Long idSchool,  Long idUser) {

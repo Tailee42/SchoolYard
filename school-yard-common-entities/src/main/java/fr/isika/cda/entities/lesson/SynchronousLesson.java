@@ -14,7 +14,11 @@ import java.time.LocalDateTime;
 @PrimaryKeyJoinColumn(name = "id")
 public class SynchronousLesson extends Activity {
 
-    private String duration;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1238288384355414261L;
+	private String duration;
     private LocalDateTime classDate;
     private int maxStudentNumber;
     private BigDecimal price;

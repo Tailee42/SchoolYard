@@ -44,6 +44,5 @@ public class Statistics {
 	public Long getId() {
 		return id;
 	}
-	
 
 }

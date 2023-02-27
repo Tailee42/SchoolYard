@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
 <title>Modifier l'abonnement de l'école</title>
-
+<link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="/school-yard-spring-app/StaticResources/css/forms.css">
 </head>
 
 <body>
@@ -10,29 +11,37 @@
 	<nav>
 		<ul>
 			<li><a th:href="@{/superAdminDashboard}">Dashboard</a></li>
-			<li><a th:href="@{/usersList}">Liste des users</a></li>
-			<li><a th:href="@{/index}">Liste des écoles</a></li>
-			<li><a th:href="@{/featuresList}">Liste des features</a></li>
-			<li><a th:href="@{/subscriptionsList}">Liste des abonnements</a></li>
+			<li><a th:href="@{/usersList}">Utilisateurs</a></li>
+			<li><a th:href="@{/schoolsList}">Ecoles</a></li>
+			<li><a th:href="@{/featuresList}">Fonctionnalités</a></li>
+			<li><a th:href="@{/subscriptionsList}">Abonnements</a></li>
 		</ul>
 	</nav>
-
+	<br/>
 	<h2>Modifier l'abonnement de <span th:text="${school.schoolName}"></span></h2>
-	<form th:action="@{/modifySchoolSubscription}" method="post">
+	<br/>
+	<form th:action="@{/modifySchoolSubscription}" method="post" class="forms">
 			<input type="hidden" name="id" th:value="${school.id}"/>
 			<input type="hidden" name="subscriptionId" th:value="${school.membership.subscription.id}"/>
-			<label>Nom de l'abonnement</label> 
-			<input name="name" th:value="${school.membership.subscription.name}" /> 
-			<label>Prix</label> 
-			<input name="price" th:value="${school.membership.subscription.price}" /> 
-			<label>Durée</label> 
-			<input name="duration" th:value="${school.membership.subscription.duration}" /><span>mois</span><br/> 
-			<label>Options à ajouter</label> 
+
+			<label>Nom de l'abonnement :</label><br/>
+			<input name="name" th:value="${school.membership.subscription.name}" class="input"/>
+			<br/> 
+			<br/> 
+			<label>Prix :</label> <br/> 
+			<input name="price" th:value="${school.membership.subscription.price}" class="input"/> 
+			<br/> 
+			<br/> 
+			<label>Durée</label><br/> 
+			<input name="duration" th:value="${school.membership.subscription.duration}" class="input"/><span> &ensp;mois</span><br/> 
+			<br/> 
+			<label>Ajouter des fonctionnalités</label><br/>
+			<br/> 
 			<div th:each="featureToDisplay : ${features}">
-			<input type="checkbox" name="featuresId" th:value="${featureToDisplay.id}" th:checked="${school.membership.subscription.features.contains(featureToDisplay)}"/>
+			<input type="checkbox" name="featuresId" th:value="${featureToDisplay.id}" th:checked="${school.membership.subscription.features.contains(featureToDisplay)}" class="inputOptions"/>
 			<span th:text="${featureToDisplay.featureTitle}"></span>
 			</div><br/>
-		<button type="submit">Valider</button>
+		<button type="submit" class="custom-button">Valider</button>
 	</form>
 
 </body>

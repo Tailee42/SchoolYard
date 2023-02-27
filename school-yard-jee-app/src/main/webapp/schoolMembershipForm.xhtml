@@ -7,6 +7,7 @@
 
 	<ui:define name="cssFiles">
 		<h:outputStylesheet name="cards.css" library="css"/>
+		<h:outputStylesheet name="forms.css" library="css"/>
 		<h:outputStylesheet name="buttons.css" library="css"/>
 	</ui:define>
 
@@ -38,6 +39,7 @@
 						<p>
 							<ui:repeat var="f" value="#{s.features}">
 								<h:outputText value="#{f.featureTitle}" />
+								<br/>
 							</ui:repeat>
 						</p>
 						<hr/>
@@ -50,13 +52,9 @@
 						<p>
 							<h:outputText value="#{s.price}€" />
 						</p>
-
-						<h:form>
-							<h:commandButton value="souscrire" action="#{createSchoolBean.setMembership(s)}"
-											 class="custom-button"/>
+							<h:commandButton value="Souscrire" action="#{createSchoolBean.setMembership(s)}"
+											 class="custom-button"/>			
 							<br />
-						</h:form>
-
 					</div>
 				</ui:repeat>
 			</div>

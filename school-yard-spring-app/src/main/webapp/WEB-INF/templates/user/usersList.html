@@ -21,26 +21,23 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Id</th>
 				<th>Identifiant</th>
-				<th>Mot de passe</th>
-				<th>Rôle</th>
 				<th>Nom</th>
 				<th>Prénom</th>
 				<th>Email</th>
 				<th>Ville</th>
+				<th>Dernière connection</th>
 				<th>Action</th>
 			</tr>
 		</thead>
 		<tr th:each="user : ${users}">
-			<td><span th:text=${user.id}></span></td>
+			<td hidden="hidden"><span th:text=${user.id} ></span></td>
 			<td><span th:text=${user.login}></span></td>
-			<td><span th:text=${user.security.password}></span></td>
-			<td><span th:text=${user.role}></span></td>
 			<td><span th:text=${user.profil.lastName}></span></td>
 			<td><span th:text=${user.profil.firstName}></span></td>
 			<td><span th:text=${user.profil.contact.email}></span></td>
 			<td><span th:text=${user.profil.contact.address.town}></span></td>
+			<td><span th:text=${user.lastConnection}></span></td>
 			<td><a th:href="@{deleteUser/(id=${user.id})}">Supprimer</a></td>
 		</tr>
 	</table>

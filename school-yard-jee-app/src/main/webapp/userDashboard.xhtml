@@ -1,8 +1,7 @@
 <ui:composition template="/WEB-INF/templates/commonLayout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
->
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:define name="cssFiles">
         <h:outputStylesheet name="cards.css" library="css"/>
@@ -12,6 +11,7 @@
     <ui:define name="title">Tableau de bord utilisateur</ui:define>
 
     <ui:define name="header">
+     #{membersListBean.getMemberRole(m)}
         <h:link outcome="schoolsList">Liste des écoles</h:link>
         <h:link outcome="schoolSubscriptionForm">Créer une école</h:link>
         <h:form class="inline">
@@ -19,23 +19,53 @@
                            rendered="#{welcomeBean.userConnected}">Se Déconnecter</h:commandLink>
         </h:form>
         <h:link outcome="login" rendered="#{not welcomeBean.userConnected}">Se Connecter</h:link>
-
     </ui:define>
 
     <ui:define name="content">
-        <h1>Bienvenue #{welcomeBean.getUserConnectedName()} sur votre
-            espace utilisateur</h1>
 
-        <h2>Mes écoles</h2>
+        <h:link outcome="userProfileForm" value="Modifier mon profil"
+                class="custom-long-button link right"/>
+        <br/>
+        <h2>Bienvenue #{welcomeBean.getUserConnectedName()} sur votre
+            espace utilisateur</h2>
+
+        <div class="gridDiv">
+            <ui:fragment rendered="#{membersListBean.userHasTeacher()}">
+                <div >
+                    <h:link outcome="showSynchronousLessonTeacher">Mes cours particuliers en tant que professeur</h:link><br/>
+                    <br/>
+                    <h:link outcome="showUnitsTeacher">Mes cours en ligne en tant que professeur</h:link>
+
+                </div>
+            </ui:fragment>
+
+            <ui:fragment rendered="#{membersListBean.userHasStudent()}">
+                <div>
+                    <h:link outcome="showSynchronousLessonStudent">Mes cours particuliers en tant qu'élève</h:link><br/>
+
+                    <br/>
+                    <h:link outcome="showUnitsStudent">Mes cours en ligne favoris en tant qu'élève</h:link>
+                </div>
+            </ui:fragment>
+
+        </div>
+
+
+        <h1>Mes écoles</h1>
         <div class="container">
             <ui:repeat value="#{membersListBean.allMembersForOneUser()}" var="m">
-                <div class="box" style="border-top: 3px solid ##{m.school.schoolPage.theme.primaryColor}">
+                <div class="box"
+                     style="border-top: 3px solid ##{m.school.schoolPage.theme.primaryColor}">
                     <h2>
                         <h:outputText value="#{m.school.schoolName}"/>
                     </h2>
                     #{membersListBean.getMemberRole(m)}
-                 	<p>
-                        <h:outputText rendered="#{membersListBean.isAdmin(m)}" value="#{m.school.statusSchool.displayValue}"/>
+                    <p>
+                        <h:outputText rendered="#{membersListBean.memberIsAdmin(m)}"
+                                      value="#{m.school.statusSchool.displayValue}"/>
+                        <h:outputText rendered="#{membersListBean.memberIsTeacher(m)}"
+                                      value="#{membersListBean.getTeacherStatus(m)}"/>
+
                     </p>
                     <hr/>
                     <p>
@@ -45,73 +75,23 @@
                         <h:outputText value="#{membersListBean.memberRole}"/>
                     </h3>
 
-                    <h:form>
+                    <p>
+
+                        <h:outputText rendered="#{membersListBean.memberIsTeacher(m)}"
+                                      value="#{membersListBean.getTeacherSubject(m)}"/>
+                        <h:outputText rendered="#{membersListBean.memberIsStudent(m)}"
+                                      value="#{membersListBean.getStudentLevel(m)}"/>
+                    </p>
+
+                    <h:form rendered="#{membersListBean.isAllowed(m)}">
                         <h:commandButton action="#{membersListBean.goToIndexSchool(m)}"
-                                         value="Espace école " class="custom-little-button"/>
+                                         value="Espace école " class="custom-long-button"/>
                         <br/>
                     </h:form>
 
                 </div>
             </ui:repeat>
         </div>
-
-        <h2>Mes cours particuliers en tant que professeur</h2>
-        <div class="container">
-            <ui:repeat value="#{membersListBean.getSynchronousLessonLikeTeacher()}" var="s">
-                <div class="box" style="border-top: 3px solid ##{s.teacher.school.schoolPage.theme.primaryColor}">
-                    <h2>
-                        <h:outputText value="#{s.title}"/>
-                    </h2>
-                    <h3>
-                        <h:outputText value="#{s.subject}"/>
-                    </h3>
-                    <h3>
-                        <h:outputText value="#{s.level}"/>
-                    </h3>
-                    <hr/>
-                    <p>
-                        <h:outputText value="#{synchronousLessonBean.toStringClasseDate(s.classDate)}"/>
-                        <br/>
-                        <h:outputText value="#{s.duration}"/>
-                        <br/>
-                    </p>
-
-                    <p>
-                        Il reste : <h:outputText
-                            value="#{synchronousLessonBean.freeSeatsNumbers(s)}"/> place(s) pour ce cours
-                    </p>
-
-
-                </div>
-            </ui:repeat>
-        </div>
-
-        <h2>Mes cours particuliers en tant qu'élève</h2>
-        <div class="container">
-            <ui:repeat value="#{membersListBean.getSynchronousLessonLikeStudent()}" var="l">
-                <div class="box" style="border-top: 3px solid ##{l.student.school.schoolPage.theme.primaryColor}">
-                    <h2>
-                        <h:outputText value="#{l.activity.title}"/>
-                    </h2>
-                    <h3>
-                        <h:outputText value="#{l.activity.subject}"/>
-                    </h3>
-                    <h3>
-                        <h:outputText value="#{l.activity.level}"/>
-                    </h3>
-                    <hr/>
-                    <p>
-                        <h:outputText value="#{membersListBean.getStringClassDate(l)}"/>
-                        <br/>
-                        <h:outputText value="#{membersListBean.getStringDuration(l)}"/>
-                        <br/>
-                    </p>
-
-
-                </div>
-            </ui:repeat>
-        </div>
-
 
     </ui:define>
 
