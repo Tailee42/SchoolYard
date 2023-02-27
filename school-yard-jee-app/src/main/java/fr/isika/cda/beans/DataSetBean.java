@@ -256,7 +256,7 @@ public class DataSetBean {
 		userRepository.save(user11);
 		Student student1 = createStudent(school1, user11, AcademicLevel.QUATRIEME);
 		userRepository.save(user11);
-		Student student2 = createStudent(school3, user11, AcademicLevel.TROISIEME);
+		Student student2 = createStudent(school3, user11, AcademicLevel.SECONDE);
 
 		User user12 = new User("fleur", LocalDate.of(2022, Month.OCTOBER, 25), RoleTypeEnum.USER,
 				new Security("Fleur-123"), new Profil("ALBRAND", "Fleur", "", new Contact("fleur@gmail.com",
@@ -268,9 +268,9 @@ public class DataSetBean {
 				new Security("Herve-123"), new Profil("LEGRAND", "Hervé", "", new Contact("herve@gmail.com",
 						"06 32 32 32 32", new Address(12, "Rue des remparts", "BOURGES", "18000"))));
 		userRepository.save(user13);
-		Student student4 = createStudent(school3, user13, AcademicLevel.SIXIEME);
+		Student student4 = createStudent(school3, user13, AcademicLevel.SECONDE);
 		userRepository.save(user13);
-		Student student5 = createStudent(school1, user13, AcademicLevel.CINQUIEME);
+		Student student5 = createStudent(school1, user13, AcademicLevel.TROISIEME);
 
 		User user14 = new User("emilie", LocalDate.of(2022, Month.JANUARY, 15), RoleTypeEnum.USER,
 				new Security("Emilie-123"), new Profil("GRANDY", "Emilie", "", new Contact("emilie@gmail.com",
@@ -304,9 +304,11 @@ public class DataSetBean {
 
 		Teacher teacher5 = createTeacher(school4, user21, SchoolTypeEnum.COLLEGE, SubjectEnum.HISTOIRE);
 
+		Teacher teacher6 = createTeacher(school3, user4, SchoolTypeEnum.LYCEE, SubjectEnum.MATHS);
+
 		// Create some synchronous lessons
 
-		VirtualOption virtual1 = new VirtualOption("www.zoom.fr", "Zoom",
+		VirtualOption virtual1 = new VirtualOption("www.zoom.us", "Zoom",
 				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.CINQUIEME, teacher1,
 						"Seigneurs et paysans au Moyen Âge", "1 heure", LocalDateTime.of(2023, Month.MARCH, 12, 14, 30),
 						5, new BigDecimal("25")));
@@ -317,7 +319,7 @@ public class DataSetBean {
 						"1 heure et quart", LocalDateTime.of(2023, Month.APRIL, 1, 10, 15), 8, new BigDecimal("27")));
 		physicalRepository.save(physical1);
 
-		VirtualOption virtual2 = new VirtualOption("www.zoom.fr", "Zoom",
+		VirtualOption virtual2 = new VirtualOption("www.zoom.us", "Zoom",
 				new SynchronousLesson(SubjectEnum.MATHS, AcademicLevel.CM1, teacher2, "Les nombres décimaux",
 						"1 heure et demi", LocalDateTime.of(2023, Month.MARCH, 24, 10, 30), 3, new BigDecimal("30")));
 		virtualRepository.save(virtual2);
@@ -327,8 +329,8 @@ public class DataSetBean {
 						LocalDateTime.of(2023, Month.APRIL, 12, 9, 45), 3, new BigDecimal("27")));
 		physicalRepository.save(physical2);
 
-		VirtualOption virtual3 = new VirtualOption("www.zoom.fr", "Zoom",
-				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.CINQUIEME, teacher1, "Babylone", "1 heure",
+		VirtualOption virtual3 = new VirtualOption("www.zoom.us", "Zoom",
+				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.QUATRIEME, teacher1, "Babylone", "1 heure",
 						LocalDateTime.of(2022, Month.MARCH, 12, 14, 30), 5, new BigDecimal("25")));
 		virtualRepository.save(virtual3);
 
@@ -336,6 +338,17 @@ public class DataSetBean {
 				new SynchronousLesson(SubjectEnum.HISTOIRE, AcademicLevel.QUATRIEME, teacher1,
 						"L'urbanisation du monde", "1 heure et quart", LocalDateTime.of(2023, Month.JANUARY, 1, 10, 15),
 						8, new BigDecimal("27")));
+		physicalRepository.save(physical3);
+
+		VirtualOption virtual4 = new VirtualOption("www.teams.fr", "Teams",
+				new SynchronousLesson(SubjectEnum.MATHS, AcademicLevel.SECONDE, teacher6, "Les fonctions", "1 heure 30 minutes",
+						LocalDateTime.of(2023, Month.MARCH, 30, 9, 30), 4, new BigDecimal("30")));
+		virtualRepository.save(virtual3);
+
+		PhysicalOption physical4 = new PhysicalOption(new Address(13, "Rue de la fontaine", "Valence", "26000"),
+				new SynchronousLesson(SubjectEnum.MATHS, AcademicLevel.TERMINALE, teacher6,
+						"Les matrices", "2 heures", LocalDateTime.of(2023, Month.APRIL, 1, 10, 15),
+						3, new BigDecimal("35")));
 		physicalRepository.save(physical3);
 
 		// Learning Path
@@ -353,6 +366,10 @@ public class DataSetBean {
 				LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "A le soucis de bien faire. Il faut continuer ainsi.",
 				"");
 		learningPathRepository.save(learningPath4);
+		LearningPath learningPath5 = new LearningPath(virtual4.getSynchronousLesson(), student2,
+				LocalDateTime.of(2022, Month.APRIL, 12, 9, 45), "A le soucis de bien faire. Il faut continuer ainsi.",
+				"");
+		learningPathRepository.save(learningPath5);
 
 		// Creating some units
 		Unit unit1 = new Unit("La Première Guerre mondiale",
