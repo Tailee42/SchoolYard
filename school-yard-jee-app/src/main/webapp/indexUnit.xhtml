@@ -33,12 +33,15 @@
 		#{unitBean.getUnitId()}
 		<h1>Mon cours</h1>
 
-		<div class="box" style="border-top: 3px solid ##{unitBean.school.schoolPage.theme.primaryColor}">
+		<div class="box"
+			style="border-top: 3px solid ##{unitBean.school.schoolPage.theme.primaryColor}">
 
 			<h2>
 				<h:outputText value="#{unitBean.unit.title}" />
 				<ui:fragment rendered="#{unitBean.isFavorite()}">
+
 					<i class="fa-solid fa-star" style = "color: orangered;"></i>
+
 				</ui:fragment>
 			</h2>
 
@@ -62,12 +65,15 @@
 					class="custom-extra-long-button">
 				</h:commandButton>
 			</h:form>
-
-			<h:form rendered="#{membersListBean.memberIsAdmin(welcomeBean.connectedMember)}">
-			<h:commandLink
-				action="#{membersListBean.goToIndexSchool(welcomeBean.connectedMember)}">Retour</h:commandLink>
+			<br />
+			<h:form
+				rendered="#{membersListBean.memberIsAdmin(welcomeBean.connectedMember)}">
+				<h:commandLink
+					action="#{membersListBean.goToIndexSchool(welcomeBean.connectedMember)}">Retour</h:commandLink>
 			</h:form>
-			<h:link rendered="#{not membersListBean.memberIsAdmin(welcomeBean.connectedMember)}" outcome="showUnits" value="Retour"/>
+			<h:link
+				rendered="#{not membersListBean.memberIsAdmin(welcomeBean.connectedMember)}"
+				outcome="showUnits" value="Retour" />
 
 
 		</div>
