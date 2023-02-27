@@ -13,13 +13,14 @@
 	<h:outputStylesheet name="css/brands.css" library="fontawesome" />
 	<h:outputStylesheet name="css/solid.css" library="fontawesome" />
 
+
     #{indexSchoolBean.getSchoolsInformations()}
 
     <ui:insert name="cssFiles"></ui:insert>
 
 	<style type="text/css">
-#{indexSchoolBean.styles()}
-</style>
+	#{indexSchoolBean.styles()}
+	</style>
 
 	<title><ui:insert name="title">#{indexSchoolBean.school.schoolName}</ui:insert></title>
 
