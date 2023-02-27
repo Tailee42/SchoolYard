@@ -191,6 +191,7 @@ public class MembersListBean {
 	}
 
 	public boolean userHasTeacher() {
+		allMembersForOneUser();
 		for (Member member : members) {
 			if (member instanceof Teacher) {
 				return true;
