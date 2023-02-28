@@ -60,6 +60,7 @@ public class School implements Serializable {
 		this.contact = contact;
 		this.statusSchool = StatusSchool.TOPUBLISH;
 		this.schoolTypeEnum = schoolTypeEnum;
+		this.schoolPage = new SchoolPage();
 		this.stats = new Statistics();
 	}
 
