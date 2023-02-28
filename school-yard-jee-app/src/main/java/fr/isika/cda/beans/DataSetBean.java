@@ -137,12 +137,13 @@ public class DataSetBean {
 				LocalDate.of(2022, Month.NOVEMBER, 12), subscription3);
 		membershipRepository.save(membership3);
 
-		Membership membership4 = new Membership(LocalDate.of(2023, Month.AUGUST, 10),
-				LocalDate.of(2024, Month.AUGUST, 10), subscription3);
+		Membership membership4 = new Membership(LocalDate.of(2024, Month.AUGUST, 10),
+				LocalDate.of(2023, Month.AUGUST, 10), subscription3);
 		membershipRepository.save(membership4);
 
 		Membership membership5 = new Membership(LocalDate.of(2023, Month.JUNE, 8),
-				LocalDate.of(2022, Month.JUNE, 8), subscription1);
+				LocalDate.of(2022, Month.JUNE, 8),
+				  subscription1);
 		membershipRepository.save(membership5);
 
 		// Create user to set as schools Admin (from user1 to user9 for future)
@@ -189,7 +190,7 @@ public class DataSetBean {
 		school1.setStatusSchool(StatusSchool.PUBLISHED);
 		school1.setMembership(membership3);
 		schoolRepository.save(school1);
-		createAdmin(user1, school1);
+		createAdmin(user3, school1);
 
 		School school2 = new School("Ecole de la plage", "Logo_Crop_EcoleDeLaPlage.png",
 				"Se détendre pour mieux apprendre", new ArrayList<>(), new Contact("ecoledelaplage@gmail.com",

@@ -186,13 +186,19 @@ a:hover {
 }
 
 /*Div cachées formulaires (id, mdp)*/
-.hidden {
+.hiddenBtn {
     opacity: 0;
 }
 
-.hidden:hover{
+.hiddenBtn:hover{
     opacity: 0;
 }
+
+.hidden {
+   display: none;
+}
+
+
 
 
 
@@ -217,7 +223,7 @@ section {
     padding: 30px 0 30px 0;
 }
 
-.gridDiv {
+.gridDivLink {
     margin: 20px;
     display: flex;
     justify-content: space-evenly;
