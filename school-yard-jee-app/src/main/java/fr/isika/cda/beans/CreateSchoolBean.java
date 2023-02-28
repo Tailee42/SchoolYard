@@ -1,6 +1,7 @@
 package fr.isika.cda.beans;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +85,7 @@ public class CreateSchoolBean {
 	}
 
 	public void uploadFile(FileUploadEvent event) {
-		String timestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("ddMMyyyy_hhmmss"));
+		String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyy_hhmmss"));
 		UploadedFile file = event.getFile();
 		logoFileName = timestamp + "_" + file.getFileName();
 		FileUpload.doUpLoad(file, logoFileName);
