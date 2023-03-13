@@ -61,6 +61,7 @@ public class School implements Serializable {
 		this.statusSchool = StatusSchool.TOPUBLISH;
 		this.schoolTypeEnum = schoolTypeEnum;
 		this.stats = new Statistics();
+		this.schoolPage = new SchoolPage();
 	}
 
 	public String getSchoolName() {
